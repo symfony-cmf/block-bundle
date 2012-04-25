@@ -1,9 +1,6 @@
-# Symfony Content Management Framework
+# Symfony Cmf Block Bundle
 
-## Mission Statement
-
-The Symfony CMF project makes it easier for **developers** to add **CMS functionality** to applications built with the **Symfony2 PHP** framework. Key development principles for the provided **set of bundles** are **scalability**, **usability**, **documentation** and **testing**.
-
+This is part of the Symfony Cmf: <https://github.com/symfony-cmf/symfony-cmf>
 
 ## Links
 
@@ -16,14 +13,6 @@ The Symfony CMF project makes it easier for **developers** to add **CMS function
 - Users mailing list: <http://groups.google.com/group/symfony-cmf-users>
 - Devs mailing list: <http://groups.google.com/group/symfony-cmf-devs>
 
-## Installation
-
-This is the main repository containing all bundles you need for the CMF.
-
-If you just want to experiment with the CMF, the easiest is to use the [CMF Sandbox](https://github.com/symfony-cmf/cmf-sandbox) which has everything set up and ready.
-
-To use the CMF in your own projects, we provide guides to install the [PHPCR-ODM bundle](https://github.com/symfony-cmf/symfony-cmf-docs/blob/master/tutorials/installing-configuring-doctrine-phpcr-odm.rst) and [Symfony CMF](https://github.com/symfony-cmf/symfony-cmf-docs/blob/master/tutorials/installing-configuring-cmf.rst) itself.
-
 ## Documentation
 
-Further documentation can be found in the [documentation repo](https://github.com/symfony-cmf/symfony-cmf-docs) but is still in its early stages. There is a [documentation planning](https://github.com/symfony-cmf/symfony-cmf/wiki/Documentation-Planning) available describing the work to do.
+Coming soon
