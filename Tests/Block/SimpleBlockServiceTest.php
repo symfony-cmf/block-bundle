@@ -2,8 +2,8 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Block;
 
-use Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService;
-use Symfony\Cmf\Bundle\BlockBundle\Document\SimpleBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService,
+    Symfony\Cmf\Bundle\BlockBundle\Document\SimpleBlock;
 
 class SimpleBlockServiceTest extends \PHPUnit_Framework_TestCase
 {
