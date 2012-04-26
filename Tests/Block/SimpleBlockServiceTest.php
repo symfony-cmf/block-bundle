@@ -17,13 +17,13 @@ class SimpleBlockServiceTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $templatingMock->expects($this->once())
-             ->method('renderResponse')
-             ->with(
+            ->method('renderResponse')
+            ->with(
                 $this->equalTo('SymfonyCmfBlockBundle::block_simple.html.twig'),
                 $this->equalTo(array(
                     'block'=> $simpleBlock
                 ))
-             );
+            );
 
         $simpleBlockService = new SimpleBlockService('test-service', $templatingMock);
         $simpleBlockService->execute($simpleBlock);
