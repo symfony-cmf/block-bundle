@@ -5,17 +5,17 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Document;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
 
 /**
- * Block that contains other blocks ...
+ * Block that contains hypertext and a title
  *
  * @PHPCRODM\Document(referenceable=true)
  */
 class SimpleBlock extends BaseBlock
 {
     /** @PHPCRODM\String */
-    private $title;
+    protected $title;
 
     /** @PHPCRODM\String */
-    private $content;
+    protected $content;
 
     public function getType()
     {
@@ -34,7 +34,7 @@ class SimpleBlock extends BaseBlock
 
     public function setContent($content)
     {
-        $this->content;
+        $this->content = $content;
     }
 
     public function getContent()
