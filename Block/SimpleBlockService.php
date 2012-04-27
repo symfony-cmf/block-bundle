@@ -45,7 +45,7 @@ class SimpleBlockService extends BaseBlockService implements BlockServiceInterfa
         }
 
         if ($block->getEnabled()) {
-            $response = $this->renderResponse('SymfonyCmfBlockBundle::block_simple.html.twig', array(
+            $response = $this->renderResponse('SymfonyCmfBlockBundle:Block:block_simple.html.twig', array(
                 'block'     => $block
             ), $response);
         }
