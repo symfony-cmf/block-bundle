@@ -4,7 +4,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Bundle\FrameworkBundle\HttpKernel;
 use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\BlockBundle\Model\BlockInterface;
@@ -20,7 +20,7 @@ class ActionBlockService extends BaseBlockService implements BlockServiceInterfa
      * @param $name
      * @param \Symfony\Component\Templating\EngineInterface $templating
      */
-    public function __construct($name, EngineInterface $templating, HttpKernelInterface $kernel)
+    public function __construct($name, EngineInterface $templating, HttpKernel $kernel)
     {
         parent::__construct($name, $templating);
         $this->kernel = $kernel;
