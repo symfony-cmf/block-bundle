@@ -15,7 +15,6 @@ class SimpleBlockServiceTest extends \PHPUnit_Framework_TestCase
         $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
             ->disableOriginalConstructor()
             ->getMock();
-
         $templatingMock->expects($this->once())
             ->method('renderResponse')
             ->with(
@@ -27,7 +26,6 @@ class SimpleBlockServiceTest extends \PHPUnit_Framework_TestCase
 
         $simpleBlockService = new SimpleBlockService('test-service', $templatingMock);
         $simpleBlockService->execute($simpleBlock);
-
     }
 
     public function testExecutionOfDisabledBlock()
@@ -38,13 +36,11 @@ class SimpleBlockServiceTest extends \PHPUnit_Framework_TestCase
         $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
             ->disableOriginalConstructor()
             ->getMock();
-
         $templatingMock->expects($this->never())
              ->method('renderResponse');
 
         $simpleBlockService = new SimpleBlockService('test-service', $templatingMock);
         $simpleBlockService->execute($simpleBlock);
-
     }
 
 }
