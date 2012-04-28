@@ -79,4 +79,35 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(($responseContent1 . $responseContent2), $containerBlockService->execute($containerBlockMock)->getContent());
     }
 
+    public function testExecutionOfBlockWithNoChildren()
+    {
+        $childrenCollectionMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\ChildrenCollection')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $childrenCollectionMock->expects($this->once())
+            ->method('getValues')
+            ->will($this->returnValue(array()));
+
+        $containerBlockMock = $this->getMockBuilder('Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $containerBlockMock->expects($this->once())
+            ->method('getEnabled')
+            ->will($this->returnValue(true));
+        $containerBlockMock->expects($this->once())
+            ->method('getChildren')
+            ->will($this->returnValue($childrenCollectionMock));
+
+        $blockRendererMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockRendererInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $containerBlockService = new ContainerBlockService('test-service', $templatingMock, $blockRendererMock);
+        $this->assertEquals('', $containerBlockService->execute($containerBlockMock)->getContent());
+    }
+
 }
