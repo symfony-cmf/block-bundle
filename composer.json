@@ -1,5 +1,5 @@
 {
-    "name": "symfony-cmf/SymfonyCmfBlockBundle",
+    "name": "symfony-cmf/blockB-bundle",
     "type": "symfony-bundle",
     "description": "Symfony CMF Block Bundle",
     "keywords": ["Symfony CMF", "Block", "content fragments"],
@@ -8,18 +8,20 @@
     "authors": [
         {
             "name": "Symfony CMF Community",
-            "homepage": "https://github.com/symfony-cmf/SymfonyCmfBlockBundle/contributors"
+            "homepage": "https://github.com/symfony-cmf/BlockBundle/contributors"
         }
     ],
     "require": {
         "php": ">=5.3.2",
         "symfony/symfony": "2.1.*",
         "doctrine/phpcr-odm": "*",
-        "symfony-cmf/symfony-cmf": "*",
-        "symfony-cmf/chainrouting-bundle": "*",
+        "symfony-cmf/routing-extra-bundle": "*",
         "sonata-project/block-bundle": "*"
     },
-    "autoload": {
-        "psr-0": { "Symfony\\Cmf\\BlockBundle": "" }
-    }
+    "autoload":{
+        "psr-0":{
+            "Symfony\\Cmf\\Bundle\\BlockBundle": ""
+        }
+    },
+    "target-dir": "Symfony/Cmf/Bundle/BlockBundle"
 }
