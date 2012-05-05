@@ -1,5 +1,5 @@
 {
-    "name": "symfony-cmf/blockB-bundle",
+    "name": "symfony-cmf/block-bundle",
     "type": "symfony-bundle",
     "description": "Symfony CMF Block Bundle",
     "keywords": ["Symfony CMF", "Block", "content fragments"],
