@@ -1,7 +1,7 @@
 <?php
 
 if (! file_exists($file = __DIR__.'/../vendor/autoload.php')) {
-    die ("\nYou need to run composer before you can run the routing tests\n");
+    die ("\nYou need to run composer before you can run the block bundle tests\n");
 }
 require_once $file;
 
