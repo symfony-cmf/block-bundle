@@ -5,22 +5,20 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Doctrine\ODM\PHPCR\DocumentManager;
 
 class PHPCRBlockLoader implements BlockLoaderInterface
 {
-
     protected $container;
-    protected $odm;
+    protected $documentManagerName;
 
     /**
      * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
-     * @param \use Doctrine\ODM\PHPCR\DocumentManager
+     * @param string $documentManagerName
      */
-    public function __construct(ContainerInterface $container, DocumentManager $odm)
+    public function __construct(ContainerInterface $container, $documentManagerName)
     {
         $this->container = $container;
-        $this->odm = $odm;
+        $this->dm = $this->container->get('doctrine_phpcr')->getManager($documentManagerName);
     }
 
     /**
@@ -30,9 +28,9 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     {
         if ($this->support($configuration)) {
             return $this->findByName($configuration['name']);
-        } else {
-            return null;
         }
+
+        return null;
     }
 
     /**
@@ -61,15 +59,12 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     public function findByName($name)
     {
         if ($this->isAbsolutePath($name)) {
-            return $this->odm->find(null, $name);
-        } else {
-            $currentPage = $this->container->get('request')->attributes->get('contentDocument');
-            return $this->odm->find(null,  $currentPage->getPath() . '/' . $name);
+            return $this->dm->find(null, $name);
         }
 
-        return null;
+        $currentPage = $this->container->get('request')->attributes->get('contentDocument');
+        return $this->dm->find(null,  $currentPage->getPath() . '/' . $name);
     }
-
 
     /**
      * @param \string $path
@@ -80,5 +75,4 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     {
         return substr($path, 0, 1) == '/';
     }
-
 }

@@ -9,7 +9,7 @@
         <service id="symfony_cmf.block.service" class="Symfony\Cmf\Bundle\BlockBundle\Block\PHPCRBlockLoader">
             <tag name="sonata.block.loader" />
             <argument type="service" id="service_container" />
-            <argument type="service" id="doctrine_phpcr.odm.default_document_manager" />
+            <argument />
         </service>
 
         <service id="symfony_cmf.block.simple" class="Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService">
