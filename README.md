@@ -51,7 +51,8 @@ The SymfonyCmfBlockBundle comes with four general purpose blocks:
 You can find example usages of this bundle in the [Symfony CMF Sandbox](https://github.com/symfony-cmf/cmf-sandbox). Have a look at the BlockBundle in the Sandbox. It also shows you how to make blocks editable using the [LiipVieBundle](https://github.com/liip/LiipVieBundle).
 
 ## Technical details
-### Sonata Block Bundle
+### Relation to Sonata Block Bundle
+![class diagram](https://raw.github.com/symfony-cmf/BlockBundle/master/docs/classdiagram.png)
 
 
 ### Tests
