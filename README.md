@@ -48,8 +48,8 @@ The SymfonyCmfBlockBundle comes with four general purpose blocks:
 
 ### Create your own blocks
 Lets say you are working on a project where you have to integrate data received from several RSS feeds. Of course you could create an ActionBlock for each of these feeds, but wouldn't this be silly? In fact all those actions would look similar: Receive data from a feed, sanitize it and pass the data to a template. So instead you decide to create your own block, the RSSBlock.
-The first thing you need is an entity that contains the data. It is recommended to extend the BaseBlock contained in this bundle (however you are not forced to do so, as long as you implement ```Sonata\BlockBundle\Model\BlockInterface```). In your entity, you add two properties, feedURL and templateName, as well as getters and setters for them. Also, you need to define the ```getType``` method which just returns 'my_bundle.block.rss'. You can again extend ```Sonata\BlockBundle\Block\BaseBlockService```. It is important, that the 'name' property of the service is called 'my_bundle.block.rss' (this makes sure the relation between entity and service can be found).
-The second thing required is a service that knows how to handle RSSBlocks. In the case of the RSSBlock this would be: Fetch the data from whatever is stored in feedURL, sanitize it, and pass it to the template stored in templateName.
+The first thing you need is an entity that contains the data. It is recommended to extend the BaseBlock contained in this bundle (however you are not forced to do so, as long as you implement ```Sonata\BlockBundle\Model\BlockInterface```). In your entity, you add two properties, 'feedURL' and 'templateName', as well as getters and setters for them. Also, you need to define the ```getType``` method which just returns 'my_bundle.block.rss'.
+The second thing required is a service that knows how to handle RSSBlocks. In the case of the RSSBlock this would be: Fetch the data from whatever is stored in 'feedURL', sanitize it, and pass it to the template stored in 'templateName'. You can again extend ```Sonata\BlockBundle\Block\BaseBlockService```. It is important, that the 'name' property of the service is called 'my_bundle.block.rss' (this makes sure the relation between entity and service can be found).
 The last thing you need is to define the service in a config file. It is important, to tag your BlockService with 'sonata.block', otherwise it will not be known by the Bundle.
 
 ## Examples
@@ -58,7 +58,7 @@ You can find example usages of this bundle in the [Symfony CMF Sandbox](https://
 ## Technical details
 
 ### Relation to Sonata Block Bundle
-The SymfonyCmfBlockBundle makes heavy use of the [SonataBlockBundle](https://github.com/sonata-project/SonataBlockBundle). We replace components of the bundle where needed to be compatible with PHPCR. The following picture shows were we use our own components (blue):
+The SymfonyCmfBlockBundle makes heavy use of the [SonataBlockBundle](https://github.com/sonata-project/SonataBlockBundle). We replace components of the bundle where needed to be compatible with PHPCR. The following picture shows where we use our own components (blue):
 ![class diagram](https://github.com/symfony-cmf/BlockBundle/raw/master/docs/classdiagram.jpg)
 
 ### Tests
