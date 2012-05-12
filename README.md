@@ -52,7 +52,7 @@ You can find example usages of this bundle in the [Symfony CMF Sandbox](https://
 
 ## Technical details
 ### Relation to Sonata Block Bundle
-![class diagram](https://raw.github.com/symfony-cmf/BlockBundle/master/docs/classdiagram.png)
+![class diagram](https://github.com/symfony-cmf/BlockBundle/raw/master/docs/classdiagram.jpg)
 
 
 ### Tests
