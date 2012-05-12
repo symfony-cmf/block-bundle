@@ -52,7 +52,10 @@ You can find example usages of this bundle in the [Symfony CMF Sandbox](https://
 
 ## Technical details
 ### Sonata Block Bundle
+
+
 ### Tests
+The components of the SymfonyCmfBlockBundle are unit tested. You can run the tests with ```phpunit -c .``` in the root directory.
 
 ## Authors
 * [Alain Horner](https://github.com/elHornair)
