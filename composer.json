@@ -14,8 +14,8 @@
     "require": {
         "php": ">=5.3.2",
         "symfony/symfony": "2.1.*",
-        "doctrine/phpcr-bundle" :"dev-master",
-        "doctrine/phpcr-odm": "dev-master",
+        "doctrine/phpcr-bundle" :"1.0.*",
+        "doctrine/phpcr-odm": "1.0.*",
         "sonata-project/block-bundle": "dev-master"
     },
     "autoload":{
@@ -23,5 +23,10 @@
             "Symfony\\Cmf\\Bundle\\BlockBundle": ""
         }
     },
-    "target-dir": "Symfony/Cmf/Bundle/BlockBundle"
+    "target-dir": "Symfony/Cmf/Bundle/BlockBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
 }
