@@ -181,6 +181,10 @@ abstract class BaseBlock implements BlockInterface
         $this->name = $name;
     }
 
+    public function getName() {
+        return $this->name;
+    }
+
     /**
      * set parent document regardless of type
      *
