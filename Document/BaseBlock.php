@@ -161,7 +161,7 @@ abstract class BaseBlock implements BlockInterface
     /**
      * Get children
      *
-     * @return Doctrine\Common\Collections\Collection $children
+     * @return \Doctrine\Common\Collections\Collection $children
      */
     public function getChildren()
     {
@@ -186,9 +186,10 @@ abstract class BaseBlock implements BlockInterface
     }
 
     /**
-     * set parent document regardless of type
+     * set parent document regardless of type. this can be a ContainerBlock
+     * but also any PHPCR-ODM document
      *
-     * @param $document
+     * @param object $document
      */
     public function setParentDocument($parent)
     {
@@ -198,7 +199,7 @@ abstract class BaseBlock implements BlockInterface
     /**
      * get the parent document
      *
-     * @return $document
+     * @return object|null $document
      */
     public function getParentDocument()
     {
@@ -231,9 +232,9 @@ abstract class BaseBlock implements BlockInterface
     }
 
     /**
-     * Has this block a parent
+     * Check if this block has a parent.
      *
-     * @return void
+     * @return boolean true if this block has a valid parent set
      */
     public function hasParent()
     {
