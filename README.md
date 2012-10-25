@@ -1,65 +1,21 @@
 # Symfony Cmf Block Bundle
 
-## What is this?
-This Bundle is part of the [Symfony CMF](http://cmf.symfony.com/). It assists you in managing fragments of contents, so called blocks. What the SymfonyCmfBlockBundle does is similar to what Twig does, but for blocks that are persisted in a DB. Thus the blocks can be made editable for an editor. Also the SymfonyCmfBlockBundle provides the logic to determine which block should be rendered on which pages.
+This is part of the Symfony Cmf: <https://github.com/symfony-cmf/symfony-cmf>
 
-## What is this not?
-The SymfonyCmfBlockBundle does not provide an editing functionality for blocks itself. However, you can find examples on how making blocks editable in the [Symfony CMF Sandbox](https://github.com/symfony-cmf/cmf-sandbox).
+## Links
 
-## Usage
+- GitHub: <https://github.com/symfony-cmf/symfony-cmf>
+- Sandbox: <https://github.com/symfony-cmf/cmf-sandbox>
+- Web: <http://cmf.symfony.com/>
+- Wiki: <http://github.com/symfony-cmf/symfony-cmf/wiki>
+- Issue Tracker: <http://cmf.symfony-project.org/redmine/>
+- IRC: irc://freenode/#symfony-cmf
+- Users mailing list: <http://groups.google.com/group/symfony-cmf-users>
+- Devs mailing list: <http://groups.google.com/group/symfony-cmf-devs>
 
-### Installation / Dependencies
+## Documentation
 
-Dependencies of the SymfonyCmfBlockBundle are managed by [Composer](https://github.com/composer/composer), so if you use Composer, you just have to add a requirement for ```symfony-cmf/block-bundle``` to your composer.json and run the composer installer. Otherwise check ```composer.json``` and add the required dependencies to your ```deps``` file.
-
-After this, instantiate the bundle in your ```AppKernel.php```
-
-    new Symfony\Cmf\Bundle\BlockBundle\SymfonyCmfBlockBundle()
-Since the SymfonyCmfBlockBundle extends the [SonataBlockBundle](https://github.com/sonata-project/SonataBlockBundle) (see [Technical details](#technical-details) for further information), also add this to your ```AppKernel.php```
-
-    new Sonata\BlockBundle\SonataBlockBundle()
-
-### Render your first block
-Before you can render a block, you need to create a data object representing your block in the repository. You can do so with the following code snippet (Note that ```$parentPage``` needs to be an instance of page defined by the [SymfonyCmfContentBundle](https://github.com/symfony-cmf/ContentBundle)):
-
-    $myBlock = new SimpleBlock();
-    $myBlock->setParentDocument($parentPage);
-    $myBlock->setName('sidebarBlock');
-    $myBlock->setTitle('My first block');
-    $myBlock->setContent('Hello block world!');
-
-    $documentManager->persist($myBlock);
-
-'sidebarBlock' is the identifier we chose for the block. Together with the parent document of the block, this makes the block unique. The other properties are specific to ```Simpleblock```.
-Now to have this block actually rendered, you just add the following code to your Twig template:
-
-    {{ sonata_block_render({
-        'name': 'sidebarBlock'
-    }) }}
-
-This will make the SymfonyCmfBlockBundle rendering the according block on every page that has a block named 'sidebarBlock'. Of course, the actual page needs to be rendered by the template that contains the snippet above.
-
-### Block types
-The SymfonyCmfBlockBundle comes with four general purpose blocks:
-* __SimpleBlock__: A simple block with nothing but a title and a field of hypertext. This would usually be what an editor edits directly, for example contact information
-* __ContainerBlock__: A block that containes 0 to n child blocks
-* __ReferenceBlock__: A block that references a block stored somewhere else in the content tree. For example you might want to refer parts of the contact information from the homepage
-* __ActionBlock__: A block that calls a Symfony2 action. "Why would I use this instead of directly calling the action from my template?" you might wonder. Well imagine the following case: You provide a block that renders teasers of your latest news. However, there is no rule where they should appear. Instead, your customer wants to decide himself on what pages this block is to be displayed. Providing an according ActionBlock, you allow your customer to do so without calling you to change some templates (over and over again!).
-
-### Create your own blocks
-Lets say you are working on a project where you have to integrate data received from several RSS feeds. Of course you could create an ActionBlock for each of these feeds, but wouldn't this be silly? In fact all those actions would look similar: Receive data from a feed, sanitize it and pass the data to a template. So instead you decide to create your own block, the RSSBlock.
-The first thing you need is an entity that contains the data. It is recommended to extend the BaseBlock contained in this bundle (however you are not forced to do so, as long as you implement ```Sonata\BlockBundle\Model\BlockInterface```). In your entity, you add two properties, 'feedURL' and 'templateName', as well as getters and setters for them. Also, you need to define the ```getType``` method which just returns 'my_bundle.block.rss'.
-The second thing required is a service that knows how to handle RSSBlocks. In the case of the RSSBlock this would be: Fetch the data from whatever is stored in 'feedURL', sanitize it, and pass it to the template stored in 'templateName'. You can again extend ```Sonata\BlockBundle\Block\BaseBlockService```. It is important, that the 'name' property of the service is called 'my_bundle.block.rss' (this makes sure the relation between entity and service can be found).
-The last thing you need is to define the service in a config file. It is important, to tag your BlockService with 'sonata.block', otherwise it will not be known by the Bundle.
-
-## Examples
-You can find example usages of this bundle in the [Symfony CMF Sandbox](https://github.com/symfony-cmf/cmf-sandbox). Have a look at the BlockBundle in the Sandbox. It also shows you how to make blocks editable using the [LiipVieBundle](https://github.com/liip/LiipVieBundle).
-
-## Technical details
-
-### Relation to Sonata Block Bundle
-The SymfonyCmfBlockBundle makes heavy use of the [SonataBlockBundle](https://github.com/sonata-project/SonataBlockBundle). We replace components of the bundle where needed to be compatible with PHPCR. The following picture shows where we use our own components (blue):
-![class diagram](https://github.com/symfony-cmf/BlockBundle/raw/master/docs/classdiagram.jpg)
+http://symfony-cmf.readthedocs.org/en/latest/bundles/block.html
 
 ### Tests
 The components of the SymfonyCmfBlockBundle are unit tested. You can run the tests with ```phpunit -c .``` in the root directory.
