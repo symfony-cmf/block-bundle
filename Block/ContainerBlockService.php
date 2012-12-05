@@ -109,9 +109,9 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
      * @param $media
      * @return array
      */
-    public function getJavacripts($media)
+    public function getJavascripts($media)
     {
-        // TODO: Implement getJavacripts() method.
+        // TODO: Implement getJavascripts() method.
     }
 
     /**

@@ -105,9 +105,9 @@ class ActionBlockService extends BaseBlockService implements BlockServiceInterfa
      * @param $media
      * @return array
      */
-    public function getJavacripts($media)
+    public function getJavascripts($media)
     {
-        // TODO: Implement getJavacripts() method.
+        // TODO: Implement getJavascripts() method.
     }
 
     /**
