@@ -40,6 +40,22 @@ class SymfonyCmfBlockExtension extends Extension
             $container->setParameter($this->getAlias() . '.' . 'container_admin_class', $config['container_admin_class']);
         }
 
+        if (isset($config['reference_document_class'])) {
+            $container->setParameter($this->getAlias() . '.reference_document_class', $config['reference_document_class']);
+        }
+
+        if (isset($config['reference_admin_class'])) {
+            $container->setParameter($this->getAlias() . '.' . 'reference_admin_class', $config['reference_admin_class']);
+        }
+
+        if (isset($config['action_document_class'])) {
+            $container->setParameter($this->getAlias() . '.action_document_class', $config['action_document_class']);
+        }
+
+        if (isset($config['action_admin_class'])) {
+            $container->setParameter($this->getAlias() . '.' . 'action_admin_class', $config['action_admin_class']);
+        }
+
         $blockLoader = $container->getDefinition('symfony_cmf.block.service');
         $blockLoader->replaceArgument(1, $config['document_manager_name']);
     }
@@ -53,6 +69,8 @@ class SymfonyCmfBlockExtension extends Extension
 
         $loader->load($prefix . 'admin.xml');
         $loader->load('container.admin.xml');
+        $loader->load('reference.admin.xml');
+        $loader->load('action.admin.xml');
 
         if (isset($config['simple_admin_class'])) {
             $container->setParameter($this->getAlias() . '.' . $prefix . 'simple_admin_class', $config['simple_admin_class']);
