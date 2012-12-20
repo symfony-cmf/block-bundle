@@ -11,7 +11,7 @@ class MultilangSimpleBlockAdmin extends SimpleBlockAdmin
     {
         parent::configureListFields($listMapper);
         $listMapper
-            ->add('locale', 'text')
+            ->add('locales', 'text', array('template' => 'SonataDoctrinePHPCRAdminBundle:CRUD:locales.html.twig'))
         ;
     }
 
