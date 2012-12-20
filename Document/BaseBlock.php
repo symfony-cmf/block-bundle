@@ -268,7 +268,7 @@ abstract class BaseBlock implements BlockInterface
      */
     public function __toString()
     {
-        return $this->getType() . ' - ' . $this->id;
+        return $this->name;
     }
 
     /**
@@ -326,5 +326,4 @@ abstract class BaseBlock implements BlockInterface
     {
         return $this->dashify($this->getType());
     }
-
 }

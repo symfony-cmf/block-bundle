@@ -15,7 +15,47 @@ class SymfonyCmfBlockExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
+        if ($config['use_sonata_admin']) {
+            $this->loadSonataAdmin($config, $loader, $container);
+        }
+
+        if (isset($config['multilang'])) {
+            if ($config['multilang']['use_sonata_admin']) {
+                $this->loadSonataAdmin($config['multilang'], $loader, $container, 'multilang.');
+            }
+            if (isset($config['multilang']['simple_document_class'])) {
+                $container->setParameter($this->getAlias() . '.multilang.document_class', $config['multilang']['simple_document_class']);
+            }
+        }
+
+        if (isset($config['simple_document_class'])) {
+            $container->setParameter($this->getAlias() . '.simple_document_class', $config['simple_document_class']);
+        }
+
+        if (isset($config['container_document_class'])) {
+            $container->setParameter($this->getAlias() . '.container_document_class', $config['container_document_class']);
+        }
+
+        if (isset($config['container_admin_class'])) {
+            $container->setParameter($this->getAlias() . '.' . 'container_admin_class', $config['container_admin_class']);
+        }
+
         $blockLoader = $container->getDefinition('symfony_cmf.block.service');
         $blockLoader->replaceArgument(1, $config['document_manager_name']);
+    }
+
+    public function loadSonataAdmin($config, XmlFileLoader $loader, ContainerBuilder $container, $prefix = '')
+    {
+        $bundles = $container->getParameter('kernel.bundles');
+        if ('auto' === $config['use_sonata_admin'] && !isset($bundles['SonataDoctrinePHPCRAdminBundle'])) {
+            return;
+        }
+
+        $loader->load($prefix . 'admin.xml');
+        $loader->load('container.admin.xml');
+
+        if (isset($config['simple_admin_class'])) {
+            $container->setParameter($this->getAlias() . '.' . $prefix . 'simple_admin_class', $config['simple_admin_class']);
+        }
     }
 }
