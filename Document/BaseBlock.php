@@ -177,11 +177,13 @@ abstract class BaseBlock implements BlockInterface
         return false;
     }
 
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -226,9 +228,7 @@ abstract class BaseBlock implements BlockInterface
         if ($this->parent instanceof BlockInterface) {
             return $this->parent;
         }
-        else {
-            return null;
-        }
+        return null;
     }
 
     /**
