@@ -56,6 +56,10 @@ class SymfonyCmfBlockExtension extends Extension
             $container->setParameter($this->getAlias() . '.' . 'action_admin_class', $config['action_admin_class']);
         }
 
+        if (isset($config['action_admin_class'])) {
+            $container->setParameter($this->getAlias() . '.' . 'action_admin_class', $config['action_admin_class']);
+        }
+
         $blockLoader = $container->getDefinition('symfony_cmf.block.service');
         $blockLoader->replaceArgument(1, $config['document_manager_name']);
     }

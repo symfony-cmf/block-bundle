@@ -21,7 +21,7 @@
             </call>
 
             <call method="setContentRoot">
-                <argument>%symfony_cmf_content.content_basepath%</argument>
+                <argument>%symfony_cmf_block.content_basepath%</argument>
             </call>
         </service>
     </services>
