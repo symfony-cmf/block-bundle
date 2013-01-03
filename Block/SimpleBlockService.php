@@ -11,6 +11,7 @@ use Sonata\BlockBundle\Block\BaseBlockService;
 
 class SimpleBlockService extends BaseBlockService implements BlockServiceInterface
 {
+    private $template = 'SymfonyCmfBlockBundle:Block:block_simple.html.twig';
 
     /**
      * @param \Sonata\AdminBundle\Form\FormMapper $form
@@ -44,9 +45,7 @@ class SimpleBlockService extends BaseBlockService implements BlockServiceInterfa
         }
 
         if ($block->getEnabled()) {
-            $response = $this->renderResponse('SymfonyCmfBlockBundle:Block:block_simple.html.twig', array(
-                'block'     => $block
-            ), $response);
+            $response = $this->renderResponse($this->template, array('block' => $block), $response);
         }
 
         return $response;
@@ -114,5 +113,13 @@ class SimpleBlockService extends BaseBlockService implements BlockServiceInterfa
     public function getCacheKeys(BlockInterface $block)
     {
         // TODO: Implement getCacheKeys() method.
+    }
+
+    /**
+     * @param string $template
+     */
+    public function setTemplate($template)
+    {
+        $this->template = $template;
     }
 }

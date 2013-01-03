@@ -62,6 +62,12 @@ class SymfonyCmfBlockExtension extends Extension
 
         $blockLoader = $container->getDefinition('symfony_cmf.block.service');
         $blockLoader->replaceArgument(1, $config['document_manager_name']);
+
+        $bundles = $container->getParameter('kernel.bundles');
+        if (isset($bundles['SymfonyCmfCreateBundle'])) {
+            $blockLoader = $container->getDefinition('symfony_cmf.block.simple');
+            $blockLoader->addMethodCall('setTemplate', array('SymfonyCmfBlockBundle:Block:block_simple_createphp.html.twig'));
+        }
     }
 
     public function loadSonataAdmin($config, XmlFileLoader $loader, ContainerBuilder $container, $prefix = '')
