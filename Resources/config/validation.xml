@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+        http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="Symfony\Cmf\Bundle\BlockBundle\Document\BaseBlock">
+        <constraint name="Doctrine\Bundle\PHPCRBundle\Validator\Constraints\ValidPhpcrOdm" />
+    </class>
+
+    <class name="Symfony\Cmf\Bundle\BlockBundle\Document\ActionBlock">
+        <property name="actionName">
+            <constraint name="NotBlank" />
+        </property>
+    </class>
+
+    <class name="Symfony\Cmf\Bundle\BlockBundle\Document\SimpleBlock">
+        <property name="title">
+            <constraint name="NotBlank" />
+        </property>
+
+        <property name="content">
+            <constraint name="NotBlank" />
+        </property>
+    </class>
+
+    <class name="Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock">
+        <property name="locale">
+            <constraint name="NotBlank" />
+            <constraint name="Locale" />
+        </property>
+
+        <property name="title">
+            <constraint name="NotBlank" />
+        </property>
+
+        <property name="content">
+            <constraint name="NotBlank" />
+        </property>
+    </class>
+
+</constraint-mapping>
