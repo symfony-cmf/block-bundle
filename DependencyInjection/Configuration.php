@@ -51,6 +51,8 @@ class Configuration implements ConfigurationInterface
                             ->defaultValue('auto')
                         ->end()
                         ->arrayNode('locales')
+                            ->isRequired()
+                            ->requiresAtLeastOneElement()
                             ->prototype('scalar')->end()
                         ->end()
                     ->end()
