@@ -9,6 +9,8 @@ use Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock;
 
 class MultilangSimpleBlockAdmin extends SimpleBlockAdmin
 {
+    protected $translationDomain = 'SymfonyCmfBlockBundle';
+
     /**
      * @var array
      */
@@ -38,7 +40,7 @@ class MultilangSimpleBlockAdmin extends SimpleBlockAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
+            ->with('form.group_general')
                 ->add('locale', 'choice', array(
                     'choices' => array_combine($this->locales, $this->locales),
                     'empty_value' => '',

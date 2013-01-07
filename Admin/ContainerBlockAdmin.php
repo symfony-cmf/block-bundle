@@ -10,6 +10,8 @@ use Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock;
 
 class ContainerBlockAdmin extends Admin
 {
+    protected $translationDomain = 'SymfonyCmfBlockBundle';
+
     /**
      * Root path for the route content selection
      * @var string
@@ -27,7 +29,7 @@ class ContainerBlockAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
+            ->with('form.group_general')
             ->add('parent', 'doctrine_phpcr_type_tree_model', array('root_node' => $this->contentRoot, 'choice_list' => array(), 'select_root_node' => true))
             ->add('name', 'text')
             ->end()

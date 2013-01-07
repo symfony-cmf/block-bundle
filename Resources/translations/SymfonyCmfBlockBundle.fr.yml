@@ -1,0 +1,53 @@
+dashboard:
+    group_content: Contenu
+    label_simple_block: Bloc simple
+    label_multilang_simple_block: Bloc simple multilingue
+    label_container_block: Bloc conteneur
+    label_reference_block: Bloc référence
+    label_action_block: Bloc action
+
+breadcrumb:
+    link_simple_block_list: Blocs simples
+    link_simple_block_create: Créer
+    link_simple_block_edit: Éditer
+    link_simple_block_delete: Supprimer
+
+    link_multilang_simple_block_list: Blocs simples multilingues
+    link_multilang_simple_block_create: Créer
+    link_multilang_simple_block_edit: Éditer
+    link_multilang_simple_block_delete: Supprimer
+
+    link_container_block_list: Blocs conteneurs
+    link_container_block_create: Créer
+    link_container_block_edit: Éditer
+    link_container_block_delete: Supprimer
+
+    link_reference_block_list: Blocs référence
+    link_reference_block_create: Créer
+    link_reference_block_edit: Éditer
+    link_reference_block_delete: Supprimer
+
+    link_action_block_list: Blocs action
+    link_action_block_create: Créer
+    link_action_block_edit: Éditer
+    link_action_block_delete: Supprimer
+
+filter:
+    label_name: Nom
+    label_title: Titre
+
+list:
+    label_id: Id
+    label_name: Nom
+    label_title: Titre
+    label_locales: Langues
+
+form:
+    group_general: Général
+    label_locale: Langue
+    label_parent: Parent
+    label_name: Nom
+    label_title: Titre
+    label_content: Contenu
+    label_referenced_block: Bloc référencé
+    label_action_name: Nom de l'action
