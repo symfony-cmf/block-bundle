@@ -26,8 +26,12 @@ class PHPCRBlockLoader implements BlockLoaderInterface
      */
     public function load($configuration)
     {
+
         if ($this->support($configuration)) {
-            return $this->findByName($configuration['name']);
+            $block = $this->findByName($configuration['name']);
+            $block->setSettings($this->mergeSettings($block, $configuration));
+
+            return $block;
         }
 
         return null;
@@ -74,5 +78,18 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     protected function isAbsolutePath($path)
     {
         return substr($path, 0, 1) == '/';
+    }
+
+    /**
+     * @param \Sonata\BlockBundle\Model\BlockInterface $block
+     * @param array $configuration
+     * @return array
+     */
+    private function mergeSettings(BlockInterface $block, $configuration)
+    {
+        return array_merge(
+            isset($configuration['settings']) && is_array($configuration['settings']) ? $configuration['settings'] : array(),
+            is_array($block->getSettings()) ? $block->getSettings() : array() // block document settings
+        );
     }
 }
