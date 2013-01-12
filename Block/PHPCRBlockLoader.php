@@ -5,13 +5,11 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PHPCRBlockLoader implements BlockLoaderInterface
 {
     protected $container;
     protected $documentManagerName;
-    protected $settings;
 
     /**
      * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
@@ -21,7 +19,6 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     {
         $this->container = $container;
         $this->dm = $this->container->get('doctrine_phpcr')->getManager($documentManagerName);
-        $this->settings = new OptionsResolver();
     }
 
     /**
@@ -29,14 +26,14 @@ class PHPCRBlockLoader implements BlockLoaderInterface
      */
     public function load($configuration)
     {
-
         if ($this->support($configuration)) {
             $block = $this->findByName($configuration['name']);
 
             // merge settings
-            $this->settings->setDefaults(isset($configuration['settings']) && is_array($configuration['settings']) ? $configuration['settings'] : array());
-            $settings = $this->settings->resolve(is_array($block->getSettings()) ? $block->getSettings() : array());
-            $block->setSettings($settings);
+            $block->setSettings(array_merge(
+                isset($configuration['settings']) && is_array($configuration['settings']) ? $configuration['settings'] : array(),
+                is_array($block->getSettings()) ? $block->getSettings() : array()
+            ));
 
             return $block;
         }
@@ -85,13 +82,5 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     protected function isAbsolutePath($path)
     {
         return substr($path, 0, 1) == '/';
-    }
-
-    /**
-     * @return \Symfony\Component\OptionsResolver\OptionsResolver
-     */
-    private function getSettings()
-    {
-        return $this->settings;
     }
 }
