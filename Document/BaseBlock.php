@@ -3,12 +3,15 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Document;
 
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\ExecutionContext;
 use Sonata\BlockBundle\Model\BlockInterface;
 
 
 /**
  * Base class for all blocks - connects to Sonata Blocks
  *
+ * @Assert\Callback(methods={"isSettingsValid"})
  * @PHPCRODM\Document(referenceable=true)
  */
 abstract class BaseBlock implements BlockInterface
@@ -28,7 +31,8 @@ abstract class BaseBlock implements BlockInterface
     /** @PHPCRODM\Int */
     protected $ttl = 86400;
 
-    protected $settings;
+    /** @PHPCRODM\String(assoc="") */
+    protected $settings = array();
 
     /**
      * @param string $src
@@ -269,6 +273,20 @@ abstract class BaseBlock implements BlockInterface
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * Validate settings
+     *
+     * @param \Symfony\Component\Validator\ExecutionContext $context
+     */
+    public function isSettingsValid(ExecutionContext $context)
+    {
+        foreach ($this->getSettings() as $value) {
+            if (is_array($value)) {
+                $context->addViolationAtSubPath('settings', 'A multidimensional array is not allowed, only use key-value pairs.');
+            }
+        }
     }
 
     /**
