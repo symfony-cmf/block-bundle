@@ -5,11 +5,13 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PHPCRBlockLoader implements BlockLoaderInterface
 {
     protected $container;
     protected $documentManagerName;
+    protected $settings;
 
     /**
      * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
@@ -19,6 +21,7 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     {
         $this->container = $container;
         $this->dm = $this->container->get('doctrine_phpcr')->getManager($documentManagerName);
+        $this->settings = new OptionsResolver();
     }
 
     /**
@@ -29,7 +32,11 @@ class PHPCRBlockLoader implements BlockLoaderInterface
 
         if ($this->support($configuration)) {
             $block = $this->findByName($configuration['name']);
-            $block->setSettings($this->mergeSettings($block, $configuration));
+
+            // merge settings
+            $this->settings->setDefaults(isset($configuration['settings']) && is_array($configuration['settings']) ? $configuration['settings'] : array());
+            $settings = $this->settings->resolve(is_array($block->getSettings()) ? $block->getSettings() : array());
+            $block->setSettings($settings);
 
             return $block;
         }
@@ -81,15 +88,10 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     }
 
     /**
-     * @param \Sonata\BlockBundle\Model\BlockInterface $block
-     * @param array $configuration
-     * @return array
+     * @return \Symfony\Component\OptionsResolver\OptionsResolver
      */
-    private function mergeSettings(BlockInterface $block, $configuration)
+    private function getSettings()
     {
-        return array_merge(
-            isset($configuration['settings']) && is_array($configuration['settings']) ? $configuration['settings'] : array(),
-            is_array($block->getSettings()) ? $block->getSettings() : array() // block document settings
-        );
+        return $this->settings;
     }
 }
