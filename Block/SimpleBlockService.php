@@ -3,11 +3,12 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Cmf\Bundle\BlockBundle\Block\BaseBlockService;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\AdminBundle\Validator\ErrorElement;
-use Sonata\BlockBundle\Block\BaseBlockService;
 
 class SimpleBlockService extends BaseBlockService implements BlockServiceInterface
 {
@@ -45,7 +46,7 @@ class SimpleBlockService extends BaseBlockService implements BlockServiceInterfa
         }
 
         if ($block->getEnabled()) {
-            $response = $this->renderResponse($this->template, array('block' => $block), $response);
+            $response = $this->renderResponse($block->getOption('template'), array('block' => $block), $response);
         }
 
         return $response;
@@ -121,5 +122,16 @@ class SimpleBlockService extends BaseBlockService implements BlockServiceInterfa
     public function setTemplate($template)
     {
         $this->template = $template;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        parent::setDefaultOptions($resolver);
+        $resolver->replaceDefaults(array(
+            'template' => $this->template
+        ));
     }
 }

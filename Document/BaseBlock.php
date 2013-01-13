@@ -34,6 +34,8 @@ abstract class BaseBlock implements BlockInterface
     /** @PHPCRODM\String(assoc="") */
     protected $settings = array();
 
+    protected $options = array();
+
     /**
      * @param string $src
      */
@@ -327,6 +329,36 @@ abstract class BaseBlock implements BlockInterface
     public function getSetting($name, $default = null)
     {
         return isset($this->settings[$name]) ? $this->settings[$name] : $default;
+    }
+
+    /**
+     * Get options
+     *
+     * @return array $options
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
+     * Set options
+     *
+     * @param array $options
+     */
+    public function setOptions(array $options = array())
+    {
+        $this->options = $options;
+    }
+
+    /**
+     * @param $name
+     * @param null $default
+     * @return null
+     */
+    public function getOption($name, $default = null)
+    {
+        return isset($this->options[$name]) ? $this->options[$name] : $default;
     }
 
     /**

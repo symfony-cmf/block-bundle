@@ -29,4 +29,9 @@ class ContainerBlock extends BaseBlock
     {
         return $this->children = $children;
     }
+
+    public function hasChildren()
+    {
+        return $this->children ? !$this->getChildren()->isEmpty() : false;
+    }
 }

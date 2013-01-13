@@ -8,7 +8,7 @@ use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\AdminBundle\Validator\ErrorElement;
-use Sonata\BlockBundle\Block\BaseBlockService;
+use Symfony\Cmf\Bundle\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
 
 class ReferenceBlockService extends BaseBlockService implements BlockServiceInterface

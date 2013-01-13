@@ -5,11 +5,11 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Cmf\Bundle\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\AdminBundle\Validator\ErrorElement;
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
 
 class ContainerBlockService extends BaseBlockService implements BlockServiceInterface
