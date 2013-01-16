@@ -22,9 +22,12 @@
         <whitelist>
             <directory>./</directory>
             <exclude>
+                <!-- if we don't skip Admin, we would need to setup the whole phpcr-odm to run the tests -->
+                <directory>./Admin/</directory>
                 <directory>./Tests/</directory>
                 <directory>./Resources/</directory>
                 <directory>./DependencyInjection/</directory>
+                <directory>./vendor/</directory>
             </exclude>
         </whitelist>
     </filter>
