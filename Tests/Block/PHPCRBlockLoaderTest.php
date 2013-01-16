@@ -3,28 +3,57 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Block;
 
 use Symfony\Component\HttpFoundation\Request,
-    Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent,
     Symfony\Cmf\Bundle\BlockBundle\Block\PHPCRBlockLoader,
     Symfony\Cmf\Bundle\BlockBundle\Document\SimpleBlock;
 
 class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    private $containerMock;
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    private $registryMock;
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    private $dmMock;
+
+    public function setUp()
+    {
+        $this->containerMock = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+        $this->registryMock = $this->getMockBuilder('Doctrine\Bundle\PHPCRBundle\ManagerRegistry')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+        $this->dmMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\DocumentManager')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+        $this->registryMock->expects($this->any())
+            ->method('getManager')
+            ->with($this->equalTo('themanager'))
+            ->will($this->returnValue($this->dmMock))
+        ;
+    }
 
     private function getSimpleBlockLoaderInstance()
     {
-        $containerMock = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $dmMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\DocumentManager')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        return new PHPCRBlockLoader($containerMock, $dmMock);
+        return new PHPCRBlockLoader($this->containerMock, 'themanager');
     }
 
     public function testSupport()
     {
+        $this->containerMock->expects($this->any())
+            ->method('get')
+            ->with($this->equalTo('doctrine_phpcr'))
+            ->will($this->returnValue($this->registryMock))
+        ;
         $blockLoader = $this->getSimpleBlockLoaderInstance();
 
         $this->assertFalse($blockLoader->support('name'));
@@ -34,35 +63,37 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
         )));
     }
 
-    public function testFindByNameWithAbsolutePath()
+    public function testLoadWithAbsolutePath()
     {
         $absoluteBlockPath = '/some/absolute/path';
+        $block = $this->getMock('Sonata\BlockBundle\Model\BlockInterface');
 
-        $containerMock = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $dmMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\DocumentManager')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $dmMock->expects($this->once())
+        $this->containerMock->expects($this->any())
+            ->method('get')
+            ->with($this->equalTo('doctrine_phpcr'))
+            ->will($this->returnValue($this->registryMock))
+        ;
+        $blockLoader = $this->getSimpleBlockLoaderInstance();
+        $this->dmMock->expects($this->once())
             ->method('find')
             ->with(
                     $this->equalTo(null),
                     $this->equalTo($absoluteBlockPath)
-            );
+            )
+            ->will($this->returnValue($block))
+        ;
 
-        $blockLoader = new PHPCRBlockLoader($containerMock, $dmMock);
-        $blockLoader->findByName($absoluteBlockPath);
+        $found = $blockLoader->load(array('name' => $absoluteBlockPath));
+        $this->assertEquals($block, $found);
     }
 
     public function testFindByNameWithRelativePath()
     {
         $contentPath = '/absolute/content';
         $relativeBlockPath = 'some/relative/path';
+        $block = $this->getMock('Sonata\BlockBundle\Model\BlockInterface');
 
-        $content = new StaticContent();
-        $content->setPath($contentPath);
+        $content = new MockContent($contentPath);
 
         $parameterBagMock = $this->getMockBuilder('Symfony\Component\HttpFoundation\ParameterBag')
             ->disableOriginalConstructor()
@@ -72,33 +103,37 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->with(
                     $this->equalTo('contentDocument')
             )
-            ->will($this->returnValue($content));
+            ->will($this->returnValue($content))
+        ;
 
         $request = new Request();
         $request->attributes = $parameterBagMock;
+        $reg = $this->registryMock;
 
-        $containerMock = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $containerMock->expects($this->once())
+        $this->containerMock->expects($this->any())
             ->method('get')
-            ->with(
+            ->with($this->logicalOr(
+                $this->equalTo('doctrine_phpcr'),
                 $this->equalTo('request')
-            )
-            ->will($this->returnValue($request));
+            ))
+            ->will($this->returnCallback(function($key) use ($request, $reg) {
+                return 'request' == $key ? $request : $reg;
+            }))
+        ;
 
-        $dmMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\DocumentManager')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $dmMock->expects($this->once())
+        $this->dmMock->expects($this->once())
             ->method('find')
             ->with(
                     $this->equalTo(null),
                     $this->equalTo($contentPath . '/' . $relativeBlockPath)
-            );
+            )
+            ->will($this->returnValue($block))
+        ;
 
-        $blockLoader = new PHPCRBlockLoader($containerMock, $dmMock);
-        $blockLoader->findByName($relativeBlockPath);
+        $blockLoader = $this->getSimpleBlockLoaderInstance();
+
+        $found = $blockLoader->load(array('name' => $relativeBlockPath));
+        $this->assertEquals($block, $found);
     }
 
     public function testLoadValidBlock()
@@ -106,22 +141,21 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
         $simpleBlock = new SimpleBlock();
         $absoluteBlockPath = '/some/absolute/path';
 
-        $containerMock = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $dmMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\DocumentManager')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $dmMock->expects($this->once())
+        $this->containerMock->expects($this->any())
+            ->method('get')
+            ->with($this->equalTo('doctrine_phpcr'))
+            ->will($this->returnValue($this->registryMock))
+        ;
+        $blockLoader = $this->getSimpleBlockLoaderInstance();
+        $this->dmMock->expects($this->once())
             ->method('find')
             ->with(
                     $this->equalTo(null),
                     $this->equalTo($absoluteBlockPath)
             )
-            ->will($this->returnValue($simpleBlock));
+            ->will($this->returnValue($simpleBlock))
+        ;
 
-        $blockLoader = new PHPCRBlockLoader($containerMock, $dmMock);
         $receivedBlock = $blockLoader->load(array(
             'name' => $absoluteBlockPath
         ));
@@ -131,8 +165,26 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
 
     public function testLoadInvalidBlock()
     {
+        $this->containerMock->expects($this->any())
+            ->method('get')
+            ->with($this->equalTo('doctrine_phpcr'))
+            ->will($this->returnValue($this->registryMock))
+        ;
         $blockLoader = $this->getSimpleBlockLoaderInstance();
         $this->assertNull($blockLoader->load('name'));
     }
 
+}
+
+class MockContent
+{
+    private $path;
+    public function __construct($path)
+    {
+        $this->path = $path;
+    }
+    public function getPath()
+    {
+        return $this->path;
+    }
 }
