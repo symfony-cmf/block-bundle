@@ -1,0 +1,30 @@
+{% block block %}
+    {% for childBlock in childBlocks %}
+        {% if settings.divisibleBy and loop.first %}
+            {# start row #}
+            <div{% if settings.divisibleClass %} class="{{ settings.divisibleClass }}"{% endif %}>
+        {% endif %}
+
+        {% if settings.divisibleBy %}
+            {# start child #}
+            <div{% if settings.childClass %} class="{{ settings.childClass }}"{% endif %}>
+        {% endif %}
+        {{ childBlock|raw }}
+        {% if settings.divisibleBy %}
+            </div>{# end child #}
+        {% endif %}
+
+        {% if settings.divisibleBy %}
+            {% if settings.divisibleBy and loop.index is divisibleby(settings.divisibleBy) %}
+                </div>{# end row #}
+                {% if not loop.last %}
+                    {# start row #}
+                    <div class="{{ settings.divisibleClass }}">
+                {% endif %}
+            {% endif %}
+            {% if loop.last %}
+                </div>{# end row #}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endblock %}

@@ -48,6 +48,14 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
     }
 
     /**
+     * @return string
+     */
+    protected function getTemplate()
+    {
+        return 'SymfonyCmfBlockBundle:Block:block_container.html.twig';
+    }
+
+    /**
      * @param \Sonata\BlockBundle\Model\BlockInterface $block
      * @param null|\Symfony\Component\HttpFoundation\Response $response
      * @param \Symfony\Component\HttpFoundation\Response $response
@@ -59,10 +67,18 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
         }
 
         if ($block->getEnabled()) {
+            // merge settings
+            $settings = is_array($block->getSettings()) ? array_merge($this->getDefaultSettings(), $block->getSettings()) : $this->getDefaultSettings();
+
+            $childBlocks = array();
             foreach ($block->getChildren()->getValues() as $childBlock) {
-                // TODO: not sure if this is the right way to merge the responses?
-                $response->setContent($response->getContent() . $this->blockRenderer->render($childBlock)->getContent());
+                $childBlocks[] =  $this->blockRenderer->render($childBlock)->getContent();
             }
+
+            return $this->renderResponse($this->getTemplate(), array(
+                'childBlocks' => $childBlocks,
+                'settings'    => $settings
+            ), $response);
         }
 
         return $response;
@@ -93,7 +109,11 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
      */
     public function getDefaultSettings()
     {
-        // TODO: Implement getDefaultSettings() method.
+        return array(
+            'divisibleBy'    => false,
+            'divisibleClass' => '',
+            'childClass'     => '',
+        );
     }
 
     /**
