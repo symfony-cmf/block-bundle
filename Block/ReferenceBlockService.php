@@ -48,8 +48,9 @@ class ReferenceBlockService extends BaseBlockService implements BlockServiceInte
 
     /**
      * @param \Sonata\BlockBundle\Model\BlockInterface $block
-     * @param null|\Symfony\Component\HttpFoundation\Response $response
-     * @param \Symfony\Component\HttpFoundation\Response $response
+     * @param null|Response $response
+     *
+     * @return Response
      */
     public function execute(BlockInterface $block, Response $response = null)
     {
@@ -57,7 +58,8 @@ class ReferenceBlockService extends BaseBlockService implements BlockServiceInte
             $response = new Response();
         }
 
-        if ($block->getEnabled()) {
+        // if the reference target block does not exist, we just skip the rendering
+        if ($block->getEnabled() && null !== $block->getReferencedBlock()) {
             $response = $this->blockRenderer->render($block->getReferencedBlock());
         }
 
