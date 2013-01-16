@@ -1,4 +1,4 @@
-# Symfony Cmf Block Bundle
+# Symfony Cmf Block Bundle [![Build Status](https://secure.travis-ci.org/symfony-cmf/BlockBundle.png)](http://travis-ci.org/symfony-cmf/BlockBundle)
 
 This is part of the Symfony Cmf: <https://github.com/symfony-cmf/symfony-cmf>
 
