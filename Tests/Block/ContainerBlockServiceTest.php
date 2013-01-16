@@ -75,8 +75,23 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
+        $templatingMock
+            ->expects($this->once())
+            ->method('renderResponse')
+            ->with('SymfonyCmfBlockBundle:Block:block_container.html.twig',
+                array(
+                    'childBlocks' => array($responseContent1, $responseContent2),
+                    'settings'    => array('divisibleBy' => false,'divisibleClass' => '','childClass' => '')
+                ),
+                $this->isInstanceOf('Symfony\Component\HttpFoundation\Response')
+            )
+            ->will($this->returnValue(new Response($responseContent1 . $responseContent2)))
+        ;
+
         $containerBlockService = new ContainerBlockService('test-service', $templatingMock, $blockRendererMock);
-        $this->assertEquals(($responseContent1 . $responseContent2), $containerBlockService->execute($containerBlockMock)->getContent());
+        $response = $containerBlockService->execute($containerBlockMock);
+        $this->assertInstanceof('Symfony\Component\HttpFoundation\Response', $response);
+        $this->assertEquals(($responseContent1 . $responseContent2), $response->getContent());
     }
 
     public function testExecutionOfBlockWithNoChildren()
@@ -106,8 +121,25 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
+        $templatingMock
+            ->expects($this->once())
+            ->method('renderResponse')
+
+            ->with('SymfonyCmfBlockBundle:Block:block_container.html.twig',
+                array(
+                    'childBlocks' => array(),
+                    'settings'    => array('divisibleBy' => false,'divisibleClass' => '','childClass' => '')
+                ),
+                $this->isInstanceOf('Symfony\Component\HttpFoundation\Response')
+            )
+
+            ->will($this->returnValue(new Response('')))
+        ;
+
         $containerBlockService = new ContainerBlockService('test-service', $templatingMock, $blockRendererMock);
-        $this->assertEquals('', $containerBlockService->execute($containerBlockMock)->getContent());
+        $response = $containerBlockService->execute($containerBlockMock);
+        $this->assertInstanceof('Symfony\Component\HttpFoundation\Response', $response);
+        $this->assertEquals('', $response->getContent());
     }
 
 }
