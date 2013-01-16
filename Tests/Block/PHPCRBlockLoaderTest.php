@@ -100,10 +100,13 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->getMock();
         $parameterBagMock->expects($this->once())
             ->method('get')
-            ->with(
-                    $this->equalTo('contentDocument')
-            )
+            ->with($this->equalTo('contentDocument'))
             ->will($this->returnValue($content))
+        ;
+        $parameterBagMock->expects($this->once())
+            ->method('has')
+            ->with($this->equalTo('contentDocument'))
+            ->will($this->returnValue(true))
         ;
 
         $request = new Request();
@@ -119,6 +122,11 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnCallback(function($key) use ($request, $reg) {
                 return 'request' == $key ? $request : $reg;
             }))
+        ;
+        $this->containerMock->expects($this->any())
+            ->method('has')
+            ->with($this->equalTo('request'))
+            ->will($this->returnValue(true))
         ;
 
         $this->dmMock->expects($this->once())
