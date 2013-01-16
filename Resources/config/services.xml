@@ -40,5 +40,13 @@
             <argument type="service" id="http_kernel" />
         </service>
 
+        <service id="symfony_cmf.block.rss" class="Symfony\Cmf\Bundle\BlockBundle\Block\Rss\BlockService">
+            <tag name="sonata.block" />
+            <argument>symfony_cmf.block.rss</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="sonata.block.renderer" />
+            <argument type="service" id="symfony_cmf.block.feed_reader" />
+        </service>
+
     </services>
 </container>
