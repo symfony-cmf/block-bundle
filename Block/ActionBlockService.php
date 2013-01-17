@@ -55,7 +55,7 @@ class ActionBlockService extends BaseBlockService implements BlockServiceInterfa
             $response = new Response();
         }
 
-        if ($block->getEnabled()) {
+        if ($block->getEnabled() && $block->getActionName()) {
             $response = new Response($this->kernel->render($block->getActionName(), array('attributes' =>  array('block' => $block))));
         }
 
