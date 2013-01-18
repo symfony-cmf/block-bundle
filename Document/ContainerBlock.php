@@ -17,6 +17,15 @@ class ContainerBlock extends BaseBlock
     /** @PHPCRODM\Children */
     protected  $children;
 
+    public function __construct($name = null)
+    {
+        $this->setName($name);
+        $this->children = new ArrayCollection();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getType()
     {
         return 'symfony_cmf.block.container';
@@ -41,9 +50,6 @@ class ContainerBlock extends BaseBlock
      */
     public function addChild(BlockInterface $child, $key = null)
     {
-        if (null === $this->children) {
-            $this->children = new ArrayCollection();
-        }
         if ($key != null) {
             return $this->children->set($key, $child);
         }
