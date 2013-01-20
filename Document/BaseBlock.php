@@ -35,6 +35,16 @@ abstract class BaseBlock implements BlockInterface
     protected $settings = array();
 
     /**
+     * @PHPCRODM\Date()
+     */
+    protected $createdAt;
+
+    /**
+     * @PHPCRODM\Date()
+     */
+    protected $updatedAt;
+
+    /**
      * @param string $src
      */
     protected function dashify($src)
@@ -114,11 +124,12 @@ abstract class BaseBlock implements BlockInterface
     /**
      * Set createdAt
      *
+     * @PHPCRODM\PrePersist()
      * @param \Datetime $createdAt
      */
     public function setCreatedAt(\DateTime $createdAt = null)
     {
-        // TODO
+        $this->createdAt = is_null($createdAt) ? new \DateTime() : $createdAt;
     }
 
     /**
@@ -128,18 +139,19 @@ abstract class BaseBlock implements BlockInterface
      */
     public function getCreatedAt()
     {
-        // TODO
-        return null;
+        return $this->createdAt;
     }
 
     /**
      * Set updatedAt
      *
+     * @PHPCRODM\PrePersist()
+     * @PHPCRODM\PreUpdate()
      * @param \Datetime $updatedAt
      */
     public function setUpdatedAt(\DateTime $updatedAt = null)
     {
-        // TODO
+        $this->updatedAt = is_null($updatedAt) ? new \DateTime() : $updatedAt;
     }
 
     /**
@@ -149,8 +161,7 @@ abstract class BaseBlock implements BlockInterface
      */
     public function getUpdatedAt()
     {
-        // TODO
-        return null;
+        return $this->updatedAt;
     }
 
     /**
