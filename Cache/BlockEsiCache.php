@@ -2,7 +2,6 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Cache;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Process\Process;
@@ -10,6 +9,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
+use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\CacheBundle\Cache\CacheElement;
 use Sonata\CacheBundle\Adapter\EsiCache;
 
@@ -19,23 +19,21 @@ use Sonata\CacheBundle\Adapter\EsiCache;
 class BlockEsiCache extends EsiCache
 {
     protected $blockRenderer;
-    protected $dm;
+    protected $blockLoader;
 
     /**
      * @param $token
      * @param array $servers
      * @param \Symfony\Component\Routing\RouterInterface $router
      * @param \Sonata\BlockBundle\Block\BlockRendererInterface $blockRenderer
-     * @param ContainerInterface $container
-     * @param $documentManagerName
+     * @param \Sonata\BlockBundle\Block\BlockLoaderInterface $blockLoader
      */
-    public function __construct($token, array $servers = array(), RouterInterface $router, BlockRendererInterface $blockRenderer, ContainerInterface $container, $documentManagerName)
+    public function __construct($token, array $servers = array(), RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader)
     {
         parent::__construct($token, $servers, $router, null);
 
         $this->blockRenderer = $blockRenderer;
-        $this->container = $container;
-        $this->dm = $this->container->get('doctrine_phpcr')->getManager($documentManagerName);
+        $this->blockLoader   = $blockLoader;
     }
 
     /**
@@ -105,7 +103,7 @@ class BlockEsiCache extends EsiCache
             throw new AccessDeniedHttpException('Invalid token');
         }
 
-        $block = $this->dm->find(null, $request->get('block_id'));
+        $block = $this->blockLoader->load(array('name' => $request->get('block_id')));
 
         if (!$block) {
             throw new NotFoundHttpException(sprintf('Block not found : %s', $request->get('block_id')));

@@ -2,13 +2,13 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Cache;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
+use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\CacheBundle\Cache\CacheElement;
 use Sonata\CacheBundle\Adapter\SsiCache;
 
@@ -18,7 +18,7 @@ use Sonata\CacheBundle\Adapter\SsiCache;
 class BlockSsiCache extends SsiCache
 {
     protected $blockRenderer;
-    protected $dm;
+    protected $blockLoader;
 
     /**
      * @param string $token
@@ -27,13 +27,12 @@ class BlockSsiCache extends SsiCache
      * @param ContainerInterface $container
      * @param $documentManagerName
      */
-    public function __construct($token, RouterInterface $router, BlockRendererInterface $blockRenderer, ContainerInterface $container, $documentManagerName)
+    public function __construct($token, RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader)
     {
         parent::__construct($token, $router, null);
 
         $this->blockRenderer = $blockRenderer;
-        $this->container = $container;
-        $this->dm = $this->container->get('doctrine_phpcr')->getManager($documentManagerName);
+        $this->blockLoader   = $blockLoader;
     }
 
     /**
@@ -103,7 +102,7 @@ class BlockSsiCache extends SsiCache
             throw new AccessDeniedHttpException('Invalid token');
         }
 
-        $block = $this->dm->find(null, $request->get('block_id'));
+        $block = $this->blockLoader->load(array('name' => $request->get('block_id')));
 
         if (!$block) {
             throw new NotFoundHttpException(sprintf('Block not found : %s', $request->get('block_id')));

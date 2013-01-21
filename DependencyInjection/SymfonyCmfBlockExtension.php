@@ -101,17 +101,11 @@ class SymfonyCmfBlockExtension extends Extension
 
         $loader->load('cache.xml');
 
-        $container->getDefinition('symfony_cmf.block.cache.js_sync')
-            ->replaceArgument(4, $config['document_manager_name']);
-        $container->getDefinition('symfony_cmf.block.cache.js_async')
-            ->replaceArgument(4, $config['document_manager_name']);
-
         if (isset($config['caches']['esi'])) {
             $container
                 ->getDefinition('symfony_cmf.block.cache.esi')
                 ->replaceArgument(0, $config['caches']['esi']['token'])
                 ->replaceArgument(1, $config['caches']['esi']['servers'])
-                ->replaceArgument(5, $config['document_manager_name'])
             ;
         } else {
             $container->removeDefinition('symfony_cmf.block.cache.esi');
@@ -121,7 +115,6 @@ class SymfonyCmfBlockExtension extends Extension
             $container
                 ->getDefinition('symfony_cmf.block.cache.ssi')
                 ->replaceArgument(0, $config['caches']['ssi']['token'])
-                ->replaceArgument(4, $config['document_manager_name'])
             ;
         } else {
             $container->removeDefinition('symfony_cmf.block.cache.ssi');

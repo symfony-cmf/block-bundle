@@ -2,11 +2,11 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Cache;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
+use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\CacheBundle\Cache\CacheInterface;
 use Sonata\CacheBundle\Cache\CacheElement;
 
@@ -18,7 +18,7 @@ class BlockJsCache implements CacheInterface
     protected $router;
     protected $sync;
     protected $blockRenderer;
-    protected $dm;
+    protected $blockLoader;
 
     /**
      * @param \Symfony\Component\Routing\RouterInterface $router
@@ -27,13 +27,12 @@ class BlockJsCache implements CacheInterface
      * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
      * @param $documentManagerName
      */
-    public function __construct(RouterInterface $router, BlockRendererInterface $blockRenderer, $sync = false, ContainerInterface $container, $documentManagerName)
+    public function __construct(RouterInterface $router, BlockRendererInterface $blockRenderer, $sync = false, BlockLoaderInterface $blockLoader)
     {
         $this->router        = $router;
         $this->sync          = $sync;
         $this->blockRenderer = $blockRenderer;
-        $this->container     = $container;
-        $this->dm = $this->container->get('doctrine_phpcr')->getManager($documentManagerName);
+        $this->blockLoader   = $blockLoader;
     }
 
     /**
@@ -180,7 +179,7 @@ CONTENT
      */
     public function cacheAction(Request $request)
     {
-        $block = $this->dm->find(null, $request->get('block_id'));
+        $block = $this->blockLoader->load(array('name' => $request->get('block_id')));
 
         if (!$block) {
             return new Response('', 404);
