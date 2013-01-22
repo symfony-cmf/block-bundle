@@ -105,7 +105,7 @@ class SymfonyCmfBlockExtension extends Extension
             $container
                 ->getDefinition('symfony_cmf.block.cache.esi')
                 ->replaceArgument(0, $config['caches']['esi']['token'])
-                ->replaceArgument(1, $config['caches']['esi']['servers'])
+                ->replaceArgument(4, $config['caches']['esi']['servers'])
             ;
         } else {
             $container->removeDefinition('symfony_cmf.block.cache.esi');

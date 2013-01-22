@@ -23,11 +23,10 @@ class BlockJsCache implements CacheInterface
     /**
      * @param \Symfony\Component\Routing\RouterInterface $router
      * @param \Sonata\BlockBundle\Block\BlockRendererInterface $blockRenderer
+     * @param \Sonata\BlockBundle\Block\BlockLoaderInterface $blockLoader
      * @param bool $sync
-     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
-     * @param $documentManagerName
      */
-    public function __construct(RouterInterface $router, BlockRendererInterface $blockRenderer, $sync = false, BlockLoaderInterface $blockLoader)
+    public function __construct(RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader, $sync = false)
     {
         $this->router        = $router;
         $this->sync          = $sync;

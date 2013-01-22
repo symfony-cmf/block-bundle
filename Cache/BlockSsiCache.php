@@ -24,8 +24,7 @@ class BlockSsiCache extends SsiCache
      * @param string $token
      * @param \Symfony\Component\Routing\RouterInterface $router
      * @param \Sonata\BlockBundle\Block\BlockRendererInterface $blockRenderer
-     * @param ContainerInterface $container
-     * @param $documentManagerName
+     * @param \Sonata\BlockBundle\Block\BlockLoaderInterface $blockLoader
      */
     public function __construct($token, RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader)
     {

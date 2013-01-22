@@ -18,7 +18,7 @@ class SimpleBlockService extends BaseBlockService implements BlockServiceInterfa
      */
     public function buildEditForm(FormMapper $form, BlockInterface $block)
     {
-        // Not used at the moment, editing using a frontend or backend UI could be changed here
+        throw new \RuntimeException('Not used at the moment, editing using a frontend or backend UI could be changed here');
     }
 
     /**
@@ -26,7 +26,7 @@ class SimpleBlockService extends BaseBlockService implements BlockServiceInterfa
      */
     public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
     {
-        // Not used at the moment, validation for editing using a frontend or backend UI could be changed here
+        throw new \RuntimeException('Not used at the moment, validation for editing using a frontend or backend UI could be changed here');
     }
 
     /**

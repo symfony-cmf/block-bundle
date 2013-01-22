@@ -4,7 +4,6 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Cache;
 
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Process\Process;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,13 +21,13 @@ class BlockEsiCache extends EsiCache
     protected $blockLoader;
 
     /**
-     * @param $token
-     * @param array $servers
+     * @param string $token
      * @param \Symfony\Component\Routing\RouterInterface $router
      * @param \Sonata\BlockBundle\Block\BlockRendererInterface $blockRenderer
      * @param \Sonata\BlockBundle\Block\BlockLoaderInterface $blockLoader
+     * @param array $servers
      */
-    public function __construct($token, array $servers = array(), RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader)
+    public function __construct($token, RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader, array $servers = array())
     {
         parent::__construct($token, $servers, $router, null);
 

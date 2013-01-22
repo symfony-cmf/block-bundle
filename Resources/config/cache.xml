@@ -10,10 +10,10 @@
             <tag name="sonata.cache" />
 
             <argument />
-            <argument type="collection" />
             <argument type="service" id="router" />
             <argument type="service" id="sonata.block.renderer" />
             <argument type="service" id="sonata.block.loader.chain" />
+            <argument type="collection" />
         </service>
 
         <service id="symfony_cmf.block.cache.ssi" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockSsiCache">
@@ -30,8 +30,8 @@
 
             <argument type="service" id="router" />
             <argument type="service" id="sonata.block.renderer" />
-            <argument>true</argument>
             <argument type="service" id="sonata.block.loader.chain" />
+            <argument>true</argument>
         </service>
 
         <service id="symfony_cmf.block.cache.js_async" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache" >
@@ -39,8 +39,8 @@
 
             <argument type="service" id="router" />
             <argument type="service" id="sonata.block.renderer" />
-            <argument>false</argument>
             <argument type="service" id="sonata.block.loader.chain" />
+            <argument>false</argument>
         </service>
 
     </services>
