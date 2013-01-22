@@ -14,23 +14,19 @@ class SimpleBlockService extends BaseBlockService implements BlockServiceInterfa
     private $template = 'SymfonyCmfBlockBundle:Block:block_simple.html.twig';
 
     /**
-     * @param \Sonata\AdminBundle\Form\FormMapper $form
-     * @param \Sonata\BlockBundle\Model\BlockInterface $block
-     * @return void
+     * {@inheritdoc}
      */
     public function buildEditForm(FormMapper $form, BlockInterface $block)
     {
-        // TODO: Implement buildEditForm() method.
+        throw new \RuntimeException('Not used at the moment, editing using a frontend or backend UI could be changed here');
     }
 
     /**
-     * @param \Sonata\AdminBundle\Form\FormMapper $form
-     * @param \Sonata\BlockBundle\Model\BlockInterface $block
-     * @return void
+     * {@inheritdoc}
      */
-    public function buildCreateForm(FormMapper $form, BlockInterface $block)
+    public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
     {
-        // TODO: Implement buildCreateForm() method.
+        throw new \RuntimeException('Not used at the moment, validation for editing using a frontend or backend UI could be changed here');
     }
 
     /**
@@ -49,70 +45,6 @@ class SimpleBlockService extends BaseBlockService implements BlockServiceInterfa
         }
 
         return $response;
-    }
-
-    /**
-     * @param \Sonata\AdminBundle\Validator\ErrorElement $errorElement
-     * @param \Sonata\BlockBundle\Model\BlockInterface $block
-     * @return void
-     */
-    public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
-    {
-        // TODO: Implement validateBlock() method.
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        // TODO: Implement getName() method.
-    }
-
-    /**
-     * Returns the default settings link to the service
-     *
-     * @return array
-     */
-    public function getDefaultSettings()
-    {
-        // TODO: Implement getDefaultSettings() method.
-    }
-
-    /**
-     * @param \Sonata\BlockBundle\Model\BlockInterface $block
-     * @return void
-     */
-    public function load(BlockInterface $block)
-    {
-        // TODO: Implement load() method.
-    }
-
-    /**
-     * @param $media
-     * @return array
-     */
-    public function getJavascripts($media)
-    {
-        // TODO: Implement getJavascripts() method.
-    }
-
-    /**
-     * @param $media
-     * @return array
-     */
-    public function getStylesheets($media)
-    {
-        // TODO: Implement getStylesheets() method.
-    }
-
-    /**
-     * @param \Sonata\BlockBundle\Model\BlockInterface $block
-     * @return array
-     */
-    public function getCacheKeys(BlockInterface $block)
-    {
-        // TODO: Implement getCacheKeys() method.
     }
 
     /**

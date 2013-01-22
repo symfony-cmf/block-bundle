@@ -19,6 +19,9 @@
         "doctrine/phpcr-odm": "1.0.*",
         "sonata-project/block-bundle": "dev-master"
     },
+    "require-dev": {
+        "sonata-project/cache-bundle": "dev-master"
+    },
     "autoload":{
         "psr-0":{
             "Symfony\\Cmf\\Bundle\\BlockBundle": ""

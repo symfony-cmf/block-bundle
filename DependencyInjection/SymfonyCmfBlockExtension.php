@@ -19,6 +19,8 @@ class SymfonyCmfBlockExtension extends Extension
             $this->loadSonataAdmin($config, $loader, $container);
         }
 
+        $this->loadSonataCache($config, $loader, $container);
+
         if (isset($config['multilang'])) {
             if ($config['multilang']['use_sonata_admin']) {
                 $this->loadSonataAdmin($config['multilang'], $loader, $container, 'multilang.');
@@ -86,6 +88,36 @@ class SymfonyCmfBlockExtension extends Extension
 
         if (isset($config['simple_admin_class'])) {
             $container->setParameter($this->getAlias() . '.' . $prefix . 'simple_admin_class', $config['simple_admin_class']);
+        }
+    }
+
+    public function loadSonataCache($config, XmlFileLoader $loader, ContainerBuilder $container, $prefix = '')
+    {
+        $bundles = $container->getParameter('kernel.bundles');
+
+        if (!isset($bundles['SonataCacheBundle'])) {
+            return;
+        }
+
+        $loader->load('cache.xml');
+
+        if (isset($config['caches']['esi'])) {
+            $container
+                ->getDefinition('symfony_cmf.block.cache.esi')
+                ->replaceArgument(0, $config['caches']['esi']['token'])
+                ->replaceArgument(4, $config['caches']['esi']['servers'])
+            ;
+        } else {
+            $container->removeDefinition('symfony_cmf.block.cache.esi');
+        }
+
+        if (isset($config['caches']['ssi'])) {
+            $container
+                ->getDefinition('symfony_cmf.block.cache.ssi')
+                ->replaceArgument(0, $config['caches']['ssi']['token'])
+            ;
+        } else {
+            $container->removeDefinition('symfony_cmf.block.cache.ssi');
         }
     }
 }
