@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="symfony_cmf.block.cache.esi" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockEsiCache">
+            <tag name="sonata.cache" />
+
+            <argument />
+            <argument type="service" id="router" />
+            <argument type="service" id="sonata.block.renderer" />
+            <argument type="service" id="sonata.block.loader.chain" />
+            <argument type="collection" />
+        </service>
+
+        <service id="symfony_cmf.block.cache.ssi" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockSsiCache">
+            <tag name="sonata.cache" />
+
+            <argument />
+            <argument type="service" id="router" />
+            <argument type="service" id="sonata.block.renderer" />
+            <argument type="service" id="sonata.block.loader.chain" />
+        </service>
+
+        <service id="symfony_cmf.block.cache.js_sync" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache" >
+            <tag name="sonata.cache" />
+
+            <argument type="service" id="router" />
+            <argument type="service" id="sonata.block.renderer" />
+            <argument type="service" id="sonata.block.loader.chain" />
+            <argument>true</argument>
+        </service>
+
+        <service id="symfony_cmf.block.cache.js_async" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache" >
+            <tag name="sonata.cache" />
+
+            <argument type="service" id="router" />
+            <argument type="service" id="sonata.block.renderer" />
+            <argument type="service" id="sonata.block.loader.chain" />
+            <argument>false</argument>
+        </service>
+
+    </services>
+</container>

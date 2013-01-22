@@ -57,6 +57,25 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
+
+                ->arrayNode('caches')
+                    ->children()
+                        ->arrayNode('esi')
+                            ->children()
+                                ->scalarNode('token')->defaultValue(hash('sha256', uniqid(mt_rand(), true)))->end()
+                                ->arrayNode('servers')
+                                    ->prototype('scalar')->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('ssi')
+                            ->children()
+                                ->scalarNode('token')->defaultValue(hash('sha256', uniqid(mt_rand(), true)))->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+
             ->end()
         ;
 

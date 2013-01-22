@@ -3,7 +3,6 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -18,8 +17,9 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
     protected $blockRenderer;
 
     /**
-     * @param $name
-     * @param \Symfony\Component\Templating\EngineInterface $templating
+     * @param string $name
+     * @param \Symfony\Bundle\FrameworkBundle\Templating\EngineInterface $templating
+     * @param \Sonata\BlockBundle\Block\BlockRendererInterface $blockRenderer
      */
     public function __construct($name, EngineInterface $templating, BlockRendererInterface $blockRenderer)
     {
@@ -28,23 +28,19 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
     }
 
     /**
-     * @param \Sonata\AdminBundle\Form\FormMapper $form
-     * @param \Sonata\BlockBundle\Model\BlockInterface $block
-     * @return void
+     * {@inheritdoc}
      */
     public function buildEditForm(FormMapper $form, BlockInterface $block)
     {
-        // TODO: Implement buildEditForm() method.
+        throw new \RuntimeException('Not used at the moment, editing using a frontend or backend UI could be changed here');
     }
 
     /**
-     * @param \Sonata\AdminBundle\Form\FormMapper $form
-     * @param \Sonata\BlockBundle\Model\BlockInterface $block
-     * @return void
+     * {@inheritdoc}
      */
-    public function buildCreateForm(FormMapper $form, BlockInterface $block)
+    public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
     {
-        // TODO: Implement buildCreateForm() method.
+        throw new \RuntimeException('Not used at the moment, validation for editing using a frontend or backend UI could be changed here');
     }
 
     /**
@@ -85,24 +81,6 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
     }
 
     /**
-     * @param \Sonata\AdminBundle\Validator\ErrorElement $errorElement
-     * @param \Sonata\BlockBundle\Model\BlockInterface $block
-     * @return void
-     */
-    public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
-    {
-        // TODO: Implement validateBlock() method.
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        // TODO: Implement getName() method.
-    }
-
-    /**
      * Returns the default settings link to the service
      *
      * @return array
@@ -114,41 +92,5 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
             'divisibleClass' => '',
             'childClass'     => '',
         );
-    }
-
-    /**
-     * @param \Sonata\BlockBundle\Model\BlockInterface $block
-     * @return void
-     */
-    public function load(BlockInterface $block)
-    {
-        // TODO: Implement load() method.
-    }
-
-    /**
-     * @param $media
-     * @return array
-     */
-    public function getJavascripts($media)
-    {
-        // TODO: Implement getJavascripts() method.
-    }
-
-    /**
-     * @param $media
-     * @return array
-     */
-    public function getStylesheets($media)
-    {
-        // TODO: Implement getStylesheets() method.
-    }
-
-    /**
-     * @param \Sonata\BlockBundle\Model\BlockInterface $block
-     * @return array
-     */
-    public function getCacheKeys(BlockInterface $block)
-    {
-        // TODO: Implement getCacheKeys() method.
     }
 }
