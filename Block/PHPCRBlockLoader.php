@@ -87,15 +87,23 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     protected function findByName($name)
     {
         if ($this->isAbsolutePath($name)) {
+            $path = $name;
             $block = $this->dm->find(null, $name);
         } else if ($this->container->has('request')
             && $this->container->get('request')->attributes->has('contentDocument')
         ) {
             $currentPage = $this->container->get('request')->attributes->get('contentDocument');
-            $block = $this->dm->find(null,  $currentPage->getPath() . '/' . $name);
-        } else {
+            $path = $currentPage->getPath() . '/' . $name;
+            $block = $this->dm->find(null, $path);
+        }
+
+        if (empty($block)) {
             if ($this->logger) {
-                $this->logger->debug("Block '$name' is not absolute path and either there is no contentDocument or the relative path does not match");
+                $msg = isset($path)
+                    ? "Block '$name' at path '$path' could not be found."
+                    : "Block '$name' is not absolute path and there is no request attribute with 'contentDocument'."
+                ;
+                $this->logger->debug($msg);
             }
 
             return null;
