@@ -113,7 +113,7 @@ class PHPCRBlockLoader implements BlockLoaderInterface
             return null;
         }
 
-        if (! $block instanceof BlockInterface) {
+        if ($block && ! $block instanceof BlockInterface) {
             throw new \RuntimeException("Document at '$name' is no Sonata\\BlockBundle\\Model\\BlockInterface but " . get_class($block));
         }
 
