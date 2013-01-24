@@ -22,6 +22,9 @@
     "require-dev": {
         "sonata-project/cache-bundle": "dev-master"
     },
+    "suggest": {
+        "sonata-project/cache-bundle": "To add caching support for block loading"
+    },
     "autoload":{
         "psr-0":{
             "Symfony\\Cmf\\Bundle\\BlockBundle": ""

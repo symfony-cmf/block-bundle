@@ -23,6 +23,10 @@ class PHPCRBlockLoader implements BlockLoaderInterface
      */
     protected $logger;
 
+    /**
+     * @var \Doctrine\ODM\PHPCR\DocumentManager
+     */
+    protected $dm;
 
     /**
      * @param ContainerInterface $container
@@ -93,7 +97,7 @@ class PHPCRBlockLoader implements BlockLoaderInterface
             && $this->container->get('request')->attributes->has('contentDocument')
         ) {
             $currentPage = $this->container->get('request')->attributes->get('contentDocument');
-            $path = $currentPage->getPath() . '/' . $name;
+            $path = $this->dm->getUnitOfWork()->getDocumentId($currentPage) . '/' . $name;
             $block = $this->dm->find(null, $path);
         }
 
