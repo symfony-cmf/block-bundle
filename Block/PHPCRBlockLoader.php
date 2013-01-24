@@ -6,6 +6,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Log\LoggerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
+use Sonata\BlockBundle\Model\EmptyBlock;
+use Sonata\BlockBundle\Exception\BlockNotFoundException;
 
 /**
  * The PHPCR block loader loads from phpcr-odm, both by absolute path and
@@ -29,14 +31,22 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     protected $dm;
 
     /**
-     * @param ContainerInterface $container
-     * @param string $documentManagerName
+     * @var string service id of the empty block service
      */
-    public function __construct(ContainerInterface $container, $documentManagerName, LoggerInterface $logger = null)
+    protected $emptyBlockType;
+
+    /**
+     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+     * @param $documentManagerName
+     * @param \Symfony\Component\HttpKernel\Log\LoggerInterface $logger
+     * @param null $emptyBlockType
+     */
+    public function __construct(ContainerInterface $container, $documentManagerName, LoggerInterface $logger = null, $emptyBlockType = null)
     {
-        $this->container = $container;
-        $this->dm = $this->container->get('doctrine_phpcr')->getManager($documentManagerName);
-        $this->logger = $logger;
+        $this->container       = $container;
+        $this->dm              = $this->container->get('doctrine_phpcr')->getManager($documentManagerName);
+        $this->logger          = $logger;
+        $this->emptyBlockType  = $emptyBlockType;
     }
 
     /**
@@ -46,9 +56,13 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     {
         if ($this->support($configuration)) {
             $block = $this->findByName($configuration['name']);
-            if (null === $block) {
+            if (! $block instanceof BlockInterface) {
                 // not found or no valid block
-                return null;
+                return $this->getNotFoundBlock($configuration['name'], sprintf(
+                    "Document at '%s' is no Sonata\\BlockBundle\\Model\\BlockInterface but %s",
+                    $configuration['name'],
+                    is_null($block) ? 'not existing' : get_class($block)
+                ));
             }
 
             // merge settings
@@ -62,7 +76,7 @@ class PHPCRBlockLoader implements BlockLoaderInterface
             return $block;
         }
 
-        return null;
+        throw new BlockNotFoundException('A block is tried to be loaded with an unsupported configuration');
     }
 
     /**
@@ -90,20 +104,12 @@ class PHPCRBlockLoader implements BlockLoaderInterface
      */
     protected function findByName($name)
     {
-        if ($this->isAbsolutePath($name)) {
-            $path = $name;
-            $block = $this->dm->find(null, $name);
-        } else if ($this->container->has('request')
-            && $this->container->get('request')->attributes->has('contentDocument')
-        ) {
-            $currentPage = $this->container->get('request')->attributes->get('contentDocument');
-            $path = $this->dm->getUnitOfWork()->getDocumentId($currentPage) . '/' . $name;
-            $block = $this->dm->find(null, $path);
-        }
+        $path = $this->determineAbsolutePath($name);
+        $block = !is_null($path) ? $this->dm->find(null, $path) : null;
 
         if (empty($block)) {
             if ($this->logger) {
-                $msg = isset($path)
+                $msg = !is_null($path)
                     ? "Block '$name' at path '$path' could not be found."
                     : "Block '$name' is not absolute path and there is no request attribute with 'contentDocument'."
                 ;
@@ -113,15 +119,11 @@ class PHPCRBlockLoader implements BlockLoaderInterface
             return null;
         }
 
-        if (! $block instanceof BlockInterface) {
-            throw new \RuntimeException("Document at '$name' is no Sonata\\BlockBundle\\Model\\BlockInterface but " . get_class($block));
-        }
-
         return $block;
     }
 
     /**
-     * @param \string $path
+     * @param string $path
      *
      * @return bool
      */
@@ -131,5 +133,68 @@ class PHPCRBlockLoader implements BlockLoaderInterface
             && strlen($path) > 0
             && substr($path, 0, 1) == '/'
         ;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return string|null path if determined, null if unable to determine
+     */
+    protected function determineAbsolutePath($name)
+    {
+        $path = null;
+
+        if ($this->isAbsolutePath($name)) {
+            $path = $name;
+        } else if ($this->container->has('request')
+            && $this->container->get('request')->attributes->has('contentDocument')
+        ) {
+            $currentPage = $this->container->get('request')->attributes->get('contentDocument');
+            $path = $this->dm->getUnitOfWork()->getDocumentId($currentPage) . '/' . $name;
+        }
+
+        return $path;
+    }
+
+    /**
+     * Get the block used when a block is not found or is invalid
+     *
+     * @param string $name The block name not found or invalid
+     * @param string $message The exception message if an exception should be returned
+     * @return \Symfony\Cmf\Bundle\BlockBundle\Model\EmptyBlock
+     * @throws \Sonata\BlockBundle\Exception\BlockNotFoundException
+     */
+    private function getNotFoundBlock($name, $message = null)
+    {
+        if (is_null($this->getEmptyBlockType())) {
+            throw new BlockNotFoundException($message);
+        }
+
+        $block = new EmptyBlock();
+        $block->setType($this->getEmptyBlockType());
+        $block->setUpdatedAt(new \DateTime());
+
+        $path = $this->determineAbsolutePath($name);
+        if (! is_null($path)) {
+            $block->setId($path);
+        }
+
+        return $block;
+    }
+
+    /**
+     * @return string|null service id of the empty block service, null if not set
+     */
+    public function getEmptyBlockType()
+    {
+        return $this->emptyBlockType;
+    }
+
+    /**
+     * @param string $type service id of the empty block service
+     */
+    public function setEmptyBlockType($type = null)
+    {
+        $this->emptyBlockType = $type;
     }
 }
