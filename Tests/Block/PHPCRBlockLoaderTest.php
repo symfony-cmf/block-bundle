@@ -44,7 +44,7 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
 
     private function getSimpleBlockLoaderInstance()
     {
-        return new PHPCRBlockLoader($this->containerMock, 'themanager');
+        return new PHPCRBlockLoader($this->containerMock, 'themanager', null, 'emptyblocktype');
     }
 
     public function testSupport()
@@ -129,6 +129,19 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(true))
         ;
 
+        $unitOfWorkMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\UnitOfWork')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $unitOfWorkMock->expects($this->any())
+            ->method('getDocumentId')
+            ->with($this->equalTo($content))
+            ->will($this->returnValue($contentPath))
+        ;
+
+        $this->dmMock->expects($this->once())
+            ->method('getUnitOfWork')
+            ->will($this->returnValue($unitOfWorkMock))
+        ;
         $this->dmMock->expects($this->once())
             ->method('find')
             ->with(
@@ -179,7 +192,7 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->registryMock))
         ;
         $blockLoader = $this->getSimpleBlockLoaderInstance();
-        $this->assertNull($blockLoader->load('name'));
+        $this->assertInstanceOf('Sonata\BlockBundle\Model\EmptyBlock', $blockLoader->load(array('name' => 'invalid/block')));
     }
 
 }
