@@ -142,18 +142,18 @@ class PHPCRBlockLoader implements BlockLoaderInterface
      */
     protected function determineAbsolutePath($name)
     {
-        $path = null;
-
         if ($this->isAbsolutePath($name)) {
-            $path = $name;
-        } else if ($this->container->has('request')
+            return $name;
+        }
+
+        if ($this->container->has('request')
             && $this->container->get('request')->attributes->has('contentDocument')
         ) {
             $currentPage = $this->container->get('request')->attributes->get('contentDocument');
-            $path = $this->dm->getUnitOfWork()->getDocumentId($currentPage) . '/' . $name;
+            return $this->dm->getUnitOfWork()->getDocumentId($currentPage) . '/' . $name;
         }
 
-        return $path;
+        return null;
     }
 
     /**
