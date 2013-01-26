@@ -12,6 +12,9 @@ use Sonata\BlockBundle\Exception\BlockNotFoundException;
 /**
  * The PHPCR block loader loads from phpcr-odm, both by absolute path and
  * by path relative to the contentDocument in the request attributes.
+ *
+ * It can be configured to return an EmptyBlock in case no block is found at
+ * the specified location.
  */
 class PHPCRBlockLoader implements BlockLoaderInterface
 {
@@ -36,10 +39,10 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     protected $emptyBlockType;
 
     /**
-     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
-     * @param $documentManagerName
-     * @param \Symfony\Component\HttpKernel\Log\LoggerInterface $logger
-     * @param null $emptyBlockType
+     * @param ContainerInterface $container
+     * @param string $documentManagerName
+     * @param LoggerInterface $logger
+     * @param null $emptyBlockType set this to a block type name if you want empty blocks returned when no block is found
      */
     public function __construct(ContainerInterface $container, $documentManagerName, LoggerInterface $logger = null, $emptyBlockType = null)
     {
@@ -54,29 +57,30 @@ class PHPCRBlockLoader implements BlockLoaderInterface
      */
     public function load($configuration)
     {
-        if ($this->support($configuration)) {
-            $block = $this->findByName($configuration['name']);
-            if (! $block instanceof BlockInterface) {
-                // not found or no valid block
-                return $this->getNotFoundBlock($configuration['name'], sprintf(
-                    "Document at '%s' is no Sonata\\BlockBundle\\Model\\BlockInterface but %s",
-                    $configuration['name'],
-                    is_null($block) ? 'not existing' : get_class($block)
-                ));
-            }
-
-            // merge settings
-            $userSettings = isset($configuration['settings']) && is_array($configuration['settings']) ?
-                $configuration['settings'] :
-                array()
-            ;
-            $defaultSettings = is_array($block->getSettings()) ? $block->getSettings() : array();
-            $block->setSettings(array_merge($userSettings, $defaultSettings));
-
-            return $block;
+        if (! $this->support($configuration)) {
+            // sanity check, the chain loader should already have checked.
+            throw new BlockNotFoundException('A block is tried to be loaded with an unsupported configuration');
         }
 
-        throw new BlockNotFoundException('A block is tried to be loaded with an unsupported configuration');
+        $block = $this->findByName($configuration['name']);
+        if (! $block instanceof BlockInterface) {
+            // not found or no valid block
+            return $this->getNotFoundBlock($configuration['name'], sprintf(
+                "Document at '%s' is no Sonata\\BlockBundle\\Model\\BlockInterface but %s",
+                $configuration['name'],
+                is_null($block) ? 'not existing' : get_class($block)
+            ));
+        }
+
+        // merge settings
+        $userSettings = isset($configuration['settings']) && is_array($configuration['settings']) ?
+            $configuration['settings'] :
+            array()
+        ;
+        $defaultSettings = is_array($block->getSettings()) ? $block->getSettings() : array();
+        $block->setSettings(array_merge($userSettings, $defaultSettings));
+
+        return $block;
     }
 
     /**
@@ -96,33 +100,36 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     }
 
     /**
-     * Finds one block by the given name
+     * Finds one block by the given name (PHPCR path)
      *
-     * @param string $name
+     * @param string $name a relative or absolute PHPCR path
      *
-     * @return BlockInterface|null the block or null if not found/no BlockInterface at that location
+     * @return BlockInterface|null the block at that location or null if no document or not a BlockInterface at that location
      */
     protected function findByName($name)
     {
         $path = $this->determineAbsolutePath($name);
-        $block = !is_null($path) ? $this->dm->find(null, $path) : null;
 
-        if (empty($block)) {
+        if (null == $path) {
             if ($this->logger) {
-                $msg = !is_null($path)
-                    ? "Block '$name' at path '$path' could not be found."
-                    : "Block '$name' is not absolute path and there is no request attribute with 'contentDocument'."
-                ;
-                $this->logger->debug($msg);
+                $this->logger->debug("Block '$name' is not an absolute path and there is no 'contentDocument' in the request attributes");
             }
 
             return null;
+        }
+
+        $block = $this->dm->find(null, $path);
+
+        if (empty($block) && $this->logger) {
+            $this->logger->debug("Block '$name' at path '$path' could not be found.");
         }
 
         return $block;
     }
 
     /**
+     * Check if $path is absolute or not
+     *
      * @param string $path
      *
      * @return bool
@@ -131,14 +138,17 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     {
         return is_string($path)
             && strlen($path) > 0
-            && substr($path, 0, 1) == '/'
+            && $path[0] == '/'
         ;
     }
 
     /**
+     * Find the absolute path from this name. If $name is relative, prepend the
+     * path to the contentDocument in the request attributes if it exists.
+     *
      * @param string $name
      *
-     * @return string|null path if determined, null if unable to determine
+     * @return string|null absolute PHPCR path if possible, null if not determined
      */
     protected function determineAbsolutePath($name)
     {
@@ -157,12 +167,17 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     }
 
     /**
-     * Get the block used when a block is not found or is invalid
+     * Get the block to return when a block is not found or the thing found was
+     * no BlockInterface.
      *
-     * @param string $name The block name not found or invalid
-     * @param string $message The exception message if an exception should be returned
-     * @return \Symfony\Cmf\Bundle\BlockBundle\Model\EmptyBlock
-     * @throws \Sonata\BlockBundle\Exception\BlockNotFoundException
+     * If the empty block type is not set, throw an exception instead.
+     *
+     * @param string $name The block name that was not found or invalid
+     * @param string $message The exception message if an exception should be raised
+     *
+     * @return EmptyBlock
+     *
+     * @throws BlockNotFoundException if there is no type defined for the empty block.
      */
     private function getNotFoundBlock($name, $message = null)
     {
