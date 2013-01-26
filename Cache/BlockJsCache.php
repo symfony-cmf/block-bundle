@@ -230,6 +230,8 @@ JS
 
     /**
      * @param string $src
+     *
+     * @return mixed
      */
     protected function dashify($src)
     {
