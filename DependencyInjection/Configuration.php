@@ -3,7 +3,6 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder,
-    Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition,
     Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**

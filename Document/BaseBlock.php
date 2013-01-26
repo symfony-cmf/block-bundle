@@ -46,6 +46,8 @@ abstract class BaseBlock implements BlockInterface
 
     /**
      * @param string $src
+     *
+     * @return string
      */
     protected function dashify($src)
     {
@@ -206,7 +208,7 @@ abstract class BaseBlock implements BlockInterface
      * set parent document regardless of type. this can be a ContainerBlock
      * but also any PHPCR-ODM document
      *
-     * @param object $document
+     * @param object $parent
      */
     public function setParentDocument($parent)
     {

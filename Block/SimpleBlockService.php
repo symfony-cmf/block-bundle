@@ -30,9 +30,10 @@ class SimpleBlockService extends BaseBlockService implements BlockServiceInterfa
     }
 
     /**
-     * @param \Sonata\BlockBundle\Model\BlockInterface $block
-     * @param null|\Symfony\Component\HttpFoundation\Response $response
-     * @param \Symfony\Component\HttpFoundation\Response $response
+     * @param BlockInterface $block
+     * @param null|Response  $response
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function execute(BlockInterface $block, Response $response = null)
     {
