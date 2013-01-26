@@ -11,6 +11,7 @@
             <argument type="service" id="service_container" />
             <argument />
             <argument type="service" id="logger" />
+            <argument>sonata.block.service.empty</argument>
         </service>
 
         <service id="symfony_cmf.block.simple" class="Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService">
