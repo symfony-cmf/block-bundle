@@ -91,7 +91,7 @@ class SymfonyCmfBlockExtension extends Extension
         }
     }
 
-    public function loadSonataCache($config, XmlFileLoader $loader, ContainerBuilder $container, $prefix = '')
+    public function loadSonataCache($config, XmlFileLoader $loader, ContainerBuilder $container)
     {
         $bundles = $container->getParameter('kernel.bundles');
 

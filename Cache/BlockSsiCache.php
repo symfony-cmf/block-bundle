@@ -91,6 +91,9 @@ class BlockSsiCache extends SsiCache
     /**
      * @param Request $request
      *
+     * @throws NotFoundHttpException
+     * @throws AccessDeniedHttpException
+     *
      * @return mixed
      */
     public function cacheAction(Request $request)
