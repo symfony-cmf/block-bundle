@@ -30,7 +30,7 @@ class SimpleBlockAdmin extends Admin
     {
         $formMapper
             ->with('form.group_general')
-            ->add('parent', 'doctrine_phpcr_type_tree_model', array('root_node' => $this->contentRoot, 'choice_list' => array(), 'select_root_node' => true))
+            ->add('parentDocument', 'doctrine_phpcr_type_tree_model', array('root_node' => $this->contentRoot, 'choice_list' => array(), 'select_root_node' => true))
             ->add('name', 'text')
             ->add('title', 'text')
             ->add('content', 'textarea')
@@ -53,7 +53,7 @@ class SimpleBlockAdmin extends Admin
         if ($this->hasRequest()) {
             $parentId = $this->getRequest()->query->get('parent');
             if (null !== $parentId) {
-                $new->setParent($this->getModelManager()->find(null, $parentId));
+                $new->setParentDocument($this->getModelManager()->find(null, $parentId));
             }
         }
         return $new;

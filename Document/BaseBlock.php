@@ -23,7 +23,7 @@ abstract class BaseBlock implements BlockInterface
     protected $name;
 
     /** @PHPCRODM\ParentDocument */
-    protected $parent;
+    protected $parentDocument;
 
     /** @PHPCRODM\Boolean */
     protected $enabled = true;
@@ -43,6 +43,8 @@ abstract class BaseBlock implements BlockInterface
      * @PHPCRODM\Date()
      */
     protected $updatedAt;
+
+    protected $parent;
 
     /**
      * @param string $src
@@ -212,7 +214,7 @@ abstract class BaseBlock implements BlockInterface
      */
     public function setParentDocument($parent)
     {
-        $this->parent = $parent;
+        $this->parentDocument = $parent;
     }
 
     /**
@@ -222,7 +224,7 @@ abstract class BaseBlock implements BlockInterface
      */
     public function getParentDocument()
     {
-        return $this->parent;
+        return $this->parentDocument;
     }
 
     /**
@@ -242,10 +244,7 @@ abstract class BaseBlock implements BlockInterface
      */
     public function getParent()
     {
-        if ($this->parent instanceof BlockInterface) {
-            return $this->parent;
-        }
-        return null;
+        return $this->parent;
     }
 
     /**
