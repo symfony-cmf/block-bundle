@@ -45,7 +45,7 @@ list:
 form:
     group_general: General
     label_locale: Locale
-    label_parent: Parent
+    label_parent_document: Parent
     label_name: Name
     label_title: Title
     label_content: Content
