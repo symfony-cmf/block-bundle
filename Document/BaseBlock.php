@@ -11,6 +11,11 @@ use Sonata\BlockBundle\Model\BlockInterface;
 /**
  * Base class for all blocks - connects to Sonata Blocks
  *
+ * Parent handling: The BlockInterface defines a parent to link back to
+ * a container block if there is one. PHPCR-ODM blocks always have a parent
+ * *document*. If the parent document is a BlockInterface, it is considered
+ * a parent in the sonata sense as well.
+ *
  * @Assert\Callback(methods={"isSettingsValid"})
  * @PHPCRODM\Document(referenceable=true)
  */
@@ -23,7 +28,7 @@ abstract class BaseBlock implements BlockInterface
     protected $name;
 
     /** @PHPCRODM\ParentDocument */
-    protected $parent;
+    protected $parentDocument;
 
     /** @PHPCRODM\Boolean */
     protected $enabled = true;
@@ -212,7 +217,7 @@ abstract class BaseBlock implements BlockInterface
      */
     public function setParentDocument($parent)
     {
-        $this->parent = $parent;
+        $this->parentDocument = $parent;
     }
 
     /**
@@ -222,40 +227,40 @@ abstract class BaseBlock implements BlockInterface
      */
     public function getParentDocument()
     {
-        return $this->parent;
+        return $this->parentDocument;
     }
 
     /**
-     * Set parent
+     * {@inheritDoc}
      *
-     * @param BlockInterface $parent
+     * Redirect to setParentDocument
      */
     public function setParent(BlockInterface $parent = null)
     {
-        $this->parent = $parent;
+        $this->setParentDocument($parent);
     }
 
     /**
-     * Get parent
+     * {@inheritDoc}
      *
-     * @return BlockInterface $parent
+     * Check if parentDocument is instanceof BlockInterface, otherwise return null
      */
     public function getParent()
     {
-        if ($this->parent instanceof BlockInterface) {
-            return $this->parent;
+        if ($this->parentDocument instanceof BlockInterface) {
+
+            return $this->parentDocument;
         }
+
         return null;
     }
 
     /**
-     * Check if this block has a parent.
-     *
-     * @return boolean true if this block has a valid parent set
+     * {@inheritDoc}
      */
     public function hasParent()
     {
-        return ($this->parent instanceof BlockInterface);
+        return ($this->parentDocument instanceof BlockInterface);
     }
 
     /**
