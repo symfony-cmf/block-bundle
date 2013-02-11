@@ -56,4 +56,15 @@ class ContainerBlock extends BaseBlock
 
         return $this->children->add($child);
     }
+
+    /**
+     * Remove a child from this container
+     *
+     * @param  string $key
+     * @return void
+     */
+    public function removeChild($key)
+    {
+        $this->children->remove($key);
+    }
 }
