@@ -13,12 +13,33 @@ use Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock;
 class SlideshowBlock extends ContainerBlock
 {
 
+    /** @PHPCRODM\String */
+    protected $title;
+
+    /**
+    * @PHPCRODM\Id
+    */
+    protected $path;
+
     /**
      * {@inheritdoc}
      */
     public function getType()
     {
         return 'symfony_cmf.block.slideshow';
+    }
+
+    public function getTitle() {
+        return $this->title;
+    }
+
+    public function setTitle($title) {
+        $this->title = $title;
+    }
+
+    public function getPath()
+    {
+        return $this->path;
     }
 
 }
