@@ -1,0 +1,14 @@
+{% extends 'SymfonyCmfBlockBundle:Block:block_base.html.twig' %}
+
+{% block block %}
+
+    <div class="slideshow">
+        <ul>
+            {% for item in itemBlocks %}
+                {# TODO: render image #}
+                <li>{{ item.label }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

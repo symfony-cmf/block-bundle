@@ -41,5 +41,12 @@
             <argument type="service" id="http_kernel" />
         </service>
 
+        <service id="symfony_cmf.block.slideshow" class="Symfony\Cmf\Bundle\BlockBundle\Block\SlideshowBlockService">
+            <tag name="sonata.block" />
+            <argument>symfony_cmf.block.slideshow</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="sonata.block.renderer" />
+        </service>
+
     </services>
 </container>
