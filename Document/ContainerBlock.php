@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\BlockBundle\Model\BlockInterface;
 
 /**
- * Block that contains other blocks ...
+ * Block that contains other blocks
  *
  * @PHPCRODM\Document(referenceable=true)
  */
@@ -60,11 +60,11 @@ class ContainerBlock extends BaseBlock
     /**
      * Remove a child from this container
      *
-     * @param  string $key
+     * @param mixed $child
      * @return void
      */
-    public function removeChild($key)
+    public function removeChild($child)
     {
-        $this->children->remove($key);
+        $this->children->remove($child->getId());
     }
 }
