@@ -31,7 +31,7 @@ class ActionBlockAdmin extends Admin
     {
         $formMapper
             ->with('form.group_general')
-            ->add('parentDocument', 'doctrine_phpcr_type_tree_model', array('root_node' => $this->contentRoot, 'choice_list' => array(), 'select_root_node' => true))
+            ->add('parentDocument', 'doctrine_phpcr_odm_tree', array('root_node' => $this->contentRoot, 'choice_list' => array(), 'select_root_node' => true))
             ->add('name', 'text')
             ->add('actionName', 'text')
             ->end()
