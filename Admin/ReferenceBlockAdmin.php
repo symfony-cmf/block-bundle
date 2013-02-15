@@ -30,9 +30,9 @@ class ReferenceBlockAdmin extends Admin
     {
         $formMapper
             ->with('form.group_general')
-            ->add('parentDocument', 'doctrine_phpcr_type_tree_model', array('root_node' => $this->contentRoot, 'choice_list' => array(), 'select_root_node' => true))
+            ->add('parentDocument', 'doctrine_phpcr_odm_tree', array('root_node' => $this->contentRoot, 'choice_list' => array(), 'select_root_node' => true))
             ->add('name', 'text')
-            ->add('referencedBlock', 'doctrine_phpcr_type_tree_model', array('choice_list' => array(), 'required' => false, 'root_node' => $this->contentRoot))
+            ->add('referencedBlock', 'doctrine_phpcr_odm_tree', array('choice_list' => array(), 'required' => false, 'root_node' => $this->contentRoot))
             ->end()
         ;
     }
