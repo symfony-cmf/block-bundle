@@ -55,7 +55,14 @@ class ActionBlockService extends BaseBlockService implements BlockServiceInterfa
             $response = new Response();
         }
 
-        if ($block->getEnabled() && $block->getActionName()) {
+        if (!$block->getActionName()) {
+            throw new \RuntimeException(sprintf(
+                'ActionBlock with id "%s" does not have an action name defined, implement a default or persist it in the document.',
+                $block->getId()
+            ));
+        }
+
+        if ($block->getEnabled()) {
             $response = new Response($this->kernel->render($block->getActionName(), array('attributes' =>  array('block' => $block))));
         }
 
