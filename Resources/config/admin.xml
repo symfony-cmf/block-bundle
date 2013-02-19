@@ -7,6 +7,10 @@
     <parameters>
         <parameter key="symfony_cmf_block.simple_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\SimpleBlockAdmin</parameter>
         <parameter key="symfony_cmf_block.simple_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\SimpleBlock</parameter>
+        <parameter key="symfony_cmf_block.slideshow_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\SlideshowAdmin</parameter>
+        <parameter key="symfony_cmf_block.slideshow_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\SlideshowBlock</parameter>
+        <parameter key="symfony_cmf_block.slideshow_item_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\SlideshowItemAdmin</parameter>
+        <parameter key="symfony_cmf_block.slideshow_item_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\SlideshowItemBlock</parameter>
     </parameters>
 
     <services>
@@ -24,5 +28,36 @@
                 <argument>%symfony_cmf_block.content_basepath%</argument>
             </call>
         </service>
+
+        <service id="symfony_cmf_block.slideshow_admin" class="%symfony_cmf_block.slideshow_admin_class%">
+            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.group_content" label_catalogue="SymfonyCmfBlockBundle" label="dashboard.label_slideshow_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <argument/>
+            <argument>%symfony_cmf_block.slideshow_document_class%</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+
+            <call method="setRouteBuilder">
+                <argument type="service" id="sonata.admin.route.path_info_slashes" />
+            </call>
+
+            <call method="setRoot">
+                <argument>%symfony_cmf_block.content_basepath%</argument>
+            </call>
+        </service>
+
+        <service id="symfony_cmf_block.slideshow_item_admin" class="%symfony_cmf_block.slideshow_item_admin_class%">
+            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.group_content" label_catalogue="SymfonyCmfBlockBundle" label="dashboard.label_slideshow_item_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <argument/>
+            <argument>%symfony_cmf_block.slideshow_item_document_class%</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+
+            <call method="setRouteBuilder">
+                <argument type="service" id="sonata.admin.route.path_info_slashes" />
+            </call>
+
+            <call method="setRoot">
+                <argument>%symfony_cmf_block.content_basepath%</argument>
+            </call>
+        </service>
+
     </services>
 </container>
