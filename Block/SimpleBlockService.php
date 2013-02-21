@@ -11,7 +11,15 @@ use Sonata\BlockBundle\Block\BaseBlockService;
 
 class SimpleBlockService extends BaseBlockService implements BlockServiceInterface
 {
-    private $template = 'SymfonyCmfBlockBundle:Block:block_simple.html.twig';
+    protected $template = 'SymfonyCmfBlockBundle:Block:block_simple.html.twig';
+
+    public function __construct($name, $templating, $template = null)
+    {
+        if ($template) {
+            $this->template = $template;
+        }
+        parent::__construct($name, $templating);
+    }
 
     /**
      * {@inheritdoc}
