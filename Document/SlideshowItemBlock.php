@@ -26,7 +26,6 @@ class SlideshowItemBlock extends BaseBlock
     /** @PHPCRODM\Node */
     protected $node;
 
-
     /**
      * {@inheritdoc}
      */

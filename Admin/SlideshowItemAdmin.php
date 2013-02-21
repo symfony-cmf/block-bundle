@@ -14,6 +14,7 @@ class SlideshowItemAdmin extends Admin
         $formMapper
             ->with('form.group_general')
                 ->add('label', 'text')
+                ->add('position', 'hidden', array('mapped' => false))
             ->end();
     }
 
