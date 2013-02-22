@@ -14,7 +14,10 @@ use Sonata\BlockBundle\Model\BlockInterface;
  */
 class ContainerBlock extends BaseBlock
 {
-    /** @PHPCRODM\Children */
+    /**
+     * \Doctrine\Common\Collections\ArrayCollection
+     * @PHPCRODM\Children
+     */
     protected  $children;
 
     public function __construct($name = null)
@@ -45,16 +48,16 @@ class ContainerBlock extends BaseBlock
      * Add a child to this container
      *
      * @param  BlockInterface $child
-     * @param  string $key OPTIONAL
      * @return boolean
      */
-    public function addChild(BlockInterface $child, $key = null)
+    public function addChild(BlockInterface $child)
     {
-        if ($key != null) {
-            return $this->children->set($key, $child);
-        }
-
         return $this->children->add($child);
+    }
+
+    public function addChildren(BlockInterface $children)
+    {
+        return $this->addChild($children);
     }
 
     /**
@@ -65,6 +68,7 @@ class ContainerBlock extends BaseBlock
      */
     public function removeChild($child)
     {
-        $this->children->remove($child->getId());
+        $this->children->removeElement($child);
     }
+
 }
