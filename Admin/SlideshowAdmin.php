@@ -28,15 +28,15 @@ class SlideshowAdmin extends Admin
                 ->add('title', 'text')
             ->with('Items')
                 ->add('children', 'sonata_type_collection',
-                array(
-                    'by_reference' => false,
-                ),
-                array(
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                    'admin_code' => 'symfony_cmf_block.slideshow_item_admin',
-                    'sortable'  => 'position',
-                ))
+                    array(
+                        'by_reference' => false,
+                    ),
+                    array(
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                        'admin_code' => 'symfony_cmf_block.slideshow_item_admin',
+                        'sortable'  => 'position',
+                    ))
             ->end();
 
         $formBuilder = $formMapper->getFormBuilder();
