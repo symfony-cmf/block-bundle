@@ -14,8 +14,6 @@ class SlideshowItemBlock extends BaseBlock
 {
 
     /**
-     * Image file child
-     *
      * @PHPCRODM\Child(name="image", cascade="persist")
      */
     protected $image;
@@ -46,7 +44,15 @@ class SlideshowItemBlock extends BaseBlock
 
     public function setImage($image)
     {
-        $this->image = $image;
+        if (!$image) {
+            return;
+        } elseif ($this->image && $this->image->getFile()) {
+            // TODO: this is needed due to a bug in PHPCRODM (http://www.doctrine-project.org/jira/browse/PHPCR-98)
+            // TODO: this can be removed once the bug is fixed
+            $this->image->getFile()->setFileContent($image->getFile()->getFileContent());
+        } else {
+            $this->image = $image;
+        }
     }
 
     public function getImage()

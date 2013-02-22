@@ -7,8 +7,7 @@
     <div class="slideshow">
         <ul>
             {% for item in itemBlocks %}
-                {# TODO: render image #}
-                <li>{{ item.label }}</li>
+                <li><span id="label">{{ item.label }}</span><img src="{{ item.image | imagine_filter('slideshow_image') }}" alt="{{ item.label }}" /></li>
             {% endfor %}
         </ul>
     </div>
