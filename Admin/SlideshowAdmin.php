@@ -56,6 +56,7 @@ class SlideshowAdmin extends Admin
         }
     }
 
-    // TODO: Deletion doesn't work yet
+    // TODO: Deletion doesn't work yet -> do we need to manually delete?
+    // TODO: Add doesn't work yet -> problem related to http://www.doctrine-project.org/jira/browse/PHPCR-98 ?
 
 }
