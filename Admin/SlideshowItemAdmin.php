@@ -13,7 +13,7 @@ class SlideshowItemAdmin extends Admin
         parent::configureFormFields($formMapper);
 
         // image is only required when creating a new item
-        $imageRequired = $this->getSubject()->getParent() ? false : true;
+        $imageRequired = ($this->getSubject() && $this->getSubject()->getParent()) ? false : true;
 
         $formMapper
             ->with('form.group_general')
