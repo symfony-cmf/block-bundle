@@ -16,7 +16,7 @@ class SlideshowAdmin extends Admin
     {
         parent::configureListFields($listMapper);
         $listMapper
-            ->addIdentifier('path', 'text')
+            ->addIdentifier('id', 'text')
             ->add('title', 'text');
     }
 
