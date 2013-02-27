@@ -17,11 +17,6 @@ class SlideshowBlock extends ContainerBlock
     protected $title;
 
     /**
-    * @PHPCRODM\Id
-    */
-    protected $path;
-
-    /**
      * {@inheritdoc}
      */
     public function getType()
@@ -35,11 +30,6 @@ class SlideshowBlock extends ContainerBlock
 
     public function setTitle($title) {
         $this->title = $title;
-    }
-
-    public function getPath()
-    {
-        return $this->path;
     }
 
 }

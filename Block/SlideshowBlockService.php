@@ -33,7 +33,7 @@ class SlideshowBlockService extends ContainerBlockService
             $childBlocks = array();
             foreach ($block->getChildren()->getValues() as $childBlock) {
                 $expectedType = 'Symfony\Cmf\Bundle\BlockBundle\Document\SlideshowItemBlock';
-                if (get_class($childBlock) !== $expectedType) {
+                if (!$childBlock instanceof $expectedType) {
                     throw new \RuntimeException(sprintf('Expected block of type %s. Received block of type %s instead.', $expectedType, get_class($childBlock)));
                 }
                 $childBlocks[] =  $childBlock;
