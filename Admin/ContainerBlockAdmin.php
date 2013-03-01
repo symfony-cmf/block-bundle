@@ -30,8 +30,8 @@ class ContainerBlockAdmin extends Admin
     {
         $formMapper
             ->with('form.group_general')
-            ->add('parentDocument', 'doctrine_phpcr_odm_tree', array('root_node' => $this->contentRoot, 'choice_list' => array(), 'select_root_node' => true))
-            ->add('name', 'text')
+                ->add('parentDocument', 'doctrine_phpcr_odm_tree', array('root_node' => $this->contentRoot, 'choice_list' => array(), 'select_root_node' => true))
+                ->add('name', 'text')
             ->end()
         ;
     }

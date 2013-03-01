@@ -44,7 +44,6 @@ class MinimalSlideshowAdmin extends Admin
 
         $formBuilder = $formMapper->getFormBuilder();
         $formBuilder->addEventListener(FormEvents::POST_BIND, array($this, 'onPostBind'));
-
     }
 
     // reorder children according to the form data
@@ -59,7 +58,7 @@ class MinimalSlideshowAdmin extends Admin
         }
     }
 
-    // TODO: Deletion doesn't work yet -> do we need to manually delete?
+    // TODO: Item deletion doesn't work yet -> do we need to manually delete? Or does sonata call a certain method?
     // TODO: Add doesn't work yet -> problem related to http://www.doctrine-project.org/jira/browse/PHPCR-98 ?
     // TODO: or do we just have to add the name to the item/image?
 
