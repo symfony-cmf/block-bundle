@@ -2,14 +2,15 @@
 
 {% block block %}
 
-    <h3>Block title: {{ block.title }}</h3>
-
-    <div class="slideshow">
-        <ul>
-            {% for item in itemBlocks %}
-                <li><span id="label">{{ item.label }}</span><img src="{{ item.image | imagine_filter('slideshow_image') }}" alt="{{ item.label }}" /></li>
-            {% endfor %}
-        </ul>
-    </div>
+    {% if childBlocks %}
+        <h3>Block title: {{ block.title }}</h3>
+        <div class="slideshow">
+            <ul>
+                {% for item in childBlocks %}
+                    <li>{{ item | raw }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 
 {% endblock %}

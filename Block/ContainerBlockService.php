@@ -15,16 +15,23 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
 {
 
     protected $blockRenderer;
+    protected $template = 'SymfonyCmfBlockBundle:Block:block_container.html.twig';
 
     /**
      * @param string $name
      * @param \Symfony\Bundle\FrameworkBundle\Templating\EngineInterface $templating
      * @param \Sonata\BlockBundle\Block\BlockRendererInterface $blockRenderer
+     * @param string|null $template
      */
-    public function __construct($name, EngineInterface $templating, BlockRendererInterface $blockRenderer)
+    public function __construct($name, EngineInterface $templating, BlockRendererInterface $blockRenderer, $template = null)
     {
         parent::__construct($name, $templating);
+
         $this->blockRenderer = $blockRenderer;
+
+        if ($template) {
+            $this->template = $template;
+        }
     }
 
     /**
@@ -48,7 +55,7 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
      */
     protected function getTemplate()
     {
-        return 'SymfonyCmfBlockBundle:Block:block_container.html.twig';
+        return $this->template;
     }
 
     /**
@@ -73,6 +80,7 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
             }
 
             return $this->renderResponse($this->getTemplate(), array(
+                'block'       => $block,
                 'childBlocks' => $childBlocks,
                 'settings'    => $settings
             ), $response);
