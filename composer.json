@@ -24,7 +24,8 @@
     },
     "suggest": {
         "sonata-project/cache-bundle": "To add caching support for block loading",
-        "liip/imagine-bundle": "When using the SlideshowItemBlock"
+        "liip/imagine-bundle": "When using the SlideshowItemBlock",
+        "eko/feedbundle": "To use the RssBlock"
     },
     "autoload":{
         "psr-0":{

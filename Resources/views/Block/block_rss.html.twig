@@ -1,0 +1,21 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <div class="span3">
+        <h2>{{ block.settings.title }}</h2>
+        <p>This block displays a list of messages based on this <a href="{{ block.settings.url }}" title="Url rss block">rss feed</a>.</p>
+
+        <div class="feed-container">
+            {% for item in items %}
+                <ul>
+                    <li>
+                        <a class="item-link" href="{{ item.link}}" rel="nofollow" title="{{ item.title }}">{{ item.title }}</a>
+                        (<span class="item-pubdate">{{ item.pubDate | date('Y-m-d')  }}</span>)
+                    </li>
+                </ul>
+            {% else %}
+                    No feeds available.
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
