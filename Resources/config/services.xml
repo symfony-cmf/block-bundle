@@ -60,6 +60,7 @@
             <argument>symfony_cmf.block.slideshow_item</argument>
             <argument type="service" id="templating" />
             <argument>SymfonyCmfBlockBundle:Block:block_slideshow_item.html.twig</argument>
+        </service>
 
         <service id="symfony_cmf.block.rss_controller" class="%symfony_cmf_block.rss_controller_class%" >
             <call method="setContainer">
