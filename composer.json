@@ -23,7 +23,8 @@
         "sonata-project/cache-bundle": "dev-master"
     },
     "suggest": {
-        "sonata-project/cache-bundle": "To add caching support for block loading"
+        "sonata-project/cache-bundle": "To add caching support for block loading",
+        "liip/imagine-bundle": "When using the SlideshowItemBlock"
     },
     "autoload":{
         "psr-0":{
