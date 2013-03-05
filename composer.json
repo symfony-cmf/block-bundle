@@ -17,7 +17,7 @@
         "symfony/symfony": ">=2.1,<2.3-dev",
         "doctrine/phpcr-bundle" :"1.0.*",
         "doctrine/phpcr-odm": "1.0.*",
-        "sonata-project/block-bundle": "dev-f97a13dcb861124b279dfdba191f1902cf9fc001"
+        "sonata-project/block-bundle": "2.1.1"
     },
     "require-dev": {
         "sonata-project/cache-bundle": "dev-master"
