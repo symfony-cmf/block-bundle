@@ -2,6 +2,7 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\DependencyInjection;
 
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\FileLocator;
@@ -66,6 +67,12 @@ class SymfonyCmfBlockExtension extends Extension
 
         $blockLoader = $container->getDefinition('symfony_cmf.block.service');
         $blockLoader->replaceArgument(1, $config['document_manager_name']);
+
+        // TODO: Symfony 2.1 compatibility
+        if (!class_exists('Symfony\Component\HttpKernel\Fragment\FragmentHandler')) {
+            $blockAction = $container->getDefinition('symfony_cmf.block.action');
+            $blockAction->replaceArgument(2, new Reference('http_kernel'));
+        }
 
         $bundles = $container->getParameter('kernel.bundles');
         if (isset($bundles['SymfonyCmfCreateBundle'])) {

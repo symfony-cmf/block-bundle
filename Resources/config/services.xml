@@ -42,7 +42,7 @@
             <tag name="sonata.block" />
             <argument>symfony_cmf.block.action</argument>
             <argument type="service" id="templating" />
-            <argument type="service" id="http_kernel" />
+            <argument type="service" id="fragment.handler" />
         </service>
 
         <service id="symfony_cmf.block.rss_controller" class="%symfony_cmf_block.rss_controller_class%" >
