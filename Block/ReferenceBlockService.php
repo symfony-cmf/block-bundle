@@ -9,22 +9,22 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
-use Sonata\BlockBundle\Block\BlockRendererInterface;
+use Sonata\BlockBundle\Twig\Extension\BlockExtension;
 
 class ReferenceBlockService extends BaseBlockService implements BlockServiceInterface
 {
 
-    protected $blockRenderer;
+    protected $twigExtension;
 
     /**
      * @param string $name
      * @param \Symfony\Bundle\FrameworkBundle\Templating\EngineInterface $templating
-     * @param \Sonata\BlockBundle\Block\BlockRendererInterface $blockRenderer
+     * @param \Sonata\BlockBundle\Block\twigExtensionInterface $twigExtension
      */
-    public function __construct($name, EngineInterface $templating, BlockRendererInterface $blockRenderer)
+    public function __construct($name, EngineInterface $templating, BlockExtension $twigExtension)
     {
         parent::__construct($name, $templating);
-        $this->blockRenderer = $blockRenderer;
+        $this->twigExtension = $twigExtension;
     }
 
     /**
@@ -57,7 +57,7 @@ class ReferenceBlockService extends BaseBlockService implements BlockServiceInte
 
         // if the reference target block does not exist, we just skip the rendering
         if ($block->getEnabled() && null !== $block->getReferencedBlock()) {
-            $response = $this->blockRenderer->render($block->getReferencedBlock());
+            $response->setContent($this->twigExtension->renderBlock($block->getReferencedBlock()));
         }
 
         return $response;
