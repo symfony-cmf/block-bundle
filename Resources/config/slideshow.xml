@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <!--container block service is reused for slideshows -->
+        <service id="symfony_cmf.block.slideshow" class="Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService">
+            <tag name="sonata.block" />
+            <argument>symfony_cmf.block.slideshow</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="sonata.block.renderer" />
+            <argument>SymfonyCmfBlockBundle:Block:block_slideshow.html.twig</argument>
+        </service>
+
+        <!-- simple block service is reused for slideshow items -->
+        <service id="symfony_cmf.block.slideshow_item" class="Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService">
+            <tag name="sonata.block" />
+            <argument>symfony_cmf.block.slideshow_item</argument>
+            <argument type="service" id="templating" />
+            <argument>SymfonyCmfBlockBundle:Block:block_slideshow_item.html.twig</argument>
+        </service>
+
+    </services>
+</container>

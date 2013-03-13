@@ -7,7 +7,6 @@
     <parameters>
         <parameter key="symfony_cmf_block.container_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\ContainerBlockAdmin</parameter>
         <parameter key="symfony_cmf_block.container_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock</parameter>
-        <parameter key="symfony_cmf_block.content_basepath">/cms/content</parameter>
     </parameters>
 
     <services>
