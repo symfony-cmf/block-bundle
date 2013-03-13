@@ -4,10 +4,13 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
 
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+
+use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ODM\PHPCR\ChildrenCollection;
-use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
+
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 
 class MinimalSlideshowAdmin extends Admin
 {
@@ -54,12 +57,44 @@ class MinimalSlideshowAdmin extends Admin
         $newCollection->clear();
 
         foreach ($event->getForm()->get('children') as $child) {
-            $newCollection->add($child->getData());
+            if ($child->get('_delete')->getData()) {
+                // do not re-add a deleted child
+                continue;
+            }
+            if ($child->getName()) {
+                // keep key in collection
+                $newCollection[$child->getName()] = $child->getData();
+            } else {
+                $newCollection[] = $child->getData();
+            }
         }
     }
 
-    // TODO: Item deletion doesn't work yet -> do we need to manually delete? Or does sonata call a certain method?
-    // TODO: Add doesn't work yet -> problem related to http://www.doctrine-project.org/jira/browse/PHPCR-98 ?
-    // TODO: or do we just have to add the name to the item/image?
+    public function prePersist($slideshow)
+    {
+        foreach($slideshow->getChildren() as $child) {
+            $child->setName($this->generateName());
+        }
+    }
 
+    public function preUpdate($slideshow)
+    {
+        foreach($slideshow->getChildren() as $child) {
+            if (! $this->modelManager->getNormalizedIdentifier($child)) {
+                $child->setName($this->generateName());
+            }
+        }
+    }
+
+    /**
+     * Generate a most likely unique name
+     *
+     * TODO: have child documents use the autoname annotation once this is done: http://www.doctrine-project.org/jira/browse/PHPCR-103
+     *
+     * @return string
+     */
+    private function generateName()
+    {
+        return 'child_' . time() . '_' . rand();
+    }
 }

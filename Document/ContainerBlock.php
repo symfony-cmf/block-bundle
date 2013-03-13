@@ -15,7 +15,7 @@ use Sonata\BlockBundle\Model\BlockInterface;
 class ContainerBlock extends BaseBlock
 {
     /**
-     * \Doctrine\Common\Collections\ArrayCollection
+     * ChildrenCollection
      * @PHPCRODM\Children
      */
     protected  $children;
