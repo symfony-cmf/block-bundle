@@ -7,6 +7,11 @@ dashboard:
     label_action_block: Bloc action
 
 breadcrumb:
+    link_slideshow_simple_block_list: Blocs slideshow
+    link_slideshow_simple_block_create: Créer
+    link_slideshow_simple_block_edit: Éditer
+    link_slideshow_simple_block_delete: Supprimer
+
     link_simple_block_list: Blocs simples
     link_simple_block_create: Créer
     link_simple_block_edit: Éditer

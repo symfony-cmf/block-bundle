@@ -8,6 +8,7 @@ class SlideshowAdmin extends MinimalSlideshowAdmin
 {
     protected $baseRouteName = 'symfony_cmf_block.slideshow_admin';
     protected $baseRoutePattern = 'symfony_cmf/block/slideshow';
+    protected $translationDomain = 'SymfonyCmfBlockBundle';
 
     /**
      * Path to where new slideshow blocks may be attached
