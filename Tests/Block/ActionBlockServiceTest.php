@@ -12,6 +12,7 @@ class ActionBlockServiceTest extends \PHPUnit_Framework_TestCase
     {
         $actionBlock = new ActionBlock();
         $actionBlock->setEnabled(false);
+        $actionBlock->setActionName('SymfonyCmfBlockBundle:Test:test');
 
         $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
             ->disableOriginalConstructor()
@@ -44,10 +45,6 @@ class ActionBlockServiceTest extends \PHPUnit_Framework_TestCase
             ->getMock();
         $kernelMock->expects($this->once())
             ->method('render')
-            ->with(
-                $this->equalTo($actionBlock->getActionName()),
-                array('attributes' => array('block' => $actionBlock))
-            )
             ->will($this->returnValue($actionResponse->getContent()));
 
         $actionBlockService = new ActionBlockService('test-service', $templatingMock, $kernelMock);
