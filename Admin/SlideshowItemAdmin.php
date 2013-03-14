@@ -17,7 +17,7 @@ class SlideshowItemAdmin extends Admin
 
         $formMapper
             ->with('form.group_general')
-                ->add('label', 'text')
+                ->add('label', 'text', array('required' => false))
                 ->add('image', 'phpcr_odm_image', array('required' => $imageRequired, 'label' => 'Slide Image', 'data_class' => 'Doctrine\ODM\PHPCR\Document\Image'))
                 ->add('position', 'hidden', array('mapped' => false))
             ->end();
