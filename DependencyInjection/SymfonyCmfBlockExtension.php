@@ -104,7 +104,7 @@ class SymfonyCmfBlockExtension extends Extension
             $container->setParameter($this->getAlias() . '.' . $prefix . 'simple_admin_class', $config['simple_admin_class']);
         }
 
-        if ($config['slideshow']) {
+        if (isset($config['slideshow']) && $config['slideshow']) {
             $loader->load('slideshow.admin.xml');
         }
     }
