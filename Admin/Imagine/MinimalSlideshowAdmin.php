@@ -17,6 +17,7 @@ class MinimalSlideshowAdmin extends Admin
 
     protected $baseRouteName = 'symfony_cmf_block.imagine.minimal_slideshow_admin';
     protected $baseRoutePattern = 'symfony_cmf/block/imagineMinimalSlideshow';
+    protected $translationDomain = 'SymfonyCmfBlockBundle';
 
     protected function configureListFields(ListMapper $listMapper)
     {

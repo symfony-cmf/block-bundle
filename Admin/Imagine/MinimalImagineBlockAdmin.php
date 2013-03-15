@@ -7,6 +7,8 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class MinimalImagineBlockAdmin extends Admin
 {
+    protected $translationDomain = 'SymfonyCmfBlockBundle';
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         parent::configureFormFields($formMapper);

@@ -5,9 +5,11 @@ dashboard:
     label_container_block: Container block
     label_reference_block: Reference block
     label_action_block: Action block
+    label_slideshow_block: Slideshow block
 
 breadcrumb:
     link_slideshow_block_list: Slideshow Blocks
+    link_slideshow_block_edit: Edit
     link_slideshow_simple_block_create: Create
     link_slideshow_simple_block_edit: Edit
     link_slideshow_simple_block_delete: Delete
@@ -56,3 +58,6 @@ form:
     label_content: Content
     label_referenced_block: Referenced block
     label_action_name: Action name
+    label_children: Elements
+    label_label: Label
+    label_position: Position
