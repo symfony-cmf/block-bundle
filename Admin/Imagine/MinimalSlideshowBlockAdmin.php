@@ -12,7 +12,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 
-class MinimalSlideshowAdmin extends Admin
+class MinimalSlideshowBlockAdmin extends Admin
 {
 
     protected $baseRouteName = 'symfony_cmf_block.imagine.minimal_slideshow_admin';

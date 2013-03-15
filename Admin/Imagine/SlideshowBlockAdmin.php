@@ -4,7 +4,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine;
 
 use Sonata\AdminBundle\Form\FormMapper;
 
-class SlideshowAdmin extends MinimalSlideshowAdmin
+class SlideshowBlockAdmin extends MinimalSlideshowBlockAdmin
 {
     protected $baseRouteName = 'symfony_cmf_block.imagine.slideshow_admin';
     protected $baseRoutePattern = 'symfony_cmf/block/imagineSlideshow';

@@ -5,8 +5,8 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="symfony_cmf_block.imagine.slideshow_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine\SlideshowAdmin</parameter>
-        <parameter key="symfony_cmf_block.imagine.minimal_slideshow_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine\MinimalSlideshowAdmin</parameter>
+        <parameter key="symfony_cmf_block.imagine.slideshow_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine\SlideshowBlockAdmin</parameter>
+        <parameter key="symfony_cmf_block.imagine.minimal_slideshow_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine\MinimalSlideshowBlockAdmin</parameter>
         <parameter key="symfony_cmf_block.slideshow_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\SlideshowBlock</parameter>
 
         <parameter key="symfony_cmf_block.imagine.minimal_imagine_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine\MinimalImagineBlockAdmin</parameter>
