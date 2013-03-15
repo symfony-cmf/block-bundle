@@ -1,11 +1,11 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
+namespace Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine;
 
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class SlideshowItemAdmin extends Admin
+class MinimalImagineBlockAdmin extends Admin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {

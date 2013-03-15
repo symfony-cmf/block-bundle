@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
+namespace Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine;
 
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -15,8 +15,8 @@ use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 class MinimalSlideshowAdmin extends Admin
 {
 
-    protected $baseRouteName = 'symfony_cmf_block.minimal_slideshow_admin';
-    protected $baseRoutePattern = 'symfony_cmf/block/minimalSlideshow';
+    protected $baseRouteName = 'symfony_cmf_block.imagine.minimal_slideshow_admin';
+    protected $baseRoutePattern = 'symfony_cmf/block/imagineMinimalSlideshow';
 
     protected function configureListFields(ListMapper $listMapper)
     {
@@ -40,7 +40,7 @@ class MinimalSlideshowAdmin extends Admin
                     array(
                         'edit' => 'inline',
                         'inline' => 'table',
-                        'admin_code' => 'symfony_cmf_block.slideshow_item_admin',
+                        'admin_code' => 'symfony_cmf_block.imagine.minimal_imagine_admin',
                         'sortable'  => 'position',
                     ))
             ->end();

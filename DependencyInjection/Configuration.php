@@ -30,7 +30,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('document_manager_name')->defaultValue('default')->end()
                 ->scalarNode('content_basepath')->defaultValue('/cms/content')->end()
                 ->scalarNode('block_basepath')->defaultValue('/cms/content')->end()
-                ->scalarNode('slideshow')->defaultValue(false)->end()
+                ->scalarNode('imagine')->defaultValue(false)->end()
                 ->scalarNode('simple_admin_class')->defaultNull()->end()
                 ->scalarNode('simple_document_class')->defaultNull()->end()
                 ->scalarNode('container_admin_class')->defaultNull()->end()

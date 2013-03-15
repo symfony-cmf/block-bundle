@@ -36,8 +36,8 @@ class SymfonyCmfBlockExtension extends Extension
             $container->setParameter($this->getAlias() . '.multilang.locales', $config['multilang']['locales']);
         }
 
-        if ($config['slideshow']) {
-            $loader->load('slideshow.xml');
+        if ($config['imagine']) {
+            $loader->load('imagine.xml');
         }
 
         if (isset($config['simple_document_class'])) {
@@ -100,8 +100,8 @@ class SymfonyCmfBlockExtension extends Extension
             $container->setParameter($this->getAlias() . '.' . $prefix . 'simple_admin_class', $config['simple_admin_class']);
         }
 
-        if (isset($config['slideshow']) && $config['slideshow']) {
-            $loader->load('slideshow.admin.xml');
+        if (isset($config['imagine']) && $config['imagine']) {
+            $loader->load('imagine.admin.xml');
         }
     }
 

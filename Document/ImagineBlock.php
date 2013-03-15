@@ -6,11 +6,11 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
 use Symfony\Cmf\Bundle\BlockBundle\Document\BaseBlock;
 
 /**
- * Block that can act as an item of a SlideshowBlock
+ * Block to hold an image
  *
  * @PHPCRODM\Document(referenceable=true)
  */
-class ImageBlock extends BaseBlock
+class ImagineBlock extends BaseBlock
 {
 
     /**
@@ -29,7 +29,7 @@ class ImageBlock extends BaseBlock
      */
     public function getType()
     {
-        return 'symfony_cmf.block.image';
+        return 'symfony_cmf.block.imagine';
     }
 
     public function setLabel($label)

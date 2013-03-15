@@ -5,11 +5,11 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Document;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
 
 /**
- * Block that can act as an item of a SlideshowBlock
+ * Block to hold an image
  *
  * @PHPCRODM\Document(referenceable=true, translator="attribute")
  */
-class MultilangImageBlock extends ImageBlock
+class MultilangImagineBlock extends ImagineBlock
 {
 
     /** @PHPCRODM\Locale */
