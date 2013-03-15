@@ -1,0 +1,18 @@
+{% extends 'SymfonyCmfBlockBundle:Block:block_base.html.twig' %}
+
+{% block block %}
+
+    {% if childBlocks %}
+        {% if block.title is defined %}
+            <h3>{{ block.title }}</h3>
+        {% endif %}
+        <div class="slideshow">
+            <ul>
+                {% for item in childBlocks %}
+                    <li>{{ item | raw }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+{% endblock %}

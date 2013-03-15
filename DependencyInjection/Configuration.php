@@ -28,7 +28,9 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('document_manager_name')->defaultValue('default')->end()
-                ->scalarNode('content_basepath')->defaultNull('/cms/content')->end()
+                ->scalarNode('content_basepath')->defaultValue('/cms/content')->end()
+                ->scalarNode('block_basepath')->defaultValue('/cms/content')->end()
+                ->scalarNode('imagine')->defaultValue(false)->end()
                 ->scalarNode('simple_admin_class')->defaultNull()->end()
                 ->scalarNode('simple_document_class')->defaultNull()->end()
                 ->scalarNode('container_admin_class')->defaultNull()->end()
@@ -74,7 +76,6 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-
             ->end()
         ;
 

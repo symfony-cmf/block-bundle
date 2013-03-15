@@ -13,6 +13,9 @@ class SymfonyCmfBlockExtension extends Extension
     {
         $config = $this->processConfiguration(new Configuration(), $configs);
 
+        $container->setParameter($this->getAlias() . '.content_basepath', $config['content_basepath']);
+        $container->setParameter($this->getAlias() . '.block_basepath', $config['block_basepath']);
+
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
@@ -31,6 +34,10 @@ class SymfonyCmfBlockExtension extends Extension
             }
 
             $container->setParameter($this->getAlias() . '.multilang.locales', $config['multilang']['locales']);
+        }
+
+        if ($config['imagine']) {
+            $loader->load('imagine.xml');
         }
 
         if (isset($config['simple_document_class'])) {
@@ -55,10 +62,6 @@ class SymfonyCmfBlockExtension extends Extension
 
         if (isset($config['action_document_class'])) {
             $container->setParameter($this->getAlias() . '.action_document_class', $config['action_document_class']);
-        }
-
-        if (isset($config['action_admin_class'])) {
-            $container->setParameter($this->getAlias() . '.' . 'action_admin_class', $config['action_admin_class']);
         }
 
         if (isset($config['action_admin_class'])) {
@@ -95,6 +98,10 @@ class SymfonyCmfBlockExtension extends Extension
 
         if (isset($config['simple_admin_class'])) {
             $container->setParameter($this->getAlias() . '.' . $prefix . 'simple_admin_class', $config['simple_admin_class']);
+        }
+
+        if (isset($config['imagine']) && $config['imagine']) {
+            $loader->load('imagine.admin.xml');
         }
     }
 

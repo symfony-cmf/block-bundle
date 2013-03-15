@@ -45,6 +45,15 @@
             <argument type="service" id="fragment.handler" />
         </service>
 
+        <!--container block service is reused for slideshows -->
+        <service id="symfony_cmf.block.slideshow" class="Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService">
+            <tag name="sonata.block" />
+            <argument>symfony_cmf.block.slideshow</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="sonata.block.renderer" />
+            <argument>SymfonyCmfBlockBundle:Block:block_slideshow.html.twig</argument>
+        </service>
+
         <service id="symfony_cmf.block.rss_controller" class="%symfony_cmf_block.rss_controller_class%" >
             <call method="setContainer">
                 <argument type="service" id="service_container" />
