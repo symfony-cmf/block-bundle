@@ -3,14 +3,13 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Document;
 
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
-use Symfony\Cmf\Bundle\BlockBundle\Document\BaseBlock;
 
 /**
- * Block that acts as an item of a SlideshowBlock
+ * Block that can act as an item of a SlideshowBlock
  *
  * @PHPCRODM\Document(referenceable=true, translator="attribute")
  */
-class MultilangSlideshowItemBlock extends SlideshowItemBlock
+class MultilangImageBlock extends ImageBlock
 {
 
     /** @PHPCRODM\Locale */

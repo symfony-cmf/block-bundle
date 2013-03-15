@@ -16,9 +16,9 @@
         </service>
 
         <!-- simple block service is reused for slideshow items -->
-        <service id="symfony_cmf.block.slideshow_item" class="Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService">
+        <service id="symfony_cmf.block.image" class="Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService">
             <tag name="sonata.block" />
-            <argument>symfony_cmf.block.slideshow_item</argument>
+            <argument>symfony_cmf.block.image</argument>
             <argument type="service" id="templating" />
             <argument>SymfonyCmfBlockBundle:Block:block_slideshow_item.html.twig</argument>
         </service>
