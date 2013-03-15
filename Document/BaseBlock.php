@@ -290,7 +290,7 @@ abstract class BaseBlock implements BlockInterface
      */
     public function __toString()
     {
-        return $this->name ? $this->name : '';
+        return (string) $this->name;
     }
 
     /**
