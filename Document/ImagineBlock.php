@@ -14,7 +14,6 @@ use Symfony\Cmf\Bundle\BlockBundle\Document\BaseBlock;
  */
 class ImagineBlock extends BaseBlock
 {
-
     /**
      * @var Image
      * @PHPCRODM\Child(name="image", cascade="persist")
@@ -23,6 +22,12 @@ class ImagineBlock extends BaseBlock
 
     /** @PHPCRODM\String */
     protected $label;
+
+    /**
+     * Optional link url to use on the image
+     * @PHPCRODM\String
+     */
+    protected $linkUrl;
 
     /**
      * @var \PHPCR\NodeInterface
@@ -46,6 +51,16 @@ class ImagineBlock extends BaseBlock
     public function getLabel()
     {
         return $this->label;
+    }
+
+    public function setLinkUrl($url)
+    {
+        $this->linkUrl = $url;
+    }
+
+    public function getLinkUrl()
+    {
+        return $this->linkUrl;
     }
 
     /**
