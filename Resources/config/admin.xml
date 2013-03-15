@@ -24,5 +24,6 @@
                 <argument>%symfony_cmf_block.content_basepath%</argument>
             </call>
         </service>
+
     </services>
 </container>

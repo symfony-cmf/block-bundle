@@ -1,0 +1,5 @@
+{% extends 'SymfonyCmfBlockBundle:Block:block_base.html.twig' %}
+
+{% block block %}
+    <span id="label">{{ block.label }}</span><img src="{{ block.image | imagine_filter('symfony_cmf_block') }}" alt="{{ block.label }}" />
+{% endblock %}
