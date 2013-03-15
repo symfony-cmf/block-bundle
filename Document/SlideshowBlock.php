@@ -6,7 +6,9 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
 use Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock;
 
 /**
- * Block that renders a slideshow of child items
+ * Special container block that renders child items in a way suitable for a
+ * slideshow. Note that you need to add some javascript to actually get the
+ * blocks to do a slideshow.
  *
  * @PHPCRODM\Document(referenceable=true)
  */

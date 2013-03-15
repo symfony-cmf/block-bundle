@@ -5,7 +5,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Document;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
 
 /**
- * Block to hold an image
+ * Imagine block with multilanguage
  *
  * @PHPCRODM\Document(referenceable=true, translator="attribute")
  */

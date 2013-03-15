@@ -2,7 +2,9 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Document;
 
+use Doctrine\ODM\PHPCR\Document\Image;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
+
 use Symfony\Cmf\Bundle\BlockBundle\Document\BaseBlock;
 
 /**
@@ -14,6 +16,7 @@ class ImagineBlock extends BaseBlock
 {
 
     /**
+     * @var Image
      * @PHPCRODM\Child(name="image", cascade="persist")
      */
     protected $image;
@@ -21,7 +24,10 @@ class ImagineBlock extends BaseBlock
     /** @PHPCRODM\String */
     protected $label;
 
-    /** @PHPCRODM\Node */
+    /**
+     * @var \PHPCR\NodeInterface
+     * @PHPCRODM\Node
+     */
     protected $node;
 
     /**
@@ -42,6 +48,18 @@ class ImagineBlock extends BaseBlock
         return $this->label;
     }
 
+    /**
+     * Set the image for this block.
+     *
+     * Setting null will do nothing, as this is what happens when you edit this
+     * block in a form without uploading a replacement file.
+     *
+     * If you need to delete the Image, you can use getImage and delete it with
+     * the document manager. Note that this block does not make much sense
+     * without an image, though.
+     *
+     * @param Image $image optional the image to update
+     */
     public function setImage($image)
     {
         if (!$image) {
@@ -55,11 +73,17 @@ class ImagineBlock extends BaseBlock
         }
     }
 
+    /**
+     * @return Image
+     */
     public function getImage()
     {
         return $this->image;
     }
 
+    /**
+     * @return \PHPCR\NodeInterface
+     */
     public function getNode()
     {
         return $this->node;

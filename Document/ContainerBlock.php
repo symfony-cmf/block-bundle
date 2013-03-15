@@ -15,7 +15,7 @@ use Sonata\BlockBundle\Model\BlockInterface;
 class ContainerBlock extends BaseBlock
 {
     /**
-     * ChildrenCollection
+     * @var ChildrenCollection
      * @PHPCRODM\Children
      */
     protected  $children;
@@ -47,14 +47,30 @@ class ContainerBlock extends BaseBlock
     /**
      * Add a child to this container
      *
-     * @param  BlockInterface $child
+     * @param BlockInterface $child
+     * @param string         $key   the collection index name to use in the
+     *      child collection if not set, the child will simply be appended at
+     *      the end
+     *
      * @return boolean
      */
-    public function addChild(BlockInterface $child)
+    public function addChild(BlockInterface $child, $key = null)
     {
+        if ($key != null) {
+
+            return $this->children->set($key, $child);
+        }
+
         return $this->children->add($child);
     }
 
+    /**
+     * Alias to addChild to make the form layer happy
+     *
+     * @param BlockInterface $children
+     *
+     * @return boolean
+     */
     public function addChildren(BlockInterface $children)
     {
         return $this->addChild($children);
