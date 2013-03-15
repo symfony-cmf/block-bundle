@@ -3,7 +3,9 @@
 {% block block %}
 
     {% if childBlocks %}
-        <h3>Block title: {{ block.title }}</h3>
+        {% if block.title is defined %}
+            <h3>{{ block.title }}</h3>
+        {% endif %}
         <div class="slideshow">
             <ul>
                 {% for item in childBlocks %}
