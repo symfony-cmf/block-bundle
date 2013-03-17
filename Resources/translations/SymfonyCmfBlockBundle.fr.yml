@@ -61,3 +61,5 @@ form:
     label_children: Elements
     label_label: Label
     label_position: Position
+    label_link_url: URL Lien
+    label_image: Image
