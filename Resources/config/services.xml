@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="symfony_cmf_block.rss_controller_class">Symfony\Cmf\Bundle\BlockBundle\Controller\RssController</parameter>
+        <parameter key="symfony_cmf_block.twig_extension_class">Symfony\Cmf\Bundle\BlockBundle\Twig\Extension\CmfBlockExtension</parameter>
     </parameters>
 
     <services>
@@ -58,6 +59,12 @@
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
+        </service>
+
+        <service id="symfony_cmf_block.twig.embed_extension" class="%symfony_cmf_block.twig_extension_class%">
+            <argument type="service" id="sonata.block.twig.extension"/>
+            <argument type="service" id="logger"/>
+            <tag name="twig.extension"/>
         </service>
 
     </services>
