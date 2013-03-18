@@ -8,6 +8,7 @@
         <parameter key="symfony_cmf_block.imagine.slideshow_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine\SlideshowBlockAdmin</parameter>
         <parameter key="symfony_cmf_block.imagine.minimal_slideshow_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine\MinimalSlideshowBlockAdmin</parameter>
         <parameter key="symfony_cmf_block.slideshow_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\SlideshowBlock</parameter>
+        <parameter key="symfony_cmf_block.multilang_slideshow_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSlideshowBlock</parameter>
 
         <parameter key="symfony_cmf_block.imagine.minimal_imagine_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine\MinimalImagineBlockAdmin</parameter>
         <parameter key="symfony_cmf_block.imagine_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\ImagineBlock</parameter>
@@ -37,10 +38,32 @@
                 <argument type="service" id="sonata.admin.route.path_info_slashes" />
             </call>
 
+            <call method="setEmbedSlides">
+                <argument>symfony_cmf_block.imagine.minimal_imagine_admin</argument>
+            </call>
+
             <call method="setBlockRoot">
                 <argument>%symfony_cmf_block.block_basepath%</argument>
             </call>
+        </service>
 
+        <service id="symfony_cmf_block.imagine.multilang_slideshow_admin" class="%symfony_cmf_block.imagine.slideshow_admin_class%">
+            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.group_content" label_catalogue="SymfonyCmfBlockBundle" label="dashboard.label_multilang_slideshow_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <argument/>
+            <argument>%symfony_cmf_block.multilang_slideshow_document_class%</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+
+            <call method="setRouteBuilder">
+                <argument type="service" id="sonata.admin.route.path_info_slashes" />
+            </call>
+
+            <call method="setEmbedSlides">
+                <argument>symfony_cmf_block.imagine.minimal_multilang_imagine_admin</argument>
+            </call>
+
+            <call method="setBlockRoot">
+                <argument>%symfony_cmf_block.block_basepath%</argument>
+            </call>
         </service>
 
         <service id="symfony_cmf_block.imagine.minimal_imagine_admin" class="%symfony_cmf_block.imagine.minimal_imagine_admin_class%">
