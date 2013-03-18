@@ -6,13 +6,18 @@ dashboard:
     label_reference_block: Bloc référence
     label_action_block: Bloc action
     label_slideshow_block: Bloc slideshow
+    label_multilang_slideshow_block: Bloc slideshow
 
 breadcrumb:
     link_slideshow_block_list: Blocs slideshow
-    link_slideshow_block_edit: Edit
-    link_slideshow_simple_block_create: Créer
-    link_slideshow_simple_block_edit: Éditer
-    link_slideshow_simple_block_delete: Supprimer
+    link_slideshow_block_create: Créer
+    link_slideshow_block_edit: Éditer
+    link_slideshow_block_delete: Supprimer
+
+    link_multilang_slideshow_block_list: Blocs slideshow
+    link_multilang_slideshow_block_create: Créer
+    link_multilang_slideshow_block_edit: Éditer
+    link_multilang_slideshow_block_delete: Supprimer
 
     link_simple_block_list: Blocs simples
     link_simple_block_create: Créer
