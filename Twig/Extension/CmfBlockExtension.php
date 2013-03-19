@@ -18,14 +18,21 @@ class CmfBlockExtension extends \Twig_Extension
      * @var BlockExtension
      */
     private $sonataBlock;
+
+    private $prefix;
+
+    private $postfix;
+
     /**
      * @var LoggerInterface
      */
     private $logger;
 
-    function __construct(BlockExtension $sonataBlock, LoggerInterface $logger = null)
+    function __construct(BlockExtension $sonataBlock, $prefix, $postfix, LoggerInterface $logger = null)
     {
         $this->sonataBlock = $sonataBlock;
+        $this->prefix = $prefix;
+        $this->postfix = $postfix;
         $this->logger = $logger;
     }
 
@@ -37,8 +44,9 @@ class CmfBlockExtension extends \Twig_Extension
     }
 
     /**
-     * Implement the cmf_embed_blocks filter, looking for <span>block:"block-identifier"</span> tags
-     * and replacing them with the result of rendering the specified identifier.
+     * Implement the cmf_embed_blocks filter, looking for special markers that
+     * identify blocks and replacing them with the result of rendering the
+     * specified identifier.
      *
      * @param string $text
      *
@@ -46,7 +54,8 @@ class CmfBlockExtension extends \Twig_Extension
      */
     public function cmfEmbedBlocks($text)
     {
-        return preg_replace_callback('#<span>block:"([^\"]+)"</span>#', array($this, 'evaluate'), $text);
+        // with the default prefix and postfix, this will do <span>block:"block-identifier"</span>
+        return preg_replace_callback('#' . $this->prefix . '"([^\"]+)"' . $this->postfix . '#', array($this, 'renderBlock'), $text);
     }
 
     /**
@@ -56,7 +65,7 @@ class CmfBlockExtension extends \Twig_Extension
      *
      * @return string the rendered block
      */
-    public function evaluate($block)
+    public function renderBlock($block)
     {
         try {
             return $this->sonataBlock->renderBlock(array('name' => $block[1]));

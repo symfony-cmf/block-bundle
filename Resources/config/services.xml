@@ -63,6 +63,8 @@
 
         <service id="symfony_cmf_block.twig.embed_extension" class="%symfony_cmf_block.twig_extension_class%">
             <argument type="service" id="sonata.block.twig.extension"/>
+            <argument>%symfony_cmf_block.twig.cmf_embed_blocks.prefix%</argument>
+            <argument>%symfony_cmf_block.twig.cmf_embed_blocks.postfix%</argument>
             <argument type="service" id="logger"/>
             <tag name="twig.extension"/>
         </service>
