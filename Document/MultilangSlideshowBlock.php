@@ -5,17 +5,17 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Document;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
 
 /**
- * Imagine block with multilanguage
+ * Adding translation to the slideshow block
  *
  * @PHPCRODM\Document(referenceable=true, translator="attribute")
  */
-class MultilangImagineBlock extends ImagineBlock
+class MultilangSlideshowBlock extends SlideshowBlock
 {
     /** @PHPCRODM\Locale */
     protected $locale;
 
     /** @PHPCRODM\String(translated=true) */
-    protected $label;
+    protected $title;
 
     public function setLocale($locale)
     {
