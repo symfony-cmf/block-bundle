@@ -19,12 +19,29 @@ class MinimalSlideshowBlockAdmin extends Admin
     protected $baseRoutePattern = 'symfony_cmf/block/imagineMinimalSlideshow';
     protected $translationDomain = 'SymfonyCmfBlockBundle';
 
+    /**
+     * Service name of the sonata_type_collection service to embed
+     *
+     * @var string
+     */
+    protected $embeddedAdminCode;
+
     protected function configureListFields(ListMapper $listMapper)
     {
         parent::configureListFields($listMapper);
         $listMapper
             ->addIdentifier('id', 'text')
             ->add('title', 'text');
+    }
+
+    /**
+     * Configure the service name (admin_code) of the admin service for the embedded slides
+     *
+     * @param string $admin_code
+     */
+    public function setEmbeddedSlidesAdmin($adminCode)
+    {
+        $this->embeddedAdminCode = $adminCode;
     }
 
     protected function configureFormFields(FormMapper $formMapper)
@@ -41,7 +58,7 @@ class MinimalSlideshowBlockAdmin extends Admin
                     array(
                         'edit' => 'inline',
                         'inline' => 'table',
-                        'admin_code' => 'symfony_cmf_block.imagine.minimal_imagine_admin',
+                        'admin_code' => $this->embeddedAdminCode,
                         'sortable'  => 'position',
                     ))
             ->end();
