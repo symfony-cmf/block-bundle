@@ -24,7 +24,7 @@ class MinimalSlideshowBlockAdmin extends Admin
      *
      * @var string
      */
-    protected $embedAdminCode;
+    protected $embeddedAdminCode;
 
     protected function configureListFields(ListMapper $listMapper)
     {
@@ -39,9 +39,9 @@ class MinimalSlideshowBlockAdmin extends Admin
      *
      * @param string $admin_code
      */
-    public function setEmbedSlides($adminCode)
+    public function setEmbeddedSlidesAdmin($adminCode)
     {
-        $this->embedAdminCode = $adminCode;
+        $this->embeddedAdminCode = $adminCode;
     }
 
     protected function configureFormFields(FormMapper $formMapper)
@@ -58,7 +58,7 @@ class MinimalSlideshowBlockAdmin extends Admin
                     array(
                         'edit' => 'inline',
                         'inline' => 'table',
-                        'admin_code' => $this->embedAdminCode,
+                        'admin_code' => $this->embeddedAdminCode,
                         'sortable'  => 'position',
                     ))
             ->end();
