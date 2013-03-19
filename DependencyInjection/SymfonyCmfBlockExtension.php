@@ -15,6 +15,8 @@ class SymfonyCmfBlockExtension extends Extension
 
         $container->setParameter($this->getAlias() . '.content_basepath', $config['content_basepath']);
         $container->setParameter($this->getAlias() . '.block_basepath', $config['block_basepath']);
+        $container->setParameter($this->getAlias() . '.twig.cmf_embed_blocks.prefix', $config['twig']['cmf_embed_blocks']['prefix']);
+        $container->setParameter($this->getAlias() . '.twig.cmf_embed_blocks.postfix', $config['twig']['cmf_embed_blocks']['postfix']);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
