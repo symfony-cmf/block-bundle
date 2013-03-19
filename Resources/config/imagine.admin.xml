@@ -38,7 +38,7 @@
                 <argument type="service" id="sonata.admin.route.path_info_slashes" />
             </call>
 
-            <call method="setEmbedSlides">
+            <call method="setEmbeddedSlidesAdmin">
                 <argument>symfony_cmf_block.imagine.minimal_imagine_admin</argument>
             </call>
 
@@ -57,7 +57,7 @@
                 <argument type="service" id="sonata.admin.route.path_info_slashes" />
             </call>
 
-            <call method="setEmbedSlides">
+            <call method="setEmbeddedSlidesAdmin">
                 <argument>symfony_cmf_block.imagine.minimal_multilang_imagine_admin</argument>
             </call>
 
