@@ -1,10 +1,16 @@
 {% extends 'SymfonyCmfBlockBundle:Block:block_base.html.twig' %}
 
+{% if block.filter %}
+    {% set filter = block.filter %}
+{% else %}
+    {% set filter = "symfony_cmf_block" %}
+{% endif %}
+
 {% block block %}
     {% if block.linkUrl is defined %}
         <a href="{{ block.linkUrl }}" title="{{ block.label|default('') }}">
     {% endif %}
-        <span id="label">{{ block.label }}</span><img src="{{ block.image | imagine_filter('symfony_cmf_block') }}" alt="{{ block.label }}" />
+        <span id="label">{{ block.label }}</span><img src="{{ block.image | imagine_filter(filter) }}" alt="{{ block.label }}" />
     {% if block.linkUrl is defined %}
         </a>
     {% endif %}
