@@ -29,6 +29,9 @@ class ImagineBlock extends BaseBlock
      */
     protected $linkUrl;
 
+    /** @PHPCRODM\String */
+    protected $filter;
+
     /**
      * @var \PHPCR\NodeInterface
      * @PHPCRODM\Node
@@ -61,6 +64,19 @@ class ImagineBlock extends BaseBlock
     public function getLinkUrl()
     {
         return $this->linkUrl;
+    }
+
+    /**
+     * Sets the Imagine filter which is going to be used
+     */
+    public function setFilter($filter)
+    {
+        $this->filter = $filter;
+    }
+
+    public function getFilter()
+    {
+        return $this->filter;
     }
 
     /**
