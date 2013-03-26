@@ -14,7 +14,7 @@ use Sonata\BlockBundle\Model\BlockInterface;
  */
 class ContainerBlock extends BaseBlock
 {
-    /** @PHPCRODM\Children */
+    /** @PHPCRODM\Children(cascade={"all"}) */
     protected  $children;
 
     public function __construct($name = null)
