@@ -16,7 +16,7 @@ class ContainerBlock extends BaseBlock
 {
     /**
      * @var ChildrenCollection
-     * @PHPCRODM\Children
+     * @PHPCRODM\Children(cascade={"all"})
      */
     protected  $children;
 
@@ -58,7 +58,8 @@ class ContainerBlock extends BaseBlock
     {
         if ($key != null) {
 
-            return $this->children->set($key, $child);
+            $this->children->set($key, $child);
+            return true;
         }
 
         return $this->children->add($child);
