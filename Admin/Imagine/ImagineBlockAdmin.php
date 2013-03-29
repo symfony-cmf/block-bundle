@@ -5,7 +5,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine;
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class MinimalImagineBlockAdmin extends Admin
+class ImagineBlockAdmin extends Admin
 {
     protected $translationDomain = 'SymfonyCmfBlockBundle';
 
