@@ -80,30 +80,6 @@ class SlideshowBlockAdmin extends Admin
                 ->end()
             ;
         }
-
-        $formBuilder = $formMapper->getFormBuilder();
-        $formBuilder->addEventListener(FormEvents::POST_BIND, array($this, 'onPostBind'));
-    }
-
-    // reorder children according to the form data
-    public function onPostBind(FormEvent $event)
-    {
-        /** @var $newCollection ChildrenCollection */
-        $newCollection = $event->getData()->getChildren();
-        $newCollection->clear();
-
-        foreach ($event->getForm()->get('children') as $child) {
-            if ($child->get('_delete')->getData()) {
-                // do not re-add a deleted child
-                continue;
-            }
-            if ($child->getName()) {
-                // keep key in collection
-                $newCollection[$child->getName()] = $child->getData();
-            } else {
-                $newCollection[] = $child->getData();
-            }
-        }
     }
 
     public function prePersist($slideshow)
