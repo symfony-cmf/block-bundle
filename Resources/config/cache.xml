@@ -6,7 +6,7 @@
 
     <services>
 
-        <service id="symfony_cmf.block.cache.esi" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockEsiCache">
+        <service id="symfony_cmf.block.cache.varnish" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockVarnishCache">
             <tag name="sonata.cache" />
 
             <argument />

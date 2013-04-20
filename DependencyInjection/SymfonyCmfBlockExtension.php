@@ -117,14 +117,14 @@ class SymfonyCmfBlockExtension extends Extension
 
         $loader->load('cache.xml');
 
-        if (isset($config['caches']['esi'])) {
+        if (isset($config['caches']['varnish'])) {
             $container
-                ->getDefinition('symfony_cmf.block.cache.esi')
-                ->replaceArgument(0, $config['caches']['esi']['token'])
-                ->replaceArgument(4, $config['caches']['esi']['servers'])
+                ->getDefinition('symfony_cmf.block.cache.varnish')
+                ->replaceArgument(0, $config['caches']['varnish']['token'])
+                ->replaceArgument(4, $config['caches']['varnish']['servers'])
             ;
         } else {
-            $container->removeDefinition('symfony_cmf.block.cache.esi');
+            $container->removeDefinition('symfony_cmf.block.cache.varnish');
         }
 
         if (isset($config['caches']['ssi'])) {

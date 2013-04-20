@@ -2,9 +2,9 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Cache;
 
-use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockEsiCache;
+use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockVarnishCache;
 
-class BlockEsiCacheTest extends \PHPUnit_Framework_TestCase
+class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException \RuntimeException
@@ -18,7 +18,7 @@ class BlockEsiCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
 
-        $cache = new BlockEsiCache('My Token', $router, $blockRenderer, $blockLoader, array());
+        $cache = new BlockVarnishCache('My Token', $router, $blockRenderer, $blockLoader, array());
 
         $cache->get($keys, 'data');
     }
@@ -35,13 +35,13 @@ class BlockEsiCacheTest extends \PHPUnit_Framework_TestCase
     public function testInitCache()
     {
         $router = $this->getMock('Symfony\Component\Routing\RouterInterface');
-        $router->expects($this->any())->method('generate')->will($this->returnValue('http://cmf.symfony.com/symfony-cmf/block/cache/esi/XXX/%2Fcms%2Fcontent%2Fhome%2FadditionalInfoBlock?updated_at=as'));
+        $router->expects($this->any())->method('generate')->will($this->returnValue('http://cmf.symfony.com/symfony-cmf/block/cache/varnish/XXX/%2Fcms%2Fcontent%2Fhome%2FadditionalInfoBlock?updated_at=as'));
 
         $blockRenderer = $this->getMock('Sonata\BlockBundle\Block\BlockRendererInterface');
 
         $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
 
-        $cache = new BlockEsiCache('My Token', $router, $blockRenderer, $blockLoader, array());
+        $cache = new BlockVarnishCache('My Token', $router, $blockRenderer, $blockLoader, array());
 
         $this->assertTrue($cache->flush(array()));
         $this->assertTrue($cache->flushAll());
@@ -61,7 +61,7 @@ class BlockEsiCacheTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Sonata\CacheBundle\Cache\CacheElement', $cacheElement);
 
-        $this->assertEquals('<esi:include src="http://cmf.symfony.com/symfony-cmf/block/cache/esi/XXX/%2Fcms%2Fcontent%2Fhome%2FadditionalInfoBlock?updated_at=as" />', $cacheElement->getData()->getContent());
+        $this->assertEquals('<esi:include src="http://cmf.symfony.com/symfony-cmf/block/cache/varnish/XXX/%2Fcms%2Fcontent%2Fhome%2FadditionalInfoBlock?updated_at=as" />', $cacheElement->getData()->getContent());
     }
 
     /**
@@ -81,7 +81,7 @@ class BlockEsiCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
 
-        $cache = new BlockEsiCache($token, $router, $blockRenderer, $blockLoader, array());
+        $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, array());
 
         $request = new \Symfony\Component\HttpFoundation\Request($keys, array(), array('_token' => 'XXX'));
 
@@ -105,7 +105,7 @@ class BlockEsiCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
 
-        $cache = new BlockEsiCache($token, $router, $blockRenderer, $blockLoader, array());
+        $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, array());
 
         $refCache = new \ReflectionClass($cache);
         $refComputeHash = $refCache->getMethod('computeHash');

@@ -73,7 +73,7 @@ class Configuration implements ConfigurationInterface
 
                 ->arrayNode('caches')
                     ->children()
-                        ->arrayNode('esi')
+                        ->arrayNode('varnish')
                             ->children()
                                 ->scalarNode('token')->defaultValue(hash('sha256', uniqid(mt_rand(), true)))->end()
                                 ->arrayNode('servers')

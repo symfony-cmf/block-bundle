@@ -10,12 +10,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\CacheBundle\Cache\CacheElement;
-use Sonata\CacheBundle\Adapter\EsiCache;
+use Sonata\CacheBundle\Adapter\VarnishCache;
 
 /**
- * Cache block through an esi statement
+ * Cache block through varnish via an esi statement
  */
-class BlockEsiCache extends EsiCache
+class BlockVarnishCache extends VarnishCache
 {
     protected $blockRenderer;
     protected $blockLoader;
