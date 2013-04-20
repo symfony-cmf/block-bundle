@@ -136,4 +136,9 @@ class SymfonyCmfBlockExtension extends Extension
             $container->removeDefinition('symfony_cmf.block.cache.ssi');
         }
     }
+
+    public function getNamespace()
+    {
+        return 'http://cmf.symfony.com/schema/dic/block';
+    }
 }
