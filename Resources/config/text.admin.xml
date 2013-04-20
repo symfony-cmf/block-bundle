@@ -5,16 +5,15 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="symfony_cmf_block.simple_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\SimpleBlockAdmin</parameter>
         <parameter key="symfony_cmf_block.text_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\TextBlockAdmin</parameter>
-        <parameter key="symfony_cmf_block.simple_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\SimpleBlock</parameter>
+        <parameter key="symfony_cmf_block.text_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\TextBlock</parameter>
     </parameters>
 
     <services>
-        <service id="symfony_cmf_block.simple_admin" class="%symfony_cmf_block.simple_admin_class%">
-            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.group_content" label_catalogue="SymfonyCmfBlockBundle" label="dashboard.label_simple_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+        <service id="symfony_cmf_block.text_admin" class="%symfony_cmf_block.text_admin_class%">
+            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.group_content" label_catalogue="SymfonyCmfBlockBundle" label="dashboard.label_text_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
             <argument/>
-            <argument>%symfony_cmf_block.simple_document_class%</argument>
+            <argument>%symfony_cmf_block.text_document_class%</argument>
             <argument>SonataAdminBundle:CRUD</argument>
 
             <call method="setRouteBuilder">
@@ -25,6 +24,6 @@
                 <argument>%symfony_cmf_block.content_basepath%</argument>
             </call>
         </service>
-
     </services>
 </container>
+

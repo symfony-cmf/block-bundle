@@ -9,16 +9,17 @@ use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
 
-class SimpleBlockService extends BaseBlockService implements BlockServiceInterface
+class TextBlockService extends BaseBlockService implements BlockServiceInterface
 {
-    protected $template = 'SymfonyCmfBlockBundle:Block:block_simple.html.twig';
+    protected $template = 'SymfonyCmfBlockBundle:Block:block_text.html.twig';
 
     public function __construct($name, $templating, $template = null)
     {
+        parent::__construct($name, $templating);
+
         if ($template) {
             $this->template = $template;
         }
-        parent::__construct($name, $templating);
     }
 
     /**
@@ -45,29 +46,15 @@ class SimpleBlockService extends BaseBlockService implements BlockServiceInterfa
      */
     public function execute(BlockInterface $block, Response $response = null)
     {
-
         if (!$response) {
             $response = new Response();
         }
 
-        $settings = $block->getSettings();
-        $template = $this->template;
-        if (isset($settings['template']) && $settings['template']) {
-            $template = $settings['template'];
-        }
-
         if ($block->getEnabled()) {
-            $response = $this->renderResponse($template, array('block' => $block), $response);
+            $response = $this->renderResponse($this->template, array('block' => $block), $response);
         }
 
         return $response;
     }
-
-    /**
-     * @param string $template
-     */
-    public function setTemplate($template)
-    {
-        $this->template = $template;
-    }
 }
+
