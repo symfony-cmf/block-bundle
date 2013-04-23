@@ -25,9 +25,9 @@
             <argument type="service" id="templating" />
         </service>
 
-        <service id="symfony_cmf.block.text" class="Symfony\Cmf\Bundle\BlockBundle\Block\TextBlockService">
+        <service id="symfony_cmf.block.string" class="Symfony\Cmf\Bundle\BlockBundle\Block\StringBlockService">
             <tag name="sonata.block" />
-            <argument>symfony_cmf.block.text</argument>
+            <argument>symfony_cmf.block.string</argument>
             <argument type="service" id="templating" />
         </service>
 

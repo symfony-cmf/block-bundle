@@ -50,14 +50,8 @@ class SimpleBlockService extends BaseBlockService implements BlockServiceInterfa
             $response = new Response();
         }
 
-        $settings = $block->getSettings();
-        $template = $this->template;
-        if (isset($settings['template']) && $settings['template']) {
-            $template = $settings['template'];
-        }
-
         if ($block->getEnabled()) {
-            $response = $this->renderResponse($template, array('block' => $block), $response);
+            $response = $this->renderResponse($this->template, array('block' => $block), $response);
         }
 
         return $response;

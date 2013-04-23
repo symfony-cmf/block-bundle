@@ -2,14 +2,14 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Block;
 
-use Symfony\Cmf\Bundle\BlockBundle\Block\TextBlockService,
-    Symfony\Cmf\Bundle\BlockBundle\Document\TextBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Block\StringBlockService,
+    Symfony\Cmf\Bundle\BlockBundle\Document\StringBlock;
 
-class TextBlockServiceTest extends \PHPUnit_Framework_TestCase
+class StringBlockServiceTest extends \PHPUnit_Framework_TestCase
 {
     public function testExecutionOfEnabledBlock()
     {
-        $textBlock = new TextBlock();
+        $textBlock = new StringBlock();
         $textBlock->setEnabled(true);
 
         $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
@@ -24,13 +24,13 @@ class TextBlockServiceTest extends \PHPUnit_Framework_TestCase
                 ))
             );
 
-        $textBlockService = new TextBlockService('test-service', $templatingMock);
+        $textBlockService = new StringBlockService('test-service', $templatingMock);
         $textBlockService->execute($textBlock);
     }
 
     public function testExecutionOfDisabledBlock()
     {
-        $textBlock = new TextBlock();
+        $textBlock = new StringBlock();
         $textBlock->setEnabled(false);
 
         $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
@@ -39,7 +39,7 @@ class TextBlockServiceTest extends \PHPUnit_Framework_TestCase
         $templatingMock->expects($this->never())
              ->method('renderResponse');
 
-        $textBlockService = new TextBlockService('test-service', $templatingMock);
+        $textBlockService = new StringBlockService('test-service', $templatingMock);
         $textBlockService->execute($textBlock);
     }
 

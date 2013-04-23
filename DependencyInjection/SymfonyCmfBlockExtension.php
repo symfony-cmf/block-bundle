@@ -97,7 +97,7 @@ class SymfonyCmfBlockExtension extends Extension
         $loader->load('container.admin.xml');
         $loader->load('reference.admin.xml');
         $loader->load('action.admin.xml');
-        $loader->load('text.admin.xml');
+        $loader->load('string.admin.xml');
 
         if (isset($config['simple_admin_class'])) {
             $container->setParameter($this->getAlias() . '.' . $prefix . 'simple_admin_class', $config['simple_admin_class']);

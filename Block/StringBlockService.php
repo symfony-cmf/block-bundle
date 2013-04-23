@@ -9,9 +9,9 @@ use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
 
-class TextBlockService extends BaseBlockService implements BlockServiceInterface
+class StringBlockService extends BaseBlockService implements BlockServiceInterface
 {
-    protected $template = 'SymfonyCmfBlockBundle:Block:block_text.html.twig';
+    protected $template = 'SymfonyCmfBlockBundle:Block:block_string.html.twig';
 
     public function __construct($name, $templating, $template = null)
     {
