@@ -34,6 +34,11 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     protected $dm;
 
     /**
+     * @var string
+     */
+    protected $dmName;
+
+    /**
      * @var string service id of the empty block service
      */
     protected $emptyBlockType;
@@ -47,7 +52,7 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     public function __construct(ContainerInterface $container, $documentManagerName, LoggerInterface $logger = null, $emptyBlockType = null)
     {
         $this->container       = $container;
-        $this->dm              = $this->container->get('doctrine_phpcr')->getManager($documentManagerName);
+        $this->dmName          = $documentManagerName;
         $this->logger          = $logger;
         $this->emptyBlockType  = $emptyBlockType;
     }
@@ -60,6 +65,12 @@ class PHPCRBlockLoader implements BlockLoaderInterface
         if (! $this->support($configuration)) {
             // sanity check, the chain loader should already have checked.
             throw new BlockNotFoundException('A block is tried to be loaded with an unsupported configuration');
+        }
+
+        if (isset($configuration['manager'])) {
+            $this->dm = $this->container->get('doctrine_phpcr')->getManager($configuration['manager']);
+        } else {
+            $this->dm = $this->container->get('doctrine_phpcr')->getManager($this->dmName);
         }
 
         $block = $this->findByName($configuration['name']);
