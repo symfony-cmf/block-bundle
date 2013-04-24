@@ -2,6 +2,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
+use Doctrine\ODM\PHPCR\DocumentManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Log\LoggerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
@@ -29,14 +30,9 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     protected $logger;
 
     /**
-     * @var \Doctrine\ODM\PHPCR\DocumentManager
+     * @var DocumentManager
      */
     protected $dm;
-
-    /**
-     * @var string
-     */
-    protected $dmName;
 
     /**
      * @var string service id of the empty block service
@@ -45,16 +41,24 @@ class PHPCRBlockLoader implements BlockLoaderInterface
 
     /**
      * @param ContainerInterface $container
-     * @param string $documentManagerName
      * @param LoggerInterface $logger
      * @param null $emptyBlockType set this to a block type name if you want empty blocks returned when no block is found
      */
-    public function __construct(ContainerInterface $container, $documentManagerName, LoggerInterface $logger = null, $emptyBlockType = null)
+    public function __construct(ContainerInterface $container, LoggerInterface $logger = null, $emptyBlockType = null)
     {
         $this->container       = $container;
-        $this->dmName          = $documentManagerName;
         $this->logger          = $logger;
         $this->emptyBlockType  = $emptyBlockType;
+    }
+
+    /**
+     * Set the document manager to use for this loader
+     *
+     * @param string $managerName
+     */
+    public function setDocumentManager($managerName)
+    {
+        $this->dm = $this->container->get('doctrine_phpcr')->getManager($managerName);
     }
 
     /**
@@ -67,10 +71,8 @@ class PHPCRBlockLoader implements BlockLoaderInterface
             throw new BlockNotFoundException('A block is tried to be loaded with an unsupported configuration');
         }
 
-        if (isset($configuration['manager'])) {
-            $this->dm = $this->container->get('doctrine_phpcr')->getManager($configuration['manager']);
-        } else {
-            $this->dm = $this->container->get('doctrine_phpcr')->getManager($this->dmName);
+        if (! $this->dm instanceof DocumentManager) {
+            throw new BlockNotFoundException('A document manager must be set before using this loader');
         }
 
         $block = $this->findByName($configuration['name']);
