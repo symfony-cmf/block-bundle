@@ -9,8 +9,8 @@ class StringBlockServiceTest extends \PHPUnit_Framework_TestCase
 {
     public function testExecutionOfEnabledBlock()
     {
-        $textBlock = new StringBlock();
-        $textBlock->setEnabled(true);
+        $stringBlock = new StringBlock();
+        $stringBlock->setEnabled(true);
 
         $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
             ->disableOriginalConstructor()
@@ -18,20 +18,20 @@ class StringBlockServiceTest extends \PHPUnit_Framework_TestCase
         $templatingMock->expects($this->once())
             ->method('renderResponse')
             ->with(
-                $this->equalTo('SymfonyCmfBlockBundle:Block:block_text.html.twig'),
+                $this->equalTo('SymfonyCmfBlockBundle:Block:block_string.html.twig'),
                 $this->equalTo(array(
-                    'block'=> $textBlock
+                    'block'=> $stringBlock
                 ))
             );
 
-        $textBlockService = new StringBlockService('test-service', $templatingMock);
-        $textBlockService->execute($textBlock);
+        $stringBlockService = new StringBlockService('test-service', $templatingMock);
+        $stringBlockService->execute($stringBlock);
     }
 
     public function testExecutionOfDisabledBlock()
     {
-        $textBlock = new StringBlock();
-        $textBlock->setEnabled(false);
+        $stringBlock = new StringBlock();
+        $stringBlock->setEnabled(false);
 
         $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
             ->disableOriginalConstructor()
@@ -39,8 +39,8 @@ class StringBlockServiceTest extends \PHPUnit_Framework_TestCase
         $templatingMock->expects($this->never())
              ->method('renderResponse');
 
-        $textBlockService = new StringBlockService('test-service', $templatingMock);
-        $textBlockService->execute($textBlock);
+        $stringBlockService = new StringBlockService('test-service', $templatingMock);
+        $stringBlockService->execute($stringBlock);
     }
 
 }
