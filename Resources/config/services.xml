@@ -14,7 +14,6 @@
         <service id="symfony_cmf.block.service" class="Symfony\Cmf\Bundle\BlockBundle\Block\PHPCRBlockLoader">
             <tag name="sonata.block.loader" />
             <argument type="service" id="service_container" />
-            <argument />
             <argument type="service" id="logger" on-invalid="ignore" />
             <argument>sonata.block.service.empty</argument>
         </service>

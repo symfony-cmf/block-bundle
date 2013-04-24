@@ -44,7 +44,9 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
 
     private function getSimpleBlockLoaderInstance()
     {
-        return new PHPCRBlockLoader($this->containerMock, 'themanager', null, 'emptyblocktype');
+        $blockLoader = new PHPCRBlockLoader($this->containerMock, null, 'emptyblocktype');
+        $blockLoader->setDocumentManager('themanager');
+        return $blockLoader;
     }
 
     public function testSupport()
@@ -195,6 +197,90 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Sonata\BlockBundle\Model\EmptyBlock', $blockLoader->load(array('name' => 'invalid/block')));
     }
 
+    /**
+     * Test using the block loader with two different document managers
+     */
+    public function testLoadWithAlternativeDocumentManager()
+    {
+        $absoluteBlockPath = '/some/absolute/path';
+
+        $block = $this->getMock('Sonata\BlockBundle\Model\BlockInterface');
+        $block->expects($this->any())
+            ->method('getName')
+            ->will($this->returnValue('the-block'))
+        ;
+
+        $altBlock = $this->getMock('Sonata\BlockBundle\Model\BlockInterface');
+        $altBlock->expects($this->any())
+            ->method('getName')
+            ->will($this->returnValue('alt-block'))
+        ;
+
+        $this->dmMock->expects($this->once())
+            ->method('find')
+            ->with(
+                $this->equalTo(null),
+                $this->equalTo($absoluteBlockPath)
+            )
+            ->will($this->returnValue($block))
+        ;
+
+        $altDmMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\DocumentManager')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+        $altDmMock->expects($this->once())
+            ->method('find')
+            ->with(
+                $this->equalTo(null),
+                $this->equalTo($absoluteBlockPath)
+            )
+            ->will($this->returnValue($altBlock))
+        ;
+
+        $registryMock = $this->getMockBuilder('Doctrine\Bundle\PHPCRBundle\ManagerRegistry')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+        $registryMock->expects($this->at(0))
+            ->method('getManager')
+            ->with($this->equalTo('themanager'))
+            ->will($this->returnValue($this->dmMock))
+        ;
+        $registryMock->expects($this->at(1))
+            ->method('getManager')
+            ->with($this->equalTo('altmanager'))
+            ->will($this->returnValue($altDmMock))
+        ;
+
+        $this->containerMock->expects($this->any())
+            ->method('get')
+            ->with($this->equalTo('doctrine_phpcr'))
+            ->will($this->returnValue($registryMock))
+        ;
+
+        $blockLoader = new PHPCRBlockLoader($this->containerMock, null, 'emptyblocktype');
+
+        $blockLoader->setDocumentManager('themanager');
+        $foundBlock = $blockLoader->load(array('name' => $absoluteBlockPath));
+        $this->assertInstanceOf('Sonata\BlockBundle\Model\BlockInterface', $foundBlock);
+        $this->assertEquals('the-block', $foundBlock->getName());
+
+        $blockLoader->setDocumentManager('altmanager');
+        $foundBlock = $blockLoader->load(array('name' => $absoluteBlockPath));
+        $this->assertInstanceOf('Sonata\BlockBundle\Model\BlockInterface', $foundBlock);
+        $this->assertEquals('alt-block', $foundBlock->getName());
+    }
+
+    /**
+     * @expectedException \Sonata\BlockBundle\Exception\BlockNotFoundException
+     * @expectedExceptionMessage A document manager must be set before using this loader
+     */
+    public function testWithoutSettingDocumentManager()
+    {
+        $blockLoader = new PHPCRBlockLoader($this->containerMock, null, 'emptyblocktype');
+        $blockLoader->load(array('name' => '/some/path'));
+    }
 }
 
 class MockContent
