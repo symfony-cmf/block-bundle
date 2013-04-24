@@ -7,6 +7,7 @@ dashboard:
     label_action_block: Action block
     label_slideshow_block: Slideshow block
     label_multilang_slideshow_block: Slideshow block
+    label_string_block: String block
 
 breadcrumb:
     link_slideshow_block_list: Slideshow Blocks
@@ -43,6 +44,12 @@ breadcrumb:
     link_action_block_create: Create
     link_action_block_edit: Edit
     link_action_block_delete: Delete
+
+    link_string_block_list: String blocks
+    link_string_block_create: Create
+    link_string_block_edit: Edit
+    link_string_block_delete: Delete
+
 
 filter:
     label_title: Title
