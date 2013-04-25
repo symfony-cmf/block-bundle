@@ -14,6 +14,7 @@
             <argument type="service" id="sonata.block.renderer" />
             <argument type="service" id="sonata.block.loader.chain" />
             <argument type="collection" />
+            <argument />
         </service>
 
         <service id="symfony_cmf.block.cache.ssi" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockSsiCache">
