@@ -123,6 +123,7 @@ class SymfonyCmfBlockExtension extends Extension
                 ->getDefinition('symfony_cmf.block.cache.varnish')
                 ->replaceArgument(0, $config['caches']['varnish']['token'])
                 ->replaceArgument(4, $config['caches']['varnish']['servers'])
+                ->replaceArgument(5, 3 === $config['caches']['varnish']['version'] ? 'ban' : 'purge');
             ;
         } else {
             $container->removeDefinition('symfony_cmf.block.cache.varnish');

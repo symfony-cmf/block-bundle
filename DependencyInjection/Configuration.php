@@ -78,6 +78,7 @@ class Configuration implements ConfigurationInterface
                             ->fixXmlConfig('server')
                             ->children()
                                 ->scalarNode('token')->defaultValue(hash('sha256', uniqid(mt_rand(), true)))->end()
+                                ->scalarNode('version')->defaultValue(2)->end()
                                 ->arrayNode('servers')
                                     ->prototype('scalar')->end()
                                 ->end()

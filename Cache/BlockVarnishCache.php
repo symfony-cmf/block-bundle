@@ -17,19 +17,29 @@ use Sonata\CacheBundle\Adapter\VarnishCache;
  */
 class BlockVarnishCache extends VarnishCache
 {
+    /**
+     * @var BlockRendererInterface
+     */
     protected $blockRenderer;
+
+    /**
+     * @var BlockLoaderInterface
+     */
     protected $blockLoader;
 
     /**
-     * @param string $token
-     * @param \Symfony\Component\Routing\RouterInterface $router
-     * @param \Sonata\BlockBundle\Block\BlockRendererInterface $blockRenderer
-     * @param \Sonata\BlockBundle\Block\BlockLoaderInterface $blockLoader
-     * @param array $servers
+     * Constructor
+     *
+     * @param string                 $token            A token
+     * @param RouterInterface        $router           A router instance
+     * @param BlockRendererInterface $blockRenderer    A block renderer instance
+     * @param BlockLoaderInterface   $blockLoader      A block loader instance
+     * @param array                  $servers          An array of servers
+     * @param string                 $purgeInstruction The purge instruction (purge in Varnish 2, ban in Varnish 3)
      */
-    public function __construct($token, RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader, array $servers = array())
+    public function __construct($token, RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader, array $servers = array(), $purgeInstruction)
     {
-        parent::__construct($token, $servers, $router, null);
+        parent::__construct($token, $servers, $router, $purgeInstruction, null);
 
         $this->blockRenderer = $blockRenderer;
         $this->blockLoader   = $blockLoader;
