@@ -1,5 +1,5 @@
 {% block block %}
-    {% for childBlock in childBlocks %}
+    {% for childBlock in block.children %}
         {% if settings.divisibleBy and loop.first %}
             {# start row #}
             <div{% if settings.divisibleClass %} class="{{ settings.divisibleClass }}"{% endif %}>
@@ -9,7 +9,7 @@
             {# start child #}
             <div{% if settings.childClass %} class="{{ settings.childClass }}"{% endif %}>
         {% endif %}
-        {{ childBlock|raw }}
+        {{ sonata_block_render(childBlock) }}
         {% if settings.divisibleBy %}
             </div>{# end child #}
         {% endif %}
