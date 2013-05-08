@@ -37,7 +37,7 @@ class ActionBlock extends BaseBlock
      */
     public function setSettings(array $settings = array())
     {
-        $this->settings = array_merge($this->getDefaultSettings(), $settings);
+        $this->settings = $settings;
     }
     /**
      * @PHPCRODM\PrePersist
@@ -47,10 +47,6 @@ class ActionBlock extends BaseBlock
         // defaults
         if (is_null($this->actionName)) {
             $this->actionName = $this->getDefaultActionName();
-        }
-
-        if (count($this->settings) === 0) {
-            $this->settings = array_merge($this->getDefaultSettings(), $this->getSettings());
         }
     }
 
@@ -62,15 +58,5 @@ class ActionBlock extends BaseBlock
     public function getDefaultActionName()
     {
         return null;
-    }
-
-    /**
-     * Overload this method to define default settings
-     *
-     * @return array
-     */
-    public function getDefaultSettings()
-    {
-        return array();
     }
 }
