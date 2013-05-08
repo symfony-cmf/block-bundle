@@ -19,16 +19,9 @@ class ActionBlockServiceTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        if (!class_exists('Symfony\Component\HttpKernel\Fragment\FragmentHandler')) {
-            // TODO: Symfony 2.1 compatibility
-            $kernelMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\HttpKernel')
-                ->disableOriginalConstructor()
-                ->getMock();
-        } else {
-            $kernelMock = $this->getMockBuilder('Symfony\Component\HttpKernel\Fragment\FragmentHandler')
-                ->disableOriginalConstructor()
-                ->getMock();
-        }
+        $kernelMock = $this->getMockBuilder('Symfony\Component\HttpKernel\Fragment\FragmentHandler')
+            ->disableOriginalConstructor()
+            ->getMock();
         $kernelMock->expects($this->never())
             ->method('render');
 
@@ -48,16 +41,9 @@ class ActionBlockServiceTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        if (!class_exists('Symfony\Component\HttpKernel\Fragment\FragmentHandler')) {
-            // TODO: Symfony 2.1 compatibility
-            $kernelMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\HttpKernel')
-                ->disableOriginalConstructor()
-                ->getMock();
-        } else {
-            $kernelMock = $this->getMockBuilder('Symfony\Component\HttpKernel\Fragment\FragmentHandler')
-                ->disableOriginalConstructor()
-                ->getMock();
-        }
+        $kernelMock = $this->getMockBuilder('Symfony\Component\HttpKernel\Fragment\FragmentHandler')
+            ->disableOriginalConstructor()
+            ->getMock();
         $kernelMock->expects($this->once())
             ->method('render')
             ->will($this->returnValue($actionResponse->getContent()));

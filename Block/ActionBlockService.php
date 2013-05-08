@@ -8,7 +8,6 @@ use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
-use Symfony\Bundle\FrameworkBundle\HttpKernel;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
@@ -21,7 +20,7 @@ class ActionBlockService extends BaseBlockService implements BlockServiceInterfa
     /**
      * @param string $name
      * @param \Symfony\Bundle\FrameworkBundle\Templating\EngineInterface $templating
-     * @param \Symfony\Component\HttpKernel\Fragment\FragmentHandler|\Symfony\Bundle\FrameworkBundle\HttpKernel $renderer
+     * @param \Symfony\Component\HttpKernel\Fragment\FragmentHandler $renderer
      */
     public function __construct($name, EngineInterface $templating, $renderer)
     {
@@ -64,26 +63,12 @@ class ActionBlockService extends BaseBlockService implements BlockServiceInterfa
         }
 
         if ($block->getEnabled()) {
-            $response = $this->render($block->getActionName(), array('block' => $block, 'blockContext' => $blockContext));
+            $response = new Response($this->renderer->render(new ControllerReference(
+                $block->getActionName(),
+                array('block' => $block, 'blockContext' => $blockContext)
+            )));
         }
 
         return $response;
-    }
-
-    /**
-     * @param $controller
-     * @param $attributes
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    private function render($controller, $attributes)
-    {
-        if (!class_exists('Symfony\Component\HttpKernel\Fragment\FragmentHandler')) {
-            // TODO: Symfony 2.1 compatibility
-            $response = $this->renderer->render($controller, array('attributes' => $attributes));
-        } else {
-            $response = $this->renderer->render(new ControllerReference($controller, $attributes));
-        }
-
-        return new Response($response);
     }
 }

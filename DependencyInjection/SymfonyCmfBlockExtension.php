@@ -73,12 +73,6 @@ class SymfonyCmfBlockExtension extends Extension
         $blockLoader = $container->getDefinition('symfony_cmf.block.service');
         $blockLoader->addMethodCall('setDocumentManager', array($config['document_manager_name']));
 
-        // TODO: Symfony 2.1 compatibility
-        if (!class_exists('Symfony\Component\HttpKernel\Fragment\FragmentHandler')) {
-            $blockAction = $container->getDefinition('symfony_cmf.block.action');
-            $blockAction->replaceArgument(2, new Reference('http_kernel'));
-        }
-
         $bundles = $container->getParameter('kernel.bundles');
         if (isset($bundles['SymfonyCmfCreateBundle'])) {
             $blockLoader = $container->getDefinition('symfony_cmf.block.simple');
