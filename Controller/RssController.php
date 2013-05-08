@@ -2,6 +2,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Controller;
 
+use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Sonata\BlockBundle\Model\BlockInterface;
@@ -16,9 +17,9 @@ class RssController extends Controller
      *
      * @return Response the response
      */
-    public function block(BlockInterface $block)
+    public function block(BlockInterface $block, BlockContextInterface $blockContext)
     {
-        return $this->render($block->getSetting('template'), array(
+        return $this->render($blockContext->getTemplate(), array(
             'block' => $block,
             'items' => $this->getItems($block)
         ));
