@@ -2,13 +2,14 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Cache;
 
-use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Sonata\BlockBundle\Block\BlockRendererInterface;
+use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
-use Sonata\CacheBundle\Cache\CacheInterface;
+use Sonata\BlockBundle\Block\BlockRendererInterface;
 use Sonata\CacheBundle\Cache\CacheElement;
+use Sonata\CacheBundle\Cache\CacheInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Cache a block through Javascript code
@@ -16,22 +17,25 @@ use Sonata\CacheBundle\Cache\CacheElement;
 class BlockJsCache implements CacheInterface
 {
     protected $router;
-    protected $sync;
     protected $blockRenderer;
     protected $blockLoader;
+    protected $blockContextManager;
+    protected $sync;
 
     /**
-     * @param \Symfony\Component\Routing\RouterInterface $router
-     * @param \Sonata\BlockBundle\Block\BlockRendererInterface $blockRenderer
-     * @param \Sonata\BlockBundle\Block\BlockLoaderInterface $blockLoader
+     * @param RouterInterface $router
+     * @param BlockRendererInterface $blockRenderer
+     * @param BlockLoaderInterface $blockLoader
+     * @param BlockContextManagerInterface $blockContextManager
      * @param bool $sync
      */
-    public function __construct(RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader, $sync = false)
+    public function __construct(RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader, BlockContextManagerInterface $blockContextManager, $sync = false)
     {
-        $this->router        = $router;
-        $this->sync          = $sync;
-        $this->blockRenderer = $blockRenderer;
-        $this->blockLoader   = $blockLoader;
+        $this->router              = $router;
+        $this->blockRenderer       = $blockRenderer;
+        $this->blockLoader         = $blockLoader;
+        $this->blockContextManager = $blockContextManager;
+        $this->sync                = $sync;
     }
 
     /**
@@ -184,7 +188,7 @@ CONTENT
             return new Response('', 404);
         }
 
-        $response = $this->blockRenderer->render($block);
+        $response = $this->blockRenderer->render($this->blockContextManager->get($block));
         $response->setPrivate(); //  always set to private
 
         if ($this->sync) {

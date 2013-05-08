@@ -18,7 +18,9 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
 
-        $cache = new BlockVarnishCache('My Token', $router, $blockRenderer, $blockLoader, array(), 'ban');
+        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+
+        $cache = new BlockVarnishCache('My Token', $router, $blockRenderer, $blockLoader, $blockContextManager, array(), 'ban');
 
         $cache->get($keys, 'data');
     }
@@ -41,7 +43,9 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
 
-        $cache = new BlockVarnishCache('My Token', $router, $blockRenderer, $blockLoader, array(), 'ban');
+        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+
+        $cache = new BlockVarnishCache('My Token', $router, $blockRenderer, $blockLoader, $blockContextManager, array(), 'ban');
 
         $this->assertTrue($cache->flush(array()));
         $this->assertTrue($cache->flushAll());
@@ -81,7 +85,9 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
 
-        $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, array(), 'ban');
+        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+
+        $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager, array(), 'ban');
 
         $request = new \Symfony\Component\HttpFoundation\Request($keys, array(), array('_token' => 'XXX'));
 
@@ -105,7 +111,9 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
 
-        $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, array(), 'ban');
+        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+
+        $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager, array(), 'ban');
 
         $refCache = new \ReflectionClass($cache);
         $refComputeHash = $refCache->getMethod('computeHash');
