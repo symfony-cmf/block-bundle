@@ -1,7 +1,6 @@
 language: php
 
 env:
-  - SYMFONY_VERSION=2.1.*
   - SYMFONY_VERSION=2.2.*
 
 before_script:
