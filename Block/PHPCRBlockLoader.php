@@ -20,11 +20,6 @@ use Sonata\BlockBundle\Exception\BlockNotFoundException;
 class PHPCRBlockLoader implements BlockLoaderInterface
 {
     /**
-     * @var array
-     */
-    protected $settings;
-
-    /**
      * @var ContainerInterface
      */
     protected $container;
@@ -49,12 +44,11 @@ class PHPCRBlockLoader implements BlockLoaderInterface
      * @param LoggerInterface $logger
      * @param null $emptyBlockType set this to a block type name if you want empty blocks returned when no block is found
      */
-    public function __construct(ContainerInterface $container, LoggerInterface $logger = null, $emptyBlockType = null, $settings = array())
+    public function __construct(ContainerInterface $container, LoggerInterface $logger = null, $emptyBlockType = null)
     {
         $this->container       = $container;
         $this->logger          = $logger;
         $this->emptyBlockType  = $emptyBlockType;
-        $this->settings        = $settings;
     }
 
     /**
@@ -91,9 +85,6 @@ class PHPCRBlockLoader implements BlockLoaderInterface
             ));
         }
 
-        // merge settings
-        $block->setSettings($this->getSettings($block, $configuration));
-
         return $block;
     }
 
@@ -111,29 +102,6 @@ class PHPCRBlockLoader implements BlockLoaderInterface
         }
 
         return true;
-    }
-
-    /**
-     * @param $block
-     * @param $configuration
-     * @return array
-     * @throws \RuntimeException
-     */
-    protected function getSettings($block, $configuration)
-    {
-        $bundleSettings = isset($this->settings[$block->getType()]) ? $this->settings[$block->getType()] : array();
-
-        $userSettings = isset($configuration['settings']) && is_array($configuration['settings']) ?
-            $configuration['settings'] :
-            array()
-        ;
-        $blockSettings = is_array($block->getSettings()) ? $block->getSettings() : array();
-
-        return array_merge(
-            $bundleSettings,
-            $userSettings,
-            $blockSettings
-        );
     }
 
     /**
