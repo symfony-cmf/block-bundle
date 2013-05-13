@@ -26,3 +26,4 @@ The components of the SymfonyCmfBlockBundle are unit tested. You can run the tes
 * [David Buchmann](https://github.com/dbu)
 * [Lukas Kahwe Smith](https://github.com/lsmith77)
 * [And others](https://github.com/symfony-cmf/BlockBundle/contributors)
+
