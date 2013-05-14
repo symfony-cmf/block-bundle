@@ -2,15 +2,16 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Cache;
 
-use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Symfony\Component\HttpFoundation\Request;
-use Sonata\BlockBundle\Block\BlockRendererInterface;
+use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
-use Sonata\CacheBundle\Cache\CacheElement;
+use Sonata\BlockBundle\Block\BlockRendererInterface;
 use Sonata\CacheBundle\Adapter\VarnishCache;
+use Sonata\CacheBundle\Cache\CacheElement;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Cache block through varnish via an esi statement
@@ -28,21 +29,28 @@ class BlockVarnishCache extends VarnishCache
     protected $blockLoader;
 
     /**
+     * @var BlockContextManagerInterface
+     */
+    protected $blockContextManager;
+
+    /**
      * Constructor
      *
-     * @param string                 $token            A token
-     * @param RouterInterface        $router           A router instance
-     * @param BlockRendererInterface $blockRenderer    A block renderer instance
-     * @param BlockLoaderInterface   $blockLoader      A block loader instance
-     * @param array                  $servers          An array of servers
-     * @param string                 $purgeInstruction The purge instruction (purge in Varnish 2, ban in Varnish 3)
+     * @param string                        $token                  A token
+     * @param RouterInterface               $router                 A router instance
+     * @param BlockRendererInterface        $blockRenderer          A block renderer instance
+     * @param BlockLoaderInterface          $blockLoader            A block loader instance
+     * @param BlockContextManagerInterface  $blockContextManager    A block context manager instance
+     * @param array                         $servers                An array of servers
+     * @param string                        $purgeInstruction       The purge instruction (purge in Varnish 2, ban in Varnish 3)
      */
-    public function __construct($token, RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader, array $servers = array(), $purgeInstruction)
+    public function __construct($token, RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader, BlockContextManagerInterface $blockContextManager, array $servers = array(), $purgeInstruction)
     {
         parent::__construct($token, $servers, $router, $purgeInstruction, null);
 
-        $this->blockRenderer = $blockRenderer;
-        $this->blockLoader   = $blockLoader;
+        $this->blockRenderer       = $blockRenderer;
+        $this->blockLoader         = $blockLoader;
+        $this->blockContextManager = $blockContextManager;
     }
 
     /**
@@ -121,6 +129,6 @@ class BlockVarnishCache extends VarnishCache
             throw new NotFoundHttpException(sprintf('Block not found : %s', $request->get('block_id')));
         }
 
-        return $this->blockRenderer->render($block);
+        return $this->blockRenderer->render($this->blockContextManager->get($block));
     }
 }

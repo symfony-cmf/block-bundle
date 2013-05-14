@@ -2,6 +2,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Block;
 
+use Sonata\BlockBundle\Block\BlockContext;
 use Symfony\Component\HttpFoundation\Response,
     Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService,
     Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock,
@@ -26,11 +27,13 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $containerBlockService = new ContainerBlockService('test-service', $templatingMock, $blockRendererMock);
-        $containerBlockService->execute($containerBlock);
+        $containerBlockService->execute(new BlockContext($containerBlock));
     }
 
     public function testExecutionOfEnabledBlock()
     {
+        $template = 'SymfonyCmfBlockBundle:Block:block_container.html.twig';
+
         $simpleBlock1 = new SimpleBlock();
         $simpleBlock1->setId(1);
 
@@ -40,30 +43,21 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
         $childrenCollectionMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\ChildrenCollection')
             ->disableOriginalConstructor()
             ->getMock();
-        $childrenCollectionMock->expects($this->once())
-            ->method('getValues')
-            ->will($this->returnValue(array($simpleBlock1, $simpleBlock2)));
 
         $containerBlock = new ContainerBlock('foo');
         $containerBlock->setEnabled(true);
         $containerBlock->setChildren($childrenCollectionMock);
 
+        $settings = array('divisibleBy' => false,'divisibleClass' => '','childClass' => '', 'template' => $template);
+
+        $blockContext = new BlockContext($containerBlock, $settings);
+
         $responseContent1 = 'Rendered Simple Block 1.';
         $responseContent2 = 'Rendered Simple Block 2.';
-
-        $blockResponseMap = array(
-            $simpleBlock1->getId() => new Response($responseContent1),
-            $simpleBlock2->getId() => new Response($responseContent2)
-        );
 
         $blockRendererMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockRendererInterface')
             ->disableOriginalConstructor()
             ->getMock();
-        $blockRendererMock->expects($this->exactly(2))
-            ->method('render')
-            ->will($this->returnCallback(function($block) use($blockResponseMap) {
-                return $blockResponseMap[$block->getId()];// return the response object that's mapped with the passed block
-            }));
 
         $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
             ->disableOriginalConstructor()
@@ -72,35 +66,38 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
         $templatingMock
             ->expects($this->once())
             ->method('renderResponse')
-            ->with('SymfonyCmfBlockBundle:Block:block_container.html.twig',
-                array(
-                    'block' => $containerBlock,
-                    'childBlocks' => array($responseContent1, $responseContent2),
-                    'settings'    => array('divisibleBy' => false,'divisibleClass' => '','childClass' => '')
-                ),
+            ->with(
+                $this->equalTo($template),
+                $this->equalTo(array(
+                    'block'     => $containerBlock,
+                    'settings'  => $settings
+                )),
                 $this->isInstanceOf('Symfony\Component\HttpFoundation\Response')
             )
             ->will($this->returnValue(new Response($responseContent1 . $responseContent2)))
         ;
 
         $containerBlockService = new ContainerBlockService('test-service', $templatingMock, $blockRendererMock);
-        $response = $containerBlockService->execute($containerBlock);
+        $response = $containerBlockService->execute($blockContext);
         $this->assertInstanceof('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(($responseContent1 . $responseContent2), $response->getContent());
     }
 
     public function testExecutionOfBlockWithNoChildren()
     {
+        $template = 'SymfonyCmfBlockBundle:Block:block_container.html.twig';
+
         $childrenCollectionMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\ChildrenCollection')
             ->disableOriginalConstructor()
             ->getMock();
-        $childrenCollectionMock->expects($this->once())
-            ->method('getValues')
-            ->will($this->returnValue(array()));
 
         $containerBlock = new ContainerBlock('foo');
         $containerBlock->setEnabled(true);
         $containerBlock->setChildren($childrenCollectionMock);
+
+        $settings = array('divisibleBy' => false,'divisibleClass' => '','childClass' => '', 'template' => $template);
+
+        $blockContext = new BlockContext($containerBlock, $settings);
 
         $blockRendererMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockRendererInterface')
             ->disableOriginalConstructor()
@@ -113,19 +110,19 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
         $templatingMock
             ->expects($this->once())
             ->method('renderResponse')
-            ->with('SymfonyCmfBlockBundle:Block:block_container.html.twig',
-                array(
-                    'block' => $containerBlock,
-                    'childBlocks' => array(),
-                    'settings'    => array('divisibleBy' => false,'divisibleClass' => '','childClass' => '')
-                ),
+            ->with(
+                $this->equalTo($template),
+                $this->equalTo(array(
+                    'block'     => $containerBlock,
+                    'settings'  => $settings
+                )),
                 $this->isInstanceOf('Symfony\Component\HttpFoundation\Response')
             )
             ->will($this->returnValue(new Response('')))
         ;
 
         $containerBlockService = new ContainerBlockService('test-service', $templatingMock, $blockRendererMock);
-        $response = $containerBlockService->execute($containerBlock);
+        $response = $containerBlockService->execute($blockContext);
         $this->assertInstanceof('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals('', $response->getContent());
     }

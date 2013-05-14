@@ -42,6 +42,7 @@
             <argument>symfony_cmf.block.reference</argument>
             <argument type="service" id="templating" />
             <argument type="service" id="sonata.block.renderer" />
+            <argument type="service" id="sonata.block.context_manager" />
         </service>
 
         <service id="symfony_cmf.block.action" class="Symfony\Cmf\Bundle\BlockBundle\Block\ActionBlockService">
@@ -72,6 +73,11 @@
             <argument>%symfony_cmf_block.twig.cmf_embed_blocks.postfix%</argument>
             <argument type="service" id="logger"/>
             <tag name="twig.extension"/>
+        </service>
+
+        <service id="symfony_cmf.block.context_manager" class="Symfony\Cmf\Bundle\BlockBundle\Block\BlockContextManager">
+            <argument type="service" id="sonata.block.loader.chain" />
+            <argument type="service" id="sonata.block.manager" />
         </service>
 
     </services>

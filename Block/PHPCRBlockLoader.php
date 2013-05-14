@@ -85,14 +85,6 @@ class PHPCRBlockLoader implements BlockLoaderInterface
             ));
         }
 
-        // merge settings
-        $userSettings = isset($configuration['settings']) && is_array($configuration['settings']) ?
-            $configuration['settings'] :
-            array()
-        ;
-        $defaultSettings = is_array($block->getSettings()) ? $block->getSettings() : array();
-        $block->setSettings(array_merge($userSettings, $defaultSettings));
-
         return $block;
     }
 
