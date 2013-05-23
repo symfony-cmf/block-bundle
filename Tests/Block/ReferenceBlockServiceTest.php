@@ -2,6 +2,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Block;
 
+use Sonata\BlockBundle\Block\BlockContext;
 use Symfony\Cmf\Bundle\BlockBundle\Block\ReferenceBlockService,
     Symfony\Cmf\Bundle\BlockBundle\Document\ReferenceBlock,
     Symfony\Cmf\Bundle\BlockBundle\Document\SimpleBlock;
@@ -22,18 +23,25 @@ class ReferenceBlockServiceTest extends \PHPUnit_Framework_TestCase
             ->getMock();
         $blockRendererMock->expects($this->never())
              ->method('render');
+        $blockContextManagerMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockContextManagerInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
 
-        $referenceBlockService = new ReferenceBlockService('test-service', $templatingMock, $blockRendererMock);
-        $referenceBlockService->execute($referenceBlock);
+        $referenceBlockService = new ReferenceBlockService('test-service', $templatingMock, $blockRendererMock, $blockContextManagerMock);
+        $referenceBlockService->execute(new BlockContext($referenceBlock));
     }
 
     public function testExecutionOfEnabledBlock()
     {
         $simpleBlock = new SimpleBlock();
 
+        $simpleBlockContext = new BlockContext($simpleBlock);
+
         $referenceBlock = new ReferenceBlock();
         $referenceBlock->setEnabled(true);
         $referenceBlock->setReferencedBlock($simpleBlock);
+
+        $referenceBlockContext = new BlockContext($referenceBlock);
 
         $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
             ->disableOriginalConstructor()
@@ -45,11 +53,19 @@ class ReferenceBlockServiceTest extends \PHPUnit_Framework_TestCase
         $blockRendererMock->expects($this->once())
             ->method('render')
             ->with(
-                $this->equalTo($simpleBlock)
+                $this->equalTo($simpleBlockContext)
+            );
+        $blockContextManagerMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockContextManagerInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $blockContextManagerMock->expects($this->once())
+            ->method('get')
+            ->will(
+                $this->returnValue($simpleBlockContext)
             );
 
-        $referenceBlockService = new ReferenceBlockService('test-service', $templatingMock, $blockRendererMock);
-        $referenceBlockService->execute($referenceBlock);
+        $referenceBlockService = new ReferenceBlockService('test-service', $templatingMock, $blockRendererMock, $blockContextManagerMock);
+        $referenceBlockService->execute($referenceBlockContext);
     }
 
 }

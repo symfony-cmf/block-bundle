@@ -18,7 +18,9 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
 
-        $cache = new BlockSsiCache('My Token', $router, $blockRenderer, $blockLoader);
+        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+
+        $cache = new BlockSsiCache('My Token', $router, $blockRenderer, $blockLoader, $blockContextManager);
 
         $cache->get($keys, 'data');
     }
@@ -41,7 +43,9 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
 
-        $cache = new BlockSsiCache('My Token', $router, $blockRenderer, $blockLoader);
+        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+
+        $cache = new BlockSsiCache('My Token', $router, $blockRenderer, $blockLoader, $blockContextManager);
 
         $this->assertTrue($cache->flush(array()));
         $this->assertTrue($cache->flushAll());
@@ -81,7 +85,9 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
 
-        $cache = new BlockSsiCache($token, $router, $blockRenderer, $blockLoader);
+        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+
+        $cache = new BlockSsiCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager);
 
         $request = new \Symfony\Component\HttpFoundation\Request($keys, array(), array('_token' => 'XXXXX'));
 
@@ -105,7 +111,9 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
 
-        $cache = new BlockSsiCache($token, $router, $blockRenderer, $blockLoader);
+        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+
+        $cache = new BlockSsiCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager);
 
         $refCache = new \ReflectionClass($cache);
         $refComputeHash = $refCache->getMethod('computeHash');
