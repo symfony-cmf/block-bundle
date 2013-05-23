@@ -23,7 +23,7 @@ class BundleSettingsCompilerPass implements CompilerPassInterface
         $contextManagerDefinition = $container->findDefinition('sonata.block.context_manager');
 
         // add rss bundle configuration
-        $contextManagerDefinition->addMethodCall('addBundleSettingsByClass', array(
+        $contextManagerDefinition->addMethodCall('addSettingsByClass', array(
             "Symfony\\Cmf\\Bundle\\BlockBundle\\Document\\RssBlock",
             array(
                 'title'     => 'Insert the rss title',
