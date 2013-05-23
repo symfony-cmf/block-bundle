@@ -2,12 +2,14 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
-use Symfony\Component\HttpFoundation\Response;
-use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
+use Sonata\BlockBundle\Block\BlockContextInterface;
+use Sonata\BlockBundle\Block\BlockServiceInterface;
+use Sonata\BlockBundle\Model\BlockInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class StringBlockService extends BaseBlockService implements BlockServiceInterface
 {
@@ -39,22 +41,29 @@ class StringBlockService extends BaseBlockService implements BlockServiceInterfa
     }
 
     /**
-     * @param BlockInterface $block
-     * @param null|Response  $response
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * {@inheritdoc}
      */
-    public function execute(BlockInterface $block, Response $response = null)
+    public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         if (!$response) {
             $response = new Response();
         }
 
-        if ($block->getEnabled()) {
-            $response = $this->renderResponse($this->template, array('block' => $block), $response);
+        if ($blockContext->getBlock()->getEnabled()) {
+            $response = $this->renderResponse($blockContext->getTemplate(), array('block' => $blockContext->getBlock()), $response);
         }
 
         return $response;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'template' => $this->template
+        ));
     }
 }
 

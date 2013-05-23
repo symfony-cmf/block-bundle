@@ -2,14 +2,16 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
+use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
+use Sonata\BlockBundle\Block\BlockServiceInterface;
+use Sonata\BlockBundle\Model\BlockInterface;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ContainerBlockService extends BaseBlockService implements BlockServiceInterface
 {
@@ -51,38 +53,18 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    protected function getTemplate()
-    {
-        return $this->template;
-    }
-
-    /**
-     * @param BlockInterface $block
-     * @param null|Response $response
-     *
-     * @return Response
-     */
-    public function execute(BlockInterface $block, Response $response = null)
+    public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         if (!$response) {
             $response = new Response();
         }
 
-        if ($block->getEnabled()) {
-            // merge settings
-            $settings = is_array($block->getSettings()) ? array_merge($this->getDefaultSettings(), $block->getSettings()) : $this->getDefaultSettings();
-
-            $childBlocks = array();
-            foreach ($block->getChildren()->getValues() as $childBlock) {
-                $childBlocks[] =  $this->blockRenderer->render($childBlock)->getContent();
-            }
-
-            return $this->renderResponse($this->getTemplate(), array(
-                'block'       => $block,
-                'childBlocks' => $childBlocks,
-                'settings'    => $settings
+        if ($blockContext->getBlock()->getEnabled()) {
+            return $this->renderResponse($blockContext->getTemplate(), array(
+                'block'       => $blockContext->getBlock(),
+                'settings'    => $blockContext->getSettings(),
             ), $response);
         }
 
@@ -90,16 +72,15 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
     }
 
     /**
-     * Returns the default settings link to the service
-     *
-     * @return array
+     * {@inheritdoc}
      */
-    public function getDefaultSettings()
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
-        return array(
+        $resolver->setDefaults(array(
+            'template'       => $this->template,
             'divisibleBy'    => false,
             'divisibleClass' => '',
             'childClass'     => '',
-        );
+        ));
     }
 }

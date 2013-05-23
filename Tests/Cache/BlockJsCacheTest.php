@@ -21,7 +21,9 @@ class BlockJsCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
 
-        $cache = new BlockJsCache($router, $blockRenderer, $blockLoader, false);
+        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+
+        $cache = new BlockJsCache($router, $blockRenderer, $blockLoader, $blockContextManager, false);
 
         $cache->get($keys, 'data');
     }
@@ -44,7 +46,9 @@ class BlockJsCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
 
-        $cache = new BlockJsCache($router, $blockRenderer, $blockLoader, false);
+        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+
+        $cache = new BlockJsCache($router, $blockRenderer, $blockLoader, $blockContextManager, false);
 
         $this->assertTrue($cache->flush(array()));
         $this->assertTrue($cache->flushAll());
@@ -94,7 +98,9 @@ EXPECTED;
 
         $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
 
-        $cache = new BlockJsCache($router, $blockRenderer, $blockLoader, false);
+        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+
+        $cache = new BlockJsCache($router, $blockRenderer, $blockLoader, $blockContextManager, false);
 
         $request = $this->getMock('Symfony\Component\HttpFoundation\Request');
 

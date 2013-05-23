@@ -13,6 +13,7 @@
             <argument type="service" id="router" />
             <argument type="service" id="sonata.block.renderer" />
             <argument type="service" id="sonata.block.loader.chain" />
+            <argument type="service" id="sonata.block.context_manager" />
             <argument type="collection" />
             <argument />
         </service>
@@ -24,6 +25,7 @@
             <argument type="service" id="router" />
             <argument type="service" id="sonata.block.renderer" />
             <argument type="service" id="sonata.block.loader.chain" />
+            <argument type="service" id="sonata.block.context_manager" />
         </service>
 
         <service id="symfony_cmf.block.cache.js_sync" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache" >
@@ -32,6 +34,7 @@
             <argument type="service" id="router" />
             <argument type="service" id="sonata.block.renderer" />
             <argument type="service" id="sonata.block.loader.chain" />
+            <argument type="service" id="sonata.block.context_manager" />
             <argument>true</argument>
         </service>
 
@@ -41,6 +44,7 @@
             <argument type="service" id="router" />
             <argument type="service" id="sonata.block.renderer" />
             <argument type="service" id="sonata.block.loader.chain" />
+            <argument type="service" id="sonata.block.context_manager" />
             <argument>false</argument>
         </service>
 

@@ -2,15 +2,16 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Cache;
 
-use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Symfony\Component\HttpFoundation\Request;
-use Sonata\BlockBundle\Block\BlockRendererInterface;
+use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
-use Sonata\CacheBundle\Cache\CacheElement;
+use Sonata\BlockBundle\Block\BlockRendererInterface;
 use Sonata\CacheBundle\Adapter\SsiCache;
+use Sonata\CacheBundle\Cache\CacheElement;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Cache block through an ssi statement
@@ -19,19 +20,22 @@ class BlockSsiCache extends SsiCache
 {
     protected $blockRenderer;
     protected $blockLoader;
+    protected $blockContextManager;
 
     /**
      * @param string $token
-     * @param \Symfony\Component\Routing\RouterInterface $router
-     * @param \Sonata\BlockBundle\Block\BlockRendererInterface $blockRenderer
-     * @param \Sonata\BlockBundle\Block\BlockLoaderInterface $blockLoader
+     * @param RouterInterface $router
+     * @param BlockRendererInterface $blockRenderer
+     * @param BlockLoaderInterface $blockLoader
+     * @param BlockContextManagerInterface $blockContextManager
      */
-    public function __construct($token, RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader)
+    public function __construct($token, RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader, BlockContextManagerInterface $blockContextManager)
     {
         parent::__construct($token, $router, null);
 
-        $this->blockRenderer = $blockRenderer;
-        $this->blockLoader   = $blockLoader;
+        $this->blockRenderer       = $blockRenderer;
+        $this->blockLoader         = $blockLoader;
+        $this->blockContextManager = $blockContextManager;
     }
 
     /**
@@ -110,6 +114,6 @@ class BlockSsiCache extends SsiCache
             throw new NotFoundHttpException(sprintf('Block not found : %s', $request->get('block_id')));
         }
 
-        return $this->blockRenderer->render($block);
+        return $this->blockRenderer->render($this->blockContextManager->get($block));
     }
 }
