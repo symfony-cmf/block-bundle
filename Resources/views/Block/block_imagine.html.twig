@@ -1,9 +1,9 @@
-{% extends 'SymfonyCmfBlockBundle:Block:block_base.html.twig' %}
+{% extends 'CmfBlockBundle:Block:block_base.html.twig' %}
 
 {% if block.filter %}
     {% set filter = block.filter %}
 {% else %}
-    {% set filter = "symfony_cmf_block" %}
+    {% set filter = "cmf_block" %}
 {% endif %}
 
 {% block block %}

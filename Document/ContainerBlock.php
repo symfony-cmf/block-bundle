@@ -31,7 +31,7 @@ class ContainerBlock extends BaseBlock
      */
     public function getType()
     {
-        return 'symfony_cmf.block.container';
+        return 'cmf.block.container';
     }
 
     public function getChildren()

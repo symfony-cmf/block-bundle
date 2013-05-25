@@ -17,7 +17,7 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
 {
 
     protected $blockRenderer;
-    protected $template = 'SymfonyCmfBlockBundle:Block:block_container.html.twig';
+    protected $template = 'CmfBlockBundle:Block:block_container.html.twig';
 
     /**
      * @param string $name

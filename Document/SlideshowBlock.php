@@ -23,7 +23,7 @@ class SlideshowBlock extends ContainerBlock
      */
     public function getType()
     {
-        return 'symfony_cmf.block.slideshow';
+        return 'cmf.block.slideshow';
     }
 
     public function getTitle() {

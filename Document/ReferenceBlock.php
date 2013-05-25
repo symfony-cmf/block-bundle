@@ -16,7 +16,7 @@ class ReferenceBlock extends BaseBlock
 
     public function getType()
     {
-        return 'symfony_cmf.block.reference';
+        return 'cmf.block.reference';
     }
 
     public function getReferencedBlock()
