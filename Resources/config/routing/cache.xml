@@ -4,19 +4,19 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="symfony_cmf_block_cache_varnish" pattern="/symfony-cmf/block/cache/varnish/{_token}/{block_id}">
-        <default key="_controller">symfony_cmf.block.cache.varnish:cacheAction</default>
+    <route id="cmf_block_cache_varnish" pattern="/symfony-cmf/block/cache/varnish/{_token}/{block_id}">
+        <default key="_controller">cmf.block.cache.varnish:cacheAction</default>
     </route>
 
-    <route id="symfony_cmf_block_cache_ssi" pattern="/symfony-cmf/block/cache/ssi/{_token}/{block_id}">
-        <default key="_controller">symfony_cmf.block.cache.ssi:cacheAction</default>
+    <route id="cmf_block_cache_ssi" pattern="/symfony-cmf/block/cache/ssi/{_token}/{block_id}">
+        <default key="_controller">cmf.block.cache.ssi:cacheAction</default>
     </route>
 
-    <route id="symfony_cmf_block_js_async_cache" pattern="/symfony-cmf/block/cache/js-async">
-        <default key="_controller">symfony_cmf.block.cache.js_async:cacheAction</default>
+    <route id="cmf_block_js_async_cache" pattern="/symfony-cmf/block/cache/js-async">
+        <default key="_controller">cmf.block.cache.js_async:cacheAction</default>
     </route>
 
-    <route id="symfony_cmf_block_js_sync_cache" pattern="/symfony-cmf/block/cache/js-sync">
-        <default key="_controller">symfony_cmf.block.cache.js_sync:cacheAction</default>
+    <route id="cmf_block_js_sync_cache" pattern="/symfony-cmf/block/cache/js-sync">
+        <default key="_controller">cmf.block.cache.js_sync:cacheAction</default>
     </route>
 </routes>

@@ -10,7 +10,7 @@ use Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock;
 
 class ContainerBlockAdmin extends Admin
 {
-    protected $translationDomain = 'SymfonyCmfBlockBundle';
+    protected $translationDomain = 'CmfBlockBundle';
 
     /**
      * Root path for the route content selection

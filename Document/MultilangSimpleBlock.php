@@ -22,7 +22,7 @@ class MultilangSimpleBlock extends BaseBlock
 
     public function getType()
     {
-        return 'symfony_cmf.block.simple';
+        return 'cmf.block.simple';
     }
 
     /**

@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\FileLocator;
 
-class SymfonyCmfBlockExtension extends Extension
+class CmfBlockExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -70,13 +70,13 @@ class SymfonyCmfBlockExtension extends Extension
             $container->setParameter($this->getAlias() . '.' . 'action_admin_class', $config['action_admin_class']);
         }
 
-        $blockLoader = $container->getDefinition('symfony_cmf.block.service');
+        $blockLoader = $container->getDefinition('cmf.block.service');
         $blockLoader->addMethodCall('setDocumentManager', array($config['document_manager_name']));
 
         $bundles = $container->getParameter('kernel.bundles');
-        if (isset($bundles['SymfonyCmfCreateBundle'])) {
-            $blockLoader = $container->getDefinition('symfony_cmf.block.simple');
-            $blockLoader->addMethodCall('setTemplate', array('SymfonyCmfBlockBundle:Block:block_simple_createphp.html.twig'));
+        if (isset($bundles['CmfCreateBundle'])) {
+            $blockLoader = $container->getDefinition('cmf.block.simple');
+            $blockLoader->addMethodCall('setTemplate', array('CmfBlockBundle:Block:block_simple_createphp.html.twig'));
         }
     }
 
@@ -114,22 +114,22 @@ class SymfonyCmfBlockExtension extends Extension
 
         if (isset($config['caches']['varnish'])) {
             $container
-                ->getDefinition('symfony_cmf.block.cache.varnish')
+                ->getDefinition('cmf.block.cache.varnish')
                 ->replaceArgument(0, $config['caches']['varnish']['token'])
                 ->replaceArgument(4, $config['caches']['varnish']['servers'])
                 ->replaceArgument(5, 3 === $config['caches']['varnish']['version'] ? 'ban' : 'purge');
             ;
         } else {
-            $container->removeDefinition('symfony_cmf.block.cache.varnish');
+            $container->removeDefinition('cmf.block.cache.varnish');
         }
 
         if (isset($config['caches']['ssi'])) {
             $container
-                ->getDefinition('symfony_cmf.block.cache.ssi')
+                ->getDefinition('cmf.block.cache.ssi')
                 ->replaceArgument(0, $config['caches']['ssi']['token'])
             ;
         } else {
-            $container->removeDefinition('symfony_cmf.block.cache.ssi');
+            $container->removeDefinition('cmf.block.cache.ssi');
         }
     }
 

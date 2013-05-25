@@ -63,7 +63,7 @@ class BlockSsiCache extends SsiCache
 
         $keys['_token'] = $this->computeHash($keys);
 
-        $content = sprintf('<!--# include virtual="%s" -->', $this->router->generate('symfony_cmf_block_cache_ssi', $keys, false));
+        $content = sprintf('<!--# include virtual="%s" -->', $this->router->generate('cmf_block_cache_ssi', $keys, false));
 
         return new CacheElement($keys, new Response($content));
     }

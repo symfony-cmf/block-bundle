@@ -135,7 +135,7 @@ class BlockJsCache implements CacheInterface
     </script>
 </div>
 CONTENT
-, $dashifiedId, $dashifiedId, $this->router->generate('symfony_cmf_block_js_sync_cache', $keys, true));
+, $dashifiedId, $dashifiedId, $this->router->generate('cmf_block_js_sync_cache', $keys, true));
     }
 
     /**
@@ -162,7 +162,7 @@ CONTENT
     </script>
 </div>
 CONTENT
-, $this->dashify($keys['block_id']), $this->router->generate('symfony_cmf_block_js_async_cache', $keys, true));
+, $this->dashify($keys['block_id']), $this->router->generate('cmf_block_js_async_cache', $keys, true));
     }
 
     /**

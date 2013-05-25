@@ -17,7 +17,7 @@ class ActionBlock extends BaseBlock
 
     public function getType()
     {
-        return 'symfony_cmf.block.action';
+        return 'cmf.block.action';
     }
 
     public function getActionName()

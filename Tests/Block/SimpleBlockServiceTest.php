@@ -10,7 +10,7 @@ class SimpleBlockServiceTest extends \PHPUnit_Framework_TestCase
 {
     public function testExecutionOfEnabledBlock()
     {
-        $template = 'SymfonyCmfBlockBundle:Block:block_simple.html.twig';
+        $template = 'CmfBlockBundle:Block:block_simple.html.twig';
         $simpleBlock = new SimpleBlock();
         $simpleBlock->setEnabled(true);
         $blockContext = new BlockContext($simpleBlock, array('template' => $template));

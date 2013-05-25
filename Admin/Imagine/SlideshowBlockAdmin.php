@@ -14,7 +14,7 @@ use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 
 class SlideshowBlockAdmin extends Admin
 {
-    protected $translationDomain = 'SymfonyCmfBlockBundle';
+    protected $translationDomain = 'CmfBlockBundle';
 
     /**
      * Path to where new slideshow blocks may be attached

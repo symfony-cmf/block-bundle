@@ -7,7 +7,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class ImagineBlockAdmin extends Admin
 {
-    protected $translationDomain = 'SymfonyCmfBlockBundle';
+    protected $translationDomain = 'CmfBlockBundle';
 
     protected function configureFormFields(FormMapper $formMapper)
     {

@@ -9,7 +9,7 @@ use Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock;
 
 class MultilangSimpleBlockAdmin extends SimpleBlockAdmin
 {
-    protected $translationDomain = 'SymfonyCmfBlockBundle';
+    protected $translationDomain = 'CmfBlockBundle';
 
     /**
      * @var array

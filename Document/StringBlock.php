@@ -18,7 +18,7 @@ class StringBlock extends BaseBlock
 
     public function getType()
     {
-        return 'symfony_cmf.block.string';
+        return 'cmf.block.string';
     }
 
     public function setContent($content)
