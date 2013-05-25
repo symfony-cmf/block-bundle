@@ -79,6 +79,6 @@ class CmfBlockExtension extends \Twig_Extension
 
     public function getName()
     {
-        return 'symfony_cmf_block';
+        return 'cmf_block';
     }
 }

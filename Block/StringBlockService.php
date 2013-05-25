@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class StringBlockService extends BaseBlockService implements BlockServiceInterface
 {
-    protected $template = 'SymfonyCmfBlockBundle:Block:block_string.html.twig';
+    protected $template = 'CmfBlockBundle:Block:block_string.html.twig';
 
     public function __construct($name, $templating, $template = null)
     {

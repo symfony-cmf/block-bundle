@@ -29,7 +29,7 @@ class BundleSettingsCompilerPass implements CompilerPassInterface
                 'title'     => 'Insert the rss title',
                 'url'       => false,
                 'maxItems'  => 10,
-                'template'  => 'SymfonyCmfBlockBundle:Block:block_rss.html.twig',
+                'template'  => 'CmfBlockBundle:Block:block_rss.html.twig',
                 'itemClass' => 'Symfony\Cmf\Bundle\BlockBundle\Model\FeedItem',
             )
         ));

@@ -13,11 +13,11 @@ class RssBlock extends ActionBlock
 {
     public function getType()
     {
-        return 'symfony_cmf.block.action';
+        return 'cmf.block.action';
     }
 
     public function getDefaultActionName()
     {
-        return 'symfony_cmf.block.rss_controller:block';
+        return 'cmf.block.rss_controller:block';
     }
 }

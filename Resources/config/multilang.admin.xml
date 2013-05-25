@@ -5,24 +5,24 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="symfony_cmf_block.multilang.simple_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\MultilangSimpleBlockAdmin</parameter>
-        <parameter key="symfony_cmf_block.multilang.simple_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock</parameter>
+        <parameter key="cmf_block.multilang.simple_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\MultilangSimpleBlockAdmin</parameter>
+        <parameter key="cmf_block.multilang.simple_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock</parameter>
     </parameters>
 
     <services>
-        <service id="symfony_cmf_block.multilang.simple_admin" class="%symfony_cmf_block.multilang.simple_admin_class%">
-            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.group_content" label_catalogue="SymfonyCmfBlockBundle" label="dashboard.label_multilang_simple_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+        <service id="cmf_block.multilang.simple_admin" class="%cmf_block.multilang.simple_admin_class%">
+            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.group_content" label_catalogue="CmfBlockBundle" label="dashboard.label_multilang_simple_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
             <argument/>
-            <argument>%symfony_cmf_block.multilang.simple_document_class%</argument>
+            <argument>%cmf_block.multilang.simple_document_class%</argument>
             <argument>SonataAdminBundle:CRUD</argument>
-            <argument>%symfony_cmf_block.multilang.locales%</argument>
+            <argument>%cmf_block.multilang.locales%</argument>
 
             <call method="setRouteBuilder">
                 <argument type="service" id="sonata.admin.route.path_info_slashes" />
             </call>
 
             <call method="setContentRoot">
-                <argument>%symfony_cmf_block.content_basepath%</argument>
+                <argument>%cmf_block.content_basepath%</argument>
             </call>
         </service>
     </services>

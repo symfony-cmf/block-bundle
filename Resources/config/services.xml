@@ -5,72 +5,72 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="symfony_cmf_block.rss_controller_class">Symfony\Cmf\Bundle\BlockBundle\Controller\RssController</parameter>
-        <parameter key="symfony_cmf_block.twig_extension_class">Symfony\Cmf\Bundle\BlockBundle\Twig\Extension\CmfBlockExtension</parameter>
+        <parameter key="cmf_block.rss_controller_class">Symfony\Cmf\Bundle\BlockBundle\Controller\RssController</parameter>
+        <parameter key="cmf_block.twig_extension_class">Symfony\Cmf\Bundle\BlockBundle\Twig\Extension\CmfBlockExtension</parameter>
     </parameters>
 
     <services>
 
-        <service id="symfony_cmf.block.service" class="Symfony\Cmf\Bundle\BlockBundle\Block\PHPCRBlockLoader">
+        <service id="cmf.block.service" class="Symfony\Cmf\Bundle\BlockBundle\Block\PHPCRBlockLoader">
             <tag name="sonata.block.loader" />
             <argument type="service" id="service_container" />
             <argument type="service" id="logger" on-invalid="ignore" />
             <argument>sonata.block.service.empty</argument>
         </service>
 
-        <service id="symfony_cmf.block.simple" class="Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService">
+        <service id="cmf.block.simple" class="Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService">
             <tag name="sonata.block" />
-            <argument>symfony_cmf.block.simple</argument>
+            <argument>cmf.block.simple</argument>
             <argument type="service" id="templating" />
         </service>
 
-        <service id="symfony_cmf.block.string" class="Symfony\Cmf\Bundle\BlockBundle\Block\StringBlockService">
+        <service id="cmf.block.string" class="Symfony\Cmf\Bundle\BlockBundle\Block\StringBlockService">
             <tag name="sonata.block" />
-            <argument>symfony_cmf.block.string</argument>
+            <argument>cmf.block.string</argument>
             <argument type="service" id="templating" />
         </service>
 
-        <service id="symfony_cmf.block.container" class="Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService">
+        <service id="cmf.block.container" class="Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService">
             <tag name="sonata.block" />
-            <argument>symfony_cmf.block.container</argument>
+            <argument>cmf.block.container</argument>
             <argument type="service" id="templating" />
             <argument type="service" id="sonata.block.renderer" />
         </service>
 
-        <service id="symfony_cmf.block.reference" class="Symfony\Cmf\Bundle\BlockBundle\Block\ReferenceBlockService">
+        <service id="cmf.block.reference" class="Symfony\Cmf\Bundle\BlockBundle\Block\ReferenceBlockService">
             <tag name="sonata.block" />
-            <argument>symfony_cmf.block.reference</argument>
+            <argument>cmf.block.reference</argument>
             <argument type="service" id="templating" />
             <argument type="service" id="sonata.block.renderer" />
             <argument type="service" id="sonata.block.context_manager" />
         </service>
 
-        <service id="symfony_cmf.block.action" class="Symfony\Cmf\Bundle\BlockBundle\Block\ActionBlockService">
+        <service id="cmf.block.action" class="Symfony\Cmf\Bundle\BlockBundle\Block\ActionBlockService">
             <tag name="sonata.block" />
-            <argument>symfony_cmf.block.action</argument>
+            <argument>cmf.block.action</argument>
             <argument type="service" id="templating" />
             <argument type="service" id="fragment.handler" />
         </service>
 
         <!--container block service is reused for slideshows -->
-        <service id="symfony_cmf.block.slideshow" class="Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService">
+        <service id="cmf.block.slideshow" class="Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService">
             <tag name="sonata.block" />
-            <argument>symfony_cmf.block.slideshow</argument>
+            <argument>cmf.block.slideshow</argument>
             <argument type="service" id="templating" />
             <argument type="service" id="sonata.block.renderer" />
-            <argument>SymfonyCmfBlockBundle:Block:block_slideshow.html.twig</argument>
+            <argument>CmfBlockBundle:Block:block_slideshow.html.twig</argument>
         </service>
 
-        <service id="symfony_cmf.block.rss_controller" class="%symfony_cmf_block.rss_controller_class%" >
+        <service id="cmf.block.rss_controller" class="%cmf_block.rss_controller_class%" >
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
         </service>
 
-        <service id="symfony_cmf_block.twig.embed_extension" class="%symfony_cmf_block.twig_extension_class%">
+        <service id="cmf_block.twig.embed_extension" class="%cmf_block.twig_extension_class%">
             <argument type="service" id="sonata.block.twig.extension"/>
-            <argument>%symfony_cmf_block.twig.cmf_embed_blocks.prefix%</argument>
-            <argument>%symfony_cmf_block.twig.cmf_embed_blocks.postfix%</argument>
+            <argument>%cmf_block.twig.cmf_embed_blocks.prefix%</argument>
+            <argument>%cmf_block.twig.cmf_embed_blocks.postfix%</argument>
             <argument type="service" id="logger"/>
             <tag name="twig.extension"/>
         </service>

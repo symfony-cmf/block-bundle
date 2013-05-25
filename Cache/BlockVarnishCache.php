@@ -78,7 +78,7 @@ class BlockVarnishCache extends VarnishCache
 
         $keys['_token'] = $this->computeHash($keys);
 
-        $content = sprintf('<esi:include src="%s" />', $this->router->generate('symfony_cmf_block_cache_esi', $keys, true));
+        $content = sprintf('<esi:include src="%s" />', $this->router->generate('cmf_block_cache_esi', $keys, true));
 
         return new CacheElement($keys, new Response($content));
     }

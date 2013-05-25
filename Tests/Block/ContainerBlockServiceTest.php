@@ -32,7 +32,7 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testExecutionOfEnabledBlock()
     {
-        $template = 'SymfonyCmfBlockBundle:Block:block_container.html.twig';
+        $template = 'CmfBlockBundle:Block:block_container.html.twig';
 
         $simpleBlock1 = new SimpleBlock();
         $simpleBlock1->setId(1);
@@ -85,7 +85,7 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testExecutionOfBlockWithNoChildren()
     {
-        $template = 'SymfonyCmfBlockBundle:Block:block_container.html.twig';
+        $template = 'CmfBlockBundle:Block:block_container.html.twig';
 
         $childrenCollectionMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\ChildrenCollection')
             ->disableOriginalConstructor()

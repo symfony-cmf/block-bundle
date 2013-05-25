@@ -6,7 +6,7 @@
 
     <services>
 
-        <service id="symfony_cmf.block.cache.varnish" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockVarnishCache">
+        <service id="cmf.block.cache.varnish" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockVarnishCache">
             <tag name="sonata.cache" />
 
             <argument />
@@ -18,7 +18,7 @@
             <argument />
         </service>
 
-        <service id="symfony_cmf.block.cache.ssi" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockSsiCache">
+        <service id="cmf.block.cache.ssi" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockSsiCache">
             <tag name="sonata.cache" />
 
             <argument />
@@ -28,7 +28,7 @@
             <argument type="service" id="sonata.block.context_manager" />
         </service>
 
-        <service id="symfony_cmf.block.cache.js_sync" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache" >
+        <service id="cmf.block.cache.js_sync" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache" >
             <tag name="sonata.cache" />
 
             <argument type="service" id="router" />
@@ -38,7 +38,7 @@
             <argument>true</argument>
         </service>
 
-        <service id="symfony_cmf.block.cache.js_async" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache" >
+        <service id="cmf.block.cache.js_async" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache" >
             <tag name="sonata.cache" />
 
             <argument type="service" id="router" />

@@ -7,11 +7,11 @@
     <services>
 
         <!-- simple block service is reused for imagine items -->
-        <service id="symfony_cmf.block.imagine" class="Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService">
+        <service id="cmf.block.imagine" class="Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService">
             <tag name="sonata.block" />
-            <argument>symfony_cmf.block.imagine</argument>
+            <argument>cmf.block.imagine</argument>
             <argument type="service" id="templating" />
-            <argument>SymfonyCmfBlockBundle:Block:block_imagine.html.twig</argument>
+            <argument>CmfBlockBundle:Block:block_imagine.html.twig</argument>
         </service>
 
     </services>

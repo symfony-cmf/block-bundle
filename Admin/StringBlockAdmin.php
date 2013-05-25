@@ -9,7 +9,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 
 class StringBlockAdmin extends Admin
 {
-    protected $translationDomain = 'SymfonyCmfBlockBundle';
+    protected $translationDomain = 'CmfBlockBundle';
 
     /**
      * Root path for the route content selection
