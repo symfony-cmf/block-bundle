@@ -16,7 +16,7 @@ class ImagineBlock extends BaseBlock
 {
     /**
      * @var Image
-     * @PHPCRODM\Child(name="image", cascade="persist")
+     * @PHPCRODM\Child(cascade="persist")
      */
     protected $image;
 
