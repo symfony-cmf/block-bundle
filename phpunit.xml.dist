@@ -13,7 +13,7 @@
          bootstrap="Tests/bootstrap.php"
 >
     <testsuites>
-        <testsuite name="SymfonyCmfBlockBundle Test Suite">
+        <testsuite name="Symfony CmfBlockBundle Test Suite">
             <directory>./Tests/</directory>
         </testsuite>
     </testsuites>
