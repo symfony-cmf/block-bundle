@@ -44,8 +44,8 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
 
     private function getSimpleBlockLoaderInstance()
     {
-        $blockLoader = new PHPCRBlockLoader($this->containerMock, null, 'emptyblocktype');
-        $blockLoader->setDocumentManager('themanager');
+        $blockLoader = new PHPCRBlockLoader($this->containerMock, $this->registryMock, null, 'emptyblocktype');
+        $blockLoader->setManagerName('themanager');
         return $blockLoader;
     }
 
@@ -259,27 +259,17 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($registryMock))
         ;
 
-        $blockLoader = new PHPCRBlockLoader($this->containerMock, null, 'emptyblocktype');
+        $blockLoader = new PHPCRBlockLoader($this->containerMock, $registryMock, null, 'emptyblocktype');
 
-        $blockLoader->setDocumentManager('themanager');
+        $blockLoader->setManagerName('themanager');
         $foundBlock = $blockLoader->load(array('name' => $absoluteBlockPath));
         $this->assertInstanceOf('Sonata\BlockBundle\Model\BlockInterface', $foundBlock);
         $this->assertEquals('the-block', $foundBlock->getName());
 
-        $blockLoader->setDocumentManager('altmanager');
+        $blockLoader->setManagerName('altmanager');
         $foundBlock = $blockLoader->load(array('name' => $absoluteBlockPath));
         $this->assertInstanceOf('Sonata\BlockBundle\Model\BlockInterface', $foundBlock);
         $this->assertEquals('alt-block', $foundBlock->getName());
-    }
-
-    /**
-     * @expectedException \Sonata\BlockBundle\Exception\BlockNotFoundException
-     * @expectedExceptionMessage A document manager must be set before using this loader
-     */
-    public function testWithoutSettingDocumentManager()
-    {
-        $blockLoader = new PHPCRBlockLoader($this->containerMock, null, 'emptyblocktype');
-        $blockLoader->load(array('name' => '/some/path'));
     }
 }
 
