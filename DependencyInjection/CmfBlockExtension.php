@@ -1,12 +1,12 @@
 <?php
 namespace Symfony\Cmf\Bundle\BlockBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\DependencyInjection\Reference;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class CmfBlockExtension extends Extension implements PrependExtensionInterface
 {
@@ -148,8 +148,8 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
             $container
                 ->getDefinition('cmf.block.cache.varnish')
                 ->replaceArgument(0, $config['caches']['varnish']['token'])
-                ->replaceArgument(4, $config['caches']['varnish']['servers'])
-                ->replaceArgument(5, 3 === $config['caches']['varnish']['version'] ? 'ban' : 'purge');
+                ->replaceArgument(5, $config['caches']['varnish']['servers'])
+                ->replaceArgument(6, 3 === $config['caches']['varnish']['version'] ? 'ban' : 'purge');
             ;
         } else {
             $container->removeDefinition('cmf.block.cache.varnish');
