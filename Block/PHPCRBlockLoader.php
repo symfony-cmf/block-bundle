@@ -3,6 +3,7 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
 use Doctrine\ODM\PHPCR\DocumentManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Log\LoggerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
@@ -30,9 +31,14 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     protected $logger;
 
     /**
-     * @var DocumentManager
+     * @var string Name of object manager to use
      */
-    protected $dm;
+    protected $managerName;
+
+    /**
+     * @var ManagerRegistry
+     */
+    protected $managerRegistry;
 
     /**
      * @var string service id of the empty block service
@@ -41,24 +47,31 @@ class PHPCRBlockLoader implements BlockLoaderInterface
 
     /**
      * @param ContainerInterface $container
+     * @param ManagerRegistry $managerRegistry
      * @param LoggerInterface $logger
      * @param null $emptyBlockType set this to a block type name if you want empty blocks returned when no block is found
      */
-    public function __construct(ContainerInterface $container, LoggerInterface $logger = null, $emptyBlockType = null)
-    {
-        $this->container       = $container;
-        $this->logger          = $logger;
-        $this->emptyBlockType  = $emptyBlockType;
+    public function __construct(
+        ContainerInterface $container,
+        ManagerRegistry $managerRegistry,
+        LoggerInterface $logger = null,
+        $emptyBlockType = null
+    ) {
+        $this->container        = $container;
+        $this->managerRegistry  = $managerRegistry;
+        $this->logger           = $logger;
+        $this->emptyBlockType   = $emptyBlockType;
     }
 
     /**
-     * Set the document manager to use for this loader
+     * Set the object manager name to use for this loader;
+     * if not called, the default manager will be used.
      *
      * @param string $managerName
      */
-    public function setDocumentManager($managerName)
+    public function setManagerName($managerName)
     {
-        $this->dm = $this->container->get('doctrine_phpcr')->getManager($managerName);
+        $this->managerName = $managerName;
     }
 
     /**
@@ -69,10 +82,6 @@ class PHPCRBlockLoader implements BlockLoaderInterface
         if (! $this->support($configuration)) {
             // sanity check, the chain loader should already have checked.
             throw new BlockNotFoundException('A block is tried to be loaded with an unsupported configuration');
-        }
-
-        if (! $this->dm instanceof DocumentManager) {
-            throw new BlockNotFoundException('A document manager must be set before using this loader');
         }
 
         $block = $this->findByName($configuration['name']);
@@ -123,7 +132,7 @@ class PHPCRBlockLoader implements BlockLoaderInterface
             return null;
         }
 
-        $block = $this->dm->find(null, $path);
+        $block = $this->getObjectManager()->find(null, $path);
 
         if (empty($block) && $this->logger) {
             $this->logger->debug("Block '$name' at path '$path' could not be found.");
@@ -165,7 +174,10 @@ class PHPCRBlockLoader implements BlockLoaderInterface
             && $this->container->get('request')->attributes->has('contentDocument')
         ) {
             $currentPage = $this->container->get('request')->attributes->get('contentDocument');
-            return $this->dm->getUnitOfWork()->getDocumentId($currentPage) . '/' . $name;
+            return $this->getObjectManager()
+                ->getUnitOfWork()
+                ->getDocumentId($currentPage) . '/' . $name
+            ;
         }
 
         return null;
@@ -216,5 +228,15 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     public function setEmptyBlockType($type = null)
     {
         $this->emptyBlockType = $type;
+    }
+
+    /**
+     * Get the object manager from the registry, based on the current managerName
+     *
+     * @return \Doctrine\Common\Persistence\ObjectManager
+     */
+    protected function getObjectManager()
+    {
+        return $this->managerRegistry->getManager($this->managerName);
     }
 }

@@ -71,7 +71,8 @@ class CmfBlockExtension extends Extension
         }
 
         $blockLoader = $container->getDefinition('cmf.block.service');
-        $blockLoader->addMethodCall('setDocumentManager', array($config['document_manager_name']));
+        $blockLoader->replaceArgument(1, new Reference($config['manager_registry']));
+        $blockLoader->addMethodCall('setManagerName', array($config['manager_name']));
 
         $bundles = $container->getParameter('kernel.bundles');
         if (isset($bundles['CmfCreateBundle'])) {

@@ -27,7 +27,8 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('document_manager_name')->defaultValue('default')->end()
+                ->scalarNode('manager_registry')->defaultValue('doctrine_phpcr')->end()
+                ->scalarNode('manager_name')->defaultValue('default')->end()
                 ->scalarNode('content_basepath')->defaultValue('/cms/content')->end()
                 ->scalarNode('block_basepath')->defaultValue('/cms/content')->end()
                 ->scalarNode('imagine')->defaultValue(false)->end()
