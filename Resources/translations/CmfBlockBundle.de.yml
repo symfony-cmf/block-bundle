@@ -1,0 +1,77 @@
+dashboard:
+    group_content: Inhalt
+    label_simple_block: Einfacher Block
+    label_multilang_simple_block: Mehrsprachiger einfacher Block
+    label_container_block: Containerblock
+    label_reference_block: Referenzblock
+    label_action_block: Aktionsblock
+    label_slideshow_block: Slideshow-Block
+    label_multilang_slideshow_block: Mehrsprachiger Slideshow-Block
+    label_string_block: Textblock
+
+breadcrumb:
+    link_slideshow_block_list: Slideshow Blöcke
+    link_slideshow_block_create: Erstellen
+    link_slideshow_block_edit: Bearbeiten
+    link_slideshow_block_delete: Löschen
+
+    link_multilang_slideshow_block_list: Mehrsprachige Slideshow Blöcke
+    link_multilang_slideshow_block_create: Erstellen
+    link_multilang_slideshow_block_edit: Bearbeiten
+    link_multilang_slideshow_block_delete: Löschen
+
+    link_simple_block_list: Einfache Blöcke
+    link_simple_block_create: Erstellen
+    link_simple_block_edit: Bearbeiten
+    link_simple_block_delete: Löschen
+
+    link_multilang_simple_block_list: Mehrsprachige einfache Blöcke
+    link_multilang_simple_block_create: Erstellen
+    link_multilang_simple_block_edit: Bearbeiten
+    link_multilang_simple_block_delete: Löschen
+
+    link_container_block_list: Containerblöcke
+    link_container_block_create: Erstellen
+    link_container_block_edit: Bearbeiten
+    link_container_block_delete: Löschen
+
+    link_reference_block_list: Referenzblöcke
+    link_reference_block_create: Erstellen
+    link_reference_block_edit: Bearbeiten
+    link_reference_block_delete: Löschen
+
+    link_action_block_list: Aktionsblöcke
+    link_action_block_create: Erstellen
+    link_action_block_edit: Bearbeiten
+    link_action_block_delete: Löschen
+
+    link_string_block_list: Textblöcke
+    link_string_block_create: Erstellen
+    link_string_block_edit: Bearbeiten
+    link_string_block_delete: Löschen
+
+
+filter:
+    label_title: Titel
+    label_name: Name
+
+list:
+    label_id: Id
+    label_name: Name
+    label_title: Titel
+    label_locales: Sprache
+
+form:
+    group_general: Allgemein
+    label_locale: Sprache
+    label_parent_document: Übergeordnet
+    label_name: Name
+    label_title: Titel
+    label_content: Inhalt
+    label_referenced_block: Referenzierter Block
+    label_action_name: Aktionsname
+    label_children: Elemente
+    label_label: Beschriftung
+    label_position: Position
+    label_link_url: Link URL
+    label_image: Bild
