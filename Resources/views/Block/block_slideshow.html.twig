@@ -2,14 +2,14 @@
 
 {% block block %}
 
-    {% if childBlocks %}
+    {% if block.children %}
         {% if block.title is defined %}
             <h3>{{ block.title }}</h3>
         {% endif %}
         <div class="slideshow">
             <ul>
-                {% for item in childBlocks %}
-                    <li>{{ item | raw }}</li>
+                {% for item in block.children %}
+                    <li>{{ sonata_block_render(item) }}</li>
                 {% endfor %}
             </ul>
         </div>
