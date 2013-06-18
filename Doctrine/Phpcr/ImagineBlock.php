@@ -2,8 +2,9 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
-use Doctrine\ODM\PHPCR\Document\Image;
 use Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface;
+use Symfony\Cmf\Bundle\MediaBundle\Doctrine\Phpcr\Image;
+use Symfony\Cmf\Bundle\MediaBundle\ImageInterface;
 
 /**
  * Block to hold an image
@@ -115,18 +116,20 @@ class ImagineBlock extends AbstractBlock implements TranslatableInterface
      * the document manager. Note that this block does not make much sense
      * without an image, though.
      *
-     * @param Image $image optional the image to update
+     * @param ImageInterface $image optional the image to update
      */
-    public function setImage($image)
+    public function setImage(ImageInterface $image = null)
     {
         if (!$image) {
             return;
-        } elseif ($this->image && $this->image->getFile()) {
-            // TODO: this is needed due to a bug in PHPCRODM (http://www.doctrine-project.org/jira/browse/PHPCR-98)
-            // TODO: this can be removed once the bug is fixed
-            $this->image->getFile()->setFileContent($image->getFile()->getFileContent());
-        } else {
+        } elseif ($this->image) {
+            // TODO: https://github.com/doctrine/phpcr-odm/pull/262
+            $this->image->copyContentFromFile($image);
+        } elseif ($image instanceof ImageInterface) {
             $this->image = $image;
+        } else {
+            $this->image = new Image;
+            $this->image->copyContentFromFile($image);
         }
     }
 
