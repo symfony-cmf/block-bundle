@@ -15,7 +15,7 @@ This is part of the Symfony Cmf: <https://github.com/symfony-cmf/symfony-cmf>
 
 ## Documentation
 
-http://symfony.com/doc/master/cmf/bundles/block.html
+http://symfony.com/doc/master/cmf/bundles/block/
 
 ## Tests
 The components of the Symfony CmfBlockBundle are unit tested. You can run the tests with ```phpunit -c .``` in the root directory.
