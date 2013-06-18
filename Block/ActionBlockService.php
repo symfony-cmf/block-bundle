@@ -9,6 +9,7 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
 use Symfony\Component\HttpKernel\Kernel;
@@ -16,6 +17,11 @@ use Symfony\Component\HttpKernel\Kernel;
 class ActionBlockService extends BaseBlockService implements BlockServiceInterface
 {
     protected $renderer;
+
+    /**
+     * @var Request
+     */
+    protected $request;
 
     /**
      * @param string $name
@@ -26,6 +32,14 @@ class ActionBlockService extends BaseBlockService implements BlockServiceInterfa
     {
         parent::__construct($name, $templating);
         $this->renderer = $renderer;
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function setRequest(Request $request)
+    {
+        $this->request = $request;
     }
 
     /**
@@ -62,10 +76,12 @@ class ActionBlockService extends BaseBlockService implements BlockServiceInterfa
             ));
         }
 
+        $locale = $this->request ? $this->request->getLocale() : null;
+
         if ($block->getEnabled()) {
             $response = new Response($this->renderer->render(new ControllerReference(
                 $block->getActionName(),
-                array('block' => $block, 'blockContext' => $blockContext)
+                array('block' => $block, 'blockContext' => $blockContext, '_locale' => $locale)
             )));
         }
 
