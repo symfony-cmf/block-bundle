@@ -48,6 +48,7 @@
 
         <service id="cmf.block.action" class="Symfony\Cmf\Bundle\BlockBundle\Block\ActionBlockService">
             <tag name="sonata.block" />
+            <tag name="cmf_request_aware" />
             <argument>cmf.block.action</argument>
             <argument type="service" id="templating" />
             <argument type="service" id="fragment.handler" />
