@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="cmf_block.rss_controller_class">Symfony\Cmf\Bundle\BlockBundle\Controller\RssController</parameter>
         <parameter key="cmf_block.twig_extension_class">Symfony\Cmf\Bundle\BlockBundle\Twig\Extension\CmfBlockExtension</parameter>
+        <parameter key="cmf_block.templating.helper.block.class">Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\CmfBlockHelper</parameter>
     </parameters>
 
     <services>
@@ -74,6 +75,15 @@
             <argument>%cmf_block.twig.cmf_embed_blocks.postfix%</argument>
             <argument type="service" id="logger"/>
             <tag name="twig.extension"/>
+        </service>
+
+        <service id="cmf_block.templating.helper.block" class="%cmf_block.templating.helper.block.class%">
+            <argument type="service" id="sonata.block.twig.extension" />
+            <argument>%cmf_block.twig.cmf_embed_blocks.prefix%</argument>
+            <argument>%cmf_block.twig.cmf_embed_blocks.postfix%</argument>
+            <argument type="service" id="logger" />
+
+            <tag name="templating.helper" alias="cmf_block" />
         </service>
 
     </services>
