@@ -2,6 +2,8 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Twig\Extension;
 
+use Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\CmfBlockHelper;
+
 use Symfony\Component\HttpKernel\Log\LoggerInterface;
 
 use Sonata\BlockBundle\Twig\Extension\BlockExtension;
@@ -12,30 +14,8 @@ use Sonata\BlockBundle\Exception\BlockNotFoundException;
  *
  * @author David Buchmann <david@liip.ch>
  */
-class CmfBlockExtension extends \Twig_Extension
+class CmfBlockExtension extends CmfBlockHelper implements \Twig_ExtensionInterface
 {
-    /**
-     * @var BlockExtension
-     */
-    private $sonataBlock;
-
-    private $prefix;
-
-    private $postfix;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    function __construct(BlockExtension $sonataBlock, $prefix, $postfix, LoggerInterface $logger = null)
-    {
-        $this->sonataBlock = $sonataBlock;
-        $this->prefix = $prefix;
-        $this->postfix = $postfix;
-        $this->logger = $logger;
-    }
-
     public function getFilters()
     {
         return array(
@@ -43,42 +23,76 @@ class CmfBlockExtension extends \Twig_Extension
         );
     }
 
+    // from \Twig_Extension
+
     /**
-     * Implement the cmf_embed_blocks filter, looking for special markers that
-     * identify blocks and replacing them with the result of rendering the
-     * specified identifier.
+     * Initializes the runtime environment.
      *
-     * @param string $text
+     * This is where you can load some file that contains filter functions for instance.
      *
-     * @return mixed
+     * @param Twig_Environment $environment The current Twig_Environment instance
      */
-    public function cmfEmbedBlocks($text)
+    public function initRuntime(Twig_Environment $environment)
     {
-        // with the default prefix and postfix, this will do <span>block:"block-identifier"</span>
-        return preg_replace_callback('#' . $this->prefix . '"([^\"]+)"' . $this->postfix . '#', array($this, 'renderBlock'), $text);
     }
 
     /**
-     * Execute the block as specified in the content.
+     * Returns the token parser instances to add to the existing list.
      *
-     * @param string $block the block name
-     *
-     * @return string the rendered block
+     * @return array An array of Twig_TokenParserInterface or Twig_TokenParserBrokerInterface instances
      */
-    public function renderBlock($block)
+    public function getTokenParsers()
     {
-        try {
-            return $this->sonataBlock->renderBlock(array('name' => $block[1]));
-        } catch (BlockNotFoundException $e) {
-            if ($this->logger) {
-                $this->logger->warn('Failed to render block "' . $block[1] . '" embedded in content: ' . $e->getTraceAsString());
-            }
-        }
-        return '';
+        return array();
     }
 
-    public function getName()
+    /**
+     * Returns the node visitor instances to add to the existing list.
+     *
+     * @return array An array of Twig_NodeVisitorInterface instances
+     */
+    public function getNodeVisitors()
     {
-        return 'cmf_block';
+        return array();
+    }
+
+    /**
+     * Returns a list of tests to add to the existing list.
+     *
+     * @return array An array of tests
+     */
+    public function getTests()
+    {
+        return array();
+    }
+
+    /**
+     * Returns a list of functions to add to the existing list.
+     *
+     * @return array An array of functions
+     */
+    public function getFunctions()
+    {
+        return array();
+    }
+
+    /**
+     * Returns a list of operators to add to the existing list.
+     *
+     * @return array An array of operators
+     */
+    public function getOperators()
+    {
+        return array();
+    }
+
+    /**
+     * Returns a list of global variables to add to the existing list.
+     *
+     * @return array An array of global variables
+     */
+    public function getGlobals()
+    {
+        return array();
     }
 }
