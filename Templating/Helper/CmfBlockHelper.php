@@ -54,7 +54,7 @@ class CmfBlockHelper extends Helper
     /**
      * Executes the block as specified in the content.
      *
-     * @param string $block the block name
+     * @param array $block An array including the block name
      *
      * @return string the rendered block
      */
