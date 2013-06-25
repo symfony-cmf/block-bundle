@@ -20,7 +20,8 @@
         "sonata-project/block-bundle": "~2.2.3"
     },
     "require-dev": {
-        "sonata-project/cache-bundle": "dev-master"
+        "sonata-project/cache-bundle": "dev-master",
+        "twig/twig": "~1.11"
     },
     "suggest": {
         "sonata-project/cache-bundle": "To add caching support for block loading",
