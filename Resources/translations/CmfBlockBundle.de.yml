@@ -75,3 +75,6 @@ form:
     label_position: Position
     label_link_url: Link URL
     label_image: Bild
+    group_base: Erweitert
+    label_enabled: Aktiviert
+    label_ttl: Cache-TTL
