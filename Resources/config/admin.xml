@@ -25,5 +25,8 @@
             </call>
         </service>
 
+        <service id="cmf.block.admin.base.extension" class="Symfony\Cmf\Bundle\BlockBundle\Admin\BaseAdminExtension" >
+        </service>
+
     </services>
 </container>

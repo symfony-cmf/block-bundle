@@ -74,3 +74,6 @@ form:
     label_position: Position
     label_link_url: URL Lien
     label_image: Image
+    group_base: Avancé
+    label_enabled: Activer
+    label_ttl: Cache-TTL
