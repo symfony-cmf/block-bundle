@@ -19,9 +19,23 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         $bundles = $container->getParameter('kernel.bundles');
 
         if (isset($bundles['SonataBlockBundle'])) {
-            $config = array('templates' => array(
-                'block_base' => 'CmfBlockBundle:Block:block_base.html.twig'
-            ));
+            $config = array(
+                'templates' => array(
+                    'block_base' => 'CmfBlockBundle:Block:block_base.html.twig',
+                ),
+                'blocks_by_class' => array(
+                    0 => array(
+                        'class'     => "Symfony\\Cmf\\Bundle\\BlockBundle\\Document\\RssBlock",
+                        'settings'  => array(
+                            'title'     => 'Insert the rss title',
+                            'url'       => false,
+                            'maxItems'  => 10,
+                            'template'  => 'CmfBlockBundle:Block:block_rss.html.twig',
+                            'itemClass' => 'Symfony\\Cmf\\Bundle\\BlockBundle\\Model\\FeedItem',
+                        ),
+                    ),
+                ),
+            );
             $container->prependExtensionConfig('sonata_block', $config);
         }
     }
