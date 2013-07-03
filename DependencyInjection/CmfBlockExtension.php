@@ -1,14 +1,45 @@
 <?php
 namespace Symfony\Cmf\Bundle\BlockBundle\DependencyInjection;
 
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\FileLocator;
 
-class CmfBlockExtension extends Extension
+class CmfBlockExtension extends Extension implements PrependExtensionInterface
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function prepend(ContainerBuilder $container)
+    {
+        // get all Bundles
+        $bundles = $container->getParameter('kernel.bundles');
+
+        if (isset($bundles['SonataBlockBundle'])) {
+            $config = array(
+                'templates' => array(
+                    'block_base' => 'CmfBlockBundle:Block:block_base.html.twig',
+                ),
+                'blocks_by_class' => array(
+                    0 => array(
+                        'class'     => "Symfony\\Cmf\\Bundle\\BlockBundle\\Document\\RssBlock",
+                        'settings'  => array(
+                            'title'     => 'Insert the rss title',
+                            'url'       => false,
+                            'maxItems'  => 10,
+                            'template'  => 'CmfBlockBundle:Block:block_rss.html.twig',
+                            'itemClass' => 'Symfony\\Cmf\\Bundle\\BlockBundle\\Model\\FeedItem',
+                        ),
+                    ),
+                ),
+            );
+            $container->prependExtensionConfig('sonata_block', $config);
+        }
+    }
+
     public function load(array $configs, ContainerBuilder $container)
     {
         $config = $this->processConfiguration(new Configuration(), $configs);
