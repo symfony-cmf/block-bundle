@@ -4,6 +4,8 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Document;
 
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
 
+use Sonata\BlockBundle\Model\BlockInterface;
+
 /**
  * Block that is a reference to another block
  *
@@ -19,13 +21,23 @@ class ReferenceBlock extends BaseBlock
         return 'cmf.block.reference';
     }
 
+    /**
+     * @return BlockInterface|null
+     */
     public function getReferencedBlock()
     {
         return $this->referencedBlock;
     }
 
-    public function setReferencedBlock($referencedBlock)
+    /**
+     * @param BlockInterface $referencedBlock
+     *
+     * @return ReferenceBlock itself
+     */
+    public function setReferencedBlock(BlockInterface $referencedBlock)
     {
-        return $this->referencedBlock = $referencedBlock;
+        $this->referencedBlock = $referencedBlock;
+
+        return $this;
     }
 }

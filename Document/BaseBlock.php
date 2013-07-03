@@ -136,7 +136,7 @@ abstract class BaseBlock implements BlockInterface
      */
     public function setCreatedAt(\DateTime $createdAt = null)
     {
-        $this->createdAt = is_null($createdAt) ? new \DateTime() : $createdAt;
+        $this->createdAt = null === $createdAt ? new \DateTime() : $createdAt;
     }
 
     /**
@@ -158,7 +158,7 @@ abstract class BaseBlock implements BlockInterface
      */
     public function setUpdatedAt(\DateTime $updatedAt = null)
     {
-        $this->updatedAt = is_null($updatedAt) ? new \DateTime() : $updatedAt;
+        $this->updatedAt = null === $updatedAt ? new \DateTime() : $updatedAt;
     }
 
     /**

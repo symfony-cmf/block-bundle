@@ -90,7 +90,7 @@ class PHPCRBlockLoader implements BlockLoaderInterface
             return $this->getNotFoundBlock($configuration['name'], sprintf(
                 "Document at '%s' is no Sonata\\BlockBundle\\Model\\BlockInterface but %s",
                 $configuration['name'],
-                is_null($block) ? 'not existing' : get_class($block)
+                null === $block ? 'not existing' : get_class($block)
             ));
         }
 
@@ -198,7 +198,7 @@ class PHPCRBlockLoader implements BlockLoaderInterface
      */
     private function getNotFoundBlock($name, $message = null)
     {
-        if (is_null($this->getEmptyBlockType())) {
+        if (null === $this->getEmptyBlockType()) {
             throw new BlockNotFoundException($message);
         }
 
@@ -207,7 +207,7 @@ class PHPCRBlockLoader implements BlockLoaderInterface
         $block->setUpdatedAt(new \DateTime());
 
         $path = $this->determineAbsolutePath($name);
-        if (! is_null($path)) {
+        if (null !== $path) {
             $block->setId($path);
         }
 
