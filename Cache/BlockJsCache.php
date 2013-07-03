@@ -29,8 +29,13 @@ class BlockJsCache implements CacheInterface
      * @param BlockContextManagerInterface $blockContextManager
      * @param bool $sync
      */
-    public function __construct(RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader, BlockContextManagerInterface $blockContextManager, $sync = false)
-    {
+    public function __construct(
+        RouterInterface $router,
+        BlockRendererInterface $blockRenderer,
+        BlockLoaderInterface $blockLoader,
+        BlockContextManagerInterface $blockContextManager,
+        $sync = false
+    ) {
         $this->router              = $router;
         $this->blockRenderer       = $blockRenderer;
         $this->blockLoader         = $blockLoader;
@@ -188,7 +193,18 @@ CONTENT
             return new Response('', 404);
         }
 
-        $response = $this->blockRenderer->render($this->blockContextManager->get($block));
+        $settings = $request->get(BlockContextManagerInterface::CACHE_KEY, array());
+
+        if (!is_array($settings)) {
+            throw new \RuntimeException(sprintf(
+                'Query string parameter `%s` is not an array',
+                BlockContextManagerInterface::CACHE_KEY
+            ));
+        }
+
+        $response = $this->blockRenderer->render(
+            $this->blockContextManager->get($block, $settings)
+        );
         $response->setPrivate(); //  always set to private
 
         if ($this->sync) {

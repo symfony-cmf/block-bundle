@@ -29,8 +29,13 @@ class BlockSsiCache extends SsiCache
      * @param BlockLoaderInterface $blockLoader
      * @param BlockContextManagerInterface $blockContextManager
      */
-    public function __construct($token, RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader, BlockContextManagerInterface $blockContextManager)
-    {
+    public function __construct(
+        $token,
+        RouterInterface $router,
+        BlockRendererInterface $blockRenderer,
+        BlockLoaderInterface $blockLoader,
+        BlockContextManagerInterface $blockContextManager
+    ) {
         parent::__construct($token, $router, null);
 
         $this->blockRenderer       = $blockRenderer;
@@ -114,6 +119,17 @@ class BlockSsiCache extends SsiCache
             throw new NotFoundHttpException(sprintf('Block not found : %s', $request->get('block_id')));
         }
 
-        return $this->blockRenderer->render($this->blockContextManager->get($block));
+        $settings = $request->get(BlockContextManagerInterface::CACHE_KEY, array());
+
+        if (!is_array($settings)) {
+            throw new \RuntimeException(sprintf(
+                'Query string parameter `%s` is not an array',
+                BlockContextManagerInterface::CACHE_KEY
+            ));
+        }
+
+        return $this->blockRenderer->render(
+            $this->blockContextManager->get($block, $settings)
+        );
     }
 }
