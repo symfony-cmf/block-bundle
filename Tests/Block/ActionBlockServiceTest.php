@@ -2,30 +2,45 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Block;
 
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
+use Symfony\Component\Templating\EngineInterface;
+
 use Sonata\BlockBundle\Block\BlockContext;
-use Symfony\Component\HttpFoundation\Response,
-    Symfony\Cmf\Bundle\BlockBundle\Block\ActionBlockService,
-    Symfony\Cmf\Bundle\BlockBundle\Document\ActionBlock;
+
+use Symfony\Cmf\Bundle\BlockBundle\Block\ActionBlockService;
+use Symfony\Cmf\Bundle\BlockBundle\Document\ActionBlock;
 
 class ActionBlockServiceTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var EngineInterface|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private $templating;
+
+    /**
+     * @var FragmentHandler|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private $kernel;
+
+    public function setUp()
+    {
+        $this->templating = $this->getMock('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface');
+        $this->kernel = $this->getMock('Symfony\Component\HttpKernel\Fragment\FragmentHandler');
+    }
+
     public function testExecutionOfDisabledBlock()
     {
         $actionBlock = new ActionBlock();
         $actionBlock->setEnabled(false);
         $actionBlock->setActionName('CmfBlockBundle:Test:test');
 
-        $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->kernel
+            ->expects($this->never())
+            ->method('render')
+        ;
 
-        $kernelMock = $this->getMockBuilder('Symfony\Component\HttpKernel\Fragment\FragmentHandler')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $kernelMock->expects($this->never())
-            ->method('render');
-
-        $actionBlockService = new ActionBlockService('test-service', $templatingMock, $kernelMock);
+        $actionBlockService = new ActionBlockService('test-service', $this->templating, $this->kernel);
         $actionBlockService->execute(new BlockContext($actionBlock));
     }
 
@@ -35,21 +50,22 @@ class ActionBlockServiceTest extends \PHPUnit_Framework_TestCase
         $actionBlock->setEnabled(true);
         $actionBlock->setActionName('CmfBlockBundle:Test:test');
 
-        $actionResponse = new Response("Rendered Action Block.");
+        $content = "Rendered Action Block.";
 
-        $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $request = $this->getMock('Symfony\Component\HttpFoundation\Request');
 
-        $kernelMock = $this->getMockBuilder('Symfony\Component\HttpKernel\Fragment\FragmentHandler')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $kernelMock->expects($this->once())
+        $this->kernel
+            ->expects($this->once())
             ->method('render')
-            ->will($this->returnValue($actionResponse->getContent()));
+            ->will($this->returnValue($content))
+        ;
 
-        $actionBlockService = new ActionBlockService('test-service', $templatingMock, $kernelMock);
-        $this->assertEquals($actionResponse, $actionBlockService->execute(new BlockContext($actionBlock)));
+        $actionBlockService = new ActionBlockService('test-service', $this->templating, $this->kernel);
+        $actionBlockService->setRequest($request);
+
+        $response = $actionBlockService->execute(new BlockContext($actionBlock));
+        $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
+        $this->assertEquals($content, $response->getContent());
     }
 
 }

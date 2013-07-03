@@ -2,30 +2,53 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\HttpKernel\Controller\ControllerReference;
+use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Controller\ControllerReference;
-use Symfony\Component\HttpKernel\Kernel;
+
+use Symfony\Cmf\Bundle\BlockBundle\Document\ActionBlock;
 
 class ActionBlockService extends BaseBlockService implements BlockServiceInterface
 {
+    /**
+     * @var Request
+     */
+    private $request;
+
+    /**
+     * @var FragmentHandler
+     */
     protected $renderer;
 
     /**
      * @param string $name
-     * @param \Symfony\Bundle\FrameworkBundle\Templating\EngineInterface $templating
-     * @param \Symfony\Component\HttpKernel\Fragment\FragmentHandler $renderer
+     * @param EngineInterface $templating
+     * @param FragmentHandler $renderer
      */
-    public function __construct($name, EngineInterface $templating, $renderer)
+    public function __construct($name, EngineInterface $templating, FragmentHandler $renderer)
     {
         parent::__construct($name, $templating);
         $this->renderer = $renderer;
+    }
+
+    /**
+     * Set the request, used for the cmf_request_aware tag.
+     *
+     * @param Request $request
+     */
+    public function setRequest(Request $request = null)
+    {
+        $this->request = $request;
     }
 
     /**
@@ -49,10 +72,7 @@ class ActionBlockService extends BaseBlockService implements BlockServiceInterfa
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        if (!$response) {
-            $response = new Response();
-        }
-
+        /** @var $block ActionBlock */
         $block = $blockContext->getBlock();
 
         if (!$block->getActionName()) {
@@ -62,13 +82,15 @@ class ActionBlockService extends BaseBlockService implements BlockServiceInterfa
             ));
         }
 
-        if ($block->getEnabled()) {
-            $response = new Response($this->renderer->render(new ControllerReference(
-                $block->getActionName(),
-                array('block' => $block, 'blockContext' => $blockContext)
-            )));
+        if (!$block->getEnabled()) {
+            return new Response;
         }
 
-        return $response;
+        $requestParams = $block->resolveRequestParams($this->request, $blockContext);
+
+        return new Response($this->renderer->render(new ControllerReference(
+            $block->getActionName(),
+            $requestParams
+        )));
     }
 }
