@@ -23,6 +23,11 @@ class CmfBlockExtension extends CmfBlockHelper implements \Twig_ExtensionInterfa
         );
     }
 
+    public function getName()
+    {
+        return 'cmf_block';
+    }
+
     // from \Twig_Extension
 
     /**
