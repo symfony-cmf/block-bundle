@@ -44,8 +44,15 @@ class BlockVarnishCache extends VarnishCache
      * @param array                         $servers                An array of servers
      * @param string                        $purgeInstruction       The purge instruction (purge in Varnish 2, ban in Varnish 3)
      */
-    public function __construct($token, RouterInterface $router, BlockRendererInterface $blockRenderer, BlockLoaderInterface $blockLoader, BlockContextManagerInterface $blockContextManager, array $servers = array(), $purgeInstruction)
-    {
+    public function __construct(
+        $token,
+        RouterInterface $router,
+        BlockRendererInterface $blockRenderer,
+        BlockLoaderInterface $blockLoader,
+        BlockContextManagerInterface $blockContextManager,
+        array $servers = array(),
+        $purgeInstruction
+    ) {
         parent::__construct($token, $servers, $router, $purgeInstruction, null);
 
         $this->blockRenderer       = $blockRenderer;
@@ -129,6 +136,17 @@ class BlockVarnishCache extends VarnishCache
             throw new NotFoundHttpException(sprintf('Block not found : %s', $request->get('block_id')));
         }
 
-        return $this->blockRenderer->render($this->blockContextManager->get($block));
+        $settings = $request->get(BlockContextManagerInterface::CACHE_KEY, array());
+
+        if (!is_array($settings)) {
+            throw new \RuntimeException(sprintf(
+                'Query string parameter `%s` is not an array',
+                BlockContextManagerInterface::CACHE_KEY
+            ));
+        }
+
+        return $this->blockRenderer->render(
+            $this->blockContextManager->get($block, $settings)
+        );
     }
 }
