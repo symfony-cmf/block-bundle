@@ -9,8 +9,10 @@ use Sonata\CacheBundle\Adapter\VarnishCache;
 use Sonata\CacheBundle\Cache\CacheElement;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Controller\ControllerReference;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
@@ -34,9 +36,15 @@ class BlockVarnishCache extends VarnishCache
     protected $blockContextManager;
 
     /**
+     * @var FragmentHandler
+     */
+    protected $fragmentHandler;
+
+    /**
      * Constructor
      *
      * @param string                        $token                  A token
+     * @param FragmentHandler               $fragmentHandler        A fragment handler
      * @param RouterInterface               $router                 A router instance
      * @param BlockRendererInterface        $blockRenderer          A block renderer instance
      * @param BlockLoaderInterface          $blockLoader            A block loader instance
@@ -50,6 +58,7 @@ class BlockVarnishCache extends VarnishCache
         BlockRendererInterface $blockRenderer,
         BlockLoaderInterface $blockLoader,
         BlockContextManagerInterface $blockContextManager,
+        FragmentHandler $fragmentHandler,
         array $servers = array(),
         $purgeInstruction
     ) {
@@ -58,6 +67,7 @@ class BlockVarnishCache extends VarnishCache
         $this->blockRenderer       = $blockRenderer;
         $this->blockLoader         = $blockLoader;
         $this->blockContextManager = $blockContextManager;
+        $this->fragmentHandler     = $fragmentHandler;
     }
 
     /**
@@ -85,7 +95,9 @@ class BlockVarnishCache extends VarnishCache
 
         $keys['_token'] = $this->computeHash($keys);
 
-        $content = sprintf('<esi:include src="%s" />', $this->router->generate('cmf_block_cache_esi', $keys, true));
+        $controllerReference = new ControllerReference('cmf.block.cache.varnish:cacheAction', $keys);
+
+        $content = $this->fragmentHandler->render($controllerReference, 'esi');
 
         return new CacheElement($keys, new Response($content));
     }

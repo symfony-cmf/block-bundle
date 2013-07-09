@@ -2,8 +2,8 @@
 
 {% block block %}
     <div class="span3">
-        <h2>{{ block.settings.title }}</h2>
-        <p>This block displays a list of messages based on this <a href="{{ block.settings.url }}" title="Url rss block">rss feed</a>.</p>
+        <h2>{{ settings.title }}</h2>
+        <p>This block displays a list of messages based on this <a href="{{ settings.url }}" title="Url rss block">rss feed</a>.</p>
 
         <div class="feed-container">
             {% for item in items %}

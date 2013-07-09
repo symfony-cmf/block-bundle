@@ -148,8 +148,8 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
             $container
                 ->getDefinition('cmf.block.cache.varnish')
                 ->replaceArgument(0, $config['caches']['varnish']['token'])
-                ->replaceArgument(5, $config['caches']['varnish']['servers'])
-                ->replaceArgument(6, 3 === $config['caches']['varnish']['version'] ? 'ban' : 'purge');
+                ->replaceArgument(6, $config['caches']['varnish']['servers'])
+                ->replaceArgument(7, 3 === $config['caches']['varnish']['version'] ? 'ban' : 'purge');
             ;
         } else {
             $container->removeDefinition('cmf.block.cache.varnish');
