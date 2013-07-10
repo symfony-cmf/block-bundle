@@ -4,10 +4,6 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="cmf_block_cache_varnish" pattern="/symfony-cmf/block/cache/varnish/{_token}/{block_id}">
-        <default key="_controller">cmf.block.cache.varnish:cacheAction</default>
-    </route>
-
     <route id="cmf_block_cache_ssi" pattern="/symfony-cmf/block/cache/ssi/{_token}/{block_id}">
         <default key="_controller">cmf.block.cache.ssi:cacheAction</default>
     </route>

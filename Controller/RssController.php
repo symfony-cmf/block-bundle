@@ -20,8 +20,9 @@ class RssController extends Controller
     public function block(BlockInterface $block, BlockContextInterface $blockContext)
     {
         return $this->render($blockContext->getTemplate(), array(
-            'block' => $block,
-            'items' => $this->getItems($blockContext)
+            'block'    => $block,
+            'items'    => $this->getItems($blockContext),
+            'settings' => $blockContext->getSettings(),
         ));
     }
 

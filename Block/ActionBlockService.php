@@ -89,8 +89,10 @@ class ActionBlockService extends BaseBlockService implements BlockServiceInterfa
         $requestParams = $block->resolveRequestParams($this->request, $blockContext);
 
         return new Response($this->renderer->render(new ControllerReference(
-            $block->getActionName(),
-            $requestParams
-        )));
+                $block->getActionName(),
+                $requestParams
+            ),
+            'cmf_block_action'
+        ));
     }
 }

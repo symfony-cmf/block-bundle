@@ -3,9 +3,20 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Cache;
 
 use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockVarnishCache;
+use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
 
 class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var FragmentHandler|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private $fragmentHandler;
+
+    public function setUp()
+    {
+        $this->fragmentHandler = $this->getMock('Symfony\Component\HttpKernel\Fragment\FragmentHandler');
+    }
+
     /**
      * @expectedException \RuntimeException
      * @dataProvider      getExceptionCacheKeys
@@ -20,7 +31,7 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
 
-        $cache = new BlockVarnishCache('My Token', $router, $blockRenderer, $blockLoader, $blockContextManager, array(), 'ban');
+        $cache = new BlockVarnishCache('My Token', $router, $blockRenderer, $blockLoader, $blockContextManager, $this->fragmentHandler, array(), 'ban');
 
         $cache->get($keys, 'data');
     }
@@ -45,7 +56,15 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
 
-        $cache = new BlockVarnishCache('My Token', $router, $blockRenderer, $blockLoader, $blockContextManager, array(), 'ban');
+        $content = '<esi:include src="http://cmf.symfony.com/symfony-cmf/block/cache/varnish/XXX/%2Fcms%2Fcontent%2Fhome%2FadditionalInfoBlock?updated_at=as';
+
+        $this->fragmentHandler
+            ->expects($this->once())
+            ->method('render')
+            ->will($this->returnValue($content))
+        ;
+
+        $cache = new BlockVarnishCache('My Token', $router, $blockRenderer, $blockLoader, $blockContextManager, $this->fragmentHandler, array(), 'ban');
 
         $this->assertTrue($cache->flush(array()));
         $this->assertTrue($cache->flushAll());
@@ -65,7 +84,7 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Sonata\CacheBundle\Cache\CacheElement', $cacheElement);
 
-        $this->assertEquals('<esi:include src="http://cmf.symfony.com/symfony-cmf/block/cache/varnish/XXX/%2Fcms%2Fcontent%2Fhome%2FadditionalInfoBlock?updated_at=as" />', $cacheElement->getData()->getContent());
+        $this->assertEquals($content, $cacheElement->getData()->getContent());
     }
 
     /**
@@ -87,7 +106,7 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
 
-        $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager, array(), 'ban');
+        $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager, $this->fragmentHandler, array(), 'ban');
 
         $request = new \Symfony\Component\HttpFoundation\Request($keys, array(), array('_token' => 'XXX'));
 
@@ -113,7 +132,7 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
 
-        $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager, array(), 'ban');
+        $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager, $this->fragmentHandler, array(), 'ban');
 
         $refCache = new \ReflectionClass($cache);
         $refComputeHash = $refCache->getMethod('computeHash');
