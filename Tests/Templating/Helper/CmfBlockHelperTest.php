@@ -17,7 +17,7 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
     public function testEmbedBlock($input, $blockname)
     {
         $this->getSonataBlock()->expects($this->once())
-            ->method('renderBlock')
+            ->method('render')
             ->with($this->equalTo(array('name' => $blockname)));
 
         $helper = new CmfBlockHelper($this->getSonataBlock(), '%embed-block:', '%');
@@ -45,7 +45,7 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
         $exception = $this->getMock('Sonata\BlockBundle\Exception\BlockNotFoundException');
 
         $this->getSonataBlock()->expects($this->once())
-            ->method('renderBlock')
+            ->method('render')
             ->will($this->throwException($exception));
 
         $helper = new CmfBlockHelper($this->getSonataBlock(), '%embed-block:', '%', $logger);
@@ -55,11 +55,11 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
     public function testMultipleEmbedBlocks()
     {
         $this->getSonataBlock()->expects($this->at(0))
-            ->method('renderBlock')
+            ->method('render')
             ->with($this->equalTo(array('name' => 'foo')));
 
         $this->getSonataBlock()->expects($this->at(1))
-            ->method('renderBlock')
+            ->method('render')
             ->with($this->equalTo(array('name' => 'cat')));
 
         $helper = new CmfBlockHelper($this->getSonataBlock(), '%embed-block:', '%');
@@ -77,7 +77,7 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
 
     private function setSonataBlock()
     {
-        $this->sonataBlock = $this->getMockBuilder('Sonata\BlockBundle\Twig\Extension\BlockExtension')
+        $this->sonataBlock = $this->getMockBuilder('Sonata\BlockBundle\Templating\Helper\BlockHelper')
             ->disableOriginalConstructor()
             ->getMock();
     }
