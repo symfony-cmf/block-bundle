@@ -16,7 +16,7 @@ use Sonata\BlockBundle\Exception\BlockNotFoundException;
 class CmfBlockHelper extends Helper
 {
     /**
-     * @var BlockExtension
+     * @var SonataBlockHelper
      */
     private $sonataBlock;
 
@@ -75,7 +75,7 @@ class CmfBlockHelper extends Helper
      */
     public function includeJavascripts($media)
     {
-        return $this->sonataBlock->includeJavaScript($media);
+        return $this->sonataBlock->includeJavaScripts($media);
     }
 
     /**

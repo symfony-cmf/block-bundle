@@ -73,15 +73,12 @@
         </service>
 
         <service id="cmf_block.twig.embed_extension" class="%cmf_block.twig_extension_class%">
-            <argument type="service" id="sonata.block.twig.extension"/>
-            <argument>%cmf_block.twig.cmf_embed_blocks.prefix%</argument>
-            <argument>%cmf_block.twig.cmf_embed_blocks.postfix%</argument>
-            <argument type="service" id="logger"/>
+            <argument type="service" id="cmf_block.templating.helper.block"/>
             <tag name="twig.extension"/>
         </service>
 
         <service id="cmf_block.templating.helper.block" class="%cmf_block.templating.helper.block.class%">
-            <argument type="service" id="sonata.block.twig.extension" />
+            <argument type="service" id="sonata.block.templating.helper" />
             <argument>%cmf_block.twig.cmf_embed_blocks.prefix%</argument>
             <argument>%cmf_block.twig.cmf_embed_blocks.postfix%</argument>
             <argument type="service" id="logger" />
