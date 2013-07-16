@@ -4,15 +4,15 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Twig\Extension;
 
 use Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\CmfBlockHelper;
 
-use Sonata\BlockBundle\Twig\Extension\BlockExtension as SonataBlockExtension;
-
 /**
  * Utility function for blocks
  *
  * @author David Buchmann <david@liip.ch>
  */
-class CmfBlockExtension extends SonataBlockExtension
+class CmfBlockExtension extends \Twig_Extension
 {
+    protected $blockHelper;
+
     public function __construct(CmfBlockHelper $blockHelper)
     {
         $this->blockHelper = $blockHelper;
