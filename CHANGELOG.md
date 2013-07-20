@@ -1,6 +1,18 @@
 Changelog
 =========
 
+* **2013-07-16**: [Model] Adopted persistance standard model, see: http://symfony.com/doc/master/cmf/contributing/bundles.html#Persistence.
+
+  To migrate adapt the following script. Run it once for each document class,
+  replacing <documentClass> with `ActionBlock`, `ContainerBlock`,
+  `ImagineBlock`, `MultilangImagineBlock`, `MultilangSimpleBlock`,
+  `MultilangSlideshowBlock`, `ReferenceBlock`, `RssBlock`, `SimpleBlock`,
+  `SlideshowBlock` and `StringBlock` respectively:
+
+    $ php app/console doctrine:phpcr:nodes:update \
+        --query="SELECT * FROM [nt:unstructured] WHERE [phpcr:class] = \"Symfony\\Cmf\\Bundle\\BlockBundle\\Document\\<documentClass>\"" \
+        --set-prop=phpcr:class="Symfony\\Cmf\\Bundle\\BlockBundle\\Doctrine\\Phpcr\\<documentClass>"
+
 1.0.0-beta3
 -----------
 

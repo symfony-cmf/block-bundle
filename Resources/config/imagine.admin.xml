@@ -6,12 +6,12 @@
 
     <parameters>
         <parameter key="cmf_block.imagine.slideshow_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine\SlideshowBlockAdmin</parameter>
-        <parameter key="cmf_block.slideshow_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\SlideshowBlock</parameter>
-        <parameter key="cmf_block.multilang_slideshow_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSlideshowBlock</parameter>
+        <parameter key="cmf_block.slideshow_document_class">Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock</parameter>
+        <parameter key="cmf_block.multilang_slideshow_document_class">Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MultilangSlideshowBlock</parameter>
 
         <parameter key="cmf_block.imagine.imagine_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine\ImagineBlockAdmin</parameter>
-        <parameter key="cmf_block.imagine_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\ImagineBlock</parameter>
-        <parameter key="cmf_block.multilang_imagine_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\MultilangImagineBlock</parameter>
+        <parameter key="cmf_block.imagine_document_class">Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock</parameter>
+        <parameter key="cmf_block.multilang_imagine_document_class">Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MultilangImagineBlock</parameter>
     </parameters>
 
     <services>

@@ -6,7 +6,7 @@
 
     <parameters>
         <parameter key="cmf_block.string_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\StringBlockAdmin</parameter>
-        <parameter key="cmf_block.string_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\StringBlock</parameter>
+        <parameter key="cmf_block.string_document_class">Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\StringBlock</parameter>
     </parameters>
 
     <services>

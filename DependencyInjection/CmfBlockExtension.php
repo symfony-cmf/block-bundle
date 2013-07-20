@@ -25,7 +25,7 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
                 ),
                 'blocks_by_class' => array(
                     0 => array(
-                        'class'     => "Symfony\\Cmf\\Bundle\\BlockBundle\\Document\\RssBlock",
+                        'class'     => "Symfony\\Cmf\\Bundle\\BlockBundle\\Doctrine\\Phpcr\\RssBlock",
                         'settings'  => array(
                             'title'     => 'Insert the rss title',
                             'url'       => false,

@@ -6,7 +6,7 @@
 
     <parameters>
         <parameter key="cmf_block.action_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\ActionBlockAdmin</parameter>
-        <parameter key="cmf_block.action_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\ActionBlock</parameter>
+        <parameter key="cmf_block.action_document_class">Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock</parameter>
     </parameters>
 
     <services>

@@ -6,7 +6,7 @@
 
     <parameters>
         <parameter key="cmf_block.multilang.simple_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\MultilangSimpleBlockAdmin</parameter>
-        <parameter key="cmf_block.multilang.simple_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock</parameter>
+        <parameter key="cmf_block.multilang.simple_document_class">Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MultilangSimpleBlock</parameter>
     </parameters>
 
     <services>

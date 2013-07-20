@@ -1,21 +1,25 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Document;
-
-use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
+namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
 /**
  * Block to display a list of rss items
- *
- * @PHPCRODM\Document(referenceable=true)
  */
 class RssBlock extends ActionBlock
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getType()
     {
         return 'cmf.block.action';
     }
 
+    /**
+     * Returns the default action name
+     *
+     * @return string
+     */
     public function getDefaultActionName()
     {
         return 'cmf.block.rss_controller:block';

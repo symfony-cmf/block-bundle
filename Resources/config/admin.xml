@@ -6,7 +6,7 @@
 
     <parameters>
         <parameter key="cmf_block.simple_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\SimpleBlockAdmin</parameter>
-        <parameter key="cmf_block.simple_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\SimpleBlock</parameter>
+        <parameter key="cmf_block.simple_document_class">Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock</parameter>
     </parameters>
 
     <services>

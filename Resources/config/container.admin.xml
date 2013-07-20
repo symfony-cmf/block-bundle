@@ -6,7 +6,7 @@
 
     <parameters>
         <parameter key="cmf_block.container_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\ContainerBlockAdmin</parameter>
-        <parameter key="cmf_block.container_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock</parameter>
+        <parameter key="cmf_block.container_document_class">Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock</parameter>
     </parameters>
 
     <services>

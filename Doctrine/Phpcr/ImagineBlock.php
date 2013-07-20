@@ -1,40 +1,38 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Document;
+namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
 use Doctrine\ODM\PHPCR\Document\Image;
-use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
-
-use Symfony\Cmf\Bundle\BlockBundle\Document\BaseBlock;
 
 /**
  * Block to hold an image
- *
- * @PHPCRODM\Document(referenceable=true)
  */
-class ImagineBlock extends BaseBlock
+class ImagineBlock extends AbstractBlock
 {
     /**
      * @var Image
-     * @PHPCRODM\Child(cascade="persist")
      */
     protected $image;
 
-    /** @PHPCRODM\String */
+    /**
+     * @var string
+     */
     protected $label;
 
     /**
      * Optional link url to use on the image
-     * @PHPCRODM\String
+     *
+     * @var string
      */
     protected $linkUrl;
 
-    /** @PHPCRODM\String */
+    /**
+     * @var string
+     */
     protected $filter;
 
     /**
      * @var \PHPCR\NodeInterface
-     * @PHPCRODM\Node
      */
     protected $node;
 
@@ -46,21 +44,41 @@ class ImagineBlock extends BaseBlock
         return 'cmf.block.imagine';
     }
 
+    /**
+     * Set label
+     *
+     * @param string $label
+     */
     public function setLabel($label)
     {
         $this->label = $label;
     }
 
+    /**
+     * Get label
+     *
+     * @return string
+     */
     public function getLabel()
     {
         return $this->label;
     }
 
+    /**
+     * Set link url
+     *
+     * @param string $url
+     */
     public function setLinkUrl($url)
     {
         $this->linkUrl = $url;
     }
 
+    /**
+     * Get link url
+     *
+     * @return string
+     */
     public function getLinkUrl()
     {
         return $this->linkUrl;
@@ -68,12 +86,19 @@ class ImagineBlock extends BaseBlock
 
     /**
      * Sets the Imagine filter which is going to be used
+     *
+     * @param string $filter
      */
     public function setFilter($filter)
     {
         $this->filter = $filter;
     }
 
+    /**
+     * Get the Imagine filter
+     *
+     * @return string
+     */
     public function getFilter()
     {
         return $this->filter;
@@ -105,6 +130,8 @@ class ImagineBlock extends BaseBlock
     }
 
     /**
+     * Get image
+     *
      * @return Image
      */
     public function getImage()
@@ -113,11 +140,12 @@ class ImagineBlock extends BaseBlock
     }
 
     /**
+     * Get node
+     *
      * @return \PHPCR\NodeInterface
      */
     public function getNode()
     {
         return $this->node;
     }
-
 }

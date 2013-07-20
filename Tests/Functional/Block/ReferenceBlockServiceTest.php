@@ -4,8 +4,8 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Sonata\BlockBundle\Block\BlockContext;
 use Symfony\Cmf\Bundle\BlockBundle\Block\ReferenceBlockService,
-    Symfony\Cmf\Bundle\BlockBundle\Document\ReferenceBlock,
-    Symfony\Cmf\Bundle\BlockBundle\Document\SimpleBlock;
+    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock,
+    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 
 class ReferenceBlockServiceTest extends \PHPUnit_Framework_TestCase
 {

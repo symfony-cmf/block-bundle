@@ -1,22 +1,18 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Document;
+namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
-use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
-use Doctrine\ODM\PHPCR\ChildrenCollection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ODM\PHPCR\ChildrenCollection;
 use Sonata\BlockBundle\Model\BlockInterface;
 
 /**
  * Block that contains other blocks
- *
- * @PHPCRODM\Document(referenceable=true)
  */
-class ContainerBlock extends BaseBlock
+class ContainerBlock extends AbstractBlock
 {
     /**
      * @var ChildrenCollection
-     * @PHPCRODM\Children(cascade={"all"})
      */
     protected  $children;
 
@@ -34,11 +30,23 @@ class ContainerBlock extends BaseBlock
         return 'cmf.block.container';
     }
 
+    /**
+     * Get children
+     *
+     * @return ArrayCollection|ChildrenCollection
+     */
     public function getChildren()
     {
         return $this->children;
     }
 
+    /**
+     * Set children
+     *
+     * @param ChildrenCollection $children
+     *
+     * @return ChildrenCollection
+     */
     public function setChildren(ChildrenCollection $children)
     {
         return $this->children = $children;
@@ -80,12 +88,11 @@ class ContainerBlock extends BaseBlock
     /**
      * Remove a child from this container
      *
-     * @param mixed $child
+     * @param BlockInterface $child
      * @return void
      */
     public function removeChild($child)
     {
         $this->children->removeElement($child);
     }
-
 }

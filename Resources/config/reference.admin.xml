@@ -6,7 +6,7 @@
 
     <parameters>
         <parameter key="cmf_block.reference_admin_class">Symfony\Cmf\Bundle\BlockBundle\Admin\ReferenceBlockAdmin</parameter>
-        <parameter key="cmf_block.reference_document_class">Symfony\Cmf\Bundle\BlockBundle\Document\ReferenceBlock</parameter>
+        <parameter key="cmf_block.reference_document_class">Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock</parameter>
     </parameters>
 
     <services>

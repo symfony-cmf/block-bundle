@@ -9,7 +9,7 @@ use Symfony\Component\Templating\EngineInterface;
 use Sonata\BlockBundle\Block\BlockContext;
 
 use Symfony\Cmf\Bundle\BlockBundle\Block\ActionBlockService;
-use Symfony\Cmf\Bundle\BlockBundle\Document\ActionBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock;
 
 class ActionBlockServiceTest extends \PHPUnit_Framework_TestCase
 {

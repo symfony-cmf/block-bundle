@@ -4,27 +4,27 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
         http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
-    <class name="Symfony\Cmf\Bundle\BlockBundle\Document\BaseBlock">
+    <class name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\AbstractBlock">
         <constraint name="Doctrine\Bundle\PHPCRBundle\Validator\Constraints\ValidPhpcrOdm" />
     </class>
 
-    <class name="Symfony\Cmf\Bundle\BlockBundle\Document\ActionBlock">
+    <class name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock">
         <property name="actionName">
             <constraint name="NotBlank" />
         </property>
     </class>
 
-    <class name="Symfony\Cmf\Bundle\BlockBundle\Document\SimpleBlock">
+    <class name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock">
         <property name="title">
             <constraint name="NotBlank" />
         </property>
 
-        <property name="content">
+        <property name="body">
             <constraint name="NotBlank" />
         </property>
     </class>
 
-    <class name="Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock">
+    <class name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MultilangSimpleBlock">
         <property name="locale">
             <constraint name="NotBlank" />
             <constraint name="Locale" />
@@ -34,7 +34,7 @@
             <constraint name="NotBlank" />
         </property>
 
-        <property name="content">
+        <property name="body">
             <constraint name="NotBlank" />
         </property>
     </class>
