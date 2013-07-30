@@ -22,7 +22,7 @@ class CmfBlockExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFunction('cmf_embed_blocks',
-                array($this->blockHelper, 'cmfEmbedBlocks'),
+                array($this->blockHelper, 'embedBlocks'),
                 array('is_safe' => array('html'))
             ),
         );
