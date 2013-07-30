@@ -54,17 +54,23 @@ class CmfBlockHelper extends Helper
     /**
      * Executes the block as specified in the content.
      *
-     * @param array $block An array including the block name
+     * @param mixed $block An array including the block name from embedBlocks()
+     * @param array $options
      *
      * @return string the rendered block
      */
-    public function render($block)
+    public function render($block, array $options = array())
     {
+        if (is_array($block) && !isset($block['name']) && isset($block[1])) {
+            // received data from embedBlocks()
+            $block = array('name' => $block[1]);
+        }
+
         try {
-            return $this->sonataBlock->render(array('name' => $block[1]));
+            return $this->sonataBlock->render($block, $options);
         } catch (BlockNotFoundException $e) {
             if ($this->logger) {
-                $this->logger->warn('Failed to render block "' . $block[1] . '" embedded in content: ' . $e->getTraceAsString());
+                $this->logger->warn('Failed to render block' . (is_array($block) && isset($block['name']) ? ' "' . $block['name'] . '"' : '') . ' embedded in content: ' . $e->getTraceAsString());
             }
         }
         return '';
