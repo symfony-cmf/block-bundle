@@ -48,26 +48,15 @@ class CmfBlockHelper extends Helper
     public function embedBlocks($text)
     {
         // with the default prefix and postfix, this will do <span>block:"block-identifier"</span>
-        return preg_replace_callback('#' . $this->prefix . '"([^\"]+)"' . $this->postfix . '#', array($this, 'render'), $text);
+        return preg_replace_callback('#' . $this->prefix . '"([^\"]+)"' . $this->postfix . '#', array($this, 'embeddedRender'), $text);
     }
 
     /**
-     * Executes the block as specified in the content.
-     *
-     * @param array $block An array including the block name
-     *
-     * @return string the rendered block
+     * @see SonataBlockHelper::render
      */
-    public function render($block)
+    public function render($block, array $options = array())
     {
-        try {
-            return $this->sonataBlock->render(array('name' => $block[1]));
-        } catch (BlockNotFoundException $e) {
-            if ($this->logger) {
-                $this->logger->warn('Failed to render block "' . $block[1] . '" embedded in content: ' . $e->getTraceAsString());
-            }
-        }
-        return '';
+        return $this->sonataBlock->render($block, $options);
     }
 
     /**
@@ -89,5 +78,24 @@ class CmfBlockHelper extends Helper
     public function getName()
     {
         return 'blocks';
+    }
+
+    /**
+     * Executes the block as specified in the content.
+     *
+     * @param array $block An array including the block name
+     *
+     * @return string the rendered block
+     */
+    protected function embeddedRender($block)
+    {
+        try {
+            return $this->sonataBlock->render(array('name' => $block[1]));
+        } catch (BlockNotFoundException $e) {
+            if ($this->logger) {
+                $this->logger->warn('Failed to render block "' . $block[1] . '" embedded in content: ' . $e->getTraceAsString());
+            }
+        }
+        return '';
     }
 }
