@@ -4,6 +4,8 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Cache;
 
 use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockSsiCache;
 
+use Symfony\Component\HttpFoundation\Request;
+
 class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -89,7 +91,7 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
 
         $cache = new BlockSsiCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager);
 
-        $request = new \Symfony\Component\HttpFoundation\Request($keys, array(), array('_token' => 'XXXXX'));
+        $request = new Request($keys, array(), array('_token' => 'XXXXX'));
 
         $cache->cacheAction($request);
     }
@@ -120,7 +122,7 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
         $refComputeHash->setAccessible(true);
         $computedToken = $refComputeHash->invokeArgs($cache, array($keys));
 
-        $request = new \Symfony\Component\HttpFoundation\Request($keys, array(), array('_token' => $computedToken));
+        $request = new Request($keys, array(), array('_token' => $computedToken));
 
         $cache->cacheAction($request);
     }

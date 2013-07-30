@@ -4,6 +4,8 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Cache;
 
 use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache;
 
+use Symfony\Component\HttpFoundation\Response;
+
 /**
  *
  */
@@ -105,6 +107,6 @@ EXPECTED;
         $request = $this->getMock('Symfony\Component\HttpFoundation\Request');
 
         // block not found
-        $this->assertEquals(new \Symfony\Component\HttpFoundation\Response('', 404), $cache->cacheAction($request));
+        $this->assertEquals(new Response('', 404), $cache->cacheAction($request));
     }
 }

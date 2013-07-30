@@ -3,6 +3,8 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Cache;
 
 use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockVarnishCache;
+
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
 
 class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
@@ -108,7 +110,7 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 
         $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager, $this->fragmentHandler, array(), 'ban');
 
-        $request = new \Symfony\Component\HttpFoundation\Request($keys, array(), array('_token' => 'XXX'));
+        $request = new Request($keys, array(), array('_token' => 'XXX'));
 
         $cache->cacheAction($request);
     }
@@ -139,7 +141,7 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
         $refComputeHash->setAccessible(true);
         $computedToken = $refComputeHash->invokeArgs($cache, array($keys));
 
-        $request = new \Symfony\Component\HttpFoundation\Request($keys, array(), array('_token' => $computedToken));
+        $request = new Request($keys, array(), array('_token' => $computedToken));
 
         $cache->cacheAction($request);
     }

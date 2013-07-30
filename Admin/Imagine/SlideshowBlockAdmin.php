@@ -6,7 +6,6 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
 use Doctrine\Common\Util\ClassUtils;
-use Doctrine\ODM\PHPCR\ChildrenCollection;
 
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -38,7 +37,7 @@ class SlideshowBlockAdmin extends Admin
     /**
      * Configure the service name (admin_code) of the admin service for the embedded slides
      *
-     * @param string $admin_code
+     * @param string $adminCode
      */
     public function setEmbeddedSlidesAdmin($adminCode)
     {

@@ -3,16 +3,21 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Controller;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Sonata\BlockBundle\Model\BlockInterface;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Cmf\Bundle\BlockBundle\Model\FeedItem;
+
+use Zend\Feed\Reader\Exception\RuntimeException;
 
 class RssController extends Controller
 {
     /**
      * Action that is referenced in an ActionBlock
      *
+     * @param BlockInterface        $block
      * @param BlockContextInterface $blockContext
      *
      * @return Response the response
@@ -46,7 +51,7 @@ class RssController extends Controller
             try {
                 $reader = $this->get('eko_feed.feed.reader');
                 $items = $reader->load($blockContext->getSetting('url'))->populate($blockContext->getSetting('itemClass'));
-            } catch (\Zend\Feed\Reader\Exception\RuntimeException $e) {
+            } catch (RuntimeException $e) {
                 // feed import failed
                 $this->get('logger')->debug(sprintf(
                     'RssBlock with id "%s" could not import feed from "%s", error: %s',

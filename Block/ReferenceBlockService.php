@@ -5,12 +5,12 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
-use Sonata\BlockBundle\Block\BlockContext;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
 use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
+
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -22,8 +22,9 @@ class ReferenceBlockService extends BaseBlockService implements BlockServiceInte
 
     /**
      * @param string $name
-     * @param \Symfony\Bundle\FrameworkBundle\Templating\EngineInterface $templating
-     * @param \Sonata\BlockBundle\Block\BlockRendererInterface $blockRenderer
+     * @param EngineInterface $templating
+     * @param BlockRendererInterface $blockRenderer
+     * @param BlockContextManagerInterface $blockContextManager
      */
     public function __construct($name, EngineInterface $templating, BlockRendererInterface $blockRenderer, BlockContextManagerInterface $blockContextManager)
     {
