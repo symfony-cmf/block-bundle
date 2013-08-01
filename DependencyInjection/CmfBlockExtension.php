@@ -44,23 +44,23 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
     {
         $config = $this->processConfiguration(new Configuration(), $configs);
 
-        $container->setParameter($this->getAlias() . '.content_basepath', $config['content_basepath']);
-        $container->setParameter($this->getAlias() . '.block_basepath', $config['block_basepath']);
         $container->setParameter($this->getAlias() . '.twig.cmf_embed_blocks.prefix', $config['twig']['cmf_embed_blocks']['prefix']);
         $container->setParameter($this->getAlias() . '.twig.cmf_embed_blocks.postfix', $config['twig']['cmf_embed_blocks']['postfix']);
 
+        // detect bundles
+        if ($config['use_imagine'] ||
+            ('auto' === $config['use_imagine'] && isset($bundles['LiipImagineBundle']))
+        ) {
+            $useImagine = true;
+        }
+
+        // load config
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        if ($config['use_sonata_admin']) {
-            $this->loadSonataAdmin($config, $loader, $container);
-        }
-
-        $this->loadSonataCache($config, $loader, $container);
-
         if (isset($config['multilang'])) {
             if ($config['multilang']['use_sonata_admin']) {
-                $this->loadSonataAdmin($config['multilang'], $loader, $container, 'multilang.');
+                $this->loadSonataAdmin($config['multilang'], $loader, $container, false, 'multilang.');
             }
             if (isset($config['multilang']['simple_document_class'])) {
                 $container->setParameter($this->getAlias() . '.multilang.document_class', $config['multilang']['simple_document_class']);
@@ -69,40 +69,52 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
             $container->setParameter($this->getAlias() . '.multilang.locales', $config['multilang']['locales']);
         }
 
-        if ($config['imagine']) {
+        if (!empty($config['persistence']['phpcr']['enabled'])) {
+            $this->loadPhpcr($config['persistence']['phpcr'], $loader, $container, $useImagine);
+        }
+
+        if ($useImagine) {
             $loader->load('imagine.xml');
         }
 
-        if (isset($config['simple_document_class'])) {
-            $container->setParameter($this->getAlias() . '.simple_document_class', $config['simple_document_class']);
+        $this->loadSonataCache($config, $loader, $container);
+    }
+
+    public function loadPhpcr($config, XmlFileLoader $loader, ContainerBuilder $container, $useImagine)
+    {
+        $container->setParameter($this->getAlias() . '.backend_type_phpcr', true);
+
+        $keys = array(
+            'simple_document_class' => 'simple_document.class',
+            'container_document_class' => 'container_document.class',
+            'reference_document_class' => 'reference_document.class',
+            'action_document_class' => 'action_document.class',
+            'simple_admin_class' => 'simple_admin.class',
+            'container_admin_class' => 'container_admin.class',
+            'reference_admin_class' => 'reference_admin.class',
+            'action_admin_class' => 'action_admin.class',
+            'content_basepath' => 'content_basepath',
+            'block_basepath' => 'block_basepath',
+            'manager_name' => 'manager_name',
+        );
+
+        foreach ($keys as $sourceKey => $targetKey) {
+            if (isset($config[$sourceKey])) {
+                $container->setParameter(
+                    $this->getAlias() . '.'. $targetKey,
+                    $config[$sourceKey]
+                );
+            }
         }
 
-        if (isset($config['container_document_class'])) {
-            $container->setParameter($this->getAlias() . '.container_document_class', $config['container_document_class']);
-        }
+        $loader->load('persistence-phpcr.xml');
 
-        if (isset($config['container_admin_class'])) {
-            $container->setParameter($this->getAlias() . '.' . 'container_admin_class', $config['container_admin_class']);
-        }
-
-        if (isset($config['reference_document_class'])) {
-            $container->setParameter($this->getAlias() . '.reference_document_class', $config['reference_document_class']);
-        }
-
-        if (isset($config['reference_admin_class'])) {
-            $container->setParameter($this->getAlias() . '.' . 'reference_admin_class', $config['reference_admin_class']);
-        }
-
-        if (isset($config['action_document_class'])) {
-            $container->setParameter($this->getAlias() . '.action_document_class', $config['action_document_class']);
-        }
-
-        if (isset($config['action_admin_class'])) {
-            $container->setParameter($this->getAlias() . '.' . 'action_admin_class', $config['action_admin_class']);
+        if ($config['use_sonata_admin']) {
+            $this->loadSonataPhpcrAdmin($config, $loader, $container, $useImagine);
         }
 
         $blockLoader = $container->getDefinition('cmf.block.service');
-        $blockLoader->replaceArgument(1, new Reference($config['manager_registry']));
+        $blockLoader->replaceArgument(1, new Reference('doctrine_phpcr'));
         $blockLoader->addMethodCall('setManagerName', array($config['manager_name']));
 
         $bundles = $container->getParameter('kernel.bundles');
@@ -112,7 +124,7 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         }
     }
 
-    public function loadSonataAdmin($config, XmlFileLoader $loader, ContainerBuilder $container, $prefix = '')
+    public function loadSonataPhpcrAdmin($config, XmlFileLoader $loader, ContainerBuilder $container, $useImagine = false, $prefix = '')
     {
         $bundles = $container->getParameter('kernel.bundles');
         if ('auto' === $config['use_sonata_admin'] && !isset($bundles['SonataDoctrinePHPCRAdminBundle'])) {
@@ -120,17 +132,14 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         }
 
         $loader->load($prefix . 'admin.xml');
-        $loader->load('container.admin.xml');
-        $loader->load('reference.admin.xml');
-        $loader->load('action.admin.xml');
-        $loader->load('string.admin.xml');
+        $loader->load('admin.xml');
 
         if (isset($config['simple_admin_class'])) {
-            $container->setParameter($this->getAlias() . '.' . $prefix . 'simple_admin_class', $config['simple_admin_class']);
+            $container->setParameter($this->getAlias() . '.' . $prefix . 'simple_admin_class', $config['simple_admin.class']);
         }
 
-        if (isset($config['imagine']) && $config['imagine']) {
-            $loader->load('imagine.admin.xml');
+        if ($useImagine){
+            $loader->load('admin-imagine.xml');
         }
     }
 

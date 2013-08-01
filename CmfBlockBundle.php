@@ -22,7 +22,8 @@ class CmfBlockBundle extends Bundle
                         realpath(__DIR__ . '/Resources/config/doctrine-model') => 'Symfony\Cmf\Bundle\BlockBundle\Model',
                         realpath(__DIR__ . '/Resources/config/doctrine-phpcr') => 'Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr',
                     ),
-                    array('cmf_block.manager_name')
+                    array('cmf_block.manager_name'),
+                    'cmf_block.backend_type_phpcr'
                 )
             );
         }
