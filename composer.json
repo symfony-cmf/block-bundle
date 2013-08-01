@@ -20,7 +20,7 @@
         "sonata-project/block-bundle": "~2.2.4"
     },
     "require-dev": {
-        "sonata-project/cache-bundle": "dev-master",
+        "sonata-project/cache-bundle": "~2.1.3",
         "twig/twig": "~1.11"
     },
     "suggest": {

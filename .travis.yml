@@ -11,6 +11,7 @@ env:
   - SYMFONY_VERSION=dev-master
 
 before_script:
+  - composer self-update
   - composer require symfony/framework-bundle:${SYMFONY_VERSION} --prefer-source
 
 script: phpunit --coverage-text

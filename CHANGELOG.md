@@ -1,6 +1,9 @@
 Changelog
 =========
 
+1.0.0-beta3
+-----------
+
 * **2013-06-21**: [ActionBlock] ActionBlock got the method resolveRequestParams.
   If you want the locale to be propagated, update your blocks to have `_locale`
   in the $requestParams. This is done automatically for new ActionBlock
