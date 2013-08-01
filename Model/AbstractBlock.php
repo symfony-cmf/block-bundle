@@ -3,9 +3,6 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Model;
 
 use Sonata\BlockBundle\Model\BlockInterface;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\ExecutionContext;
-
 
 /**
  * Base class for all blocks - connects to Sonata Blocks
@@ -14,8 +11,6 @@ use Symfony\Component\Validator\ExecutionContext;
  * a container block if there is one. PHPCR-ODM blocks always have a parent
  * *document*. If the parent document is a BlockInterface, it is considered
  * a parent in the sonata sense as well.
- *
- * @Assert\Callback(methods={"isSettingsValid"})
  */
 abstract class AbstractBlock implements BlockInterface
 {
@@ -298,20 +293,6 @@ abstract class AbstractBlock implements BlockInterface
     public function __toString()
     {
         return (string) $this->name;
-    }
-
-    /**
-     * Validate settings
-     *
-     * @param \Symfony\Component\Validator\ExecutionContext $context
-     */
-    public function isSettingsValid(ExecutionContext $context)
-    {
-        foreach ($this->getSettings() as $value) {
-            if (is_array($value)) {
-                $context->addViolationAt('settings', 'A multidimensional array is not allowed, only use key-value pairs.');
-            }
-        }
     }
 
     /**
