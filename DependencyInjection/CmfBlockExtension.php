@@ -101,7 +101,7 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         foreach ($keys as $sourceKey => $targetKey) {
             if (isset($config[$sourceKey])) {
                 $container->setParameter(
-                    $this->getAlias() . '.'. $targetKey,
+                    $this->getAlias() . '.persistence.phpcr.'. $targetKey,
                     $config[$sourceKey]
                 );
             }
@@ -115,7 +115,7 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
 
         $blockLoader = $container->getDefinition('cmf.block.service');
         $blockLoader->replaceArgument(1, new Reference('doctrine_phpcr'));
-        $blockLoader->addMethodCall('setManagerName', array($config['manager_name']));
+        $blockLoader->addMethodCall('setManagerName', array('%cmf_block.persistence.phpcr.manager_name%'));
 
         $bundles = $container->getParameter('kernel.bundles');
         if (isset($bundles['CmfCreateBundle'])) {

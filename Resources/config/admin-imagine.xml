@@ -31,7 +31,7 @@
             </call>
 
             <call method="setBlockRoot">
-                <argument>%cmf_block.block_basepath%</argument>
+                <argument>%cmf_block.persistence.phpcr.block_basepath%</argument>
             </call>
         </service>
 
@@ -50,7 +50,7 @@
             </call>
 
             <call method="setBlockRoot">
-                <argument>%cmf_block.block_basepath%</argument>
+                <argument>%cmf_block.persistence.phpcr.block_basepath%</argument>
             </call>
         </service>
 
@@ -65,7 +65,7 @@
             </call>
 
             <call method="setRoot">
-                <argument>%cmf_block.content_basepath%</argument>
+                <argument>%cmf_block.persistence.phpcr.content_basepath%</argument>
             </call>
         </service>
 
@@ -80,7 +80,7 @@
             </call>
 
             <call method="setRoot">
-                <argument>%cmf_block.content_basepath%</argument>
+                <argument>%cmf_block.persistence.phpcr.content_basepath%</argument>
             </call>
         </service>
 

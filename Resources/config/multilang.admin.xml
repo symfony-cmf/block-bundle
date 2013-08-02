@@ -22,7 +22,7 @@
             </call>
 
             <call method="setContentRoot">
-                <argument>%cmf_block.content_basepath%</argument>
+                <argument>%cmf_block.persistence.phpcr.content_basepath%</argument>
             </call>
         </service>
     </services>
