@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Block;
+namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Sonata\BlockBundle\Block\BlockContext;
 use Symfony\Cmf\Bundle\BlockBundle\Block\ReferenceBlockService,
