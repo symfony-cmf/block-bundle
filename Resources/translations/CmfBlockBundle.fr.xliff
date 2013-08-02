@@ -1,0 +1,322 @@
+<?xml version="1.0"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="dashboard.group_content">
+                <source>dashboard.group_content</source>
+                <target>Contenu</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_simple_block">
+                <source>dashboard.label_simple_block</source>
+                <target>Bloc simple</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_multilang_simple_block">
+                <source>dashboard.label_multilang_simple_block</source>
+                <target>Bloc simple multilingue</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_container_block">
+                <source>dashboard.label_container_block</source>
+                <target>Bloc conteneur</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_reference_block">
+                <source>dashboard.label_reference_block</source>
+                <target>Bloc r&#xE9;f&#xE9;rence</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_action_block">
+                <source>dashboard.label_action_block</source>
+                <target>Bloc action</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_slideshow_block">
+                <source>dashboard.label_slideshow_block</source>
+                <target>Bloc slideshow</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_multilang_slideshow_block">
+                <source>dashboard.label_multilang_slideshow_block</source>
+                <target>Bloc slideshow</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_text_block">
+                <source>dashboard.label_text_block</source>
+                <target>Bloc texte</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_slideshow_block_list">
+                <source>breadcrumb.link_slideshow_block_list</source>
+                <target>Blocs slideshow</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_slideshow_block_create">
+                <source>breadcrumb.link_slideshow_block_create</source>
+                <target>Cr&#xE9;er</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_slideshow_block_edit">
+                <source>breadcrumb.link_slideshow_block_edit</source>
+                <target>&#xC9;diter</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_slideshow_block_delete">
+                <source>breadcrumb.link_slideshow_block_delete</source>
+                <target>Supprimer</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_multilang_slideshow_block_list">
+                <source>breadcrumb.link_multilang_slideshow_block_list</source>
+                <target>Blocs slideshow multilingues</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_multilang_slideshow_block_create">
+                <source>breadcrumb.link_multilang_slideshow_block_create</source>
+                <target>Cr&#xE9;er</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_multilang_slideshow_block_edit">
+                <source>breadcrumb.link_multilang_slideshow_block_edit</source>
+                <target>&#xC9;diter</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_multilang_slideshow_block_delete">
+                <source>breadcrumb.link_multilang_slideshow_block_delete</source>
+                <target>Supprimer</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_simple_block_list">
+                <source>breadcrumb.link_simple_block_list</source>
+                <target>Blocs simples</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_simple_block_create">
+                <source>breadcrumb.link_simple_block_create</source>
+                <target>Cr&#xE9;er</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_simple_block_edit">
+                <source>breadcrumb.link_simple_block_edit</source>
+                <target>&#xC9;diter</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_simple_block_delete">
+                <source>breadcrumb.link_simple_block_delete</source>
+                <target>Supprimer</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_multilang_simple_block_list">
+                <source>breadcrumb.link_multilang_simple_block_list</source>
+                <target>Blocs simples multilingues</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_multilang_simple_block_create">
+                <source>breadcrumb.link_multilang_simple_block_create</source>
+                <target>Cr&#xE9;er</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_multilang_simple_block_edit">
+                <source>breadcrumb.link_multilang_simple_block_edit</source>
+                <target>&#xC9;diter</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_multilang_simple_block_delete">
+                <source>breadcrumb.link_multilang_simple_block_delete</source>
+                <target>Supprimer</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_container_block_list">
+                <source>breadcrumb.link_container_block_list</source>
+                <target>Blocs conteneurs</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_container_block_create">
+                <source>breadcrumb.link_container_block_create</source>
+                <target>Cr&#xE9;er</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_container_block_edit">
+                <source>breadcrumb.link_container_block_edit</source>
+                <target>&#xC9;diter</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_container_block_delete">
+                <source>breadcrumb.link_container_block_delete</source>
+                <target>Supprimer</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_reference_block_list">
+                <source>breadcrumb.link_reference_block_list</source>
+                <target>Blocs r&#xE9;f&#xE9;rence</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_reference_block_create">
+                <source>breadcrumb.link_reference_block_create</source>
+                <target>Cr&#xE9;er</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_reference_block_edit">
+                <source>breadcrumb.link_reference_block_edit</source>
+                <target>&#xC9;diter</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_reference_block_delete">
+                <source>breadcrumb.link_reference_block_delete</source>
+                <target>Supprimer</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_action_block_list">
+                <source>breadcrumb.link_action_block_list</source>
+                <target>Blocs action</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_action_block_create">
+                <source>breadcrumb.link_action_block_create</source>
+                <target>Cr&#xE9;er</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_action_block_edit">
+                <source>breadcrumb.link_action_block_edit</source>
+                <target>&#xC9;diter</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_action_block_delete">
+                <source>breadcrumb.link_action_block_delete</source>
+                <target>Supprimer</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_text_block_list">
+                <source>breadcrumb.link_text_block_list</source>
+                <target>Blocs textes</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_text_block_create">
+                <source>breadcrumb.link_text_block_create</source>
+                <target>Cr&#xE9;er</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_text_block_edit">
+                <source>breadcrumb.link_text_block_edit</source>
+                <target>&#xC9;diter</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_text_block_delete">
+                <source>breadcrumb.link_text_block_delete</source>
+                <target>Supprimer</target>
+            </trans-unit>
+
+            <trans-unit id="filter.label_name">
+                <source>filter.label_name</source>
+                <target>Nom</target>
+            </trans-unit>
+
+            <trans-unit id="filter.label_title">
+                <source>filter.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+
+            <trans-unit id="list.label_id">
+                <source>list.label_id</source>
+                <target>Id</target>
+            </trans-unit>
+
+            <trans-unit id="list.label_name">
+                <source>list.label_name</source>
+                <target>Nom</target>
+            </trans-unit>
+
+            <trans-unit id="list.label_title">
+                <source>list.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+
+            <trans-unit id="list.label_locales">
+                <source>list.label_locales</source>
+                <target>Langues</target>
+            </trans-unit>
+
+            <trans-unit id="form.group_general">
+                <source>form.group_general</source>
+                <target>G&#xE9;n&#xE9;ral</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_locale">
+                <source>form.label_locale</source>
+                <target>Langue</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_parent_document">
+                <source>form.label_parent_document</source>
+                <target>Parent</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_name">
+                <source>form.label_name</source>
+                <target>Nom</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_title">
+                <source>form.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_content">
+                <source>form.label_content</source>
+                <target>Contenu</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_referenced_block">
+                <source>form.label_referenced_block</source>
+                <target>Bloc r&#xE9;f&#xE9;renc&#xE9;</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_action_name">
+                <source>form.label_action_name</source>
+                <target>Nom de l'action</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_children">
+                <source>form.label_children</source>
+                <target>Elements</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_label">
+                <source>form.label_label</source>
+                <target>Label</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_position">
+                <source>form.label_position</source>
+                <target>Position</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_link_url">
+                <source>form.label_link_url</source>
+                <target>URL Lien</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_image">
+                <source>form.label_image</source>
+                <target>Image</target>
+            </trans-unit>
+
+            <trans-unit id="form.group_base">
+                <source>form.group_base</source>
+                <target>Avanc&#xE9;</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_enabled">
+                <source>form.label_enabled</source>
+                <target>Activer</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_ttl">
+                <source>form.label_ttl</source>
+                <target>Cache-TTL</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
