@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Twig\Extension;
+namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Twig\Extension;
 
 use Symfony\Cmf\Bundle\BlockBundle\Twig\Extension\CmfBlockExtension;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Test\Templating\Helper;
+namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Templating\Helper;
 
 use Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\CmfBlockHelper;
 
