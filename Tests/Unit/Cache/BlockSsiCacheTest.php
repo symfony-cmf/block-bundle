@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Cache;
+namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Cache;
 
 use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockSsiCache;
 
