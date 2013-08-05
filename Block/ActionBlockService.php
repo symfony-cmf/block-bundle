@@ -2,21 +2,19 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\HttpKernel\Controller\ControllerReference;
-use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
-
-use Symfony\Cmf\Bundle\BlockBundle\Document\ActionBlock;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Controller\ControllerReference;
+use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
+use Symfony\Component\HttpKernel\Kernel;
 
 class ActionBlockService extends BaseBlockService implements BlockServiceInterface
 {

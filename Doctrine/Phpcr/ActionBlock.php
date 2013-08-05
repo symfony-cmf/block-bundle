@@ -1,24 +1,19 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Document;
+namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
-use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
-
-use Symfony\Component\HttpFoundation\Request;
 use Sonata\BlockBundle\Block\BlockContextInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Block that renders a controller action
- *
- * @PHPCRODM\Document(referenceable=true)
  */
-class ActionBlock extends BaseBlock
+class ActionBlock extends AbstractBlock
 {
     /**
      * The Symfony action string
      *
      * @var string
-     * @PHPCRODM\String
      */
     protected $actionName;
 
@@ -33,7 +28,6 @@ class ActionBlock extends BaseBlock
      * Defaults to pass on the _locale
      *
      * @var string[]
-     * @PHPCRODM\String(multivalue=true)
      */
     protected $requestParams = array('_locale');
 
@@ -63,8 +57,6 @@ class ActionBlock extends BaseBlock
 
     /**
      * Initialize default values if not explicitly set.
-     *
-     * @PHPCRODM\PrePersist
      */
     public function mergeDefaults()
     {

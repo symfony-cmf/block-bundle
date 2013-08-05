@@ -4,7 +4,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Sonata\BlockBundle\Block\BlockContext;
 use Symfony\Cmf\Bundle\BlockBundle\Block\StringBlockService,
-    Symfony\Cmf\Bundle\BlockBundle\Document\StringBlock;
+    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\StringBlock;
 
 class StringBlockServiceTest extends \PHPUnit_Framework_TestCase
 {

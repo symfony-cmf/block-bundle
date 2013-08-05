@@ -1,21 +1,19 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Document;
+namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
-use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
-use Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock;
 
 /**
  * Special container block that renders child items in a way suitable for a
  * slideshow. Note that you need to add some javascript to actually get the
  * blocks to do a slideshow.
- *
- * @PHPCRODM\Document(referenceable=true)
  */
 class SlideshowBlock extends ContainerBlock
 {
-
-    /** @PHPCRODM\String */
+    /**
+     * @var string
+     */
     protected $title;
 
     /**
@@ -26,12 +24,23 @@ class SlideshowBlock extends ContainerBlock
         return 'cmf.block.slideshow';
     }
 
-    public function getTitle() {
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
         return $this->title;
     }
 
-    public function setTitle($title) {
+    /**
+     * Set title
+     *
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
         $this->title = $title;
     }
-
 }

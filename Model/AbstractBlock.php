@@ -1,12 +1,8 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Document;
+namespace Symfony\Cmf\Bundle\BlockBundle\Model;
 
-use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\ExecutionContext;
 use Sonata\BlockBundle\Model\BlockInterface;
-
 
 /**
  * Base class for all blocks - connects to Sonata Blocks
@@ -15,37 +11,46 @@ use Sonata\BlockBundle\Model\BlockInterface;
  * a container block if there is one. PHPCR-ODM blocks always have a parent
  * *document*. If the parent document is a BlockInterface, it is considered
  * a parent in the sonata sense as well.
- *
- * @Assert\Callback(methods={"isSettingsValid"})
- * @PHPCRODM\Document(referenceable=true)
  */
-abstract class BaseBlock implements BlockInterface
+abstract class AbstractBlock implements BlockInterface
 {
-    /** @PHPCRODM\Id(strategy="parent") */
+    /**
+     * @var string
+     */
     protected $id;
 
-    /** @PHPCRODM\Nodename */
+    /**
+     * @var string
+     */
     protected $name;
 
-    /** @PHPCRODM\ParentDocument */
+    /**
+     * @var object
+     */
     protected $parentDocument;
 
-    /** @PHPCRODM\Boolean */
+    /**
+     * @var bool
+     */
     protected $enabled = true;
 
-    /** @PHPCRODM\Int */
+    /**
+     * @var int
+     */
     protected $ttl = 86400;
 
-    /** @PHPCRODM\String(assoc="") */
+    /**
+     * @var array
+     */
     protected $settings = array();
 
     /**
-     * @PHPCRODM\Date()
+     * @var \DateTime
      */
     protected $createdAt;
 
     /**
-     * @PHPCRODM\Date()
+     * @var \DateTime
      */
     protected $updatedAt;
 
@@ -129,20 +134,19 @@ abstract class BaseBlock implements BlockInterface
     }
 
     /**
-     * Set createdAt
+     * Sets the creation date and time
      *
-     * @PHPCRODM\PrePersist()
      * @param \Datetime $createdAt
      */
     public function setCreatedAt(\DateTime $createdAt = null)
     {
-        $this->createdAt = null === $createdAt ? new \DateTime() : $createdAt;
+        $this->createdAt = $createdAt;
     }
 
     /**
-     * Get createdAt
+     * Get creation date
      *
-     * @return \Datetime $createdAt
+     * @return \Datetime
      */
     public function getCreatedAt()
     {
@@ -150,21 +154,19 @@ abstract class BaseBlock implements BlockInterface
     }
 
     /**
-     * Set updatedAt
+     * Set the last update date and time
      *
-     * @PHPCRODM\PrePersist()
-     * @PHPCRODM\PreUpdate()
      * @param \Datetime $updatedAt
      */
     public function setUpdatedAt(\DateTime $updatedAt = null)
     {
-        $this->updatedAt = null === $updatedAt ? new \DateTime() : $updatedAt;
+        $this->updatedAt = $updatedAt;
     }
 
     /**
-     * Get updatedAt
+     * Get update date
      *
-     * @return \Datetime $updatedAt
+     * @return \Datetime
      */
     public function getUpdatedAt()
     {
@@ -291,20 +293,6 @@ abstract class BaseBlock implements BlockInterface
     public function __toString()
     {
         return (string) $this->name;
-    }
-
-    /**
-     * Validate settings
-     *
-     * @param \Symfony\Component\Validator\ExecutionContext $context
-     */
-    public function isSettingsValid(ExecutionContext $context)
-    {
-        foreach ($this->getSettings() as $value) {
-            if (is_array($value)) {
-                $context->addViolationAt('settings', 'A multidimensional array is not allowed, only use key-value pairs.');
-            }
-        }
     }
 
     /**

@@ -2,11 +2,11 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
 
-use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Symfony\Cmf\Bundle\BlockBundle\Document\ReferenceBlock;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock;
 
 class ReferenceBlockAdmin extends Admin
 {

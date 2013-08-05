@@ -4,8 +4,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
 
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-
-use Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MultilangSimpleBlock;
 
 class MultilangSimpleBlockAdmin extends SimpleBlockAdmin
 {

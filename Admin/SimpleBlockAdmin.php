@@ -2,11 +2,11 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
 
-use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Symfony\Cmf\Bundle\BlockBundle\Document\SimpleBlock;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 
 class SimpleBlockAdmin extends Admin
 {
@@ -33,7 +33,7 @@ class SimpleBlockAdmin extends Admin
             ->add('parentDocument', 'doctrine_phpcr_odm_tree', array('root_node' => $this->contentRoot, 'choice_list' => array(), 'select_root_node' => true))
             ->add('name', 'text')
             ->add('title', 'text')
-            ->add('content', 'textarea')
+            ->add('body', 'textarea')
             ->end()
         ;
     }

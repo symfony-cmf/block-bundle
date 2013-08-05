@@ -1,21 +1,22 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Document;
-
-use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
+namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
 use Sonata\BlockBundle\Model\BlockInterface;
 
 /**
  * Block that is a reference to another block
- *
- * @PHPCRODM\Document(referenceable=true)
  */
-class ReferenceBlock extends BaseBlock
+class ReferenceBlock extends AbstractBlock
 {
-    /** @PHPCRODM\ReferenceOne */
+    /**
+     * @var BlockInterface
+     */
     private $referencedBlock;
 
+    /**
+     * {@inheritdoc}
+     */
     public function getType()
     {
         return 'cmf.block.reference';

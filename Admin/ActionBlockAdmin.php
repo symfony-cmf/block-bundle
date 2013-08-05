@@ -6,7 +6,7 @@ use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Symfony\Cmf\Bundle\BlockBundle\Document\ActionBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock;
 
 class ActionBlockAdmin extends Admin
 {

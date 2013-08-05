@@ -4,7 +4,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Symfony\Component\HttpFoundation\Request,
     Symfony\Cmf\Bundle\BlockBundle\Block\PHPCRBlockLoader,
-    Symfony\Cmf\Bundle\BlockBundle\Document\SimpleBlock;
+    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 
 class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
 {
