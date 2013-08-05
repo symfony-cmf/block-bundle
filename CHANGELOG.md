@@ -17,6 +17,9 @@ Changelog
         --remove-prop=content
 * **2013-08-01**: [Model] Adopted persistance standard model, see: http://symfony.com/doc/master/cmf/contributing/bundles.html#Persistence.
 
+  The PHPCR-ODM will now not be automatically loaded but only when
+  `persistence.phpcr.enabled` is set to true.
+
   To migrate adapt the following script. Run it once for each document class,
   replacing DOCUMENT_CLASS with `ActionBlock`, `ContainerBlock`,
   `ImagineBlock`, `MultilangImagineBlock`, `MultilangSimpleBlock`,
@@ -26,7 +29,7 @@ Changelog
     $ php app/console doctrine:phpcr:nodes:update \
         --query="SELECT * FROM [nt:unstructured] WHERE [phpcr:class] = \"Symfony\\Cmf\\Bundle\\BlockBundle\\Document\\DOCUMENT_CLASS\"" \
         --set-prop=phpcr:class="Symfony\\Cmf\\Bundle\\BlockBundle\\Doctrine\\Phpcr\\DOCUMENT_CLASS"
-        
+
 1.0.0-beta3
 -----------
 
