@@ -9,7 +9,7 @@ and licensed under the [MIT License](LICENSE).
 
 The BlockBundle provides integration with
 [SonataBlockBundle](https://github.com/sonata-project/SonataBlockBundle).
-It is used to manage fragements of content, so-called blocks, that are persisted
+It is used to manage fragments of content, so-called blocks, that are persisted
 in a database and can be incorporated into any page layout. The BlockBundle also
 provides a few commonly used standard blocks, including the ability to edit them.
 
