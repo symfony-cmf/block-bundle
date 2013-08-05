@@ -5,8 +5,8 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="cmf_block.rss_controller_class">Symfony\Cmf\Bundle\BlockBundle\Controller\RssController</parameter>
-        <parameter key="cmf_block.twig_extension_class">Symfony\Cmf\Bundle\BlockBundle\Twig\Extension\CmfBlockExtension</parameter>
+        <parameter key="cmf_block.rss_controller.class">Symfony\Cmf\Bundle\BlockBundle\Controller\RssController</parameter>
+        <parameter key="cmf_block.twig_extension.class">Symfony\Cmf\Bundle\BlockBundle\Twig\Extension\CmfBlockExtension</parameter>
         <parameter key="cmf_block.templating.helper.block.class">Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\CmfBlockHelper</parameter>
         <parameter key="cmf_block.fragment.renderer.action.class">Symfony\Cmf\Bundle\BlockBundle\Fragment\ActionFragmentRenderer</parameter>
         <parameter key="cmf_block.fragment.path">/_cmf_block_fragment</parameter>
@@ -58,13 +58,13 @@
             <argument>CmfBlockBundle:Block:block_slideshow.html.twig</argument>
         </service>
 
-        <service id="cmf.block.rss_controller" class="%cmf_block.rss_controller_class%" >
+        <service id="cmf.block.rss_controller" class="%cmf_block.rss_controller.class%" >
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
         </service>
 
-        <service id="cmf_block.twig.embed_extension" class="%cmf_block.twig_extension_class%">
+        <service id="cmf_block.twig.embed_extension" class="%cmf_block.twig_extension.class%">
             <argument type="service" id="cmf_block.templating.helper.block"/>
             <tag name="twig.extension"/>
         </service>
