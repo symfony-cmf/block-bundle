@@ -5,8 +5,8 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 use Sonata\BlockBundle\Block\BlockContext;
 use Symfony\Component\HttpFoundation\Response,
     Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService,
-    Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock,
-    Symfony\Cmf\Bundle\BlockBundle\Document\SimpleBlock;
+    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock,
+    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 
 class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
 {

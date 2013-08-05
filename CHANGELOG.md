@@ -1,6 +1,32 @@
 Changelog
 =========
 
+* **2013-08-01**: [DependencyInjection] moved phpcr specific configuration under ``persistence.phpcr`` and added ``enabled`` flag.
+* **2013-08-01**: [Model] Updated content to body property for ``SimpleBlock``, ``MultilangSimpleBlock`` and ``StringBlock``.
+
+  To migrate adapt the following script. Run it once for each document class,
+  replacing DOCUMENT_CLASS with `SimpleBlock`, `MultilangSimpleBlock`,
+  `StringBlock` respectively:
+
+    $ php app/console doctrine:phpcr:nodes:update \
+        --query="SELECT * FROM [nt:unstructured] WHERE [phpcr:class] = \"Symfony\\Cmf\\Bundle\\BlockBundle\\Doctrine\\Phpcr\\DOCUMENT_CLASS\"" \
+        --apply-closure="\$node->setProperty('body', \$node->getPropertyValue('content'));"
+
+    $ php app/console doctrine:phpcr:nodes:update \
+        --query="SELECT * FROM [nt:unstructured] WHERE [phpcr:class] = \"Symfony\\Cmf\\Bundle\\BlockBundle\\Doctrine\\Phpcr\\DOCUMENT_CLASS\"" \
+        --remove-prop=content
+* **2013-08-01**: [Model] Adopted persistance standard model, see: http://symfony.com/doc/master/cmf/contributing/bundles.html#Persistence.
+
+  To migrate adapt the following script. Run it once for each document class,
+  replacing DOCUMENT_CLASS with `ActionBlock`, `ContainerBlock`,
+  `ImagineBlock`, `MultilangImagineBlock`, `MultilangSimpleBlock`,
+  `MultilangSlideshowBlock`, `ReferenceBlock`, `RssBlock`, `SimpleBlock`,
+  `SlideshowBlock` and `StringBlock` respectively:
+
+    $ php app/console doctrine:phpcr:nodes:update \
+        --query="SELECT * FROM [nt:unstructured] WHERE [phpcr:class] = \"Symfony\\Cmf\\Bundle\\BlockBundle\\Document\\DOCUMENT_CLASS\"" \
+        --set-prop=phpcr:class="Symfony\\Cmf\\Bundle\\BlockBundle\\Doctrine\\Phpcr\\DOCUMENT_CLASS"
+        
 1.0.0-beta3
 -----------
 

@@ -7,6 +7,6 @@
     <attribute key="class" value="articleContainer span3"/>
     <children>
         <property property="dcterms:title" identifier="title" tag-name="h2"/>
-        <property property="sioc:content" identifier="content" />
+        <property property="sioc:body" identifier="body" />
     </children>
 </type>

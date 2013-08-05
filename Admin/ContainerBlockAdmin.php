@@ -2,11 +2,11 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
 
-use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock;
 
 class ContainerBlockAdmin extends Admin
 {
@@ -39,7 +39,7 @@ class ContainerBlockAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name',  'doctrine_phpcr_nodename')
+            ->add('name', 'doctrine_phpcr_nodename')
         ;
     }
 
