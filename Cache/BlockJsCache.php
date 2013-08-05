@@ -23,11 +23,11 @@ class BlockJsCache implements CacheInterface
     protected $sync;
 
     /**
-     * @param RouterInterface $router
-     * @param BlockRendererInterface $blockRenderer
-     * @param BlockLoaderInterface $blockLoader
+     * @param RouterInterface              $router
+     * @param BlockRendererInterface       $blockRenderer
+     * @param BlockLoaderInterface         $blockLoader
      * @param BlockContextManagerInterface $blockContextManager
-     * @param bool $sync
+     * @param bool                         $sync
      */
     public function __construct(
         RouterInterface $router,
@@ -144,7 +144,7 @@ CONTENT
     }
 
     /**
-     * @param array $keys
+     * @param  array  $keys
      * @return string
      */
     protected function getAsync(array $keys)

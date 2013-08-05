@@ -55,6 +55,7 @@ class ActionBlockAdmin extends Admin
                 $new->setParentDocument($this->getModelManager()->find(null, $parentId));
             }
         }
+
         return $new;
     }
 

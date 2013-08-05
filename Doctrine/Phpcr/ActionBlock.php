@@ -108,7 +108,7 @@ class ActionBlock extends AbstractBlock
     public function resolveRequestParams(Request $request, BlockContextInterface $blockContext)
     {
         $params = array();
-        foreach($this->getRequestParams() as $param) {
+        foreach ($this->getRequestParams() as $param) {
             $params[$param] = $request->get($param);
         }
         $params['block'] = $this;

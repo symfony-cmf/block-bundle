@@ -23,10 +23,10 @@ class BlockSsiCache extends SsiCache
     protected $blockContextManager;
 
     /**
-     * @param string $token
-     * @param RouterInterface $router
-     * @param BlockRendererInterface $blockRenderer
-     * @param BlockLoaderInterface $blockLoader
+     * @param string                       $token
+     * @param RouterInterface              $router
+     * @param BlockRendererInterface       $blockRenderer
+     * @param BlockLoaderInterface         $blockLoader
      * @param BlockContextManagerInterface $blockContextManager
      */
     public function __construct(
@@ -92,8 +92,8 @@ class BlockSsiCache extends SsiCache
     {
         // values are casted into string for non numeric id
         return hash('sha256', $this->token.serialize(array(
-            'block_id'   => (string)$keys['block_id'],
-            'updated_at' => (string)$keys['updated_at'],
+            'block_id'   => (string) $keys['block_id'],
+            'updated_at' => (string) $keys['updated_at'],
         )));
     }
 

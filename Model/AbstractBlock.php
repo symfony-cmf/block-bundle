@@ -108,7 +108,8 @@ abstract class AbstractBlock implements BlockInterface
      *
      * @return boolean $enabled
      */
-    public function getEnabled() {
+    public function getEnabled()
+    {
         return $this->enabled;
     }
 
@@ -130,6 +131,7 @@ abstract class AbstractBlock implements BlockInterface
     public function getPosition()
     {
         $siblings = $this->getParent()->getChildren();
+
         return array_search($siblings->indexOf($this), $siblings->getKeys());
     }
 
@@ -250,7 +252,6 @@ abstract class AbstractBlock implements BlockInterface
     public function getParent()
     {
         if ($this->parentDocument instanceof BlockInterface) {
-
             return $this->parentDocument;
         }
 
@@ -327,7 +328,7 @@ abstract class AbstractBlock implements BlockInterface
 
     /**
      * @param $name
-     * @param null $default
+     * @param  null $default
      * @return null
      */
     public function getSetting($name, $default = null)

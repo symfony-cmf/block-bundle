@@ -2,11 +2,6 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine;
 
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
-
-use Doctrine\Common\Util\ClassUtils;
-
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
@@ -83,14 +78,14 @@ class SlideshowBlockAdmin extends Admin
 
     public function prePersist($slideshow)
     {
-        foreach($slideshow->getChildren() as $child) {
+        foreach ($slideshow->getChildren() as $child) {
             $child->setName($this->generateName());
         }
     }
 
     public function preUpdate($slideshow)
     {
-        foreach($slideshow->getChildren() as $child) {
+        foreach ($slideshow->getChildren() as $child) {
             if (! $this->modelManager->getNormalizedIdentifier($child)) {
                 $child->setName($this->generateName());
             }

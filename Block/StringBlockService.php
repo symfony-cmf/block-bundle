@@ -66,4 +66,3 @@ class StringBlockService extends BaseBlockService implements BlockServiceInterfa
         ));
     }
 }
-

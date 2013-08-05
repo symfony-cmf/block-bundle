@@ -2,7 +2,6 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Fragment;
 
-use Symfony\Component\HttpKernel\EventListener\FragmentListener;
 use Symfony\Component\HttpKernel\Fragment\InlineFragmentRenderer;
 
 /**

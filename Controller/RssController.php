@@ -35,8 +35,8 @@ class RssController extends Controller
      * Get items that the list block template can render,
      * use the settings from the block passed
      *
-     * @param BlockContextInterface $blockContext
-     * @return FeedItem[] feed items that the block template can render
+     * @param  BlockContextInterface $blockContext
+     * @return FeedItem[]            feed items that the block template can render
      */
     protected function getItems(BlockContextInterface $blockContext)
     {

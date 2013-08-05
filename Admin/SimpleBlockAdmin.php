@@ -56,6 +56,7 @@ class SimpleBlockAdmin extends Admin
                 $new->setParentDocument($this->getModelManager()->find(null, $parentId));
             }
         }
+
         return $new;
     }
 

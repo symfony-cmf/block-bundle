@@ -138,7 +138,7 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
             $container->setParameter($this->getAlias() . '.' . $prefix . 'simple_admin_class', $config['simple_admin.class']);
         }
 
-        if ($useImagine){
+        if ($useImagine) {
             $loader->load('admin-imagine.xml');
         }
     }

@@ -29,7 +29,7 @@ class CmfBlockHelper extends Helper
      */
     private $logger;
 
-    function __construct(SonataBlockHelper $sonataBlock, $prefix, $postfix, LoggerInterface $logger = null)
+    public function __construct(SonataBlockHelper $sonataBlock, $prefix, $postfix, LoggerInterface $logger = null)
     {
         $this->sonataBlock = $sonataBlock;
         $this->prefix = $prefix;
@@ -96,6 +96,7 @@ class CmfBlockHelper extends Helper
                 $this->logger->warn('Failed to render block "' . $block[1] . '" embedded in content: ' . $e->getTraceAsString());
             }
         }
+
         return '';
     }
 }

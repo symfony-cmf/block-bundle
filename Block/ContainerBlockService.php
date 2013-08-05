@@ -20,10 +20,10 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
     protected $template = 'CmfBlockBundle:Block:block_container.html.twig';
 
     /**
-     * @param string $name
+     * @param string                                                     $name
      * @param \Symfony\Bundle\FrameworkBundle\Templating\EngineInterface $templating
-     * @param \Sonata\BlockBundle\Block\BlockRendererInterface $blockRenderer
-     * @param string|null $template
+     * @param \Sonata\BlockBundle\Block\BlockRendererInterface           $blockRenderer
+     * @param string|null                                                $template
      */
     public function __construct($name, EngineInterface $templating, BlockRendererInterface $blockRenderer, $template = null)
     {

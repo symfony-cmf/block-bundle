@@ -2,7 +2,6 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
-use Doctrine\ODM\PHPCR\DocumentManager;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Log\LoggerInterface;
@@ -47,9 +46,9 @@ class PHPCRBlockLoader implements BlockLoaderInterface
 
     /**
      * @param ContainerInterface $container
-     * @param ManagerRegistry $managerRegistry
-     * @param LoggerInterface $logger
-     * @param null $emptyBlockType set this to a block type name if you want empty blocks returned when no block is found
+     * @param ManagerRegistry    $managerRegistry
+     * @param LoggerInterface    $logger
+     * @param null               $emptyBlockType  set this to a block type name if you want empty blocks returned when no block is found
      */
     public function __construct(
         ContainerInterface $container,
@@ -174,6 +173,7 @@ class PHPCRBlockLoader implements BlockLoaderInterface
             && $this->container->get('request')->attributes->has('contentDocument')
         ) {
             $currentPage = $this->container->get('request')->attributes->get('contentDocument');
+
             return $this->getObjectManager()
                 ->getUnitOfWork()
                 ->getDocumentId($currentPage) . '/' . $name
@@ -189,7 +189,7 @@ class PHPCRBlockLoader implements BlockLoaderInterface
      *
      * If the empty block type is not set, throw an exception instead.
      *
-     * @param string $name The block name that was not found or invalid
+     * @param string $name    The block name that was not found or invalid
      * @param string $message The exception message if an exception should be raised
      *
      * @return EmptyBlock

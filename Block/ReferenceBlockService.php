@@ -21,9 +21,9 @@ class ReferenceBlockService extends BaseBlockService implements BlockServiceInte
     protected $blockContextManager;
 
     /**
-     * @param string $name
-     * @param EngineInterface $templating
-     * @param BlockRendererInterface $blockRenderer
+     * @param string                       $name
+     * @param EngineInterface              $templating
+     * @param BlockRendererInterface       $blockRenderer
      * @param BlockContextManagerInterface $blockContextManager
      */
     public function __construct($name, EngineInterface $templating, BlockRendererInterface $blockRenderer, BlockContextManagerInterface $blockContextManager)

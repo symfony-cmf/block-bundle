@@ -40,4 +40,3 @@ class StringBlock extends AbstractBlock
         return $this->body;
     }
 }
-

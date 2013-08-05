@@ -43,14 +43,14 @@ class BlockVarnishCache extends VarnishCache
     /**
      * Constructor
      *
-     * @param string                        $token                  A token
-     * @param FragmentHandler               $fragmentHandler        A fragment handler
-     * @param RouterInterface               $router                 A router instance
-     * @param BlockRendererInterface        $blockRenderer          A block renderer instance
-     * @param BlockLoaderInterface          $blockLoader            A block loader instance
-     * @param BlockContextManagerInterface  $blockContextManager    A block context manager instance
-     * @param array                         $servers                An array of servers
-     * @param string                        $purgeInstruction       The purge instruction (purge in Varnish 2, ban in Varnish 3)
+     * @param string                       $token               A token
+     * @param FragmentHandler              $fragmentHandler     A fragment handler
+     * @param RouterInterface              $router              A router instance
+     * @param BlockRendererInterface       $blockRenderer       A block renderer instance
+     * @param BlockLoaderInterface         $blockLoader         A block loader instance
+     * @param BlockContextManagerInterface $blockContextManager A block context manager instance
+     * @param array                        $servers             An array of servers
+     * @param string                       $purgeInstruction    The purge instruction (purge in Varnish 2, ban in Varnish 3)
      */
     public function __construct(
         $token,
@@ -121,8 +121,8 @@ class BlockVarnishCache extends VarnishCache
     {
         // values are casted into string for non numeric id
         return hash('sha256', $this->token.serialize(array(
-            'block_id'   => (string)$keys['block_id'],
-            'updated_at' => (string)$keys['updated_at'],
+            'block_id'   => (string) $keys['block_id'],
+            'updated_at' => (string) $keys['updated_at'],
         )));
     }
 

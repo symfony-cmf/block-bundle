@@ -10,8 +10,8 @@ use Sonata\AdminBundle\Form\FormMapper;
  * @package Symfony\Cmf\Bundle\BlockBundle\Admin
  * @author Sven Cludius<sven.cludius@valiton.com>
  */
-class BaseAdminExtension extends AdminExtension {
-
+class BaseAdminExtension extends AdminExtension
+{
     /**
      * Configure form fields
      *

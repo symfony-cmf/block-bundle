@@ -46,6 +46,7 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
     {
         $blockLoader = new PHPCRBlockLoader($this->containerMock, $this->registryMock, null, 'emptyblocktype');
         $blockLoader->setManagerName('themanager');
+
         return $blockLoader;
     }
 

@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
 use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
-use Symfony\Component\HttpKernel\Kernel;
 
 class ActionBlockService extends BaseBlockService implements BlockServiceInterface
 {
@@ -29,7 +28,7 @@ class ActionBlockService extends BaseBlockService implements BlockServiceInterfa
     protected $renderer;
 
     /**
-     * @param string $name
+     * @param string          $name
      * @param EngineInterface $templating
      * @param FragmentHandler $renderer
      */

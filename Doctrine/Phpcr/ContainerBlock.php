@@ -14,7 +14,7 @@ class ContainerBlock extends AbstractBlock
     /**
      * @var ChildrenCollection
      */
-    protected  $children;
+    protected $children;
 
     public function __construct($name = null)
     {
@@ -67,6 +67,7 @@ class ContainerBlock extends AbstractBlock
         if ($key != null) {
 
             $this->children->set($key, $child);
+
             return true;
         }
 
@@ -88,7 +89,7 @@ class ContainerBlock extends AbstractBlock
     /**
      * Remove a child from this container
      *
-     * @param BlockInterface $child
+     * @param  BlockInterface $child
      * @return void
      */
     public function removeChild($child)
