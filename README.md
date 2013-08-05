@@ -11,10 +11,7 @@ The BlockBundle provides integration with
 [SonataBlockBundle](https://github.com/sonata-project/SonataBlockBundle).
 It is used to manage fragements of content, so-called blocks, that are persisted
 in a database and can be incorporated into any page layout. The BlockBundle also
-provides logic to determine which blocks should be rendered on which pages.
-
-Although it does not provide functionality for editing blocks, examples of this
-can be found in the [CMF Sandbox](https://github.com/symfony-cmf/cmf-sandbox).
+provides a few commonly used standard blocks, including the ability to edit them.
 
 
 ## Requirements
@@ -31,7 +28,7 @@ For the install guide and reference, see:
 
 See also:
 
-* [All Symfony CMF documentation](http://symfony.com/doc/master/cmf/index.html)- complete Symfony CMF reference
+* [All Symfony CMF documentation](http://symfony.com/doc/master/cmf/index.html) - complete Symfony CMF reference
 * [Symfony CMF Website](http://cmf.symfony.com/) - introduction, live demo, support and community links
 
 
