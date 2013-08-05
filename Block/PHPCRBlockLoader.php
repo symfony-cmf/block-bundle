@@ -3,8 +3,12 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
+
+use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Log\LoggerInterface;
+use Symfony\Component\Security\Core\SecurityContextInterface;
+
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\BlockBundle\Model\EmptyBlock;
@@ -40,24 +44,41 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     protected $managerRegistry;
 
     /**
+     * @var SecurityContextInterface
+     */
+    private $securityContext;
+
+    /**
+     * The permission to check for when doing the publish workflow check.
+     *
+     * @var string
+     */
+    private $publishWorkflowPermission = PublishWorkflowChecker::VIEW_ATTRIBUTE;
+
+
+    /**
      * @var string service id of the empty block service
      */
     protected $emptyBlockType;
 
     /**
-     * @param ContainerInterface $container
-     * @param ManagerRegistry    $managerRegistry
-     * @param LoggerInterface    $logger
-     * @param null               $emptyBlockType  set this to a block type name if you want empty blocks returned when no block is found
+     * @param ContainerInterface       $container
+     * @param ManagerRegistry          $managerRegistry
+     * @param SecurityContextInterface $securityContext the publish workflow
+     *      checker to check if menu items are published.
+     * @param LoggerInterface          $logger
+     * @param null                     $emptyBlockType  set this to a block type name if you want empty blocks returned when no block is found
      */
     public function __construct(
         ContainerInterface $container,
         ManagerRegistry $managerRegistry,
+        SecurityContextInterface $securityContext,
         LoggerInterface $logger = null,
         $emptyBlockType = null
     ) {
         $this->container        = $container;
         $this->managerRegistry  = $managerRegistry;
+        $this->securityContext  = $securityContext;
         $this->logger           = $logger;
         $this->emptyBlockType   = $emptyBlockType;
     }
@@ -71,6 +92,17 @@ class PHPCRBlockLoader implements BlockLoaderInterface
     public function setManagerName($managerName)
     {
         $this->managerName = $managerName;
+    }
+
+    /**
+     * What attribute to use in the publish workflow check. This typically
+     * is VIEW or VIEW_ANONYMOUS.
+     *
+     * @param string $attribute
+     */
+    public function setPublishWorkflowPermission($attribute)
+    {
+        $this->publishWorkflowPermission = $attribute;
     }
 
     /**
@@ -135,6 +167,14 @@ class PHPCRBlockLoader implements BlockLoaderInterface
 
         if (empty($block) && $this->logger) {
             $this->logger->debug("Block '$name' at path '$path' could not be found.");
+        }
+
+        if (!$this->securityContext->isGranted($this->publishWorkflowPermission, $block)) {
+            if ($this->logger) {
+                $this->logger->debug("Block '$name' at path '$path' is not published");
+            }
+
+            return null;
         }
 
         return $block;

@@ -4,6 +4,9 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Model;
 
 use Sonata\BlockBundle\Model\BlockInterface;
 
+use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface;
+use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface;
+
 /**
  * Base class for all blocks - connects to Sonata Blocks
  *
@@ -12,7 +15,10 @@ use Sonata\BlockBundle\Model\BlockInterface;
  * *document*. If the parent document is a BlockInterface, it is considered
  * a parent in the sonata sense as well.
  */
-abstract class AbstractBlock implements BlockInterface
+abstract class AbstractBlock implements
+    BlockInterface,
+    PublishableInterface,
+    PublishTimePeriodInterface
 {
     /**
      * @var string
@@ -53,6 +59,21 @@ abstract class AbstractBlock implements BlockInterface
      * @var \DateTime
      */
     protected $updatedAt;
+
+    /**
+     * @var boolean whether this content is publishable
+     */
+    protected $publishable = true;
+
+    /**
+     * @var \DateTime|null publication start time
+     */
+    protected $publishStartDate;
+
+    /**
+     * @var \DateTime|null publication end time
+     */
+    protected $publishEndDate;
 
     /**
      * @param string $src
@@ -173,6 +194,54 @@ abstract class AbstractBlock implements BlockInterface
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPublishable($publishable)
+    {
+        return $this->publishable = (bool) $publishable;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isPublishable()
+    {
+        return $this->publishable;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPublishStartDate()
+    {
+        return $this->publishStartDate;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPublishStartDate(\DateTime $publishStartDate = null)
+    {
+        $this->publishStartDate = $publishStartDate;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPublishEndDate()
+    {
+        return $this->publishEndDate;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPublishEndDate(\DateTime $publishEndDate = null)
+    {
+        $this->publishEndDate = $publishEndDate;
     }
 
     /**

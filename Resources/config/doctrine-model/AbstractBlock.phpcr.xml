@@ -25,6 +25,10 @@
         <field name="createdAt" type="date" property="jcr:created"/>
         <field name="updatedAt" type="date" property="jcr:lastModified"/>
 
+        <field name="publishable" type="boolean"/>
+        <field name="publishStartDate" type="date" nullable="true"/>
+        <field name="publishEndDate" type="date" nullable="true"/>
+
         <field name="settings" type="string" assoc=""/>
     </mapped-superclass>
 
