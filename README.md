@@ -1,18 +1,23 @@
-# Symfony CMF Block Bundle [![Build Status](https://secure.travis-ci.org/symfony-cmf/BlockBundle.png)](http://travis-ci.org/symfony-cmf/BlockBundle)
+# Symfony CMF Block Bundle
+
+[![Build Status](https://secure.travis-ci.org/symfony-cmf/BlockBundle.png)](http://travis-ci.org/symfony-cmf/BlockBundle)
+[![Latest Stable Version](https://poser.pugx.org/symfony-cmf/block-bundle/version.png)](https://packagist.org/packages/symfony-cmf/block-bundle)
+[![Total Downloads](https://poser.pugx.org/symfony-cmf/block-bundle/d/total.png)](https://packagist.org/packages/symfony-cmf/block-bundle)
 
 This bundle is part of the [Symfony Content Management Framework (CMF)](http://cmf.symfony.com/)
 and licensed under the [MIT License](LICENSE).
 
-The BlockBundle provides integration with SonataBlockBundle. It assists you in
-managing fragments of contents, so-called blocks. What the BlockBundle does is
-similar to what Twig does, but for blocks that are persisted in a database. Thus,
-the blocks can be made editable for an editor.
+The BlockBundle provides integration with
+[SonataBlockBundle](https://github.com/sonata-project/SonataBlockBundle).
+It is used to manage fragments of content, so-called blocks, that are persisted
+in a database and can be incorporated into any page layout. The BlockBundle also
+provides a few commonly used standard blocks, including the ability to edit them.
 
 
 ## Requirements
 
-* Symfony 2.1.x
-* [SonataBlockBundle](https://github.com/sonata-project/SonataBlockBundle)
+* Symfony 2.2.x
+* See also the `require` section of [composer.json](composer.json)
 
 
 ## Documentation
@@ -29,8 +34,13 @@ See also:
 
 ## Contributing
 
-Pull requests are welcome. Please see our [CONTRIBUTING](https://github.com/symfony-cmf/BlockBundle/blob/master/CONTRIBUTING.md) guide.
+Pull requests are welcome. Please see our
+[CONTRIBUTING](https://github.com/symfony-cmf/symfony-cmf/blob/master/CONTRIBUTING.md)
+guide.
 
-Unit and/or functional tests exist for this bundle. See the [Testing documentation](http://symfony.com/doc/master/cmf/components/testing.html) for a guide to running the tests.
+Unit and/or functional tests exist for this bundle. See the
+[Testing documentation](http://symfony.com/doc/master/cmf/components/testing.html)
+for a guide to running the tests.
 
-Thanks to [everyone who has contributed](https://github.com/symfony-cmf/BlockBundle/contributors) already.
+Thanks to
+[everyone who has contributed](https://github.com/symfony-cmf/BlockBundle/contributors) already.
