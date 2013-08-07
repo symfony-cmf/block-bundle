@@ -5,12 +5,12 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Cmf\Bundle\BlockBundle\Admin\BaseBlockAdmin;
+use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
 
 /**
  * @author Lukas Kahwe Smith <smith@pooteeweet.org>
  */
-class ReferenceBlockAdmin extends BaseBlockAdmin
+class ReferenceBlockAdmin extends AbstractBlockAdmin
 {
     /**
      * {@inheritdoc}

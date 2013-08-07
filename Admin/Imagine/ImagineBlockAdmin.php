@@ -2,13 +2,13 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine;
 
-use Symfony\Cmf\Bundle\BlockBundle\Admin\BaseBlockAdmin;
+use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
 
 /**
  * @author Horner
  */
-class ImagineBlockAdmin extends BaseBlockAdmin
+class ImagineBlockAdmin extends AbstractBlockAdmin
 {
     /**
      * {@inheritdoc}

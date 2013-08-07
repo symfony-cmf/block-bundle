@@ -7,7 +7,7 @@ use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 /**
  * @author Nicolas Bastien <nbastien@prestaconcept.net>
  */
-abstract class BaseBlockAdmin extends Admin
+abstract class AbstractBlockAdmin extends Admin
 {
     /**
      * @var string

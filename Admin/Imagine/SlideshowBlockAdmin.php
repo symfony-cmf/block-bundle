@@ -4,12 +4,12 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine;
 
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Symfony\Cmf\Bundle\BlockBundle\Admin\BaseBlockAdmin;
+use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
 
 /**
  * @author Horner
  */
-class SlideshowBlockAdmin extends BaseBlockAdmin
+class SlideshowBlockAdmin extends AbstractBlockAdmin
 {
     /**
      * Path to where new slideshow blocks may be attached

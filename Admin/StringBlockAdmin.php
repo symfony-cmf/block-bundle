@@ -2,7 +2,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
 
-use Symfony\Cmf\Bundle\BlockBundle\Admin\BaseBlockAdmin;
+use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -10,7 +10,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 /**
  * @author Daniel Leech <daniel@dantleech.com>
  */
-class StringBlockAdmin extends BaseBlockAdmin
+class StringBlockAdmin extends AbstractBlockAdmin
 {
     /**
      * {@inheritdoc}
