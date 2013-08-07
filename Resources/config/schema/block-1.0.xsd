@@ -27,7 +27,7 @@
         <xsd:attribute name="enabled" type="xsd:string" />
         <xsd:attribute name="content-basepath" type="xsd:string" />
         <xsd:attribute name="block-basepath" type="xsd:string" />
-        <xsd:attribute name="manager_name" type="xsd:string" />
+        <xsd:attribute name="manager-name" type="xsd:string" />
         <xsd:attribute name="simple-document-class" type="xsd:string" />
         <xsd:attribute name="container-document-class" type="xsd:string" />
         <xsd:attribute name="reference-document-class" type="xsd:string" />
