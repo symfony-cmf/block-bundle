@@ -52,6 +52,8 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
             ('auto' === $config['use_imagine'] && isset($bundles['LiipImagineBundle']))
         ) {
             $useImagine = true;
+        } else {
+            $useImagine = false;
         }
 
         // load config
