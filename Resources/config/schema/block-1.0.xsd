@@ -11,7 +11,7 @@
         <xsd:sequence>
             <xsd:element name="persistence" type="persistence" minOccurs="0" />
             <xsd:element name="twig" type="twig" minOccurs="0" />
-            <xsd:element name="use-imagine" type="use_imagine" minOccurs="0" />
+            <xsd:element name="use-imagine" type="enable" minOccurs="0" />
             <xsd:element name="multilang" type="multilang" minOccurs="0" />
             <xsd:element name="caches" type="caches" minOccurs="0" />
         </xsd:sequence>
@@ -32,7 +32,7 @@
         <xsd:attribute name="container-document-class" type="xsd:string" />
         <xsd:attribute name="reference-document-class" type="xsd:string" />
         <xsd:attribute name="action-document-class" type="xsd:string" />
-        <xsd:attribute name="use_sonata_admin" type="use_sonata_admin" />
+        <xsd:attribute name="use_sonata_admin" type="enable" />
         <xsd:attribute name="simple-admin-class" type="xsd:string" />
         <xsd:attribute name="container-admin-class" type="xsd:string" />
         <xsd:attribute name="reference-admin-class" type="xsd:string" />
@@ -57,7 +57,7 @@
 
         <xsd:attribute name="simple-admin-class" type="xsd:string" />
         <xsd:attribute name="simple-document-class" type="xsd:string" />
-        <xsd:attribute name="use-sonata-admin" type="use_sonata_admin" />
+        <xsd:attribute name="use-sonata-admin" type="enable" />
     </xsd:complexType>
 
     <xsd:complexType name="caches">
@@ -79,15 +79,7 @@
         <xsd:attribute name="token" type="xsd:string" />
     </xsd:complexType>
 
-    <xsd:simpleType name="use_sonata_admin">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="true" />
-            <xsd:enumeration value="false" />
-            <xsd:enumeration value="auto" />
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="use_imagine">
+    <xsd:simpleType name="enable">
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="true" />
             <xsd:enumeration value="false" />
