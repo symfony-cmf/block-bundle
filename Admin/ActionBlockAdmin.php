@@ -1,23 +1,27 @@
 <?php
-
+/*
+ * This file is part of the Symfony CMF package.
+ *
+ * (c) Symfony2 CMF
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
 
-use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Admin\BaseBlockAdmin;
 
-class ActionBlockAdmin extends Admin
+/**
+ * @author Lukas Kahwe Smith <smith@pooteeweet.org>
+ */
+class ActionBlockAdmin extends BaseBlockAdmin
 {
-    protected $translationDomain = 'CmfBlockBundle';
-
     /**
-     * Root path for the route content selection
-     * @var string
+     * {@inheritdoc}
      */
-    protected $contentRoot;
-
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -27,6 +31,9 @@ class ActionBlockAdmin extends Admin
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -38,34 +45,13 @@ class ActionBlockAdmin extends Admin
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name',  'doctrine_phpcr_nodename')
+            ->add('name', 'doctrine_phpcr_nodename')
         ;
-    }
-
-    public function getNewInstance()
-    {
-        /** @var $new ActionBlock */
-        $new = parent::getNewInstance();
-        if ($this->hasRequest()) {
-            $parentId = $this->getRequest()->query->get('parent');
-            if (null !== $parentId) {
-                $new->setParentDocument($this->getModelManager()->find(null, $parentId));
-            }
-        }
-
-        return $new;
-    }
-
-    public function setContentRoot($contentRoot)
-    {
-        $this->contentRoot = $contentRoot;
-    }
-
-    public function getExportFormats()
-    {
-        return array();
     }
 }

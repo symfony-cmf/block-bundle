@@ -1,15 +1,23 @@
 <?php
-
+/*
+ * This file is part of the Symfony CMF package.
+ *
+ * (c) Symfony2 CMF
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
 
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MultilangSimpleBlock;
 
+/**
+ * @author Lukas Kahwe Smith <smith@pooteeweet.org>
+ */
 class MultilangSimpleBlockAdmin extends SimpleBlockAdmin
 {
-    protected $translationDomain = 'CmfBlockBundle';
-
     /**
      * @var array
      */
@@ -28,6 +36,9 @@ class MultilangSimpleBlockAdmin extends SimpleBlockAdmin
         $this->locales = $locales;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         parent::configureListFields($listMapper);
@@ -36,6 +47,9 @@ class MultilangSimpleBlockAdmin extends SimpleBlockAdmin
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -48,22 +62,5 @@ class MultilangSimpleBlockAdmin extends SimpleBlockAdmin
         ;
 
         parent::configureFormFields($formMapper);
-    }
-
-    public function getNewInstance()
-    {
-        /** @var $new MultilangSimpleBlock */
-        $new = parent::getNewInstance();
-
-        if ($this->hasRequest()) {
-            $currentLocale = $this->getRequest()->attributes->get('_locale');
-
-            if (in_array($currentLocale, $this->locales)) {
-                $meta = $this->getModelManager()->getMetadata(get_class($new));
-                $meta->setFieldValue($new, $meta->localeMapping, $currentLocale);
-            }
-        }
-
-        return $new;
     }
 }

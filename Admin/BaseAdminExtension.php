@@ -1,5 +1,12 @@
 <?php
-
+/*
+ * This file is part of the Symfony CMF package.
+ *
+ * (c) Symfony2 CMF
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
 
 use Sonata\AdminBundle\Admin\AdminExtension;
@@ -26,5 +33,4 @@ class BaseAdminExtension extends AdminExtension
             ->end()
         ;
     }
-
 }
