@@ -11,15 +11,15 @@
         <xsd:sequence>
             <xsd:element name="persistence" type="persistence" minOccurs="0" />
             <xsd:element name="twig" type="twig" minOccurs="0" />
-            <xsd:element name="use-imagine" type="enable" minOccurs="0" />
             <xsd:element name="multilang" type="multilang" minOccurs="0" />
             <xsd:element name="caches" type="caches" minOccurs="0" />
         </xsd:sequence>
+        <xsd:attribute name="use-imagine" type="enable" />
     </xsd:complexType>
 
     <xsd:complexType name="persistence">
         <xsd:sequence>
-            <xsd:element name="phpcr" type="phpcr" minOccurs="1" />
+            <xsd:element name="phpcr" type="phpcr" minOccurs="0" />
         </xsd:sequence>
     </xsd:complexType>
 
@@ -32,7 +32,7 @@
         <xsd:attribute name="container-document-class" type="xsd:string" />
         <xsd:attribute name="reference-document-class" type="xsd:string" />
         <xsd:attribute name="action-document-class" type="xsd:string" />
-        <xsd:attribute name="use_sonata_admin" type="enable" />
+        <xsd:attribute name="use-sonata-admin" type="enable" />
         <xsd:attribute name="simple-admin-class" type="xsd:string" />
         <xsd:attribute name="container-admin-class" type="xsd:string" />
         <xsd:attribute name="reference-admin-class" type="xsd:string" />
@@ -73,6 +73,7 @@
         </xsd:sequence>
 
         <xsd:attribute name="token" type="xsd:string" />
+        <xsd:attribute name="version" type="xsd:string" />
     </xsd:complexType>
 
     <xsd:complexType name="ssi">
