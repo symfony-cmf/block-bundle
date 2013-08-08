@@ -8,9 +8,12 @@
     <document
         name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\StringBlock"
         referenceable="true"
+        translator="attribute"
         >
 
-        <field name="body" type="string"/>
+        <locale name="locale"/>
+
+        <field name="body" type="string" translated="true"/>
 
     </document>
 

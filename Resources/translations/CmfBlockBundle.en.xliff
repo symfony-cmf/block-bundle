@@ -12,11 +12,6 @@
                 <target>Simple block</target>
             </trans-unit>
 
-            <trans-unit id="dashboard.label_multilang_simple_block">
-                <source>dashboard.label_multilang_simple_block</source>
-                <target>Multilingual simple block</target>
-            </trans-unit>
-
             <trans-unit id="dashboard.label_container_block">
                 <source>dashboard.label_container_block</source>
                 <target>Container block</target>
@@ -37,9 +32,9 @@
                 <target>Slideshow block</target>
             </trans-unit>
 
-            <trans-unit id="dashboard.label_multilang_slideshow_block">
-                <source>dashboard.label_multilang_slideshow_block</source>
-                <target>Slideshow block</target>
+            <trans-unit id="dashboard.label_imagine_block">
+                <source>dashboard.label_imagine_block</source>
+                <target>Bloc image</target>
             </trans-unit>
 
             <trans-unit id="dashboard.label_string_block">
@@ -67,26 +62,6 @@
                 <target>Delete</target>
             </trans-unit>
 
-            <trans-unit id="breadcrumb.link_multilang_slideshow_block_list">
-                <source>breadcrumb.link_multilang_slideshow_block_list</source>
-                <target>Multilingual Slideshow Blocks</target>
-            </trans-unit>
-
-            <trans-unit id="breadcrumb.link_multilang_slideshow_block_create">
-                <source>breadcrumb.link_multilang_slideshow_block_create</source>
-                <target>Create</target>
-            </trans-unit>
-
-            <trans-unit id="breadcrumb.link_multilang_slideshow_block_edit">
-                <source>breadcrumb.link_multilang_slideshow_block_edit</source>
-                <target>Edit</target>
-            </trans-unit>
-
-            <trans-unit id="breadcrumb.link_multilang_slideshow_block_delete">
-                <source>breadcrumb.link_multilang_slideshow_block_delete</source>
-                <target>Delete</target>
-            </trans-unit>
-
             <trans-unit id="breadcrumb.link_simple_block_list">
                 <source>breadcrumb.link_simple_block_list</source>
                 <target>Simple blocks</target>
@@ -104,26 +79,6 @@
 
             <trans-unit id="breadcrumb.link_simple_block_delete">
                 <source>breadcrumb.link_simple_block_delete</source>
-                <target>Delete</target>
-            </trans-unit>
-
-            <trans-unit id="breadcrumb.link_multilang_simple_block_list">
-                <source>breadcrumb.link_multilang_simple_block_list</source>
-                <target>Multilingual simple blocks</target>
-            </trans-unit>
-
-            <trans-unit id="breadcrumb.link_multilang_simple_block_create">
-                <source>breadcrumb.link_multilang_simple_block_create</source>
-                <target>Create</target>
-            </trans-unit>
-
-            <trans-unit id="breadcrumb.link_multilang_simple_block_edit">
-                <source>breadcrumb.link_multilang_simple_block_edit</source>
-                <target>Edit</target>
-            </trans-unit>
-
-            <trans-unit id="breadcrumb.link_multilang_simple_block_delete">
-                <source>breadcrumb.link_multilang_simple_block_delete</source>
                 <target>Delete</target>
             </trans-unit>
 
@@ -204,6 +159,26 @@
 
             <trans-unit id="breadcrumb.link_string_block_delete">
                 <source>breadcrumb.link_string_block_delete</source>
+                <target>Delete</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_imagine_block_list">
+                <source>breadcrumb.link_imagine_block_list</source>
+                <target>Image blocs</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_imagine_block_create">
+                <source>breadcrumb.link_imagine_block_create</source>
+                <target>Create</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_imagineblock_edit">
+                <source>breadcrumb.link_imagine_block_edit</source>
+                <target>Edit</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_imagine_block_delete">
+                <source>breadcrumb.link_imagine_block_delete</source>
                 <target>Delete</target>
             </trans-unit>
 

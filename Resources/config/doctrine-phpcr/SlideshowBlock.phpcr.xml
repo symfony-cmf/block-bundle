@@ -8,9 +8,12 @@
     <document
         name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock"
         referenceable="true"
+        translator="attribute"
         >
 
-        <field name="title" type="string"/>
+        <locale name="locale"/>
+
+        <field name="title" type="string" translated="true"/>
 
     </document>
 

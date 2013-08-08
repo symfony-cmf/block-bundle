@@ -1,6 +1,7 @@
 Changelog
 =========
 
+* **2013-08-08**: [Model] Removed every Multilang models and implement TranslatableInterface instead to fit CMF standards.
 * **2013-08-08**: [Admin] Added explicit base route name / patterns to fix broken schema. `cmf_bundle_action` becomes `cmf_block_action`.
 * **2013-08-08**: [PublishWorkflow] AbstractBlock now implements the publish
   workflow and the PHPCRBlockLoader expects a security context to check if

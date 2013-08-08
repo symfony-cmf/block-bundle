@@ -3,11 +3,12 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
 use Doctrine\ODM\PHPCR\Document\Image;
+use Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface;
 
 /**
  * Block to hold an image
  */
-class ImagineBlock extends AbstractBlock
+class ImagineBlock extends AbstractBlock implements TranslatableInterface
 {
     /**
      * @var Image

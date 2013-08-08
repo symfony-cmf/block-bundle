@@ -3,6 +3,7 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Model;
 
 use Sonata\BlockBundle\Model\BlockInterface;
+use Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface;
 
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface;
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface;
@@ -74,6 +75,14 @@ abstract class AbstractBlock implements
      * @var \DateTime|null publication end time
      */
     protected $publishEndDate;
+
+    /**
+     * If you want your block model to be translated it has to implement TranslatableInterface
+     * this code is just here to make your life easier
+     *
+     * @var string
+     */
+    protected $locale = false;
 
     /**
      * @param string $src
@@ -419,5 +428,27 @@ abstract class AbstractBlock implements
     public function getDashifiedType()
     {
         return $this->dashify($this->getType());
+    }
+
+    /**
+     * If you want your block model to be translated it has to implement TranslatableInterface
+     * this code is just here to make your life easier
+     *
+     * @see TranslatableInterface::getLocale()
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * If you want your block model to be translated it has to implement TranslatableInterface
+     * this code is just here to make your life easier
+     *
+     * @see TranslatableInterface::setLocale()
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
     }
 }

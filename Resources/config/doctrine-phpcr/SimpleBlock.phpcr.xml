@@ -8,10 +8,13 @@
     <document
         name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock"
         referenceable="true"
+        translator="attribute"
         >
 
-        <field name="title" type="string"/>
-        <field name="body" type="string"/>
+        <locale name="locale"/>
+
+        <field name="title" type="string" translated="true"/>
+        <field name="body" type="string" translated="true"/>
 
     </document>
 
