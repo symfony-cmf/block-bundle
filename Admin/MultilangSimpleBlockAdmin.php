@@ -11,6 +11,9 @@ use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MultilangSimpleBlock;
  */
 class MultilangSimpleBlockAdmin extends SimpleBlockAdmin
 {
+    protected $baseRouteName = 'cmf_block_multilangsimpleblock';
+    protected $baseRoutePattern = '/cmf/block/multilangsimpleblock';
+
     /**
      * @var array
      */
