@@ -91,7 +91,7 @@ class CmfBlockHelper extends Helper
     {
         try {
             return $this->sonataBlock->render(array('name' => $block[1]));
-        } catch (BlockNotFoundException $e) {
+        } catch (\Exception $e) {
             if ($this->logger) {
                 $this->logger->warn('Failed to render block "' . $block[1] . '" embedded in content: ' . $e->getTraceAsString());
             }
