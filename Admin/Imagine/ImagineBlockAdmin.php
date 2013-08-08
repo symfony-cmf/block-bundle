@@ -2,13 +2,17 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine;
 
-use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
+use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class ImagineBlockAdmin extends Admin
+/**
+ * @author Horner
+ */
+class ImagineBlockAdmin extends AbstractBlockAdmin
 {
-    protected $translationDomain = 'CmfBlockBundle';
-
+    /**
+     * {@inheritdoc}
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         parent::configureFormFields($formMapper);

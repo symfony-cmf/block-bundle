@@ -26,5 +26,4 @@ class BaseAdminExtension extends AdminExtension
             ->end()
         ;
     }
-
 }

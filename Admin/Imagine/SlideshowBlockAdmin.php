@@ -4,12 +4,13 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine;
 
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
+use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
 
-class SlideshowBlockAdmin extends Admin
+/**
+ * @author Horner
+ */
+class SlideshowBlockAdmin extends AbstractBlockAdmin
 {
-    protected $translationDomain = 'CmfBlockBundle';
-
     /**
      * Path to where new slideshow blocks may be attached
      *
@@ -24,6 +25,9 @@ class SlideshowBlockAdmin extends Admin
      */
     protected $embeddedAdminCode;
 
+    /**
+     * @param string $blockRoot
+     */
     public function setBlockRoot($blockRoot)
     {
         $this->blockRoot = $blockRoot;
@@ -39,6 +43,9 @@ class SlideshowBlockAdmin extends Admin
         $this->embeddedAdminCode = $adminCode;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         parent::configureListFields($listMapper);
@@ -47,6 +54,9 @@ class SlideshowBlockAdmin extends Admin
             ->add('title', 'text');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         parent::configureFormFields($formMapper);
@@ -76,6 +86,9 @@ class SlideshowBlockAdmin extends Admin
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function prePersist($slideshow)
     {
         foreach ($slideshow->getChildren() as $child) {
@@ -83,6 +96,9 @@ class SlideshowBlockAdmin extends Admin
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function preUpdate($slideshow)
     {
         foreach ($slideshow->getChildren() as $child) {
