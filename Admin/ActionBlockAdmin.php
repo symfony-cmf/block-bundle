@@ -12,6 +12,9 @@ use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
  */
 class ActionBlockAdmin extends AbstractBlockAdmin
 {
+    protected $baseRouteName = 'cmf_block_action';
+    protected $baseRoutePattern = '/cmf/block/action';
+
     /**
      * {@inheritdoc}
      */

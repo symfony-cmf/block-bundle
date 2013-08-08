@@ -12,6 +12,9 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
  */
 class StringBlockAdmin extends AbstractBlockAdmin
 {
+    protected $baseRouteName = 'cmf_block_string';
+    protected $baseRoutePattern = '/cmf/block/string';
+
     /**
      * {@inheritdoc}
      */
