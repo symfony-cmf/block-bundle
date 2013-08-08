@@ -1,6 +1,7 @@
 Changelog
 =========
 
+* **2013-08-08**: [Admin] Added explicit base route name / patterns to fix broken schema. `cmf_bundle_action` becomes `cmf_block_action`.
 * **2013-08-01**: [DependencyInjection] moved phpcr specific configuration under ``persistence.phpcr`` and added ``enabled`` flag.
 * **2013-08-01**: [Model] Updated content to body property for ``SimpleBlock``, ``MultilangSimpleBlock`` and ``StringBlock``.
 
