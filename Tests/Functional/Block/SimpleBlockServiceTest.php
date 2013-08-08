@@ -45,5 +45,4 @@ class SimpleBlockServiceTest extends \PHPUnit_Framework_TestCase
         $simpleBlockService = new SimpleBlockService('test-service', $templatingMock);
         $simpleBlockService->execute(new BlockContext($simpleBlock));
     }
-
 }
