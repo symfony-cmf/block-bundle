@@ -34,7 +34,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('enabled')->defaultNull()->end()
                                 ->scalarNode('content_basepath')->defaultValue('/cms/content')->end()
                                 ->scalarNode('block_basepath')->defaultValue('/cms/content')->end()
-                                ->scalarNode('manager_name')->defaultValue('default')->end()
+                                ->scalarNode('manager_name')->defaultNull()->end()
                                 ->scalarNode('simple_document_class')->defaultNull()->end()
                                 ->scalarNode('container_document_class')->defaultNull()->end()
                                 ->scalarNode('reference_document_class')->defaultNull()->end()
