@@ -12,11 +12,6 @@
                 <target>Einfacher Block</target>
             </trans-unit>
 
-            <trans-unit id="dashboard.label_multilang_simple_block">
-                <source>dashboard.label_multilang_simple_block</source>
-                <target>Mehrsprachiger einfacher Block</target>
-            </trans-unit>
-
             <trans-unit id="dashboard.label_container_block">
                 <source>dashboard.label_container_block</source>
                 <target>Containerblock</target>
@@ -37,11 +32,6 @@
                 <target>Slideshow-Block</target>
             </trans-unit>
 
-            <trans-unit id="dashboard.label_multilang_slideshow_block">
-                <source>dashboard.label_multilang_slideshow_block</source>
-                <target>Mehrsprachiger Slideshow-Block</target>
-            </trans-unit>
-
             <trans-unit id="dashboard.label_string_block">
                 <source>dashboard.label_string_block</source>
                 <target>Textblock</target>
@@ -49,7 +39,12 @@
 
             <trans-unit id="breadcrumb.link_slideshow_block_list">
                 <source>breadcrumb.link_slideshow_block_list</source>
-                <target>Slideshow Bl&#xF6;cke</target>
+                <target>Slideshow Blöcke</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_imagine_block">
+                <source>dashboard.label_imagine_block</source>
+                <target>Image Blöcke</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_slideshow_block_create">
@@ -64,32 +59,12 @@
 
             <trans-unit id="breadcrumb.link_slideshow_block_delete">
                 <source>breadcrumb.link_slideshow_block_delete</source>
-                <target>L&#xF6;schen</target>
-            </trans-unit>
-
-            <trans-unit id="breadcrumb.link_multilang_slideshow_block_list">
-                <source>breadcrumb.link_multilang_slideshow_block_list</source>
-                <target>Mehrsprachige Slideshow Bl&#xF6;cke</target>
-            </trans-unit>
-
-            <trans-unit id="breadcrumb.link_multilang_slideshow_block_create">
-                <source>breadcrumb.link_multilang_slideshow_block_create</source>
-                <target>Erstellen</target>
-            </trans-unit>
-
-            <trans-unit id="breadcrumb.link_multilang_slideshow_block_edit">
-                <source>breadcrumb.link_multilang_slideshow_block_edit</source>
-                <target>Bearbeiten</target>
-            </trans-unit>
-
-            <trans-unit id="breadcrumb.link_multilang_slideshow_block_delete">
-                <source>breadcrumb.link_multilang_slideshow_block_delete</source>
-                <target>L&#xF6;schen</target>
+                <target>Löschen</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_simple_block_list">
                 <source>breadcrumb.link_simple_block_list</source>
-                <target>Einfache Bl&#xF6;cke</target>
+                <target>Einfache Blöcke</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_simple_block_create">
@@ -104,32 +79,12 @@
 
             <trans-unit id="breadcrumb.link_simple_block_delete">
                 <source>breadcrumb.link_simple_block_delete</source>
-                <target>L&#xF6;schen</target>
-            </trans-unit>
-
-            <trans-unit id="breadcrumb.link_multilang_simple_block_list">
-                <source>breadcrumb.link_multilang_simple_block_list</source>
-                <target>Mehrsprachige einfache Bl&#xF6;cke</target>
-            </trans-unit>
-
-            <trans-unit id="breadcrumb.link_multilang_simple_block_create">
-                <source>breadcrumb.link_multilang_simple_block_create</source>
-                <target>Erstellen</target>
-            </trans-unit>
-
-            <trans-unit id="breadcrumb.link_multilang_simple_block_edit">
-                <source>breadcrumb.link_multilang_simple_block_edit</source>
-                <target>Bearbeiten</target>
-            </trans-unit>
-
-            <trans-unit id="breadcrumb.link_multilang_simple_block_delete">
-                <source>breadcrumb.link_multilang_simple_block_delete</source>
-                <target>L&#xF6;schen</target>
+                <target>Löschen</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_container_block_list">
                 <source>breadcrumb.link_container_block_list</source>
-                <target>Containerbl&#xF6;cke</target>
+                <target>Containerblöcke</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_container_block_create">
@@ -144,12 +99,12 @@
 
             <trans-unit id="breadcrumb.link_container_block_delete">
                 <source>breadcrumb.link_container_block_delete</source>
-                <target>L&#xF6;schen</target>
+                <target>Löschen</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_reference_block_list">
                 <source>breadcrumb.link_reference_block_list</source>
-                <target>Referenzbl&#xF6;cke</target>
+                <target>Referenzblöcke</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_reference_block_create">
@@ -164,12 +119,12 @@
 
             <trans-unit id="breadcrumb.link_reference_block_delete">
                 <source>breadcrumb.link_reference_block_delete</source>
-                <target>L&#xF6;schen</target>
+                <target>Löschen</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_action_block_list">
                 <source>breadcrumb.link_action_block_list</source>
-                <target>Aktionsbl&#xF6;cke</target>
+                <target>Aktionsblöcke</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_action_block_create">
@@ -184,12 +139,12 @@
 
             <trans-unit id="breadcrumb.link_action_block_delete">
                 <source>breadcrumb.link_action_block_delete</source>
-                <target>L&#xF6;schen</target>
+                <target>Löschen</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_string_block_list">
                 <source>breadcrumb.link_string_block_list</source>
-                <target>Textbl&#xF6;cke</target>
+                <target>Textblöcke</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_string_block_create">
@@ -204,7 +159,27 @@
 
             <trans-unit id="breadcrumb.link_string_block_delete">
                 <source>breadcrumb.link_string_block_delete</source>
-                <target>L&#xF6;schen</target>
+                <target>Löschen</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_imagine_block_list">
+                <source>breadcrumb.link_imagine_block_list</source>
+                <target>Imageblöcke</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_imagine_block_create">
+                <source>breadcrumb.link_imagine_block_create</source>
+                <target>Erstellen</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_imagineblock_edit">
+                <source>breadcrumb.link_imagine_block_edit</source>
+                <target>Bearbeiten</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_imagine_block_delete">
+                <source>breadcrumb.link_imagine_block_delete</source>
+                <target>Löschen</target>
             </trans-unit>
 
             <trans-unit id="filter.label_title">
@@ -249,7 +224,7 @@
 
             <trans-unit id="form.label_parent_document">
                 <source>form.label_parent_document</source>
-                <target>&#xDC;bergeordnet</target>
+                <target>Übergeordnet</target>
             </trans-unit>
 
             <trans-unit id="form.label_name">
