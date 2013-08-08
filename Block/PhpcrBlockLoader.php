@@ -21,7 +21,7 @@ use Sonata\BlockBundle\Exception\BlockNotFoundException;
  * It can be configured to return an EmptyBlock in case no block is found at
  * the specified location.
  */
-class PHPCRBlockLoader implements BlockLoaderInterface
+class PhpcrBlockLoader implements BlockLoaderInterface
 {
     /**
      * @var ContainerInterface

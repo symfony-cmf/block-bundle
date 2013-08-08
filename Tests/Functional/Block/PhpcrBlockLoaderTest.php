@@ -4,11 +4,11 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker;
 use Symfony\Component\HttpFoundation\Request,
-    Symfony\Cmf\Bundle\BlockBundle\Block\PHPCRBlockLoader,
+    Symfony\Cmf\Bundle\BlockBundle\Block\PhpcrBlockLoader,
     Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
-class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
+class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
@@ -52,7 +52,7 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
 
     private function getSimpleBlockLoaderInstance()
     {
-        $blockLoader = new PHPCRBlockLoader($this->containerMock, $this->registryMock, $this->securityMock, null, 'emptyblocktype');
+        $blockLoader = new PhpcrBlockLoader($this->containerMock, $this->registryMock, $this->securityMock, null, 'emptyblocktype');
         $blockLoader->setManagerName('themanager');
 
         return $blockLoader;
@@ -299,7 +299,7 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($registryMock))
         ;
 
-        $blockLoader = new PHPCRBlockLoader($this->containerMock, $registryMock, $this->securityMock, null, 'emptyblocktype');
+        $blockLoader = new PhpcrBlockLoader($this->containerMock, $registryMock, $this->securityMock, null, 'emptyblocktype');
 
         $blockLoader->setManagerName('themanager');
         $foundBlock = $blockLoader->load(array('name' => $absoluteBlockPath));
