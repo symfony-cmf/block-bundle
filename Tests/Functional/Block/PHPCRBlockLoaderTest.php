@@ -2,9 +2,11 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
+use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker;
 use Symfony\Component\HttpFoundation\Request,
     Symfony\Cmf\Bundle\BlockBundle\Block\PHPCRBlockLoader,
     Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
 {
@@ -21,6 +23,11 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
      */
     private $dmMock;
 
+    /**
+     * @var SecurityContextInterface|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private $securityMock;
+
     public function setUp()
     {
         $this->containerMock = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')
@@ -35,6 +42,7 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock()
         ;
+        $this->securityMock = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->registryMock->expects($this->any())
             ->method('getManager')
             ->with($this->equalTo('themanager'))
@@ -44,7 +52,7 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
 
     private function getSimpleBlockLoaderInstance()
     {
-        $blockLoader = new PHPCRBlockLoader($this->containerMock, $this->registryMock, null, 'emptyblocktype');
+        $blockLoader = new PHPCRBlockLoader($this->containerMock, $this->registryMock, $this->securityMock, null, 'emptyblocktype');
         $blockLoader->setManagerName('themanager');
 
         return $blockLoader;
@@ -84,6 +92,11 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
                     $this->equalTo($absoluteBlockPath)
             )
             ->will($this->returnValue($block))
+        ;
+        $this->securityMock->expects($this->once())
+            ->method('isGranted')
+            ->with(PublishWorkflowChecker::VIEW_ATTRIBUTE, $this->equalTo($block))
+            ->will($this->returnValue(true))
         ;
 
         $found = $blockLoader->load(array('name' => $absoluteBlockPath));
@@ -153,6 +166,11 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
             )
             ->will($this->returnValue($block))
         ;
+        $this->securityMock->expects($this->once())
+            ->method('isGranted')
+            ->with(PublishWorkflowChecker::VIEW_ATTRIBUTE, $this->equalTo($block))
+            ->will($this->returnValue(true))
+        ;
 
         $blockLoader = $this->getSimpleBlockLoaderInstance();
 
@@ -179,6 +197,11 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
             )
             ->will($this->returnValue($simpleBlock))
         ;
+        $this->securityMock->expects($this->once())
+            ->method('isGranted')
+            ->with(PublishWorkflowChecker::VIEW_ATTRIBUTE, $this->equalTo($simpleBlock))
+            ->will($this->returnValue(true))
+        ;
 
         $receivedBlock = $blockLoader->load(array(
             'name' => $absoluteBlockPath
@@ -194,6 +217,10 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo('doctrine_phpcr'))
             ->will($this->returnValue($this->registryMock))
         ;
+        $this->securityMock->expects($this->never())
+            ->method('isGranted')
+        ;
+
         $blockLoader = $this->getSimpleBlockLoaderInstance();
         $this->assertInstanceOf('Sonata\BlockBundle\Model\EmptyBlock', $blockLoader->load(array('name' => 'invalid/block')));
     }
@@ -238,6 +265,18 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
             )
             ->will($this->returnValue($altBlock))
         ;
+        $this->securityMock->expects($this->at(0))
+            ->method('isGranted')
+            ->with(PublishWorkflowChecker::VIEW_ATTRIBUTE, $this->equalTo($block))
+            ->will($this->returnValue(true))
+        ;
+        $this->securityMock->expects($this->at(1))
+        ->method('isGranted')
+        ->with(PublishWorkflowChecker::VIEW_ATTRIBUTE, $this->equalTo($altBlock))
+        ->will($this->returnValue(true))
+    ;
+
+
 
         $registryMock = $this->getMockBuilder('Doctrine\Bundle\PHPCRBundle\ManagerRegistry')
             ->disableOriginalConstructor()
@@ -260,7 +299,7 @@ class PHPCRBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($registryMock))
         ;
 
-        $blockLoader = new PHPCRBlockLoader($this->containerMock, $registryMock, null, 'emptyblocktype');
+        $blockLoader = new PHPCRBlockLoader($this->containerMock, $registryMock, $this->securityMock, null, 'emptyblocktype');
 
         $blockLoader->setManagerName('themanager');
         $foundBlock = $blockLoader->load(array('name' => $absoluteBlockPath));

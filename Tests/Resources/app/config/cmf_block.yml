@@ -1,0 +1,4 @@
+cmf_block:
+    persistence:
+        phpcr:
+            enabled: true

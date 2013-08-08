@@ -14,6 +14,7 @@
             <tag name="sonata.block.loader" />
             <argument type="service" id="service_container" />
             <argument type="service" id="doctrine-phpcr" />
+            <argument type="service" id="cmf_core.publish_workflow.checker"/>
             <argument type="service" id="logger" on-invalid="ignore" />
             <argument>sonata.block.service.empty</argument>
         </service>

@@ -2,6 +2,15 @@ Changelog
 =========
 
 * **2013-08-08**: [Admin] Added explicit base route name / patterns to fix broken schema. `cmf_bundle_action` becomes `cmf_block_action`.
+* **2013-08-08**: [PublishWorkflow] AbstractBlock now implements the publish
+  workflow and the PHPCRBlockLoader expects a security context to check if
+  blocks are published. If a block is not published, the same behaviour as when
+  the block is not found is used (depending on the configuration either
+  returning an EmptyBlock or throwing an exception).
+
+1.0.0-beta3
+-----------
+
 * **2013-08-01**: [DependencyInjection] moved phpcr specific configuration under ``persistence.phpcr`` and added ``enabled`` flag.
 * **2013-08-01**: [Model] Updated content to body property for ``SimpleBlock``, ``MultilangSimpleBlock`` and ``StringBlock``.
 
@@ -16,6 +25,7 @@ Changelog
     $ php app/console doctrine:phpcr:nodes:update \
         --query="SELECT * FROM [nt:unstructured] WHERE [phpcr:class] = \"Symfony\\Cmf\\Bundle\\BlockBundle\\Doctrine\\Phpcr\\DOCUMENT_CLASS\"" \
         --remove-prop=content
+
 * **2013-08-01**: [Model] Adopted persistance standard model, see: http://symfony.com/doc/master/cmf/contributing/bundles.html#Persistence.
 
   The PHPCR-ODM will now not be automatically loaded but only when
@@ -31,7 +41,7 @@ Changelog
         --query="SELECT * FROM [nt:unstructured] WHERE [phpcr:class] = \"Symfony\\Cmf\\Bundle\\BlockBundle\\Document\\DOCUMENT_CLASS\"" \
         --set-prop=phpcr:class="Symfony\\Cmf\\Bundle\\BlockBundle\\Doctrine\\Phpcr\\DOCUMENT_CLASS"
 
-1.0.0-beta3
+1.0.0-beta2
 -----------
 
 * **2013-06-21**: [ActionBlock] ActionBlock got the method resolveRequestParams.
