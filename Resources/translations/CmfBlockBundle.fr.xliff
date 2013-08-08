@@ -19,7 +19,7 @@
 
             <trans-unit id="dashboard.label_reference_block">
                 <source>dashboard.label_reference_block</source>
-                <target>Bloc r&#xE9;f&#xE9;rence</target>
+                <target>Bloc référence</target>
             </trans-unit>
 
             <trans-unit id="dashboard.label_action_block">
@@ -49,12 +49,12 @@
 
             <trans-unit id="breadcrumb.link_slideshow_block_create">
                 <source>breadcrumb.link_slideshow_block_create</source>
-                <target>Cr&#xE9;er</target>
+                <target>Créer</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_slideshow_block_edit">
                 <source>breadcrumb.link_slideshow_block_edit</source>
-                <target>&#xC9;diter</target>
+                <target>Éditer</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_slideshow_block_delete">
@@ -69,12 +69,12 @@
 
             <trans-unit id="breadcrumb.link_simple_block_create">
                 <source>breadcrumb.link_simple_block_create</source>
-                <target>Cr&#xE9;er</target>
+                <target>Créer</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_simple_block_edit">
                 <source>breadcrumb.link_simple_block_edit</source>
-                <target>&#xC9;diter</target>
+                <target>Éditer</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_simple_block_delete">
@@ -89,12 +89,12 @@
 
             <trans-unit id="breadcrumb.link_container_block_create">
                 <source>breadcrumb.link_container_block_create</source>
-                <target>Cr&#xE9;er</target>
+                <target>Créer</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_container_block_edit">
                 <source>breadcrumb.link_container_block_edit</source>
-                <target>&#xC9;diter</target>
+                <target>Éditer</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_container_block_delete">
@@ -104,17 +104,17 @@
 
             <trans-unit id="breadcrumb.link_reference_block_list">
                 <source>breadcrumb.link_reference_block_list</source>
-                <target>Blocs r&#xE9;f&#xE9;rence</target>
+                <target>Blocs référence</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_reference_block_create">
                 <source>breadcrumb.link_reference_block_create</source>
-                <target>Cr&#xE9;er</target>
+                <target>Créer</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_reference_block_edit">
                 <source>breadcrumb.link_reference_block_edit</source>
-                <target>&#xC9;diter</target>
+                <target>Éditer</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_reference_block_delete">
@@ -129,12 +129,12 @@
 
             <trans-unit id="breadcrumb.link_action_block_create">
                 <source>breadcrumb.link_action_block_create</source>
-                <target>Cr&#xE9;er</target>
+                <target>Créer</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_action_block_edit">
                 <source>breadcrumb.link_action_block_edit</source>
-                <target>&#xC9;diter</target>
+                <target>Éditer</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_action_block_delete">
@@ -149,12 +149,12 @@
 
             <trans-unit id="breadcrumb.link_text_block_create">
                 <source>breadcrumb.link_text_block_create</source>
-                <target>Cr&#xE9;er</target>
+                <target>Créer</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_text_block_edit">
                 <source>breadcrumb.link_text_block_edit</source>
-                <target>&#xC9;diter</target>
+                <target>Éditer</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_text_block_delete">
@@ -169,12 +169,12 @@
 
             <trans-unit id="breadcrumb.link_imagine_block_create">
                 <source>breadcrumb.link_imagine_block_create</source>
-                <target>Cr&#xE9;er</target>
+                <target>Créer</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_imagineblock_edit">
                 <source>breadcrumb.link_imagine_block_edit</source>
-                <target>&#xC9;diter</target>
+                <target>Éditer</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_imagine_block_delete">
@@ -214,7 +214,7 @@
 
             <trans-unit id="form.group_general">
                 <source>form.group_general</source>
-                <target>G&#xE9;n&#xE9;ral</target>
+                <target>Général</target>
             </trans-unit>
 
             <trans-unit id="form.label_locale">
@@ -244,7 +244,7 @@
 
             <trans-unit id="form.label_referenced_block">
                 <source>form.label_referenced_block</source>
-                <target>Bloc r&#xE9;f&#xE9;renc&#xE9;</target>
+                <target>Bloc référencé</target>
             </trans-unit>
 
             <trans-unit id="form.label_action_name">
@@ -279,7 +279,7 @@
 
             <trans-unit id="form.group_base">
                 <source>form.group_base</source>
-                <target>Avanc&#xE9;</target>
+                <target>Avancé</target>
             </trans-unit>
 
             <trans-unit id="form.label_enabled">
