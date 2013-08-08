@@ -29,19 +29,4 @@
         </property>
     </class>
 
-    <class name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MultilangSimpleBlock">
-        <property name="locale">
-            <constraint name="NotBlank" />
-            <constraint name="Locale" />
-        </property>
-
-        <property name="title">
-            <constraint name="NotBlank" />
-        </property>
-
-        <property name="body">
-            <constraint name="NotBlank" />
-        </property>
-    </class>
-
 </constraint-mapping>

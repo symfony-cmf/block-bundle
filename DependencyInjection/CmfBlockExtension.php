@@ -60,17 +60,6 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        if (isset($config['multilang'])) {
-            if ($config['multilang']['use_sonata_admin']) {
-                $this->loadSonataAdmin($config['multilang'], $loader, $container, false, 'multilang.');
-            }
-            if (isset($config['multilang']['simple_document_class'])) {
-                $container->setParameter($this->getAlias() . '.multilang.document.class', $config['multilang']['simple_document_class']);
-            }
-
-            $container->setParameter($this->getAlias() . '.multilang.locales', $config['multilang']['locales']);
-        }
-
         if (!empty($config['persistence']['phpcr']['enabled'])) {
             $this->loadPhpcr($config['persistence']['phpcr'], $loader, $container, $useImagine);
         }
@@ -133,7 +122,6 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
             return;
         }
 
-        $loader->load($prefix . 'admin.xml');
         $loader->load('admin.xml');
 
         if (isset($config['simple_admin_class'])) {

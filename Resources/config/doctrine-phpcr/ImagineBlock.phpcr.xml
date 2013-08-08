@@ -8,12 +8,15 @@
     <document
         name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock"
         referenceable="true"
+        translator="attribute"
         >
 
         <node name="node"/>
 
-        <field name="label" type="string"/>
-        <field name="linkUrl" type="string"/>
+        <locale name="locale"/>
+
+        <field name="label" type="string" translated="true"/>
+        <field name="linkUrl" type="string" translated="true"/>
         <field name="filter" type="string"/>
 
         <child name="image" node-name="image">

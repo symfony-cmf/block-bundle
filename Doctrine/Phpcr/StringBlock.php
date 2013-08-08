@@ -2,10 +2,12 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
+use Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface;
+
 /**
  * Block that contains only text
  */
-class StringBlock extends AbstractBlock
+class StringBlock extends AbstractBlock implements TranslatableInterface
 {
     /**
      * @var string
