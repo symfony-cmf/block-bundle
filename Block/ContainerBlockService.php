@@ -61,7 +61,7 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
             $response = new Response();
         }
 
-        if ($blockContext->getBlock()->getEnabled()) {
+        if ($blockContext->getBlock()->isPublishable()) {
             return $this->renderResponse($blockContext->getTemplate(), array(
                 'block'       => $blockContext->getBlock(),
                 'settings'    => $blockContext->getSettings(),

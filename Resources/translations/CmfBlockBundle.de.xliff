@@ -217,6 +217,11 @@
                 <target>Allgemein</target>
             </trans-unit>
 
+            <trans-unit id="form.group_cache">
+                <source>form.group_cache</source>
+                <target>Cache</target>
+            </trans-unit>
+
             <trans-unit id="form.label_locale">
                 <source>form.label_locale</source>
                 <target>Sprache</target>

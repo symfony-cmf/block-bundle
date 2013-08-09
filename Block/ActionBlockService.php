@@ -79,7 +79,7 @@ class ActionBlockService extends BaseBlockService implements BlockServiceInterfa
             ));
         }
 
-        if (!$block->getEnabled()) {
+        if (!$block->isPublishable()) {
             return new Response;
         }
 

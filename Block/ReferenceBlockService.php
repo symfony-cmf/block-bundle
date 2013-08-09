@@ -59,7 +59,7 @@ class ReferenceBlockService extends BaseBlockService implements BlockServiceInte
         }
 
         // if the reference target block does not exist, we just skip the rendering
-        if ($blockContext->getBlock()->getEnabled() && null !== $blockContext->getBlock()->getReferencedBlock()) {
+        if ($blockContext->getBlock()->isPublishable() && null !== $blockContext->getBlock()->getReferencedBlock()) {
             $referencedBlockContext = $this->blockContextManager->get($blockContext->getBlock()->getReferencedBlock());
 
             $response = $this->blockRenderer->render($referencedBlockContext);

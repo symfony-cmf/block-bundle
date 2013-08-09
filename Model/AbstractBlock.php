@@ -37,11 +37,6 @@ abstract class AbstractBlock implements
     protected $parentDocument;
 
     /**
-     * @var bool
-     */
-    protected $enabled = true;
-
-    /**
      * @var int
      */
     protected $ttl = 86400;
@@ -124,23 +119,23 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * Set enabled
+     * This is required by BlockInterface
      *
      * @param boolean $enabled
      */
     public function setEnabled($enabled)
     {
-        $this->enabled = $enabled;
+        $this->setPublishable($enabled);
     }
 
     /**
-     * Get enabled
+     * This is required by BlockInterface
      *
      * @return boolean $enabled
      */
     public function getEnabled()
     {
-        return $this->enabled;
+        return $this->isPublishable();
     }
 
     /**
