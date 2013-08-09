@@ -4,53 +4,65 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Tests\WebTest;
 
 use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
 
-class BlockAdminTest extends BaseTestCase
+/**
+ * @author David Buchmann <david@liip.ch>
+ */
+class SimpleBlockAdminTest extends AbstractBlockAdminTestCase
 {
-    public function setUp()
-    {
-        $this->db('PHPCR')->loadFixtures(array(
-            'Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\DataFixtures\Phpcr\LoadBlockData',
-        ));
-        $this->client = $this->createClient();
-    }
-
+    /**
+     * {@inheritdoc}
+     */
     public function testBlockList()
     {
-        $crawler = $this->client->request('GET', '/admin/cmf/block/simple/list');
-        $res = $this->client->getResponse();
-        $this->assertEquals(200, $res->getStatusCode());
-        $this->assertCount(1, $crawler->filter('html:contains("block-1")'));
+        $this->makeListAssertions(
+            '/admin/cmf/block/simple/list',
+            array('block-1', 'block-1-title', 'block-2')
+        );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function testBlockEdit()
     {
-        $crawler = $this->client->request('GET', '/admin/cmf/block/simple/test/blocks/block-1/edit');
-        $res = $this->client->getResponse();
-        $this->assertEquals(200, $res->getStatusCode());
-        $this->assertCount(1, $crawler->filter('input[value="block-1"]'));
+        $this->makeEditAssertions(
+            '/admin/cmf/block/simple/test/blocks/block-1/edit',
+            array('block-1', 'block-1-title')
+        );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function testBlockCreate()
     {
-        $crawler = $this->client->request('GET', '/admin/cmf/block/simple/create');
-        $res = $this->client->getResponse();
-        $this->assertEquals(200, $res->getStatusCode());
+        $this->makeCreateAssertions(
+            '/admin/cmf/block/simple/create',
+            array(
+                'parentDocument' => '/test/blocks',
+                'name'           => 'foo-test',
+                'title'          => 'Foo Test',
+                'body'           => 'Block body foo bar.',
+            )
+        );
+    }
 
-        $button = $crawler->selectButton('Create');
-        $form = $button->form();
-        $node = $form->getFormNode();
-        $actionUrl = $node->getAttribute('action');
-        $uniqId = substr(strchr($actionUrl, '='), 1);
+    /**
+     * {@inheritdoc}
+     */
+    public function testBlockDelete()
+    {
+        $this->makeDeleteAssertions('/admin/cmf/block/simple/test/blocks/block-1/delete');
+    }
 
-        $form[$uniqId.'[parentDocument]'] = '/test/blocks';
-        $form[$uniqId.'[name]'] = 'foo-test';
-        $form[$uniqId.'[title]'] = 'Foo Test';
-        $form[$uniqId.'[body]'] = 'Block body foo bar.';
-
-        $this->client->submit($form);
-        $res = $this->client->getResponse();
-
-        // If we have a 302 redirect, then all is well
-        $this->assertEquals(302, $res->getStatusCode());
+    /**
+     * {@inheritdoc}
+     */
+    public function testBlockShow()
+    {
+        $this->makeShowAssertions(
+            '/admin/cmf/block/simple/test/blocks/block-1/show',
+            array('block-1')
+        );
     }
 }
