@@ -20,7 +20,7 @@ class BlockCacheExtension extends AdminExtension
     public function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('form.group_cache')
+            ->with('form.group_metadata', array('translation_domain' => 'CmfBlockBundle'))
                 ->add('ttl', 'text')
             ->end()
         ;

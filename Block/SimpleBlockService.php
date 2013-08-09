@@ -49,7 +49,7 @@ class SimpleBlockService extends BaseBlockService implements BlockServiceInterfa
             $response = new Response();
         }
 
-        if ($blockContext->getBlock()->isPublishable()) {
+        if ($blockContext->getBlock()->getEnabled()) {
             $response = $this->renderResponse($blockContext->getTemplate(), array('block' => $blockContext->getBlock()), $response);
         }
 
