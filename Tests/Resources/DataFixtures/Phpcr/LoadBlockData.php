@@ -6,8 +6,11 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 use Doctrine\ODM\PHPCR\Document\Generic;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\StringBlock;
 
 /**
  * @author David Buchmann <david@liip.ch>
@@ -29,6 +32,7 @@ class LoadBlockData implements FixtureInterface, DependentFixtureInterface
         $parent->setNodename('blocks');
         $manager->persist($parent);
 
+        //Simple
         $block = new SimpleBlock();
         $block->setParentDocument($parent);
         $block->setName('block-1');
@@ -42,19 +46,60 @@ class LoadBlockData implements FixtureInterface, DependentFixtureInterface
         $block->setPublishable(false);
         $manager->persist($block);
 
-        $block = new ActionBlock();
+        //Action
+        $actionBlockOne = new ActionBlock();
+        $actionBlockOne->setParentDocument($parent);
+        $actionBlockOne->setName('action-block-1');
+        $actionBlockOne->setActionName('FooBundle:Bar:actionOne');
+        $actionBlockOne->setPublishable(true);
+        $manager->persist($actionBlockOne);
+
+        $actionBlockTwo = new ActionBlock();
+        $actionBlockTwo->setParentDocument($parent);
+        $actionBlockTwo->setName('action-block-2');
+        $actionBlockTwo->setActionName('FooBundle:Bar:actionTwo');
+        $actionBlockTwo->setPublishable(false);
+        $manager->persist($actionBlockTwo);
+
+        //Container
+        $block = new ContainerBlock();
         $block->setParentDocument($parent);
-        $block->setName('action-block-1');
-        $block->setActionName('FooBundle:Bar:actionOne');
-        $block->setPublishable(true);
+        $block->setName('container-block-1');
         $manager->persist($block);
 
-        $block = new ActionBlock();
+        $block = new ContainerBlock();
         $block->setParentDocument($parent);
-        $block->setName('action-block-2');
-        $block->setActionName('FooBundle:Bar:actionTwo');
+        $block->setName('container-block-2');
         $block->setPublishable(false);
         $manager->persist($block);
+
+        //Reference
+        $block = new ReferenceBlock();
+        $block->setParentDocument($parent);
+        $block->setName('reference-block-1');
+        $block->setReferencedBlock($actionBlockOne);
+        $manager->persist($block);
+
+        $block = new ReferenceBlock();
+        $block->setParentDocument($parent);
+        $block->setName('reference-block-2');
+        $block->setReferencedBlock($actionBlockTwo);
+        $block->setPublishable(false);
+        $manager->persist($block);
+
+        //String
+        $block = new StringBlock();
+        $block->setParentDocument($parent);
+        $block->setName('string-block-1');
+        $block->setBody('string-block-1-body');
+        $manager->persist($block);
+
+        $block = new StringBlock();
+        $block->setParentDocument($parent);
+        $block->setName('string-block-2');
+        $block->setPublishable(false);
+        $manager->persist($block);
+
 
         $manager->flush();
     }
