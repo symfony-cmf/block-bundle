@@ -1,0 +1,148 @@
+<?php
+
+namespace Symfony\Cmf\Bundle\BlockBundle\Tests\WebTest;
+
+use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
+
+/**
+ * @author Nicolas Bastien <nbastien@prestaconcept.net>
+ */
+abstract class AbstractBlockAdminTestCase extends BaseTestCase
+{
+    /**
+     * Admin listing test case
+     */
+    abstract public function testBlockList();
+
+    /**
+     * Admin edition test case
+     */
+    abstract public function testBlockEdit();
+
+    /**
+     * Admin creation test case
+     */
+    abstract public function testBlockCreate();
+
+    /**
+     * Admin deletion test case
+     */
+    abstract public function testBlockDelete();
+
+    /**
+     * Admin show test case
+     */
+    abstract public function testBlockShow();
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUp()
+    {
+        $this->db('PHPCR')->loadFixtures(array(
+            'Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\DataFixtures\Phpcr\LoadBlockData',
+        ));
+        $this->client = $this->createClient();
+    }
+
+    /**
+     * Make defaults listing assertions
+     *
+     * @param $url              string the listing url
+     * @param $containsElements array  an array of models identifier which should be in the listing
+     */
+    protected function makeListAssertions($url, $containsElements)
+    {
+        $crawler = $this->client->request('GET', $url);
+        $res = $this->client->getResponse();
+        $this->assertEquals(200, $res->getStatusCode());
+
+        foreach ($containsElements as $element) {
+            $this->assertCount(1, $crawler->filter('html:contains("' . $element . '")'));
+        }
+    }
+
+    /**
+     * Make defaults edition assertions
+     *
+     * @param $url            string the edition url
+     * @param $containsValues array  an array of values which should be in the inputs
+     */
+    protected function makeEditAssertions($url, $containsValues)
+    {
+        $crawler = $this->client->request('GET', $url);
+        $res = $this->client->getResponse();
+        $this->assertEquals(200, $res->getStatusCode());
+
+        foreach ($containsValues as $value) {
+            $this->assertCount(1, $crawler->filter('input[value="' . $value . '"]'));
+        }
+    }
+
+    /**
+     * Make defaults creation assertions
+     *
+     * @param $url        string the creation url
+     * @param $formValues array  an array of values which should validate the form
+     */
+    protected function makeCreateAssertions($url, $formValues)
+    {
+        $crawler = $this->client->request('GET', $url);
+        $res = $this->client->getResponse();
+        $this->assertEquals(200, $res->getStatusCode());
+
+        $button = $crawler->selectButton('Create');
+        $form = $button->form();
+        $node = $form->getFormNode();
+        $actionUrl = $node->getAttribute('action');
+        $uniqId = substr(strchr($actionUrl, '='), 1);
+
+        foreach ($formValues as $key => $value) {
+            $form[$uniqId.'[' . $key . ']'] = $value;
+        }
+
+        $this->client->submit($form);
+        $res = $this->client->getResponse();
+
+        // If we have a 302 redirect, then all is well
+        $this->assertEquals(302, $res->getStatusCode());
+    }
+
+    /**
+     * Make defaults deletion assertions
+     *
+     * @param $url string the deletion url
+     */
+    protected function makeDeleteAssertions($url)
+    {
+        $crawler = $this->client->request('GET', $url);
+        $res = $this->client->getResponse();
+        $this->assertEquals(200, $res->getStatusCode());
+
+        $button = $crawler->selectButton('Yes, delete');
+        $form = $button->form();
+
+        $this->client->submit($form);
+        $res = $this->client->getResponse();
+
+        // If we have a 302 redirect, then all is well
+        $this->assertEquals(302, $res->getStatusCode());
+    }
+
+    /**
+     * Make defaults show assertions
+     *
+     * @param $url              string the edition url
+     * @param $containsElements array  an array of elements which should be in the show page
+     */
+    protected function makeShowAssertions($url, $containsElements)
+    {
+        $crawler = $this->client->request('GET', $url);
+        $res = $this->client->getResponse();
+        $this->assertEquals(200, $res->getStatusCode());
+
+        foreach ($containsElements as $element) {
+            $this->assertCount(1, $crawler->filter('html:contains("' . $element . '")'));
+        }
+    }
+}
