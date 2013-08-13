@@ -19,7 +19,6 @@
         <nodename name="name"/>
         <parent-document name="parentDocument"/>
 
-        <field name="enabled" type="boolean"/>
         <field name="ttl" type="int"/>
 
         <field name="createdAt" type="date" property="jcr:created"/>

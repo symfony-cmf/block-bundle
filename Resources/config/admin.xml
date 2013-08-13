@@ -19,11 +19,15 @@
 
         <parameter key="cmf_block.persistence.phpcr.string_admin.class">Symfony\Cmf\Bundle\BlockBundle\Admin\StringBlockAdmin</parameter>
         <parameter key="cmf_block.persistence.phpcr.string_document.class">Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\StringBlock</parameter>
+
+        <parameter key="cmf_block.admin_extension.cache.class">Symfony\Cmf\Bundle\BlockBundle\Admin\Extension\BlockCacheExtension</parameter>
     </parameters>
 
     <services>
 
-        <service id="cmf.block.admin.base.extension" class="Symfony\Cmf\Bundle\BlockBundle\Admin\BaseAdminExtension" />
+        <service id="cmf_block.admin_extension.cache" class="%cmf_block.admin_extension.cache.class%">
+            <tag name="sonata.admin.extension"/>
+        </service>
 
         <service id="cmf_block.simple_admin" class="%cmf_block.persistence.phpcr.simple_admin.class%">
             <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.group_content" label_catalogue="CmfBlockBundle" label="dashboard.label_simple_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
