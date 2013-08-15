@@ -30,7 +30,7 @@
         </service>
 
         <service id="cmf_block.simple_admin" class="%cmf_block.persistence.phpcr.simple_admin.class%">
-            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.group_content" label_catalogue="CmfBlockBundle" label="dashboard.label_simple_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.cmf" label_catalogue="CmfBlockBundle" label="dashboard.label_simple_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
             <argument/>
             <argument>%cmf_block.persistence.phpcr.simple_document.class%</argument>
             <argument>SonataAdminBundle:CRUD</argument>
@@ -45,7 +45,7 @@
         </service>
 
         <service id="cmf_block.action_admin" class="%cmf_block.persistence.phpcr.action_admin.class%">
-            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.group_content" label_catalogue="CmfBlockBundle" label="dashboard.label_action_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.cmf" label_catalogue="CmfBlockBundle" label="dashboard.label_action_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
             <argument/>
             <argument>%cmf_block.persistence.phpcr.action_document.class%</argument>
             <argument>SonataAdminBundle:CRUD</argument>
@@ -60,7 +60,7 @@
         </service>
 
         <service id="cmf_block.container_admin" class="%cmf_block.persistence.phpcr.container_admin.class%">
-            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.group_content" label_catalogue="CmfBlockBundle" label="dashboard.label_container_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.cmf" label_catalogue="CmfBlockBundle" label="dashboard.label_container_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
             <argument/>
             <argument>%cmf_block.persistence.phpcr.container_document.class%</argument>
             <argument>SonataAdminBundle:CRUD</argument>
@@ -75,7 +75,7 @@
         </service>
 
         <service id="cmf_block.reference_admin" class="%cmf_block.persistence.phpcr.reference_admin.class%">
-            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.group_content" label_catalogue="CmfBlockBundle" label="dashboard.label_reference_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.cmf" label_catalogue="CmfBlockBundle" label="dashboard.label_reference_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
             <argument/>
             <argument>%cmf_block.persistence.phpcr.reference_document.class%</argument>
             <argument>SonataAdminBundle:CRUD</argument>
@@ -90,7 +90,7 @@
         </service>
 
         <service id="cmf_block.string_admin" class="%cmf_block.persistence.phpcr.string_admin.class%">
-            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.group_content" label_catalogue="CmfBlockBundle" label="dashboard.label_string_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.cmf" label_catalogue="CmfBlockBundle" label="dashboard.label_string_block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
             <argument/>
             <argument>%cmf_block.persistence.phpcr.string_document.class%</argument>
             <argument>SonataAdminBundle:CRUD</argument>
