@@ -19,7 +19,8 @@ use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface;
 abstract class AbstractBlock implements
     BlockInterface,
     PublishableInterface,
-    PublishTimePeriodInterface
+    PublishTimePeriodInterface,
+    TranslatableInterface
 {
     /**
      * @var string

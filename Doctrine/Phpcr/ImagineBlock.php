@@ -9,7 +9,7 @@ use Symfony\Cmf\Bundle\MediaBundle\ImageInterface;
 /**
  * Block to hold an image
  */
-class ImagineBlock extends AbstractBlock implements TranslatableInterface
+class ImagineBlock extends AbstractBlock
 {
     /**
      * @var Image
