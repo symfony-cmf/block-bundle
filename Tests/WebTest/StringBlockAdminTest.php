@@ -41,7 +41,7 @@ class StringBlockAdminTest extends AbstractBlockAdminTestCase
             array(
                 'parentDocument' => '/test/blocks',
                 'name'           => 'foo-test-container',
-                'body'           => 'string-block-1-body'
+                'body'           => 'string-block-1-body',
             )
         );
     }

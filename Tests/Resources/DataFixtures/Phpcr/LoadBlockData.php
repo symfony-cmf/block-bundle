@@ -43,6 +43,8 @@ class LoadBlockData implements FixtureInterface, DependentFixtureInterface
         $block = new SimpleBlock();
         $block->setParentDocument($parent);
         $block->setName('block-2');
+        $block->setTitle('block-2-title');
+        $block->setBody('block-2-body');
         $block->setPublishable(false);
         $manager->persist($block);
 
@@ -97,6 +99,7 @@ class LoadBlockData implements FixtureInterface, DependentFixtureInterface
         $block = new StringBlock();
         $block->setParentDocument($parent);
         $block->setName('string-block-2');
+        $block->setBody('string-block-2-body');
         $block->setPublishable(false);
         $manager->persist($block);
 
