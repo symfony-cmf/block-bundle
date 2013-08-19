@@ -1,6 +1,9 @@
 Changelog
 =========
 
+* **2013-08-15**: [ImagineBlock] changed the template block_imagine.html.twig
+  to pass the image id property to the imagine_filter instead of the image
+  object.
 * **2013-08-08**: [Model] Removed every Multilang models and implement TranslatableInterface instead to fit CMF standards.
 * **2013-08-08**: [Admin] Added explicit base route name / patterns to fix broken schema. `cmf_bundle_action` becomes `cmf_block_action`.
 * **2013-08-08**: [PublishWorkflow] AbstractBlock now implements the publish

@@ -4,7 +4,7 @@
         xmlns:skos="http://www.w3.org/2004/02/skos/core#"
         typeof="sioc:Post"
         >
-    <attribute key="class" value="articleContainer span3"/>
+    <attribute key="class" value="articleContainer"/>
     <children>
         <property property="dcterms:title" identifier="title" tag-name="h2"/>
         <property property="sioc:body" identifier="body" />
