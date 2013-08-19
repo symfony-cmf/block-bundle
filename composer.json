@@ -22,7 +22,7 @@
     },
     "require-dev": {
         "symfony-cmf/testing": "1.0.*",
-        "sonata-project/doctrine-phpcr-admin-bundle": "~1.0.0",
+        "sonata-project/doctrine-phpcr-admin-bundle": "1.0.*",
         "sonata-project/cache-bundle": "~2.1.3",
         "twig/twig": "~1.11"
     },
@@ -30,7 +30,7 @@
         "sonata-project/cache-bundle": "To add caching support for block loading",
         "liip/imagine-bundle": "When using the ImagineBlock",
         "symfony-cmf/media-bundle": "When using the ImagineBlock",
-        "eko/feedbundle": "To use the RssBlock"
+        "eko/feedbundle": "When using the RssBlock"
     },
     "autoload":{
         "psr-0":{

@@ -128,7 +128,7 @@ class ImagineBlock extends AbstractBlock implements TranslatableInterface
         } elseif ($image instanceof ImageInterface) {
             $this->image = $image;
         } else {
-            $this->image = new Image;
+            $this->image = new Image();
             $this->image->copyContentFromFile($image);
         }
     }
