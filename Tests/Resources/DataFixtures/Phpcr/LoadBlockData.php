@@ -64,10 +64,16 @@ class LoadBlockData implements FixtureInterface, DependentFixtureInterface
         $manager->persist($actionBlockTwo);
 
         //Container
-        $block = new ContainerBlock();
-        $block->setParentDocument($parent);
-        $block->setName('container-block-1');
-        $manager->persist($block);
+        $childBlockOne = new SimpleBlock();
+        $childBlockOne->setName('block-child-1');
+        $childBlockOne->setTitle('block-child-1-title');
+        $childBlockOne->setBody('block-child-1-body');
+
+        $containerBlock = new ContainerBlock();
+        $containerBlock->setParentDocument($parent);
+        $containerBlock->setName('container-block-1');
+        $containerBlock->addChild($childBlockOne);
+        $manager->persist($containerBlock);
 
         $block = new ContainerBlock();
         $block->setParentDocument($parent);

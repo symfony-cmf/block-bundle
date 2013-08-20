@@ -37,8 +37,44 @@ class TestController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function renderSimpleAction(Request $request)
+    public function renderSimpleBlockAction(Request $request)
     {
         return $this->renderBlock('block-1');
+    }
+
+    /**
+     * @param  Request $request
+     * @return Response
+     */
+    public function renderActionBlockAction(Request $request)
+    {
+        return $this->renderBlock('action-block-1');
+    }
+
+    /**
+     * @param  Request $request
+     * @return Response
+     */
+    public function renderContainerBlockAction(Request $request)
+    {
+        return $this->renderBlock('container-block-1');
+    }
+
+    /**
+     * @param  Request $request
+     * @return Response
+     */
+    public function renderReferenceBlockAction(Request $request)
+    {
+        return $this->renderBlock('reference-block-1');
+    }
+
+    /**
+     * @param  Request $request
+     * @return Response
+     */
+    public function renderStringBlockAction(Request $request)
+    {
+        return $this->renderBlock('string-block-1');
     }
 }

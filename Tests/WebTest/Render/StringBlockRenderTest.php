@@ -7,7 +7,7 @@ use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
 /**
  * @author Nicolas Bastien <nbastien@prestaconcept.net>
  */
-class SimpleBlockRenderTest extends BaseTestCase
+class StringBlockRenderTest extends BaseTestCase
 {
     /**
      * {@inheritdoc}
@@ -20,14 +20,13 @@ class SimpleBlockRenderTest extends BaseTestCase
         $this->client = $this->createClient();
     }
 
-    public function testRenderSimpleTwig()
+    public function testRenderStringTwig()
     {
-        $crawler = $this->client->request('GET', '/render-simple-test');
+        $crawler = $this->client->request('GET', '/render-string-test');
 
         $res = $this->client->getResponse();
         $this->assertEquals(200, $res->getStatusCode());
 
-        $this->assertCount(1, $crawler->filter('html:contains("block-1-title")'));
-        $this->assertCount(1, $crawler->filter('html:contains("block-1-body")'));
+        $this->assertCount(1, $crawler->filter('html:contains("string-block-1-body")'));
     }
 }
