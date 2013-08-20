@@ -1,0 +1,9 @@
+test_index:
+    pattern: /
+    defaults:
+        _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\Controller\TestController::indexAction
+
+render_simple_test:
+    pattern: /render-simple-test
+    defaults:
+        _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\Controller\TestController::renderSimpleAction

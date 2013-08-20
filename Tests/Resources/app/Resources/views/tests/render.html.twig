@@ -1,0 +1,9 @@
+{% extends "::layout.html.twig" %}
+
+{% block content %}
+
+    <h2>Render block : {{ block.id }} - {{ block.name }}</h2>
+
+    {{ sonata_block_render(block) }}
+
+{%  endblock %}
