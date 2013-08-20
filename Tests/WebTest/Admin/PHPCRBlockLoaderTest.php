@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Tests\WebTest;
+namespace Symfony\Cmf\Bundle\BlockBundle\Tests\WebTest\Admin;
 
 use Symfony\Cmf\Bundle\BlockBundle\Block\PhpcrBlockLoader;
 use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
