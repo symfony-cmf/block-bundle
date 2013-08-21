@@ -2,14 +2,13 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
-use Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface;
 use Symfony\Cmf\Bundle\MediaBundle\Doctrine\Phpcr\Image;
 use Symfony\Cmf\Bundle\MediaBundle\ImageInterface;
 
 /**
  * Block to hold an image
  */
-class ImagineBlock extends AbstractBlock implements TranslatableInterface
+class ImagineBlock extends AbstractBlock
 {
     /**
      * @var Image
