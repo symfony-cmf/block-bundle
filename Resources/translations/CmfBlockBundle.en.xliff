@@ -34,7 +34,7 @@
 
             <trans-unit id="dashboard.label_imagine_block">
                 <source>dashboard.label_imagine_block</source>
-                <target>Bloc image</target>
+                <target>Image block</target>
             </trans-unit>
 
             <trans-unit id="dashboard.label_string_block">
