@@ -16,7 +16,7 @@ class ActionBlockAdminTest extends AbstractBlockAdminTestCase
     {
         $this->makeListAssertions(
             '/admin/cmf/block/action/list',
-            array('action-block-1', 'FooBundle:Bar:actionOne', 'action-block-2')
+            array('action-block-1', 'cmf_block_test.test_controller:dummyAction', 'action-block-2')
         );
     }
 
@@ -27,7 +27,7 @@ class ActionBlockAdminTest extends AbstractBlockAdminTestCase
     {
         $this->makeEditAssertions(
             '/admin/cmf/block/action/test/blocks/action-block-1/edit',
-            array('action-block-1', 'FooBundle:Bar:actionOne')
+            array('action-block-1', 'cmf_block_test.test_controller:dummyAction')
         );
     }
 

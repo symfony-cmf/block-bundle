@@ -77,4 +77,14 @@ class TestController extends Controller
     {
         return $this->renderBlock('string-block-1');
     }
+
+    /**
+     * Dummy action called by action blocks
+     *
+     * @param Request $request
+     */
+    public function dummyAction(Request $request)
+    {
+        return new Response('Dummy action');
+    }
 }

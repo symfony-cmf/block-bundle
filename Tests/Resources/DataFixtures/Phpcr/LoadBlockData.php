@@ -52,7 +52,7 @@ class LoadBlockData implements FixtureInterface, DependentFixtureInterface
         $actionBlockOne = new ActionBlock();
         $actionBlockOne->setParentDocument($parent);
         $actionBlockOne->setName('action-block-1');
-        $actionBlockOne->setActionName('FooBundle:Bar:actionOne');
+        $actionBlockOne->setActionName('cmf_block_test.test_controller:dummyAction');
         $actionBlockOne->setPublishable(true);
         $manager->persist($actionBlockOne);
 

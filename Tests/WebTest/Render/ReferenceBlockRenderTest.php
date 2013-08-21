@@ -25,8 +25,8 @@ class ReferenceBlockRenderTest extends BaseTestCase
         $crawler = $this->client->request('GET', '/render-reference-test');
 
         $res = $this->client->getResponse();
-        $this->assertEquals(500, $res->getStatusCode());
+        $this->assertEquals(200, $res->getStatusCode());
 
-        $this->assertCount(1, $crawler->filter('html:contains("Bundle "FooBundle" does not exist or it is not enabled")'));
+        $this->assertCount(1, $crawler->filter('html:contains("Dummy action")'));
     }
 }
