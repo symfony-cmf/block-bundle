@@ -1,0 +1,29 @@
+test_index:
+    pattern: /
+    defaults:
+        _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\Controller\TestController::indexAction
+
+render_simple_test:
+    pattern: /render-simple-test
+    defaults:
+        _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\Controller\TestController::renderSimpleBlockAction
+
+render_action_test:
+    pattern: /render-action-test
+    defaults:
+        _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\Controller\TestController::renderActionBlockAction
+
+render_container_test:
+    pattern: /render-container-test
+    defaults:
+        _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\Controller\TestController::renderContainerBlockAction
+
+render_reference_test:
+    pattern: /render-reference-test
+    defaults:
+        _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\Controller\TestController::renderReferenceBlockAction
+
+render_string_test:
+    pattern: /render-string-test
+    defaults:
+        _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\Controller\TestController::renderStringBlockAction

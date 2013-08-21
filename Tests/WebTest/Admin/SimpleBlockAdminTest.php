@@ -1,13 +1,13 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Tests\WebTest;
+namespace Symfony\Cmf\Bundle\BlockBundle\Tests\WebTest\Admin;
 
 use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
 
 /**
- * @author Nicolas Bastien <nbastien@prestaconcept.net>
+ * @author David Buchmann <david@liip.ch>
  */
-class ReferenceBlockAdminTest extends AbstractBlockAdminTestCase
+class SimpleBlockAdminTest extends AbstractBlockAdminTestCase
 {
     /**
      * {@inheritdoc}
@@ -15,8 +15,8 @@ class ReferenceBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockList()
     {
         $this->makeListAssertions(
-            '/admin/cmf/block/reference/list',
-            array('reference-block-1', 'reference-block-2')
+            '/admin/cmf/block/simple/list',
+            array('block-1', 'block-1-title', 'block-2')
         );
     }
 
@@ -26,8 +26,8 @@ class ReferenceBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockEdit()
     {
         $this->makeEditAssertions(
-            '/admin/cmf/block/reference/test/blocks/reference-block-1/edit',
-            array('reference-block-1')
+            '/admin/cmf/block/simple/test/blocks/block-1/edit',
+            array('block-1', 'block-1-title')
         );
     }
 
@@ -37,10 +37,12 @@ class ReferenceBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockCreate()
     {
         $this->makeCreateAssertions(
-            '/admin/cmf/block/reference/create',
+            '/admin/cmf/block/simple/create',
             array(
                 'parentDocument' => '/test/blocks',
-                'name'           => 'foo-test-container'
+                'name'           => 'foo-test',
+                'title'          => 'Foo Test',
+                'body'           => 'Block body foo bar.',
             )
         );
     }
@@ -50,7 +52,7 @@ class ReferenceBlockAdminTest extends AbstractBlockAdminTestCase
      */
     public function testBlockDelete()
     {
-        $this->makeDeleteAssertions('/admin/cmf/block/reference/test/blocks/reference-block-1/delete');
+        $this->makeDeleteAssertions('/admin/cmf/block/simple/test/blocks/block-1/delete');
     }
 
     /**
@@ -59,8 +61,8 @@ class ReferenceBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockShow()
     {
         $this->makeShowAssertions(
-            '/admin/cmf/block/reference/test/blocks/reference-block-1/show',
-            array('reference-block-1')
+            '/admin/cmf/block/simple/test/blocks/block-1/show',
+            array('block-1')
         );
     }
 }

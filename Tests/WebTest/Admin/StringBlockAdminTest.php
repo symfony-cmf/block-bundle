@@ -1,13 +1,13 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Tests\WebTest;
+namespace Symfony\Cmf\Bundle\BlockBundle\Tests\WebTest\Admin;
 
 use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
 
 /**
  * @author Nicolas Bastien <nbastien@prestaconcept.net>
  */
-class ActionBlockAdminTest extends AbstractBlockAdminTestCase
+class StringBlockAdminTest extends AbstractBlockAdminTestCase
 {
     /**
      * {@inheritdoc}
@@ -15,8 +15,8 @@ class ActionBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockList()
     {
         $this->makeListAssertions(
-            '/admin/cmf/block/action/list',
-            array('action-block-1', 'FooBundle:Bar:actionOne', 'action-block-2')
+            '/admin/cmf/block/string/list',
+            array('string-block-1', 'string-block-2')
         );
     }
 
@@ -26,8 +26,8 @@ class ActionBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockEdit()
     {
         $this->makeEditAssertions(
-            '/admin/cmf/block/action/test/blocks/action-block-1/edit',
-            array('action-block-1', 'FooBundle:Bar:actionOne')
+            '/admin/cmf/block/string/test/blocks/string-block-1/edit',
+            array('string-block-1')
         );
     }
 
@@ -37,11 +37,11 @@ class ActionBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockCreate()
     {
         $this->makeCreateAssertions(
-            '/admin/cmf/block/action/create',
+            '/admin/cmf/block/string/create',
             array(
                 'parentDocument' => '/test/blocks',
-                'name'           => 'foo-test-action',
-                'actionName'     => 'FooTestBunlde:Bar:action',
+                'name'           => 'foo-test-container',
+                'body'           => 'string-block-1-body',
             )
         );
     }
@@ -51,7 +51,7 @@ class ActionBlockAdminTest extends AbstractBlockAdminTestCase
      */
     public function testBlockDelete()
     {
-        $this->makeDeleteAssertions('/admin/cmf/block/action/test/blocks/action-block-1/delete');
+        $this->makeDeleteAssertions('/admin/cmf/block/string/test/blocks/string-block-1/delete');
     }
 
     /**
@@ -60,8 +60,8 @@ class ActionBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockShow()
     {
         $this->makeShowAssertions(
-            '/admin/cmf/block/action/test/blocks/action-block-1/show',
-            array('action-block-1')
+            '/admin/cmf/block/string/test/blocks/string-block-1/show',
+            array('string-block-1')
         );
     }
 }

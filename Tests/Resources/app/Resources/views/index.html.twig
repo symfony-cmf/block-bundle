@@ -1,0 +1,20 @@
+{% extends "::layout.html.twig" %}
+{% block content %}
+<h2>Tests</h2>
+<ul>
+    <li><a href="{{ path('render_simple_test') }}">Render simple block test</a></li>
+    <li><a href="{{ path('render_action_test') }}">Render action block test</a></li>
+    <li><a href="{{ path('render_container_test') }}">Render container block test</a></li>
+    <li><a href="{{ path('render_reference_test') }}">Render reference block test</a></li>
+    <li><a href="{{ path('render_string_test') }}">Render string block test</a></li>
+</ul>
+<h2>About</h2>
+<p>This test application is built into the BlockBundle. You can easily run
+it locally as follows</p>
+<pre>
+$ composer install --dev
+$ ./vendor/symfony-cmf/testing/bin/travis/phpcr_odm_doctrine_dbal.sh
+$ phpunit Tests/Functional/Admin/SimpleBlockAdminTest.php # this is just a quick way to load fixtures ...
+$ ./vendor/symfony-cmf/testing/bin/server
+</pre>
+{% endblock %}
