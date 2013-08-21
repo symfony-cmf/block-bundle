@@ -2,7 +2,6 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
-use Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface;
 use Symfony\Cmf\Bundle\MediaBundle\Doctrine\Phpcr\Image;
 use Symfony\Cmf\Bundle\MediaBundle\ImageInterface;
 
