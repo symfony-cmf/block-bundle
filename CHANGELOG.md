@@ -1,6 +1,9 @@
 Changelog
 =========
 
+1.0.0-RC1
+---------
+
 * **2013-08-15**: [ImagineBlock] changed the template block_imagine.html.twig
   to pass the image id property to the imagine_filter instead of the image
   object.
