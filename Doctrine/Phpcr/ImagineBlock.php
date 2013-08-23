@@ -4,6 +4,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
 use Symfony\Cmf\Bundle\MediaBundle\Doctrine\Phpcr\Image;
 use Symfony\Cmf\Bundle\MediaBundle\ImageInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Block to hold an image
@@ -115,13 +116,24 @@ class ImagineBlock extends AbstractBlock
      * the document manager. Note that this block does not make much sense
      * without an image, though.
      *
-     * @param ImageInterface $image optional the image to update
+     * @param ImageInterface|UploadedFile|null $image optional the image to update
      */
-    public function setImage(ImageInterface $image = null)
+    public function setImage($image = null)
     {
-        if (!$image) {
+        if (! $image) {
             return;
-        } elseif ($this->image) {
+        }
+
+        if (! $image instanceof ImageInterface && ! $image instanceof UploadedFile) {
+            $type = is_object($image) ? get_class($image) : gettype($image);
+            throw new \InvalidArgumentException(sprintf(
+                'Image is not a valid type, "%s" given.',
+                $type
+            ));
+        }
+
+        if ($this->image) {
+            // existing image, only update content
             // TODO: https://github.com/doctrine/phpcr-odm/pull/262
             $this->image->copyContentFromFile($image);
         } elseif ($image instanceof ImageInterface) {
