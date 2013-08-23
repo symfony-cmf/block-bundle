@@ -11,6 +11,9 @@ use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
  */
 class SlideshowBlockAdmin extends AbstractBlockAdmin
 {
+    protected $baseRouteName = 'cmf_block_slideshow';
+    protected $baseRoutePattern = '/cmf/block/slideshow';
+
     /**
      * Path to where new slideshow blocks may be attached
      *
