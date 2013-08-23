@@ -17,7 +17,7 @@
 
         <field name="label" type="string" translated="true"/>
         <field name="linkUrl" type="string" translated="true"/>
-        <field name="filter" type="string"/>
+        <field name="filter" type="string" nullable="true"/>
 
         <child name="image" node-name="image">
             <cascade>
