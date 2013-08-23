@@ -48,7 +48,8 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         $container->setParameter($this->getAlias() . '.twig.cmf_embed_blocks.postfix', $config['twig']['cmf_embed_blocks']['postfix']);
 
         // detect bundles
-        if ($config['use_imagine'] ||
+        $bundles = $container->getParameter('kernel.bundles');
+        if (true === $config['use_imagine'] ||
             ('auto' === $config['use_imagine'] && isset($bundles['LiipImagineBundle']))
         ) {
             $useImagine = true;
