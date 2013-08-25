@@ -124,8 +124,9 @@ class ImagineBlock extends AbstractBlock
             return;
         }
 
-        if (! $image instanceof ImageInterface && ! $image instanceof UploadedFile) {
+        if (!$image instanceof ImageInterface && !$image instanceof UploadedFile) {
             $type = is_object($image) ? get_class($image) : gettype($image);
+
             throw new \InvalidArgumentException(sprintf(
                 'Image is not a valid type, "%s" given.',
                 $type
