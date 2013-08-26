@@ -36,40 +36,39 @@ class RssController extends Controller
      * use the settings from the block passed
      *
      * @param  BlockContextInterface $blockContext
+     *
      * @return FeedItem[]            feed items that the block template can render
      */
     protected function getItems(BlockContextInterface $blockContext)
     {
-        if ($blockContext->getSetting('url', false)
-            && $blockContext->getSetting('maxItems', false)
-            && $blockContext->getSetting('itemClass', false)
-        ) {
-            if (!$this->has('eko_feed.feed.reader')) {
-                throw new \RuntimeException('Service "eko_feed.feed.reader" not found, install the EkoFeedBundle.');
-            }
-
-            try {
-                $reader = $this->get('eko_feed.feed.reader');
-                $items = $reader->load($blockContext->getSetting('url'))->populate($blockContext->getSetting('itemClass'));
-            } catch (RuntimeException $e) {
-                // feed import failed
-                $this->get('logger')->debug(sprintf(
-                    'RssBlock with id "%s" could not import feed from "%s", error: %s',
-                    $blockContext->getBlock()->getId(),
-                    $blockContext->getSetting('url'),
-                    $e->getMessage()
-                ));
-                $items = array();
-            }
-
-            return array_slice($items, 0, $blockContext->getSetting('maxItems'));
-        } else {
+        $settings = $blockContext->getSettings();
+        if (empty($settings['url']) || empty($settings['maxItems']) || empty($settings['itemClass'])) {
             $this->get('logger')->debug(sprintf(
-                'RssBlock with id "%s" is missing a required setting: url, maxItems, itemClass',
-                $blockContext->getBlock()->getId()
-            ));
+                    'RssBlock with id "%s" is missing a required setting: url, maxItems, itemClass',
+                    $blockContext->getBlock()->getId()
+                ));
 
             return array();
         }
+
+        if (!$this->has('eko_feed.feed.reader')) {
+            throw new \RuntimeException('Service "eko_feed.feed.reader" not found, install the EkoFeedBundle.');
+        }
+
+        try {
+            $reader = $this->get('eko_feed.feed.reader');
+            $items = $reader->load($settings['url'])->populate($settings['itemClass']);
+        } catch (RuntimeException $e) {
+            // feed import failed
+            $this->get('logger')->debug(sprintf(
+                'RssBlock with id "%s" could not import feed from "%s", error: %s',
+                $blockContext->getBlock()->getId(),
+                    $settings['url'],
+                $e->getMessage()
+            ));
+            $items = array();
+        }
+
+        return array_slice($items, 0, $settings['maxItems']);
     }
 }
