@@ -28,6 +28,7 @@ class ImagineBlockAdmin extends AbstractBlockAdmin
             ->with('form.group_general')
                 ->add('label', 'text', array('required' => false))
                 ->add('linkUrl', 'text', array('required' => false))
+                ->add('filter', 'text', array('required' => false))
                 ->add('image', 'cmf_media_image', array('required' => $imageRequired))
                 ->add('position', 'hidden', array('mapped' => false))
             ->end();
