@@ -32,8 +32,8 @@ class CmfBlockHelper extends Helper
     public function __construct(SonataBlockHelper $sonataBlock, $prefix, $postfix, LoggerInterface $logger = null)
     {
         $this->sonataBlock = $sonataBlock;
-        $this->prefix = $prefix;
-        $this->postfix = $postfix;
+        $this->prefix = preg_quote($prefix, '#');
+        $this->postfix = preg_quote($postfix, '#');
         $this->logger = $logger;
     }
 
@@ -47,8 +47,10 @@ class CmfBlockHelper extends Helper
      */
     public function embedBlocks($text)
     {
-        // with the default prefix and postfix, this will do <span>block:"block-identifier"</span>
-        return preg_replace_callback('#' . $this->prefix . '"([^\"]+)"' . $this->postfix . '#', array($this, 'embeddedRender'), $text);
+        // with the default prefix and postfix, this will do %embed-block|block-identifier|end%
+        $endDelimiter = preg_quote($this->postfix[0], '#');
+
+        return preg_replace_callback('#' . $this->prefix . '([^' . $endDelimiter .']+)' . $this->postfix . '#', array($this, 'embeddedRender'), $text);
     }
 
     /**
@@ -90,7 +92,7 @@ class CmfBlockHelper extends Helper
     protected function embeddedRender($block)
     {
         try {
-            return $this->sonataBlock->render(array('name' => $block[1]));
+            return $this->sonataBlock->render(array('name' => trim($block[1])));
         } catch (\Exception $e) {
             if ($this->logger) {
                 $this->logger->warn('Failed to render block "' . $block[1] . '" embedded in content: ' . $e->getTraceAsString());
