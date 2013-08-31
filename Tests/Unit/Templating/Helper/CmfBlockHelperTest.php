@@ -20,7 +20,7 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
             ->method('render')
             ->with($this->equalTo(array('name' => $blockname)));
 
-        $helper = new CmfBlockHelper($this->getSonataBlock(), '%embed-block:', '%');
+        $helper = new CmfBlockHelper($this->getSonataBlock(), '%embed-block:"', '"%');
 
         $helper->embedBlocks($input);
     }
@@ -48,7 +48,7 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
             ->method('render')
             ->will($this->throwException($exception));
 
-        $helper = new CmfBlockHelper($this->getSonataBlock(), '%embed-block:', '%', $logger);
+        $helper = new CmfBlockHelper($this->getSonataBlock(), '%embed-block:"', '"%', $logger);
         $helper->embedBlocks('%embed-block:"foo"%');
     }
 
@@ -62,7 +62,7 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
             ->method('render')
             ->with($this->equalTo(array('name' => 'cat')));
 
-        $helper = new CmfBlockHelper($this->getSonataBlock(), '%embed-block:', '%');
+        $helper = new CmfBlockHelper($this->getSonataBlock(), '%embed-block:"', '"%');
         $helper->embedBlocks('%embed-block:"foo"% bar %embed-block:"cat"%');
     }
 

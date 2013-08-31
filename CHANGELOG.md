@@ -1,6 +1,12 @@
 Changelog
 =========
 
+* **2013-08-31**: [Templating] The embed blocks filter defaults have changed
+  to be safer in combination with wysiwyg editors.
+  You can either adjust your content to match ``%embed-block|block-identifier|end%``
+  or (not recommended) configure `twig.cmf_embed_blocks.prefix` and `.postfix`
+  to match the previous values `<span>%embed-block:"` and `"%</span>`.
+
 1.0.0-RC1
 ---------
 
