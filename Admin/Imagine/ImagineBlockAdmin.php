@@ -24,6 +24,18 @@ class ImagineBlockAdmin extends AbstractBlockAdmin
         // TODO: sonata is not using one admin instance per object, so this doesn't really work - fix it
         $imageRequired = ($this->getSubject() && $this->getSubject()->getParent()) ? false : true;
 
+        if (null === $this->getParentFieldDescription()) {
+            $formMapper
+                ->with('form.group_general')
+                ->add(
+                    'parent',
+                    'doctrine_phpcr_odm_tree',
+                    array('root_node' => $this->getRoot(), 'choice_list' => array(), 'select_root_node' => true)
+                )
+                ->add('name', 'text')
+            ->end();
+        }
+
         $formMapper
             ->with('form.group_general')
                 ->add('label', 'text', array('required' => false))
