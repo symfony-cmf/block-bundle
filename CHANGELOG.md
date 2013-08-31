@@ -6,6 +6,11 @@ Changelog
   You can either adjust your content to match ``%embed-block|block-identifier|end%``
   or (not recommended) configure `twig.cmf_embed_blocks.prefix` and `.postfix`
   to match the previous values `<span>%embed-block:"` and `"%</span>`.
+* **2013-08-31**: [Configuration] The persistence.phpcr.content_basepath was
+  removed. It was used inconsistently with block_basepath. One is enough. If
+  you configure content_basepath, remove it from the configuration, if you
+  relied on CoreBundle to configure this for us, just make sure to update
+  CoreBundle as well.
 
 1.0.0-RC1
 ---------

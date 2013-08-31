@@ -15,26 +15,11 @@ class SlideshowBlockAdmin extends AbstractBlockAdmin
     protected $baseRoutePattern = '/cmf/block/slideshow';
 
     /**
-     * Path to where new slideshow blocks may be attached
-     *
-     * @var string
-     */
-    protected $blockRoot;
-
-    /**
      * Service name of the sonata_type_collection service to embed
      *
      * @var string
      */
     protected $embeddedAdminCode;
-
-    /**
-     * @param string $blockRoot
-     */
-    public function setBlockRoot($blockRoot)
-    {
-        $this->blockRoot = $blockRoot;
-    }
 
     /**
      * Configure the service name (admin_code) of the admin service for the embedded slides
@@ -82,7 +67,7 @@ class SlideshowBlockAdmin extends AbstractBlockAdmin
         if (null === $this->getParentFieldDescription()) {
             $formMapper
                 ->with('form.group_general')
-                    ->add('parentDocument', 'doctrine_phpcr_odm_tree', array('root_node' => $this->blockRoot, 'choice_list' => array(), 'select_root_node' => true))
+                    ->add('parentDocument', 'doctrine_phpcr_odm_tree', array('root_node' => $this->getRootPath(), 'choice_list' => array(), 'select_root_node' => true))
                     ->add('name', 'text')
                 ->end()
             ;
