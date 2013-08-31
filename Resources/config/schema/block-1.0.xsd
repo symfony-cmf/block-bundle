@@ -11,7 +11,6 @@
         <xsd:sequence>
             <xsd:element name="persistence" type="persistence" minOccurs="0" />
             <xsd:element name="twig" type="twig" minOccurs="0" />
-            <xsd:element name="multilang" type="multilang" minOccurs="0" />
             <xsd:element name="caches" type="caches" minOccurs="0" />
         </xsd:sequence>
         <xsd:attribute name="use-imagine" type="enable" />
@@ -48,16 +47,6 @@
     <xsd:complexType name="cmf_embed_blocks">
         <xsd:attribute name="prefix" type="xsd:string" />
         <xsd:attribute name="postfix" type="xsd:string" />
-    </xsd:complexType>
-
-    <xsd:complexType name="multilang">
-        <xsd:sequence>
-            <xsd:element name="locale" type="xsd:string" minOccurs="1" maxOccurs="unbounded" />
-        </xsd:sequence>
-
-        <xsd:attribute name="simple-admin-class" type="xsd:string" />
-        <xsd:attribute name="simple-document-class" type="xsd:string" />
-        <xsd:attribute name="use-sonata-admin" type="enable" />
     </xsd:complexType>
 
     <xsd:complexType name="caches">
