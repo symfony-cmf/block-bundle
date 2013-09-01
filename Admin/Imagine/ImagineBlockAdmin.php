@@ -30,7 +30,7 @@ class ImagineBlockAdmin extends AbstractBlockAdmin
                 ->add(
                     'parent',
                     'doctrine_phpcr_odm_tree',
-                    array('root_node' => $this->getRoot(), 'choice_list' => array(), 'select_root_node' => true)
+                    array('root_node' => $this->getRootPath(), 'choice_list' => array(), 'select_root_node' => true)
                 )
                 ->add('name', 'text')
             ->end();

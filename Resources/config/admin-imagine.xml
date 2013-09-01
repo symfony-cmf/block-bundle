@@ -28,7 +28,7 @@
                 <argument>cmf_block.imagine.imagine_admin</argument>
             </call>
 
-            <call method="setBlockRoot">
+            <call method="setRootPath">
                 <argument>%cmf_block.persistence.phpcr.block_basepath%</argument>
             </call>
         </service>
@@ -43,8 +43,8 @@
                 <argument type="service" id="sonata.admin.route.path_info_slashes" />
             </call>
 
-            <call method="setRoot">
-                <argument>%cmf_block.persistence.phpcr.content_basepath%</argument>
+            <call method="setRootPath">
+                <argument>%cmf_block.persistence.phpcr.block_basepath%</argument>
             </call>
         </service>
 
