@@ -15,21 +15,6 @@ abstract class AbstractBlockAdmin extends Admin
     protected $translationDomain = 'CmfBlockBundle';
 
     /**
-     * Root path for the route content selection
-     *
-     * @var string
-     */
-    protected $contentRoot;
-
-    /**
-     * @param $contentRoot
-     */
-    public function setContentRoot($contentRoot)
-    {
-        $this->contentRoot = $contentRoot;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getExportFormats()

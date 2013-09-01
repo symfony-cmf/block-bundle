@@ -85,7 +85,6 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
             'container_admin_class' => 'container_admin.class',
             'reference_admin_class' => 'reference_admin.class',
             'action_admin_class' => 'action_admin.class',
-            'content_basepath' => 'content_basepath',
             'block_basepath' => 'block_basepath',
             'manager_name' => 'manager_name',
         );

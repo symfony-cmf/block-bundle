@@ -32,7 +32,6 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('phpcr')
                             ->children()
                                 ->scalarNode('enabled')->defaultNull()->end()
-                                ->scalarNode('content_basepath')->defaultValue('/cms/content')->end()
                                 ->scalarNode('block_basepath')->defaultValue('/cms/content')->end()
                                 ->scalarNode('manager_name')->defaultNull()->end()
                                 ->scalarNode('simple_document_class')->defaultNull()->end()
