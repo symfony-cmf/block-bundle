@@ -65,4 +65,12 @@ class StringBlockService extends BaseBlockService implements BlockServiceInterfa
             'template' => $this->template
         ));
     }
+
+    /**
+     * @param string $template
+     */
+    public function setTemplate($template)
+    {
+        $this->template = $template;
+    }
 }

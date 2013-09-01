@@ -112,6 +112,8 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         if (isset($bundles['CmfCreateBundle'])) {
             $blockLoader = $container->getDefinition('cmf.block.simple');
             $blockLoader->addMethodCall('setTemplate', array('CmfBlockBundle:Block:block_simple_createphp.html.twig'));
+            $blockLoader = $container->getDefinition('cmf.block.string');
+            $blockLoader->addMethodCall('setTemplate', array('CmfBlockBundle:Block:block_string_createphp.html.twig'));
         }
     }
 
