@@ -5,7 +5,6 @@
         >
     <attribute key="class" value="articleContainer"/>
     <children>
-        <property property="cw:headline" identifier="title" tag-name="h2"/>
         <property property="cw:text" identifier="body" />
     </children>
 </type>

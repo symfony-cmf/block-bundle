@@ -1,0 +1,7 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    {% createphp block as="rdf" %}
+    {{ rdf|raw }}
+    {% endcreatephp %}
+{% endblock %}
