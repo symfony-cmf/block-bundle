@@ -28,6 +28,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->arrayNode('persistence')
+                    ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('phpcr')
                             ->addDefaultsIfNotSet()
