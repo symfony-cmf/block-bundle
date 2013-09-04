@@ -61,7 +61,7 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        if (!empty($config['persistence']['phpcr']['enabled'])) {
+        if ($config['persistence']['phpcr']['enabled']) {
             $this->loadPhpcr($config['persistence']['phpcr'], $loader, $container, $useImagine);
         }
 
