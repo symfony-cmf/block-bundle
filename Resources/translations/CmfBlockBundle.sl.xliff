@@ -1,0 +1,302 @@
+<?xml version="1.0"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="dashboard.cmf">
+                <source>dashboard.cmf</source>
+                <target>Symfony CMF</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_simple_block">
+                <source>dashboard.label_simple_block</source>
+                <target>Enostaven blok</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_container_block">
+                <source>dashboard.label_container_block</source>
+                <target>Vsebinski blok</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_reference_block">
+                <source>dashboard.label_reference_block</source>
+                <target>Referenčni blok</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_action_block">
+                <source>dashboard.label_action_block</source>
+                <target>Akcijski blok</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_slideshow_block">
+                <source>dashboard.label_slideshow_block</source>
+                <target>Diaprojekcijski blok</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_imagine_block">
+                <source>dashboard.label_imagine_block</source>
+                <target>Slikovni blok</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_string_block">
+                <source>dashboard.label_string_block</source>
+                <target>Blok za niz</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_slideshow_block_list">
+                <source>breadcrumb.link_slideshow_block_list</source>
+                <target>Diaprojekcijski bloki</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_slideshow_block_create">
+                <source>breadcrumb.link_slideshow_block_create</source>
+                <target>Ustvari</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_slideshow_block_edit">
+                <source>breadcrumb.link_slideshow_block_edit</source>
+                <target>Uredi</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_slideshow_block_delete">
+                <source>breadcrumb.link_slideshow_block_delete</source>
+                <target>Izbriši</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_simple_block_list">
+                <source>breadcrumb.link_simple_block_list</source>
+                <target>Simple blocks</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_simple_block_create">
+                <source>breadcrumb.link_simple_block_create</source>
+                <target>Ustvari</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_simple_block_edit">
+                <source>breadcrumb.link_simple_block_edit</source>
+                <target>Uredi</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_simple_block_delete">
+                <source>breadcrumb.link_simple_block_delete</source>
+                <target>Izbriši</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_container_block_list">
+                <source>breadcrumb.link_container_block_list</source>
+                <target>Vsebinski bloki</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_container_block_create">
+                <source>breadcrumb.link_container_block_create</source>
+                <target>Ustvari</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_container_block_edit">
+                <source>breadcrumb.link_container_block_edit</source>
+                <target>Uredi</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_container_block_delete">
+                <source>breadcrumb.link_container_block_delete</source>
+                <target>Izbriši</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_reference_block_list">
+                <source>breadcrumb.link_reference_block_list</source>
+                <target>Referenčni bloki</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_reference_block_create">
+                <source>breadcrumb.link_reference_block_create</source>
+                <target>Ustvari</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_reference_block_edit">
+                <source>breadcrumb.link_reference_block_edit</source>
+                <target>Uredi</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_reference_block_delete">
+                <source>breadcrumb.link_reference_block_delete</source>
+                <target>Izbriši</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_action_block_list">
+                <source>breadcrumb.link_action_block_list</source>
+                <target>Akcijski bloki</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_action_block_create">
+                <source>breadcrumb.link_action_block_create</source>
+                <target>Ustvari</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_action_block_edit">
+                <source>breadcrumb.link_action_block_edit</source>
+                <target>Uredi</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_action_block_delete">
+                <source>breadcrumb.link_action_block_delete</source>
+                <target>Izbriši</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_string_block_list">
+                <source>breadcrumb.link_string_block_list</source>
+                <target>Bloki za niz</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_string_block_create">
+                <source>breadcrumb.link_string_block_create</source>
+                <target>Ustvari</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_string_block_edit">
+                <source>breadcrumb.link_string_block_edit</source>
+                <target>Uredi</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_string_block_delete">
+                <source>breadcrumb.link_string_block_delete</source>
+                <target>Izbriši</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_imagine_block_list">
+                <source>breadcrumb.link_imagine_block_list</source>
+                <target>Slikovni bloki</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_imagine_block_create">
+                <source>breadcrumb.link_imagine_block_create</source>
+                <target>Ustvari</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_imagineblock_edit">
+                <source>breadcrumb.link_imagine_block_edit</source>
+                <target>Uredi</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_imagine_block_delete">
+                <source>breadcrumb.link_imagine_block_delete</source>
+                <target>Izbriši</target>
+            </trans-unit>
+
+            <trans-unit id="filter.label_title">
+                <source>filter.label_title</source>
+                <target>Naslov</target>
+            </trans-unit>
+
+            <trans-unit id="filter.label_name">
+                <source>filter.label_name</source>
+                <target>Ime</target>
+            </trans-unit>
+
+            <trans-unit id="list.label_id">
+                <source>list.label_id</source>
+                <target>Id</target>
+            </trans-unit>
+
+            <trans-unit id="list.label_name">
+                <source>list.label_name</source>
+                <target>Ime</target>
+            </trans-unit>
+
+            <trans-unit id="list.label_title">
+                <source>list.label_title</source>
+                <target>Naslov</target>
+            </trans-unit>
+
+            <trans-unit id="list.label_locales">
+                <source>list.label_locales</source>
+                <target>Lokalizacije</target>
+            </trans-unit>
+
+            <trans-unit id="form.group_general">
+                <source>form.group_general</source>
+                <target>Splošno</target>
+            </trans-unit>
+
+            <trans-unit id="form.group_metadata">
+                <source>form.group_metadata</source>
+                <target>Meta podatki</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_locale">
+                <source>form.label_locale</source>
+                <target>Lokalizacija</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_parent_document">
+                <source>form.label_parent_document</source>
+                <target>Vrhnji</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_name">
+                <source>form.label_name</source>
+                <target>Ime</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_title">
+                <source>form.label_title</source>
+                <target>Naslov</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_content">
+                <source>form.label_body</source>
+                <target>Vsebina</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_referenced_block">
+                <source>form.label_referenced_block</source>
+                <target>Povezan blok</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_action_name">
+                <source>form.label_action_name</source>
+                <target>Ime akcije</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_children">
+                <source>form.label_children</source>
+                <target>Elementi</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_label">
+                <source>form.label_label</source>
+                <target>Oznaka</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_position">
+                <source>form.label_position</source>
+                <target>Pozicija</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_link_url">
+                <source>form.label_link_url</source>
+                <target>URL povezave</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_image">
+                <source>form.label_image</source>
+                <target>Slika</target>
+            </trans-unit>
+
+            <trans-unit id="form.group_base">
+                <source>form.group_base</source>
+                <target>Napredno</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_enabled">
+                <source>form.label_enabled</source>
+                <target>Omogočeno</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_ttl">
+                <source>form.label_ttl</source>
+                <target>Doba predpomnilnika (Cache-TTL)</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
