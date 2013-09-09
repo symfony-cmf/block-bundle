@@ -361,16 +361,6 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * toString ...
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return (string) $this->name;
-    }
-
-    /**
      * Set settings
      *
      * @param array $settings
