@@ -4,12 +4,13 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
 use Symfony\Cmf\Bundle\MediaBundle\Doctrine\Phpcr\Image;
 use Symfony\Cmf\Bundle\MediaBundle\ImageInterface;
+use Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Block to hold an image
  */
-class ImagineBlock extends AbstractBlock
+class ImagineBlock extends AbstractBlock implements TranslatableInterface
 {
     /**
      * @var Image
@@ -120,7 +121,7 @@ class ImagineBlock extends AbstractBlock
      */
     public function setImage($image = null)
     {
-        if (! $image) {
+        if (!$image) {
             return;
         }
 
