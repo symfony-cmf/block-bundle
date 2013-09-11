@@ -1,10 +1,9 @@
 <type
-        xmlns:sc="http://schema.org/"
-        xmlns:cw="http://schema.org/CreativeWork"
-        typeof="sc:WebPageElement"
+        xmlns:schema="http://schema.org/"
+        typeof="schema:WebPageElement"
         >
     <attribute key="class" value="articleContainer"/>
     <children>
-        <property property="cw:text" identifier="body" />
+        <property property="schema:text" identifier="body" />
     </children>
 </type>
