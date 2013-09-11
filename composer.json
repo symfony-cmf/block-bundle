@@ -18,7 +18,7 @@
         "doctrine/phpcr-bundle" :"1.0.*",
         "doctrine/phpcr-odm": "1.0.*",
         "sonata-project/block-bundle": "~2.2.4",
-        "symfony-cmf/core-bundle": "~1.0.0-RC4"
+        "symfony-cmf/core-bundle": "~1.0.0-RC5"
     },
     "require-dev": {
         "symfony-cmf/testing": "1.0.*",
