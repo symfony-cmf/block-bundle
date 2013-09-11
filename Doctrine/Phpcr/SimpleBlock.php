@@ -20,6 +20,11 @@ class SimpleBlock extends AbstractBlock implements TranslatableInterface
     protected $body;
 
     /**
+     * @var string
+     */
+    protected $locale;
+
+    /**
      * {@inheritdoc}
      */
     public function getType()

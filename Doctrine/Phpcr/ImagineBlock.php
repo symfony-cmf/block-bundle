@@ -40,6 +40,11 @@ class ImagineBlock extends AbstractBlock implements TranslatableInterface
     protected $node;
 
     /**
+     * @var string
+     */
+    protected $locale;
+
+    /**
      * {@inheritdoc}
      */
     public function getType()
