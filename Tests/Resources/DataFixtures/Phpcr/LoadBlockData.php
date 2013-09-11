@@ -109,7 +109,6 @@ class LoadBlockData implements FixtureInterface, DependentFixtureInterface
         $block->setPublishable(false);
         $manager->persist($block);
 
-
         $manager->flush();
     }
 }
