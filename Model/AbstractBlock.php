@@ -3,7 +3,6 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Model;
 
 use Sonata\BlockBundle\Model\BlockInterface;
-use Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface;
 
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface;
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface;
@@ -19,8 +18,7 @@ use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface;
 abstract class AbstractBlock implements
     BlockInterface,
     PublishableInterface,
-    PublishTimePeriodInterface,
-    TranslatableInterface
+    PublishTimePeriodInterface
 {
     /**
      * @var string

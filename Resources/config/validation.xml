@@ -4,13 +4,6 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
         http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
-    <class name="Symfony\Cmf\Bundle\BlockBundle\Model\AbstractBlock">
-        <!-- either a valid locale or empty -->
-        <property name="locale">
-            <constraint name="Locale"/>
-        </property>
-    </class>
-
     <class name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\AbstractBlock">
         <constraint name="Doctrine\Bundle\PHPCRBundle\Validator\Constraints\ValidPhpcrOdm" />
         <constraint name="Callback">
@@ -34,11 +27,39 @@
         <property name="body">
             <constraint name="NotBlank" />
         </property>
+
+        <property name="locale">
+            <constraint name="Locale"/>
+        </property>
     </class>
 
     <class name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\StringBlock">
         <property name="body">
             <constraint name="NotBlank" />
+        </property>
+
+        <property name="locale">
+            <constraint name="Locale"/>
+        </property>
+    </class>
+
+    <class name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock">
+        <property name="body">
+            <constraint name="NotBlank" />
+        </property>
+
+        <property name="locale">
+            <constraint name="Locale"/>
+        </property>
+    </class>
+
+    <class name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock">
+        <property name="body">
+            <constraint name="NotBlank" />
+        </property>
+
+        <property name="locale">
+            <constraint name="Locale"/>
         </property>
     </class>
 

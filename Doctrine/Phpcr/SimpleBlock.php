@@ -2,10 +2,12 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
+use Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface;
+
 /**
  * Block that contains hypertext and a title
  */
-class SimpleBlock extends AbstractBlock
+class SimpleBlock extends AbstractBlock implements TranslatableInterface
 {
     /**
      * @var string
@@ -16,6 +18,11 @@ class SimpleBlock extends AbstractBlock
      * @var string
      */
     protected $body;
+
+    /**
+     * @var string
+     */
+    protected $locale;
 
     /**
      * {@inheritdoc}
