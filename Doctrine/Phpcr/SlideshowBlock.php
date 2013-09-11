@@ -18,11 +18,6 @@ class SlideshowBlock extends ContainerBlock implements TranslatableInterface
     protected $title;
 
     /**
-     * @var string
-     */
-    protected $locale;
-
-    /**
      * {@inheritdoc}
      */
     public function getType()

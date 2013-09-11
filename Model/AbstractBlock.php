@@ -76,7 +76,7 @@ abstract class AbstractBlock implements
      *
      * @var string
      */
-    protected $locale = false;
+    protected $locale;
 
     /**
      * @param string $src
