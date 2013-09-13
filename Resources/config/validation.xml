@@ -44,20 +44,12 @@
     </class>
 
     <class name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock">
-        <property name="body">
-            <constraint name="NotBlank" />
-        </property>
-
         <property name="locale">
             <constraint name="Locale"/>
         </property>
     </class>
 
     <class name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock">
-        <property name="body">
-            <constraint name="NotBlank" />
-        </property>
-
         <property name="locale">
             <constraint name="Locale"/>
         </property>
