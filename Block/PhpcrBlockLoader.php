@@ -5,7 +5,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Log\LoggerInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
@@ -24,9 +24,9 @@ use Sonata\BlockBundle\Exception\BlockNotFoundException;
 class PhpcrBlockLoader implements BlockLoaderInterface
 {
     /**
-     * @var ContainerInterface
+     * @var Request
      */
-    protected $container;
+    protected $request;
 
     /**
      * @var null|LoggerInterface
@@ -62,7 +62,6 @@ class PhpcrBlockLoader implements BlockLoaderInterface
     protected $emptyBlockType;
 
     /**
-     * @param ContainerInterface       $container
      * @param ManagerRegistry          $managerRegistry
      * @param SecurityContextInterface $securityContext the publish workflow
      *      checker to check if menu items are published.
@@ -70,17 +69,20 @@ class PhpcrBlockLoader implements BlockLoaderInterface
      * @param null                     $emptyBlockType  set this to a block type name if you want empty blocks returned when no block is found
      */
     public function __construct(
-        ContainerInterface $container,
         ManagerRegistry $managerRegistry,
         SecurityContextInterface $securityContext,
         LoggerInterface $logger = null,
         $emptyBlockType = null
     ) {
-        $this->container        = $container;
         $this->managerRegistry  = $managerRegistry;
         $this->securityContext  = $securityContext;
         $this->logger           = $logger;
         $this->emptyBlockType   = $emptyBlockType;
+    }
+
+    public function setRequest(Request $request = null)
+    {
+        $this->request = $request;
     }
 
     /**
@@ -209,10 +211,10 @@ class PhpcrBlockLoader implements BlockLoaderInterface
             return $name;
         }
 
-        if ($this->container->has('request')
-            && $this->container->get('request')->attributes->has('contentDocument')
+        if ($this->request
+            && $this->request->attributes->has('contentDocument')
         ) {
-            $currentPage = $this->container->get('request')->attributes->get('contentDocument');
+            $currentPage = $this->request->attributes->get('contentDocument');
 
             return $this->getObjectManager()
                 ->getUnitOfWork()
