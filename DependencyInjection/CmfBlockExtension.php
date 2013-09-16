@@ -105,7 +105,7 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         }
 
         $blockLoader = $container->getDefinition('cmf.block.service');
-        $blockLoader->replaceArgument(1, new Reference('doctrine_phpcr'));
+        $blockLoader->replaceArgument(0, new Reference('doctrine_phpcr'));
         $blockLoader->addMethodCall('setManagerName', array('%cmf_block.persistence.phpcr.manager_name%'));
 
         $bundles = $container->getParameter('kernel.bundles');

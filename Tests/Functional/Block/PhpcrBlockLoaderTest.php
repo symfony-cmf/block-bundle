@@ -13,10 +13,6 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    private $containerMock;
-    /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
-     */
     private $registryMock;
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
@@ -30,10 +26,6 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->containerMock = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
         $this->registryMock = $this->getMockBuilder('Doctrine\Bundle\PHPCRBundle\ManagerRegistry')
             ->disableOriginalConstructor()
             ->getMock()
@@ -52,7 +44,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
 
     private function getSimpleBlockLoaderInstance()
     {
-        $blockLoader = new PhpcrBlockLoader($this->containerMock, $this->registryMock, $this->securityMock, null, 'emptyblocktype');
+        $blockLoader = new PhpcrBlockLoader($this->registryMock, $this->securityMock, null, 'emptyblocktype');
         $blockLoader->setManagerName('themanager');
 
         return $blockLoader;
@@ -60,11 +52,6 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
 
     public function testSupport()
     {
-        $this->containerMock->expects($this->any())
-            ->method('get')
-            ->with($this->equalTo('doctrine_phpcr'))
-            ->will($this->returnValue($this->registryMock))
-        ;
         $blockLoader = $this->getSimpleBlockLoaderInstance();
 
         $this->assertFalse($blockLoader->support('name'));
@@ -79,11 +66,6 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
         $absoluteBlockPath = '/some/absolute/path';
         $block = $this->getMock('Sonata\BlockBundle\Model\BlockInterface');
 
-        $this->containerMock->expects($this->any())
-            ->method('get')
-            ->with($this->equalTo('doctrine_phpcr'))
-            ->will($this->returnValue($this->registryMock))
-        ;
         $blockLoader = $this->getSimpleBlockLoaderInstance();
         $this->dmMock->expects($this->once())
             ->method('find')
@@ -127,23 +109,6 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
 
         $request = new Request();
         $request->attributes = $parameterBagMock;
-        $reg = $this->registryMock;
-
-        $this->containerMock->expects($this->any())
-            ->method('get')
-            ->with($this->logicalOr(
-                $this->equalTo('doctrine_phpcr'),
-                $this->equalTo('request')
-            ))
-            ->will($this->returnCallback(function($key) use ($request, $reg) {
-                return 'request' == $key ? $request : $reg;
-            }))
-        ;
-        $this->containerMock->expects($this->any())
-            ->method('has')
-            ->with($this->equalTo('request'))
-            ->will($this->returnValue(true))
-        ;
 
         $unitOfWorkMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\UnitOfWork')
             ->disableOriginalConstructor()
@@ -173,6 +138,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
         ;
 
         $blockLoader = $this->getSimpleBlockLoaderInstance();
+        $blockLoader->setRequest($request);
 
         $found = $blockLoader->load(array('name' => $relativeBlockPath));
         $this->assertEquals($block, $found);
@@ -183,11 +149,6 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
         $simpleBlock = new SimpleBlock();
         $absoluteBlockPath = '/some/absolute/path';
 
-        $this->containerMock->expects($this->any())
-            ->method('get')
-            ->with($this->equalTo('doctrine_phpcr'))
-            ->will($this->returnValue($this->registryMock))
-        ;
         $blockLoader = $this->getSimpleBlockLoaderInstance();
         $this->dmMock->expects($this->once())
             ->method('find')
@@ -212,11 +173,6 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
 
     public function testLoadInvalidBlock()
     {
-        $this->containerMock->expects($this->any())
-            ->method('get')
-            ->with($this->equalTo('doctrine_phpcr'))
-            ->will($this->returnValue($this->registryMock))
-        ;
         $this->securityMock->expects($this->never())
             ->method('isGranted')
         ;
@@ -293,13 +249,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($altDmMock))
         ;
 
-        $this->containerMock->expects($this->any())
-            ->method('get')
-            ->with($this->equalTo('doctrine_phpcr'))
-            ->will($this->returnValue($registryMock))
-        ;
-
-        $blockLoader = new PhpcrBlockLoader($this->containerMock, $registryMock, $this->securityMock, null, 'emptyblocktype');
+        $blockLoader = new PhpcrBlockLoader($registryMock, $this->securityMock, null, 'emptyblocktype');
 
         $blockLoader->setManagerName('themanager');
         $foundBlock = $blockLoader->load(array('name' => $absoluteBlockPath));
