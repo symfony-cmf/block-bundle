@@ -6,11 +6,12 @@
 
     <parameters>
         <parameter key="cmf_block.persistence.phpcr.manager_name">null</parameter>
+        <parameter key="cmf_block.persistence.phpcr.block_loader.class">Symfony\Cmf\Bundle\BlockBundle\Block\PhpcrBlockLoader</parameter>
     </parameters>
 
     <services>
 
-        <service id="cmf.block.service" class="Symfony\Cmf\Bundle\BlockBundle\Block\PhpcrBlockLoader">
+        <service id="cmf.block.service" class="%cmf_block.persistence.phpcr.block_loader.class%">
             <tag name="sonata.block.loader" />
             <argument type="service" id="doctrine-phpcr" />
             <argument type="service" id="cmf_core.publish_workflow.checker"/>

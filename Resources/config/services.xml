@@ -10,30 +10,37 @@
         <parameter key="cmf_block.templating.helper.block.class">Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\CmfBlockHelper</parameter>
         <parameter key="cmf_block.fragment.renderer.action.class">Symfony\Cmf\Bundle\BlockBundle\Fragment\ActionFragmentRenderer</parameter>
         <parameter key="cmf_block.fragment.path">/_cmf_block_fragment</parameter>
+        <parameter key="cmf_block.service.simple.class">Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService</parameter>
+        <parameter key="cmf_block.service.string.class">Symfony\Cmf\Bundle\BlockBundle\Block\StringBlockService</parameter>
+        <parameter key="cmf_block.service.container.class">Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService</parameter>
+        <parameter key="cmf_block.service.reference.class">Symfony\Cmf\Bundle\BlockBundle\Block\ReferenceBlockService</parameter>
+        <parameter key="cmf_block.service.action.class">Symfony\Cmf\Bundle\BlockBundle\Block\ActionBlockService</parameter>
+        <!--container block service is reused for slideshows -->
+        <parameter key="cmf_block.service.slideshow.class">Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService</parameter>
     </parameters>
 
     <services>
 
-        <service id="cmf.block.simple" class="Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService">
+        <service id="cmf.block.simple" class="%cmf_block.service.simple.class%">
             <tag name="sonata.block" />
             <argument>cmf.block.simple</argument>
             <argument type="service" id="templating" />
         </service>
 
-        <service id="cmf.block.string" class="Symfony\Cmf\Bundle\BlockBundle\Block\StringBlockService">
+        <service id="cmf.block.string" class="%cmf_block.service.string.class%">
             <tag name="sonata.block" />
             <argument>cmf.block.string</argument>
             <argument type="service" id="templating" />
         </service>
 
-        <service id="cmf.block.container" class="Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService">
+        <service id="cmf.block.container" class="%cmf_block.service.container.class%">
             <tag name="sonata.block" />
             <argument>cmf.block.container</argument>
             <argument type="service" id="templating" />
             <argument type="service" id="sonata.block.renderer" />
         </service>
 
-        <service id="cmf.block.reference" class="Symfony\Cmf\Bundle\BlockBundle\Block\ReferenceBlockService">
+        <service id="cmf.block.reference" class="%cmf_block.service.reference.class%">
             <tag name="sonata.block" />
             <argument>cmf.block.reference</argument>
             <argument type="service" id="templating" />
@@ -41,7 +48,7 @@
             <argument type="service" id="sonata.block.context_manager" />
         </service>
 
-        <service id="cmf.block.action" class="Symfony\Cmf\Bundle\BlockBundle\Block\ActionBlockService">
+        <service id="cmf.block.action" class="%cmf_block.service.action.class%">
             <tag name="sonata.block" />
             <tag name="cmf_request_aware" />
             <argument>cmf.block.action</argument>
@@ -49,8 +56,7 @@
             <argument type="service" id="fragment.handler" />
         </service>
 
-        <!--container block service is reused for slideshows -->
-        <service id="cmf.block.slideshow" class="Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService">
+        <service id="cmf.block.slideshow" class="%cmf_block.service.slideshow.class%">
             <tag name="sonata.block" />
             <argument>cmf.block.slideshow</argument>
             <argument type="service" id="templating" />
