@@ -4,10 +4,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <parameters>
+        <!-- simple block service is reused for imagine items -->
+        <parameter key="cmf_block.service.imagine.class">Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService</parameter>
+    </parameters>
+
     <services>
 
-        <!-- simple block service is reused for imagine items -->
-        <service id="cmf.block.imagine" class="Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService">
+        <service id="cmf.block.imagine" class="%cmf_block.service.imagine.class%">
             <tag name="sonata.block" />
             <argument>cmf.block.imagine</argument>
             <argument type="service" id="templating" />

@@ -40,6 +40,8 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('container_document_class')->defaultNull()->end()
                                 ->scalarNode('reference_document_class')->defaultNull()->end()
                                 ->scalarNode('action_document_class')->defaultNull()->end()
+                                ->scalarNode('slideshow_document_class')->defaultNull()->end()
+                                ->scalarNode('imagine_document_class')->defaultNull()->end()
 
                                 ->enumNode('use_sonata_admin')
                                     ->values(array(true, false, 'auto'))
@@ -49,6 +51,8 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('container_admin_class')->defaultNull()->end()
                                 ->scalarNode('reference_admin_class')->defaultNull()->end()
                                 ->scalarNode('action_admin_class')->defaultNull()->end()
+                                ->scalarNode('slideshow_admin_class')->defaultNull()->end()
+                                ->scalarNode('imagine_admin_class')->defaultNull()->end()
                             ->end()
                         ->end()
                     ->end()
