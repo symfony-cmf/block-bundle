@@ -2,6 +2,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\WebTest\Admin;
 
+use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
 
 /**
@@ -9,6 +10,11 @@ use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
  */
 abstract class AbstractBlockAdminTestCase extends BaseTestCase
 {
+    /**
+     * @var Client
+     */
+    protected $client;
+
     /**
      * Admin listing test case
      */
@@ -55,10 +61,10 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
     {
         $crawler = $this->client->request('GET', $url);
         $res = $this->client->getResponse();
-        $this->assertEquals(200, $res->getStatusCode());
+        $this->assertEquals(200, $res->getStatusCode(), $res->getContent());
 
         foreach ($containsElements as $element) {
-            $this->assertCount(1, $crawler->filter('html:contains("' . $element . '")'));
+            $this->assertCount(1, $crawler->filter('html:contains("' . $element . '")'), $res->getContent());
         }
     }
 
@@ -72,10 +78,10 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
     {
         $crawler = $this->client->request('GET', $url);
         $res = $this->client->getResponse();
-        $this->assertEquals(200, $res->getStatusCode());
+        $this->assertEquals(200, $res->getStatusCode(), $res->getContent());
 
         foreach ($containsValues as $value) {
-            $this->assertCount(1, $crawler->filter('input[value="' . $value . '"]'));
+            $this->assertCount(1, $crawler->filter('input[value="' . $value . '"]'), $res->getContent());
         }
     }
 
@@ -89,7 +95,7 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
     {
         $crawler = $this->client->request('GET', $url);
         $res = $this->client->getResponse();
-        $this->assertEquals(200, $res->getStatusCode());
+        $this->assertEquals(200, $res->getStatusCode(), $res->getContent());
 
         $button = $crawler->selectButton('Create');
         $form = $button->form();
@@ -105,7 +111,7 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
         $res = $this->client->getResponse();
 
         // If we have a 302 redirect, then all is well
-        $this->assertEquals(302, $res->getStatusCode());
+        $this->assertEquals(302, $res->getStatusCode(), $res->getContent());
     }
 
     /**
@@ -117,7 +123,7 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
     {
         $crawler = $this->client->request('GET', $url);
         $res = $this->client->getResponse();
-        $this->assertEquals(200, $res->getStatusCode());
+        $this->assertEquals(200, $res->getStatusCode(), $res->getContent());
 
         $button = $crawler->selectButton('Yes, delete');
         $form = $button->form();
@@ -126,7 +132,7 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
         $res = $this->client->getResponse();
 
         // If we have a 302 redirect, then all is well
-        $this->assertEquals(302, $res->getStatusCode());
+        $this->assertEquals(302, $res->getStatusCode(), $res->getContent());
     }
 
     /**
@@ -139,10 +145,10 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
     {
         $crawler = $this->client->request('GET', $url);
         $res = $this->client->getResponse();
-        $this->assertEquals(200, $res->getStatusCode());
+        $this->assertEquals(200, $res->getStatusCode(), $res->getContent());
 
         foreach ($containsElements as $element) {
-            $this->assertCount(1, $crawler->filter('html:contains("' . $element . '")'));
+            $this->assertCount(1, $crawler->filter('html:contains("' . $element . '")'), $res->getContent());
         }
     }
 }
