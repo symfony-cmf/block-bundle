@@ -48,7 +48,7 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
         $containerBlock->setEnabled(true);
         $containerBlock->setChildren($childrenCollectionMock);
 
-        $settings = array('divisibleBy' => 0,'divisibleClass' => '','childClass' => '', 'template' => $template);
+        $settings = array('divisible_by' => 0,'divisible_class' => '','child_class' => '', 'template' => $template);
 
         $blockContext = new BlockContext($containerBlock, $settings);
 
