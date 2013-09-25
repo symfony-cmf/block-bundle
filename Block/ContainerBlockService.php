@@ -78,9 +78,15 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
     {
         $resolver->setDefaults(array(
             'template'       => $this->template,
-            'divisibleBy'    => false,
+            'divisibleBy'    => 0,
             'divisibleClass' => '',
             'childClass'     => '',
+        ));
+
+        $resolver->addAllowedTypes(array(
+            'divisibleBy'    => array('integer'),
+            'divisibleClass' => array('string'),
+            'childClass'     => array('string'),
         ));
     }
 }
