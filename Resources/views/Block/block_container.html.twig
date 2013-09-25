@@ -1,25 +1,25 @@
 {% block block %}
     {% for childBlock in block.children %}
-        {% if settings.divisibleBy and loop.first %}
+        {% if settings.divisible_by and loop.first %}
             {# start row #}
-            <div{% if settings.divisibleClass %} class="{{ settings.divisibleClass }}"{% endif %}>
+            <div{% if settings.divisible_class %} class="{{ settings.divisible_class }}"{% endif %}>
         {% endif %}
 
-        {% if settings.divisibleBy %}
+        {% if settings.divisible_by %}
             {# start child #}
-            <div{% if settings.childClass %} class="{{ settings.childClass }}"{% endif %}>
+            <div{% if settings.child_class %} class="{{ settings.child_class }}"{% endif %}>
         {% endif %}
         {{ sonata_block_render(childBlock) }}
-        {% if settings.divisibleBy %}
+        {% if settings.divisible_by %}
             </div>{# end child #}
         {% endif %}
 
-        {% if settings.divisibleBy %}
-            {% if settings.divisibleBy and loop.index is divisibleby(settings.divisibleBy) %}
+        {% if settings.divisible_by %}
+            {% if settings.divisible_by and loop.index is divisibleby(settings.divisible_by) %}
                 </div>{# end row #}
                 {% if not loop.last %}
                     {# start row #}
-                    <div class="{{ settings.divisibleClass }}">
+                    <div class="{{ settings.divisible_class }}">
                 {% endif %}
             {% endif %}
             {% if loop.last %}

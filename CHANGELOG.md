@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.0.0-RC3
+---------
+
+* **2013-09-25**: Renamed `divisibleBy`, `divisibleClass' and `childClass` ContainerBlock
+  options to `divisible_by`, `divisible_class' and `child_class`
+
 1.0.0-RC2
 ---------
 
