@@ -13,6 +13,7 @@
 
         <service id="cmf.block.service" class="%cmf_block.persistence.phpcr.block_loader.class%">
             <tag name="sonata.block.loader" />
+            <tag name="cmf_request_aware" />
             <argument type="service" id="doctrine-phpcr" />
             <argument type="service" id="cmf_core.publish_workflow.checker"/>
             <argument type="service" id="logger" on-invalid="ignore" />
