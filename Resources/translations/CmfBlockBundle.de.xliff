@@ -277,6 +277,11 @@
                 <target>Link URL</target>
             </trans-unit>
 
+            <trans-unit id="form.label_filter">
+                <source>form.label_filter</source>
+                <target>Imagine Filter</target>
+            </trans-unit>
+
             <trans-unit id="form.label_image">
                 <source>form.label_image</source>
                 <target>Bild</target>
