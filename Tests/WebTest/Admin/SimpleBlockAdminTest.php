@@ -25,7 +25,7 @@ class SimpleBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockList()
     {
         $this->makeListAssertions(
-            '/admin/cmf/block/simple/list',
+            '/admin/cmf/block/simpleblock/list',
             array('block-1', 'block-1-title', 'block-2')
         );
     }
@@ -36,7 +36,7 @@ class SimpleBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockEdit()
     {
         $this->makeEditAssertions(
-            '/admin/cmf/block/simple/test/blocks/block-1/edit',
+            '/admin/cmf/block/simpleblock/test/blocks/block-1/edit',
             array('block-1', 'block-1-title')
         );
     }
@@ -47,7 +47,7 @@ class SimpleBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockCreate()
     {
         $this->makeCreateAssertions(
-            '/admin/cmf/block/simple/create',
+            '/admin/cmf/block/simpleblock/create',
             array(
                 'parentDocument' => '/test/blocks',
                 'name'           => 'foo-test',
@@ -62,7 +62,7 @@ class SimpleBlockAdminTest extends AbstractBlockAdminTestCase
      */
     public function testBlockDelete()
     {
-        $this->makeDeleteAssertions('/admin/cmf/block/simple/test/blocks/block-1/delete');
+        $this->makeDeleteAssertions('/admin/cmf/block/simpleblock/test/blocks/block-1/delete');
     }
 
     /**
@@ -71,7 +71,7 @@ class SimpleBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockShow()
     {
         $this->makeShowAssertions(
-            '/admin/cmf/block/simple/test/blocks/block-1/show',
+            '/admin/cmf/block/simpleblock/test/blocks/block-1/show',
             array('block-1')
         );
     }

@@ -25,7 +25,7 @@ class ActionBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockList()
     {
         $this->makeListAssertions(
-            '/admin/cmf/block/action/list',
+            '/admin/cmf/block/actionblock/list',
             array('action-block-1', 'cmf_block_test.test_controller:dummyAction', 'action-block-2')
         );
     }
@@ -36,7 +36,7 @@ class ActionBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockEdit()
     {
         $this->makeEditAssertions(
-            '/admin/cmf/block/action/test/blocks/action-block-1/edit',
+            '/admin/cmf/block/actionblock/test/blocks/action-block-1/edit',
             array('action-block-1', 'cmf_block_test.test_controller:dummyAction')
         );
     }
@@ -47,7 +47,7 @@ class ActionBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockCreate()
     {
         $this->makeCreateAssertions(
-            '/admin/cmf/block/action/create',
+            '/admin/cmf/block/actionblock/create',
             array(
                 'parentDocument' => '/test/blocks',
                 'name'           => 'foo-test-action',
@@ -61,7 +61,7 @@ class ActionBlockAdminTest extends AbstractBlockAdminTestCase
      */
     public function testBlockDelete()
     {
-        $this->makeDeleteAssertions('/admin/cmf/block/action/test/blocks/action-block-1/delete');
+        $this->makeDeleteAssertions('/admin/cmf/block/actionblock/test/blocks/action-block-1/delete');
     }
 
     /**
@@ -70,7 +70,7 @@ class ActionBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockShow()
     {
         $this->makeShowAssertions(
-            '/admin/cmf/block/action/test/blocks/action-block-1/show',
+            '/admin/cmf/block/actionblock/test/blocks/action-block-1/show',
             array('action-block-1')
         );
     }

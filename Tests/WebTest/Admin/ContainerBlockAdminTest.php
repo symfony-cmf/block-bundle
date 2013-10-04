@@ -25,7 +25,7 @@ class ContainerBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockList()
     {
         $this->makeListAssertions(
-            '/admin/cmf/block/container/list',
+            '/admin/cmf/block/containerblock/list',
             array('container-block-1', 'container-block-2')
         );
     }
@@ -36,7 +36,7 @@ class ContainerBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockEdit()
     {
         $this->makeEditAssertions(
-            '/admin/cmf/block/container/test/blocks/container-block-1/edit',
+            '/admin/cmf/block/containerblock/test/blocks/container-block-1/edit',
             array('container-block-1')
         );
     }
@@ -47,7 +47,7 @@ class ContainerBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockCreate()
     {
         $this->makeCreateAssertions(
-            '/admin/cmf/block/container/create',
+            '/admin/cmf/block/containerblock/create',
             array(
                 'parentDocument' => '/test/blocks',
                 'name'           => 'foo-test-container'
@@ -60,7 +60,7 @@ class ContainerBlockAdminTest extends AbstractBlockAdminTestCase
      */
     public function testBlockDelete()
     {
-        $this->makeDeleteAssertions('/admin/cmf/block/container/test/blocks/container-block-1/delete');
+        $this->makeDeleteAssertions('/admin/cmf/block/containerblock/test/blocks/container-block-1/delete');
     }
 
     /**
@@ -69,7 +69,7 @@ class ContainerBlockAdminTest extends AbstractBlockAdminTestCase
     public function testBlockShow()
     {
         $this->makeShowAssertions(
-            '/admin/cmf/block/container/test/blocks/container-block-1/show',
+            '/admin/cmf/block/containerblock/test/blocks/container-block-1/show',
             array('container-block-1')
         );
     }
