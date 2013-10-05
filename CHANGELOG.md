@@ -1,6 +1,10 @@
 Changelog
 =========
 
+* **2013-10-04**: [Sonata Admin]: Removed overwritten baseRouteName and 
+  baseRoutePattern in the block admins. The names now follow the convention,
+  becoming cmf_block_actionblock instead of cmf_block_action and so on.
+
 1.0.0-RC3
 ---------
 
