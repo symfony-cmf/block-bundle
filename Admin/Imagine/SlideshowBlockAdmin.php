@@ -72,7 +72,8 @@ class SlideshowBlockAdmin extends AbstractBlockAdmin
                         'admin_code' => $this->embeddedAdminCode,
                         'sortable'  => 'position',
                     ))
-            ->end();
+            ->end()
+        ;
 
         if (null === $this->getParentFieldDescription()) {
             $formMapper

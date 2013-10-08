@@ -15,7 +15,7 @@
 
         <locale name="locale"/>
 
-        <field name="label" type="string" translated="true"/>
+        <field name="label" type="string" translated="true" nullable="true"/>
         <field name="linkUrl" type="string" translated="true" nullable="true"/>
         <field name="filter" type="string" nullable="true"/>
 
