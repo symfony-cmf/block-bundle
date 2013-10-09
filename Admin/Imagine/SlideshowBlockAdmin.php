@@ -21,9 +21,6 @@ use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
  */
 class SlideshowBlockAdmin extends AbstractBlockAdmin
 {
-    protected $baseRouteName = 'cmf_block_slideshow';
-    protected $baseRoutePattern = '/cmf/block/slideshow';
-
     /**
      * Service name of the sonata_type_collection service to embed
      *

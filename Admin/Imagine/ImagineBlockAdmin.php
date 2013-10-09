@@ -20,9 +20,6 @@ use Sonata\AdminBundle\Form\FormMapper;
  */
 class ImagineBlockAdmin extends AbstractBlockAdmin
 {
-    protected $baseRouteName = 'cmf_block_imagine';
-    protected $baseRoutePattern = '/cmf/block/imagine';
-
     /**
      * {@inheritdoc}
      */

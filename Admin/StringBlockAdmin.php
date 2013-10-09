@@ -22,7 +22,6 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
  */
 class StringBlockAdmin extends AbstractBlockAdmin
 {
-
     /**
      * {@inheritdoc}
      */

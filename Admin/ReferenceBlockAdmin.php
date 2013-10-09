@@ -22,7 +22,6 @@ use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
  */
 class ReferenceBlockAdmin extends AbstractBlockAdmin
 {
-    
     /**
      * {@inheritdoc}
      */
