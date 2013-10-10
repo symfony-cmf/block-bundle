@@ -16,6 +16,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 
 /**
  * @author Lukas Kahwe Smith <smith@pooteeweet.org>
@@ -56,6 +57,14 @@ class SimpleBlockAdmin extends AbstractBlockAdmin
         $datagridMapper
             ->add('title', 'doctrine_phpcr_string')
             ->add('name',  'doctrine_phpcr_nodename')
+        ;
+    }
+
+    public function toString($object)
+    {
+        return $object instanceof SimpleBlock && $object->getTitle()
+            ? $object->getTitle()
+            : parent::toString($object)
         ;
     }
 }

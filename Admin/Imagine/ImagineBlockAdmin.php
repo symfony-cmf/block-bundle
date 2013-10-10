@@ -14,6 +14,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine;
 
 use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock;
 
 /**
  * @author Horner
@@ -51,5 +52,13 @@ class ImagineBlockAdmin extends AbstractBlockAdmin
                 ->add('image', 'cmf_media_image', array('required' => $imageRequired))
                 ->add('position', 'hidden', array('mapped' => false))
             ->end();
+    }
+
+    public function toString($object)
+    {
+        return $object instanceof ImagineBlock && $object->getLabel()
+            ? $object->getLabel()
+            : parent::toString($object)
+        ;
     }
 }
