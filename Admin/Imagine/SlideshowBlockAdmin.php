@@ -15,6 +15,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock;
 
 /**
  * @author Horner
@@ -114,5 +115,13 @@ class SlideshowBlockAdmin extends AbstractBlockAdmin
     private function generateName()
     {
         return 'child_' . time() . '_' . rand();
+    }
+
+    public function toString($object)
+    {
+        return $object instanceof SlideshowBlock && $object->getTitle()
+            ? $object->getTitle()
+            : parent::toString($object)
+        ;
     }
 }
