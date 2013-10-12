@@ -99,9 +99,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * Set id
-     *
-     * @param string $id
+     * {@inheritDoc}
      */
     public function setId($id)
     {
@@ -109,9 +107,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * Get id
-     *
-     * @return string $id
+     * {@inheritDoc}
      */
     public function getId()
     {
@@ -119,18 +115,14 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * Set type
-     *
-     * @param string $type
+     * {@inheritDoc}
      */
     public function setType($type)
     {
     }
 
     /**
-     * This is required by BlockInterface
-     *
-     * @param boolean $enabled
+     * {@inheritDoc}
      */
     public function setEnabled($enabled)
     {
@@ -138,9 +130,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * This is required by BlockInterface
-     *
-     * @return boolean $enabled
+     * {@inheritDoc}
      */
     public function getEnabled()
     {
@@ -148,19 +138,15 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * Set position
-     *
-     * @param integer $position
+     * {@inheritDoc}
      */
     public function setPosition($position)
     {
-        // TODO: implement
+        // TODO: implement. https://github.com/symfony-cmf/BlockBundle/issues/150
     }
 
     /**
-     * Get position
-     *
-     * @return integer $position
+     * {@inheritDoc}
      */
     public function getPosition()
     {
@@ -170,9 +156,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * Sets the creation date and time
-     *
-     * @param \Datetime $createdAt
+     * {@inheritDoc}
      */
     public function setCreatedAt(\DateTime $createdAt = null)
     {
@@ -180,9 +164,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * Get creation date
-     *
-     * @return \Datetime
+     * {@inheritDoc}
      */
     public function getCreatedAt()
     {
@@ -190,9 +172,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * Set the last update date and time
-     *
-     * @param \Datetime $updatedAt
+     * {@inheritDoc}
      */
     public function setUpdatedAt(\DateTime $updatedAt = null)
     {
@@ -200,9 +180,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * Get update date
-     *
-     * @return \Datetime
+     * {@inheritDoc}
      */
     public function getUpdatedAt()
     {
@@ -258,18 +236,14 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * Add children
-     *
-     * @param BlockInterface $children
+     * {@inheritDoc}
      */
     public function addChildren(BlockInterface $children)
     {
     }
 
     /**
-     * Get children
-     *
-     * @return \Doctrine\Common\Collections\Collection $children
+     * {@inheritDoc}
      */
     public function getChildren()
     {
@@ -277,27 +251,32 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * @abstract
-     * @return bool
+     * {@inheritDoc}
      */
     public function hasChildren()
     {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function setName($name)
     {
         $this->name = $name;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getName()
     {
         return $this->name;
     }
 
     /**
-     * set parent document regardless of type. this can be a ContainerBlock
-     * but also any PHPCR-ODM document
+     * Set parent document regardless of type. This can be a ContainerBlock
+     * but also any PHPCR-ODM document.
      *
      * @param object $parent
      */
@@ -307,7 +286,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * get the parent document
+     * Get the parent document regardless of its type.
      *
      * @return object|null $document
      */
@@ -359,9 +338,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * Get ttl
-     *
-     * @return integer
+     * {@inheritDoc}
      */
     public function getTtl()
     {
@@ -379,9 +356,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * Set settings
-     *
-     * @param array $settings
+     * {@inheritDoc}
      */
     public function setSettings(array $settings = array())
     {
@@ -389,9 +364,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * Get settings
-     *
-     * @return array $settings
+     * {@inheritDoc}
      */
     public function getSettings()
     {
@@ -399,9 +372,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * @param $name
-     * @param $value
-     * @return void
+     * {@inheritDoc}
      */
     public function setSetting($name, $value)
     {
@@ -409,9 +380,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * @param $name
-     * @param  null $default
-     * @return null
+     * {@inheritDoc}
      */
     public function getSetting($name, $default = null)
     {
@@ -435,8 +404,8 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * If you want your block model to be translated it has to implement TranslatableInterface
-     * this code is just here to make your life easier
+     * If you want your block model to be translated it has to implement
+     * TranslatableInterface. This code is just here to make your life easier.
      *
      * @see TranslatableInterface::getLocale()
      */
@@ -446,8 +415,8 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * If you want your block model to be translated it has to implement TranslatableInterface
-     * this code is just here to make your life easier
+     * If you want your block model to be translated it has to implement
+     * TranslatableInterface. This code is just here to make your life easier.
      *
      * @see TranslatableInterface::setLocale()
      */

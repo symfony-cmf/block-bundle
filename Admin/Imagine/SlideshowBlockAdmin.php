@@ -108,7 +108,7 @@ class SlideshowBlockAdmin extends AbstractBlockAdmin
     /**
      * Generate a most likely unique name
      *
-     * TODO: have child documents use the autoname annotation once this is done: http://www.doctrine-project.org/jira/browse/PHPCR-103
+     * TODO: have blocks use the autoname annotation - https://github.com/symfony-cmf/BlockBundle/issues/149 
      *
      * @return string
      */
