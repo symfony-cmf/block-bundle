@@ -29,7 +29,7 @@ class ImagineBlockAdmin extends AbstractBlockAdmin
         parent::configureFormFields($formMapper);
 
         // image is only required when creating a new item
-        // TODO: sonata is not using one admin instance per object, so this doesn't really work - fix it
+        // TODO: sonata is not using one admin instance per object, so this doesn't really work - https://github.com/symfony-cmf/BlockBundle/issues/151
         $imageRequired = ($this->getSubject() && $this->getSubject()->getParent()) ? false : true;
 
         if (null === $this->getParentFieldDescription()) {
