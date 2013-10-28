@@ -106,4 +106,12 @@ class ContainerBlock extends AbstractBlock
     {
         $this->children->removeElement($child);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasChildren()
+    {
+        return count($this->children) > 0;
+    }
 }
