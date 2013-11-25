@@ -8,8 +8,6 @@
         <parameter key="cmf_block.rss_controller.class">Symfony\Cmf\Bundle\BlockBundle\Controller\RssController</parameter>
         <parameter key="cmf_block.twig_extension.class">Symfony\Cmf\Bundle\BlockBundle\Twig\Extension\CmfBlockExtension</parameter>
         <parameter key="cmf_block.templating.helper.block.class">Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\CmfBlockHelper</parameter>
-        <parameter key="cmf_block.fragment.renderer.action.class">Symfony\Cmf\Bundle\BlockBundle\Fragment\ActionFragmentRenderer</parameter>
-        <parameter key="cmf_block.fragment.path">/_cmf_block_fragment</parameter>
         <parameter key="cmf_block.service.simple.class">Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService</parameter>
         <parameter key="cmf_block.service.string.class">Symfony\Cmf\Bundle\BlockBundle\Block\StringBlockService</parameter>
         <parameter key="cmf_block.service.container.class">Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService</parameter>
@@ -82,13 +80,6 @@
             <argument type="service" id="logger" />
 
             <tag name="templating.helper" alias="cmf_block" />
-        </service>
-
-        <service id="cmf_block.fragment.renderer.action" class="%cmf_block.fragment.renderer.action.class%">
-            <tag name="kernel.fragment_renderer" />
-            <argument type="service" id="http_kernel" />
-            <argument type="service" id="event_dispatcher" />
-            <call method="setFragmentPath"><argument>%cmf_block.fragment.path%</argument></call>
         </service>
 
     </services>
