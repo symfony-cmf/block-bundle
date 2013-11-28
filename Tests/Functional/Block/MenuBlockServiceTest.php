@@ -14,15 +14,16 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Sonata\BlockBundle\Block\BlockContext;
 use Symfony\Cmf\Bundle\BlockBundle\Block\MenuBlockService,
-    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock,
+    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MenuBlock,
     Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
+use Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\MenuNode;
 
 class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
 {
     public function testExecutionOfDisabledBlock()
     {
-        $referenceBlock = new ReferenceBlock();
-        $referenceBlock->setEnabled(false);
+        $menuBlock = new MenuBlock();
+        $menuBlock->setEnabled(false);
 
         $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
             ->disableOriginalConstructor()
@@ -38,20 +39,18 @@ class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $menuBlockService = new MenuBlockService('test-service', $templatingMock, $blockRendererMock, $blockContextManagerMock);
-        $menuBlockService->execute(new BlockContext($referenceBlock));
+        $menuBlockService->execute(new BlockContext($menuBlock));
     }
 
     public function testExecutionOfEnabledBlock()
     {
-        $simpleBlock = new SimpleBlock();
+        $menuNode = new MenuNode();
 
-        $simpleBlockContext = new BlockContext($simpleBlock);
+        $menuBlock = new MenuBlock();
+        $menuBlock->setEnabled(true);
+        $menuBlock->setReferencedMenu($menuNode);
 
-        $referenceBlock = new ReferenceBlock();
-        $referenceBlock->setEnabled(true);
-        $referenceBlock->setReferencedMenu($simpleBlock);
-
-        $referenceBlockContext = new BlockContext($referenceBlock);
+        $menuBlockContext = new BlockContext($menuBlock);
 
         $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
             ->disableOriginalConstructor()
@@ -60,22 +59,14 @@ class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
         $blockRendererMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockRendererInterface')
             ->disableOriginalConstructor()
             ->getMock();
-        $blockRendererMock->expects($this->once())
-            ->method('render')
-            ->with(
-                $this->equalTo($simpleBlockContext)
-            );
+        
+        
         $blockContextManagerMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockContextManagerInterface')
             ->disableOriginalConstructor()
             ->getMock();
-        $blockContextManagerMock->expects($this->once())
-            ->method('get')
-            ->will(
-                $this->returnValue($simpleBlockContext)
-            );
-
+        
         $menuBlockService = new MenuBlockService('test-service', $templatingMock, $blockRendererMock, $blockContextManagerMock);
-        $menuBlockService->execute($referenceBlockContext);
+        $menuBlockService->execute($menuBlockContext);
     }
 
 }
