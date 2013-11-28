@@ -53,6 +53,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('action_document_class')->defaultValue('Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock')->end()
                                 ->scalarNode('slideshow_document_class')->defaultValue('Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock')->end()
                                 ->scalarNode('imagine_document_class')->defaultValue('Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock')->end()
+                                ->scalarNode('menu_document_class')->defaultValue('Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MenuBlock')->end()
 
                                 ->enumNode('use_sonata_admin')
                                     ->values(array(true, false, 'auto'))
@@ -65,6 +66,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('action_admin_class')->defaultValue('Symfony\Cmf\Bundle\BlockBundle\Admin\ActionBlockAdmin')->end()
                                 ->scalarNode('slideshow_admin_class')->defaultValue('Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine\SlideshowBlockAdmin')->end()
                                 ->scalarNode('imagine_admin_class')->defaultValue('Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine\ImagineBlockAdmin')->end()
+                                ->scalarNode('menu_admin_class')->defaultValue('Symfony\Cmf\Bundle\BlockBundle\Admin\MenuBlockAdmin')->end()
                             ->end()
                         ->end()
                     ->end()

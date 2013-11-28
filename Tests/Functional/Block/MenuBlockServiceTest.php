@@ -1,0 +1,81 @@
+<?php
+
+/*
+ * This file is part of the Symfony CMF package.
+ *
+ * (c) 2011-2013 Symfony CMF
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+
+namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
+
+use Sonata\BlockBundle\Block\BlockContext;
+use Symfony\Cmf\Bundle\BlockBundle\Block\MenuBlockService,
+    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock,
+    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
+
+class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
+{
+    public function testExecutionOfDisabledBlock()
+    {
+        $referenceBlock = new ReferenceBlock();
+        $referenceBlock->setEnabled(false);
+
+        $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $blockRendererMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockRendererInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $blockRendererMock->expects($this->never())
+             ->method('render');
+        $blockContextManagerMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockContextManagerInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $menuBlockService = new MenuBlockService('test-service', $templatingMock, $blockRendererMock, $blockContextManagerMock);
+        $menuBlockService->execute(new BlockContext($referenceBlock));
+    }
+
+    public function testExecutionOfEnabledBlock()
+    {
+        $simpleBlock = new SimpleBlock();
+
+        $simpleBlockContext = new BlockContext($simpleBlock);
+
+        $referenceBlock = new ReferenceBlock();
+        $referenceBlock->setEnabled(true);
+        $referenceBlock->setReferencedMenu($simpleBlock);
+
+        $referenceBlockContext = new BlockContext($referenceBlock);
+
+        $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $blockRendererMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockRendererInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $blockRendererMock->expects($this->once())
+            ->method('render')
+            ->with(
+                $this->equalTo($simpleBlockContext)
+            );
+        $blockContextManagerMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockContextManagerInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $blockContextManagerMock->expects($this->once())
+            ->method('get')
+            ->will(
+                $this->returnValue($simpleBlockContext)
+            );
+
+        $menuBlockService = new MenuBlockService('test-service', $templatingMock, $blockRendererMock, $blockContextManagerMock);
+        $menuBlockService->execute($referenceBlockContext);
+    }
+
+}

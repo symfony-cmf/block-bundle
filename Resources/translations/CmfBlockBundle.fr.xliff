@@ -17,6 +17,11 @@
                 <target>Bloc conteneur</target>
             </trans-unit>
 
+            <trans-unit id="dashboard.label_menu_block">
+                <source>dashboard.label_menu_block</source>
+                <target>Bloc menu</target>
+            </trans-unit>
+
             <trans-unit id="dashboard.label_reference_block">
                 <source>dashboard.label_reference_block</source>
                 <target>Bloc référence</target>
@@ -99,6 +104,26 @@
 
             <trans-unit id="breadcrumb.link_container_block_delete">
                 <source>breadcrumb.link_container_block_delete</source>
+                <target>Supprimer</target>
+            </trans-unit>
+            
+            <trans-unit id="breadcrumb.link_menu_block_list">
+                <source>breadcrumb.link_menu_block_list</source>
+                <target>Blocs conteneurs</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_menu_block_create">
+                <source>breadcrumb.link_menu_block_create</source>
+                <target>Créer</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_menu_block_edit">
+                <source>breadcrumb.link_menu_block_edit</source>
+                <target>Éditer</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_menu_block_delete">
+                <source>breadcrumb.link_menu_block_delete</source>
                 <target>Supprimer</target>
             </trans-unit>
 
