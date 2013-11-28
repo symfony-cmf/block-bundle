@@ -28,7 +28,6 @@ class MenuBlockService extends BaseBlockService implements BlockServiceInterface
     protected $template = 'CmfBlockBundle:Block:block_menu.html.twig';
 
     /**
-     *
      * @param string                       $name
      * @param EngineInterface              $templating
      * @param BlockRendererInterface       $blockRenderer
@@ -38,15 +37,13 @@ class MenuBlockService extends BaseBlockService implements BlockServiceInterface
     {
         parent::__construct($name, $templating);
 
-        if ($template) {
+        if (null !== $template) {
             $this->template = $template;
         }
     }
 
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
     public function buildEditForm(FormMapper $form, BlockInterface $block)
     {
@@ -54,9 +51,7 @@ class MenuBlockService extends BaseBlockService implements BlockServiceInterface
     }
 
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
     public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
     {
@@ -64,9 +59,7 @@ class MenuBlockService extends BaseBlockService implements BlockServiceInterface
     }
 
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
@@ -87,9 +80,7 @@ class MenuBlockService extends BaseBlockService implements BlockServiceInterface
     }
 
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
@@ -99,7 +90,6 @@ class MenuBlockService extends BaseBlockService implements BlockServiceInterface
     }
 
     /**
-     *
      * @param string $template
      */
     public function setTemplate($template)
