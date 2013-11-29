@@ -30,11 +30,13 @@
         <xsd:attribute name="simple-document-class" type="xsd:string" />
         <xsd:attribute name="container-document-class" type="xsd:string" />
         <xsd:attribute name="reference-document-class" type="xsd:string" />
+        <xsd:attribute name="menu-document-class" type="xsd:string" />
         <xsd:attribute name="action-document-class" type="xsd:string" />
         <xsd:attribute name="use-sonata-admin" type="enable" />
         <xsd:attribute name="simple-admin-class" type="xsd:string" />
         <xsd:attribute name="container-admin-class" type="xsd:string" />
-        <xsd:attribute name="reference-admin-class" type="xsd:string" />
+        <xsd:attribute name="reference-admin-class" type="xsd:string" /
+        <xsd:attribute name="menu-admin-class" type="xsd:string" />
         <xsd:attribute name="action-admin-class" type="xsd:string" />
     </xsd:complexType>
 

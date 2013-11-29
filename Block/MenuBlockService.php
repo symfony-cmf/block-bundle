@@ -2,12 +2,12 @@
 
 /*
  * This file is part of the Symfony CMF package.
-*
-* (c) 2011-2013 Symfony CMF
-*
-* For the full copyright and license information, please view the LICENSE
-* file that was distributed with this source code.
-*/
+ *
+ * (c) 2011-2013 Symfony CMF
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
@@ -47,7 +47,7 @@ class MenuBlockService extends BaseBlockService implements BlockServiceInterface
      */
     public function buildEditForm(FormMapper $form, BlockInterface $block)
     {
-        throw new \RuntimeException ( 'Not used at the moment, editing using a frontend or backend UI could be changed here' );
+        throw new \RuntimeException ('Not used at the moment, editing using a frontend or backend UI could be changed here');
     }
 
     /**
@@ -55,7 +55,7 @@ class MenuBlockService extends BaseBlockService implements BlockServiceInterface
      */
     public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
     {
-        throw new \RuntimeException ( 'Not used at the moment, validation for editing using a frontend or backend UI could be changed here' );
+        throw new \RuntimeException ('Not used at the moment, validation for editing using a frontend or backend UI could be changed here');
     }
 
     /**
@@ -63,17 +63,17 @@ class MenuBlockService extends BaseBlockService implements BlockServiceInterface
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        if (! $response) {
+        if (!$response) {
             $response = new Response();
         }
         $menu = $blockContext->getBlock()->getReferencedMenu();
+        
         // if the reference target block does not exist, we just skip the rendering
         if ($blockContext->getBlock()->getEnabled() && null !== $menu) {
-
-            $response = $this->renderResponse ( $blockContext->getTemplate (), array (
+            $response = $this->renderResponse ($blockContext->getTemplate (), array (
                     'menu' => $menu->getId(),
-                    'block' => $blockContext->getBlock()
-            ), $response );
+                    'block' => $blockContext->getBlock(),
+            ), $response);
         }
 
         return $response;
@@ -84,9 +84,9 @@ class MenuBlockService extends BaseBlockService implements BlockServiceInterface
      */
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults ( array (
-                'template' => $this->template
-        ) );
+        $resolver->setDefaults (array(
+            'template' => $this->template,
+        ));
     }
 
     /**

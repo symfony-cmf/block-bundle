@@ -13,9 +13,9 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Sonata\BlockBundle\Block\BlockContext;
-use Symfony\Cmf\Bundle\BlockBundle\Block\MenuBlockService,
-    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MenuBlock,
-    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Block\MenuBlockService;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MenuBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 use Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\MenuNode;
 
 class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
@@ -68,5 +68,4 @@ class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
         $menuBlockService = new MenuBlockService('test-service', $templatingMock, $blockRendererMock, $blockContextManagerMock);
         $menuBlockService->execute($menuBlockContext);
     }
-
 }
