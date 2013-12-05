@@ -33,6 +33,16 @@ abstract class AbstractBlockAdmin extends Admin
     }
 
     /**
+     * @param $content
+     * @return mixed|void
+     */
+    public function preUpdate($content) {
+        /** @var $content AbstractBlock */
+        $content->setUpdatedAt(new \DateTime());
+        parent::preUpdate($content);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getNewInstance()
