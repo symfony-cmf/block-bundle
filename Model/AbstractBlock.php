@@ -12,6 +12,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\BlockBundle\Model\BlockInterface;
 
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface;
@@ -247,7 +248,7 @@ abstract class AbstractBlock implements
      */
     public function getChildren()
     {
-        return null;
+        return new ArrayCollection();
     }
 
     /**
