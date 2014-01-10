@@ -1,0 +1,45 @@
+<config xmlns="http://cmf.symfony.com/schema/dic/block"
+    use-imagine="auto"
+>
+    <persistence>
+        <phpcr block-basepath="/cms/block"
+               manager-name="default"
+               string-document-class="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\StringBlock"
+               simple-document-class="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock"
+               container-document-class="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock"
+               reference-document-class="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock"
+               action-document-class="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock"
+               slideshow-document-class="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock"
+               imagine-document-class="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock"
+               use-sonata-admin="auto"
+               string-admin-class="Symfony\Cmf\Bundle\BlockBundle\Admin\StringBlockAdmin"
+               simple-admin-class="Symfony\Cmf\Bundle\BlockBundle\Admin\SimpleBlockAdmin"
+               container-admin-class="Symfony\Cmf\Bundle\BlockBundle\Admin\ContainerBlockAdmin"
+               reference-admin-class="Symfony\Cmf\Bundle\BlockBundle\Admin\ReferenceBlockAdmin"
+               action-admin-class="Symfony\Cmf\Bundle\BlockBundle\Admin\ActionBlockAdmin"
+               slideshow-admin-class="Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine\SlideshowBlockAdmin"
+               imagine-admin-class="Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine\ImagineBlockAdmin"
+        />
+    </persistence>
+
+    <twig>
+        <cmf-embed-blocks
+            prefix="%embed-block|"
+            postfix="|end%"
+        />
+    </twig>
+
+    <caches>
+        <varnish
+            token="xxx"
+            version="2"
+        >
+            <server>host1</server>
+            <server>host2</server>
+        </varnish>
+
+        <ssi
+            token="yyy"
+        />
+    </caches>
+</config>
