@@ -38,10 +38,10 @@ class MenuBlockAdmin extends Admin
     {
         $formMapper
             ->with('form.group_general')
-            ->add('parentDocument', 'doctrine_phpcr_odm_tree', array('root_node' => $this->getRootPath(), 'choice_list' => array(), 'select_root_node' => true))
+            ->add('parentDocument', 'doctrine_phpcr_odm_tree', array('menu_node' => $this->getMenuPath(), 'choice_list' => array(), 'select_menu_node' => true))
             ->add('name', 'text')
             // TODO: change /cms/menu to use the correct config value
-            ->add('referencedMenu', 'doctrine_phpcr_odm_tree', array('choice_list' => array(), 'required' => true, 'root_node' => "/cms/menu"))
+            ->add('referencedMenu', 'doctrine_phpcr_odm_tree', array('choice_list' => array(), 'required' => true, 'menu_node' => $this->menuPath))
             ->end()
         ;
     }
@@ -54,5 +54,31 @@ class MenuBlockAdmin extends Admin
         $datagridMapper
             ->add('name',  'doctrine_phpcr_nodename')
         ;
+    }
+    /**
+     * Path to the menu node in the repository under which documents of this
+     * admin should be created.
+     *
+     * @var string
+     */
+    private $menuPath;
+
+    /**
+     * Set the menu path in the repository. To be able to create new items,
+     * this path must already exist.
+     *
+     * @param string $menuPath
+     */
+    public function setMenuPath($menuPath)
+    {
+        $this->menuPath = $menuPath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMenuPath()
+    {
+        return $this->menuPath;
     }
 }

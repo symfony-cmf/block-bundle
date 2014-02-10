@@ -12,7 +12,7 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\AbstractBlock;
-use Symfony\Cmf\Bundle\MenuBundle\Model\MenuNodeBase as MenuInterface;
+use Knp\Menu\NodeInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 
 /**
@@ -46,7 +46,7 @@ class MenuBlock extends AbstractBlock
      *
      * @return MenuBlock $this
      */
-    public function setReferencedMenu(MenuInterface $referencedMenu)
+    public function setReferencedMenu(NodeInterface $referencedMenu)
     {
         $this->referencedMenu = $referencedMenu;
 

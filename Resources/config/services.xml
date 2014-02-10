@@ -14,7 +14,6 @@
         <parameter key="cmf_block.service.string.class">Symfony\Cmf\Bundle\BlockBundle\Block\StringBlockService</parameter>
         <parameter key="cmf_block.service.container.class">Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService</parameter>
         <parameter key="cmf_block.service.reference.class">Symfony\Cmf\Bundle\BlockBundle\Block\ReferenceBlockService</parameter>
-        <parameter key="cmf_block.service.menu.class">Symfony\Cmf\Bundle\BlockBundle\Block\MenuBlockService</parameter>
         <parameter key="cmf_block.service.action.class">Symfony\Cmf\Bundle\BlockBundle\Block\ActionBlockService</parameter>
         <!--container block service is reused for slideshows -->
         <parameter key="cmf_block.service.slideshow.class">Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService</parameter>
@@ -47,12 +46,6 @@
             <argument type="service" id="templating" />
             <argument type="service" id="sonata.block.renderer" />
             <argument type="service" id="sonata.block.context_manager" />
-        </service>
-
-        <service id="cmf.block.menu" class="%cmf_block.service.menu.class%">
-            <tag name="sonata.block" />
-            <argument>cmf.block.reference</argument>
-            <argument type="service" id="templating" />
         </service>
         
         <service id="cmf.block.action" class="%cmf_block.service.action.class%">

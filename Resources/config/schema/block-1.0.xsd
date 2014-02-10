@@ -35,7 +35,7 @@
         <xsd:attribute name="use-sonata-admin" type="enable" />
         <xsd:attribute name="simple-admin-class" type="xsd:string" />
         <xsd:attribute name="container-admin-class" type="xsd:string" />
-        <xsd:attribute name="reference-admin-class" type="xsd:string" /
+        <xsd:attribute name="reference-admin-class" type="xsd:string" />
         <xsd:attribute name="menu-admin-class" type="xsd:string" />
         <xsd:attribute name="action-admin-class" type="xsd:string" />
     </xsd:complexType>

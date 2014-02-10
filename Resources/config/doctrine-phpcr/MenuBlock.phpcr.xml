@@ -8,6 +8,7 @@
     <document
         name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MenuBlock"
         referenceable="true"
+        property="blockMenu"
         >
 
         <reference-one name="referencedMenu"/>
