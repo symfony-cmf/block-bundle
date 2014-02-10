@@ -152,6 +152,12 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         if ($useImagine) {
             $loader->load('admin-imagine.xml');
         }
+        if ('auto' === $config['use_sonata_admin'] && !isset($bundles['SonataDoctrinePHPCRAdminBundle']) && !isset($bundles['CmfMenuBundle'])) {
+            return;
+        }
+
+        $loader->load('admin-menu.xml');
+
     }
 
     public function loadSonataCache($config, XmlFileLoader $loader, ContainerBuilder $container)
@@ -194,12 +200,6 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         }
     
         $loader->load('menu.xml');
-        
-        if ('auto' === $config['use_sonata_admin'] && !isset($bundles['SonataDoctrinePHPCRAdminBundle'])) {
-            return;
-        }
-
-        $loader->load('admin-menu.xml');
     }
     /**
      * Returns the base path for the XSD files.
