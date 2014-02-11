@@ -11,7 +11,7 @@
         property="blockMenu"
         >
 
-        <reference-one name="referencedMenu"/>
+        <reference-one name="menuNode"/>
 
     </document>
 

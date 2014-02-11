@@ -1,4 +1,5 @@
 <?php
+
 /*
  * 
  * This file is part of the Symfony CMF package.
@@ -13,7 +14,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\AbstractBlock;
 use Knp\Menu\NodeInterface;
-use Sonata\BlockBundle\Model\BlockInterface;
+use Symfony\Cmf\Bundle\MenuBundle\Model\MenuNode;
 
 /**
  * Block that is a reference to a menu.
@@ -21,9 +22,9 @@ use Sonata\BlockBundle\Model\BlockInterface;
 class MenuBlock extends AbstractBlock
 {
     /**
-     * @var BlockInterface
+     * @var MenuNode
      */
-    private $referencedMenu;
+    private $menuNode;
 
     /**
      * {@inheritdoc}
@@ -36,19 +37,19 @@ class MenuBlock extends AbstractBlock
     /**
      * @return BlockInterface|null
      */
-    public function getReferencedMenu()
+    public function getMenuNode()
     {
-        return $this->referencedMenu;
+        return $this->menuNode;
     }
 
     /**
-     * @param BlockInterface $referencedMenu
+     * @param BlockInterface $menuNode
      *
      * @return MenuBlock $this
      */
-    public function setReferencedMenu(NodeInterface $referencedMenu)
+    public function setMenuNode(NodeInterface $menuNode)
     {
-        $this->referencedMenu = $referencedMenu;
+        $this->menuNode = $menuNode;
 
         return $this;
     }

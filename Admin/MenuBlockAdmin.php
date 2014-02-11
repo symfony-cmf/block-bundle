@@ -41,7 +41,7 @@ class MenuBlockAdmin extends Admin
             ->add('parentDocument', 'doctrine_phpcr_odm_tree', array('menu_node' => $this->getMenuPath(), 'choice_list' => array(), 'select_menu_node' => true))
             ->add('name', 'text')
             // TODO: change /cms/menu to use the correct config value
-            ->add('referencedMenu', 'doctrine_phpcr_odm_tree', array('choice_list' => array(), 'required' => true, 'menu_node' => $this->menuPath))
+            ->add('menuNode', 'doctrine_phpcr_odm_tree', array('choice_list' => array(), 'required' => true, 'menu_node' => $this->menuPath))
             ->end()
         ;
     }
