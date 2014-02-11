@@ -47,7 +47,7 @@
             <argument type="service" id="sonata.block.renderer" />
             <argument type="service" id="sonata.block.context_manager" />
         </service>
-        
+
         <service id="cmf.block.action" class="%cmf_block.service.action.class%">
             <tag name="sonata.block" />
             <tag name="cmf_request_aware" />
