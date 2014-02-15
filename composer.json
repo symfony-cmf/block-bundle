@@ -18,7 +18,7 @@
         "doctrine/phpcr-bundle" :">=1.0.0,<1.2-dev",
         "doctrine/phpcr-odm": ">=1.0.0,<1.2-dev",
         "sonata-project/block-bundle": ">=2.2.4,<2.2.8",
-        "symfony-cmf/core-bundle": "1.0.*"
+        "symfony-cmf/core-bundle": ">=1.0.0,<1.2-dev"
     },
     "conflict": {
         "symfony/framework-bundle": ">=2.3.0,<2.3.2"
