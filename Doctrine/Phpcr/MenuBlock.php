@@ -22,7 +22,7 @@ use Symfony\Cmf\Bundle\MenuBundle\Model\MenuNode;
 class MenuBlock extends AbstractBlock
 {
     /**
-     * @var MenuNode
+     * @var NodeInterface
      */
     private $menuNode;
 
