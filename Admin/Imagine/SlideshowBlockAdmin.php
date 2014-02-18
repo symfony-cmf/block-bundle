@@ -61,9 +61,7 @@ class SlideshowBlockAdmin extends AbstractBlockAdmin
                 ->add('title', 'text')
             ->with('Items')
                 ->add('children', 'sonata_type_collection',
-                    array(
-                        'by_reference' => false,
-                    ),
+                    array(),
                     array(
                         'edit' => 'inline',
                         'inline' => 'table',

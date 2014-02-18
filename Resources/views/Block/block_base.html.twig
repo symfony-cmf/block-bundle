@@ -1,7 +1,7 @@
 {% if block.dashifiedId is defined %}
-<div id="block{{ block.dashifiedId }}" class="cmf-block {{ block.dashifiedType }}">
+<div id="block{{ block.dashifiedId }}" class="cmf-block {{ block.settings.class|default('') }} {{ block.dashifiedType }}">
 {% else %}
-<div id="cms-block-{{ block.id }}" class="cms-block cms-block-element">
+<div id="cms-block-{{ block.id }}" class="cms-block cms-block-element {{ block.settings.class|default('') }}">
 {% endif %}
     {% block block %}EMPTY CONTENT{% endblock %}
 </div>

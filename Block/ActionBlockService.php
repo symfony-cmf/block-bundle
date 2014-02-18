@@ -97,8 +97,7 @@ class ActionBlockService extends BaseBlockService
         return new Response($this->renderer->render(new ControllerReference(
                 $block->getActionName(),
                 $requestParams
-            ),
-            'cmf_block_action'
+            )
         ));
     }
 }

@@ -15,14 +15,13 @@
         {% endif %}
 
         {% if settings.divisible_by %}
-            {% if settings.divisible_by and loop.index is divisibleby(settings.divisible_by) %}
+            {% if loop.index is divisibleby(settings.divisible_by) %}
                 </div>{# end row #}
                 {% if not loop.last %}
                     {# start row #}
                     <div class="{{ settings.divisible_class }}">
                 {% endif %}
-            {% endif %}
-            {% if loop.last %}
+            {% elseif loop.last %}
                 </div>{# end row #}
             {% endif %}
         {% endif %}
