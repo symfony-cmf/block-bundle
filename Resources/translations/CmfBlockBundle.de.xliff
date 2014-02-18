@@ -169,7 +169,7 @@
             
             <trans-unit id="breadcrumb.link_menu_block_list">
                 <source>breadcrumb.link_menu_block_list</source>
-                <target>Textblöcke</target>
+                <target>Menüblöcke</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_menu_block_create">

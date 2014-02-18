@@ -169,7 +169,7 @@
             
             <trans-unit id="breadcrumb.link_menu_block_list">
                 <source>breadcrumb.link_menu_block_list</source>
-                <target>String blocks</target>
+                <target>Menu blocks</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_menu_block_create">
