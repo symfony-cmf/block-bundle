@@ -16,14 +16,13 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-class MenuBlockService extends BaseBlockService implements BlockServiceInterface
+class MenuBlockService extends BaseBlockService
 {
     protected $template = 'CmfBlockBundle:Block:block_menu.html.twig';
 
@@ -68,7 +67,7 @@ class MenuBlockService extends BaseBlockService implements BlockServiceInterface
         }
         $menu = $blockContext->getBlock()->getMenuNode();
         
-        // if the reference target block does not exist, we just skip the rendering
+        // if the reference target menu does not exist, we just skip the rendering
         if ($blockContext->getBlock()->getEnabled() && null !== $menu) {
             $response = $this->renderResponse ($blockContext->getTemplate (), array (
                     'menu' => $menu->getId(),
@@ -87,13 +86,5 @@ class MenuBlockService extends BaseBlockService implements BlockServiceInterface
         $resolver->setDefaults (array(
             'template' => $this->template,
         ));
-    }
-
-    /**
-     * @param string $template
-     */
-    public function setTemplate($template)
-    {
-        $this->template = $template;
     }
 }
