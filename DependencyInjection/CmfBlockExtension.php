@@ -81,7 +81,6 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         }
 
         $this->loadSonataCache($config, $loader, $container);
-        $this->loadMenuBlock($config, $loader, $container);
     }
 
     public function loadPhpcr($config, XmlFileLoader $loader, ContainerBuilder $container, $useImagine)
@@ -105,7 +104,6 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
             'action_admin_class' => 'action_admin.class',
             'imagine_admin_class' => 'imagine_admin.class',
             'slideshow_admin_class' => 'slideshow_admin.class',
-
             'block_basepath' => 'block_basepath',
             'manager_name' => 'manager_name',
         );
@@ -136,6 +134,8 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
             $blockLoader = $container->getDefinition('cmf.block.string');
             $blockLoader->addMethodCall('setTemplate', array('CmfBlockBundle:Block:block_string_createphp.html.twig'));
         }
+
+        $this->loadMenuBlock($config, $loader, $container);
     }
 
     public function loadSonataPhpcrAdmin($config, XmlFileLoader $loader, ContainerBuilder $container, $useImagine = false, $prefix = '')
@@ -150,12 +150,10 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         if ($useImagine) {
             $loader->load('admin-imagine.xml');
         }
-        if ('auto' === $config['use_sonata_admin'] && (!isset($bundles['SonataDoctrinePHPCRAdminBundle']) || !isset($bundles['CmfMenuBundle']))) {
-            return;
+
+        if (isset($bundles['CmfMenuBundle']))) {
+            $loader->load('admin-menu.xml');
         }
-
-        $loader->load('admin-menu.xml');
-
     }
 
     public function loadSonataCache($config, XmlFileLoader $loader, ContainerBuilder $container)
