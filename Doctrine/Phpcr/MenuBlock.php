@@ -35,7 +35,7 @@ class MenuBlock extends AbstractBlock
     }
 
     /**
-     * @return BlockInterface|null
+     * @return NodeInterface|null
      */
     public function getMenuNode()
     {
@@ -43,7 +43,7 @@ class MenuBlock extends AbstractBlock
     }
 
     /**
-     * @param BlockInterface $menuNode
+     * @param NodeInterface $menuNode
      *
      * @return MenuBlock $this
      */
