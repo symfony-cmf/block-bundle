@@ -151,7 +151,7 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
             $loader->load('admin-imagine.xml');
         }
 
-        if (isset($bundles['CmfMenuBundle']))) {
+        if (isset($bundles['CmfMenuBundle'])) {
             $loader->load('admin-menu.xml');
         }
     }
