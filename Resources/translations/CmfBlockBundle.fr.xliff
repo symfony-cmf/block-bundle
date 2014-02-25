@@ -37,8 +37,8 @@
                 <target>Bloc image</target>
             </trans-unit>
 
-            <trans-unit id="dashboard.label_text_block">
-                <source>dashboard.label_text_block</source>
+            <trans-unit id="dashboard.label_string_block">
+                <source>dashboard.label_string_block</source>
                 <target>Bloc texte</target>
             </trans-unit>
 
@@ -142,23 +142,23 @@
                 <target>Supprimer</target>
             </trans-unit>
 
-            <trans-unit id="breadcrumb.link_text_block_list">
-                <source>breadcrumb.link_text_block_list</source>
+            <trans-unit id="breadcrumb.link_string_block_list">
+                <source>breadcrumb.link_string_block_list</source>
                 <target>Blocs textes</target>
             </trans-unit>
 
-            <trans-unit id="breadcrumb.link_text_block_create">
-                <source>breadcrumb.link_text_block_create</source>
+            <trans-unit id="breadcrumb.link_string_block_create">
+                <source>breadcrumb.link_string_block_create</source>
                 <target>Créer</target>
             </trans-unit>
 
-            <trans-unit id="breadcrumb.link_text_block_edit">
-                <source>breadcrumb.link_text_block_edit</source>
+            <trans-unit id="breadcrumb.link_string_block_edit">
+                <source>breadcrumb.link_string_block_edit</source>
                 <target>Éditer</target>
             </trans-unit>
 
-            <trans-unit id="breadcrumb.link_text_block_delete">
-                <source>breadcrumb.link_text_block_delete</source>
+            <trans-unit id="breadcrumb.link_string_block_delete">
+                <source>breadcrumb.link_string_block_delete</source>
                 <target>Supprimer</target>
             </trans-unit>
 
