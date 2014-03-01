@@ -42,6 +42,11 @@
                 <target>String block</target>
             </trans-unit>
 
+            <trans-unit id="dashboard.label_menu_block">
+                <source>dashboard.label_menu_block</source>
+                <target>Menu block</target>
+            </trans-unit>
+
             <trans-unit id="breadcrumb.link_slideshow_block_list">
                 <source>breadcrumb.link_slideshow_block_list</source>
                 <target>Slideshow Blocks</target>
@@ -159,6 +164,26 @@
 
             <trans-unit id="breadcrumb.link_string_block_delete">
                 <source>breadcrumb.link_string_block_delete</source>
+                <target>Delete</target>
+            </trans-unit>
+            
+            <trans-unit id="breadcrumb.link_menu_block_list">
+                <source>breadcrumb.link_menu_block_list</source>
+                <target>Menu blocks</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_menu_block_create">
+                <source>breadcrumb.link_menu_block_create</source>
+                <target>Create</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_menu_block_edit">
+                <source>breadcrumb.link_menu_block_edit</source>
+                <target>Edit</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_menu_block_delete">
+                <source>breadcrumb.link_menu_block_delete</source>
                 <target>Delete</target>
             </trans-unit>
 

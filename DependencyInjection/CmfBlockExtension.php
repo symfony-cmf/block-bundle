@@ -92,6 +92,7 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
             'simple_document_class' => 'simple_document.class',
             'container_document_class' => 'container_document.class',
             'reference_document_class' => 'reference_document.class',
+            'menu_document_class' => 'menu_document.class',
             'action_document_class' => 'action_document.class',
             'imagine_document_class' => 'imagine_document.class',
             'slideshow_document_class' => 'slideshow_document.class',
@@ -99,10 +100,10 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
             'simple_admin_class' => 'simple_admin.class',
             'container_admin_class' => 'container_admin.class',
             'reference_admin_class' => 'reference_admin.class',
+            'menu_admin_class' => 'menu_admin.class',
             'action_admin_class' => 'action_admin.class',
             'imagine_admin_class' => 'imagine_admin.class',
             'slideshow_admin_class' => 'slideshow_admin.class',
-
             'block_basepath' => 'block_basepath',
             'manager_name' => 'manager_name',
         );
@@ -133,6 +134,8 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
             $blockLoader = $container->getDefinition('cmf.block.string');
             $blockLoader->addMethodCall('setTemplate', array('CmfBlockBundle:Block:block_string_createphp.html.twig'));
         }
+
+        $this->loadMenuBlock($config, $loader, $container);
     }
 
     public function loadSonataPhpcrAdmin($config, XmlFileLoader $loader, ContainerBuilder $container, $useImagine = false, $prefix = '')
@@ -146,6 +149,10 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
 
         if ($useImagine) {
             $loader->load('admin-imagine.xml');
+        }
+
+        if (isset($bundles['CmfMenuBundle'])) {
+            $loader->load('admin-menu.xml');
         }
     }
 
@@ -180,6 +187,16 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         }
     }
 
+    public function loadMenuBlock($config, XmlFileLoader $loader, ContainerBuilder $container)
+    {
+        $bundles = $container->getParameter('kernel.bundles');
+    
+        if (!isset($bundles['CmfMenuBundle'])) {
+            return ;
+        }
+    
+        $loader->load('menu.xml');
+    }
     /**
      * Returns the base path for the XSD files.
      *
