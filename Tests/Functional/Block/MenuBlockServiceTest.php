@@ -44,13 +44,14 @@ class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testExecutionOfEnabledBlock()
     {
+        $template = 'CmfBlockBundle:Block:block_menu.html.twig';
         $menuNode = new MenuNode();
 
         $menuBlock = new MenuBlock();
         $menuBlock->setEnabled(true);
         $menuBlock->setMenuNode($menuNode);
 
-        $menuBlockContext = new BlockContext($menuBlock);
+        $menuBlockContext = new BlockContext($menuBlock, array('template' => $template));
 
         $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
             ->disableOriginalConstructor()
@@ -59,12 +60,12 @@ class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
         $blockRendererMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockRendererInterface')
             ->disableOriginalConstructor()
             ->getMock();
-        
-        
+
+
         $blockContextManagerMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockContextManagerInterface')
             ->disableOriginalConstructor()
             ->getMock();
-        
+
         $menuBlockService = new MenuBlockService('test-service', $templatingMock, $blockRendererMock, $blockContextManagerMock);
         $menuBlockService->execute($menuBlockContext);
     }
