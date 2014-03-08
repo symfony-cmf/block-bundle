@@ -18,9 +18,13 @@ use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * @author Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ */
 class MenuBlockService extends BaseBlockService implements BlockServiceInterface
 {
     protected $template = 'CmfBlockBundle:Block:block_menu.html.twig';
@@ -58,17 +62,20 @@ class MenuBlockService extends BaseBlockService implements BlockServiceInterface
         if (!$response) {
             $response = new Response();
         }
-        $menu = $blockContext->getBlock()->getMenuNode();
-        
+
+        $block = $blockContext->getBlock();
+
         // if the reference target menu does not exist, we just skip the rendering
-        if ($blockContext->getBlock()->getEnabled() && null !== $menu) {
-            $response = $this->renderResponse ($blockContext->getTemplate (), array (
-                    'menu' => $menu->getId(),
-                    'block' => $blockContext->getBlock(),
-            ), $response);
+        if (!$block->getEnabled() || null === $block->getMenuNode()) {
+            return $response ? : new Response();
         }
 
-        return $response;
+        $menu = $blockContext->getBlock()->getMenuNode();
+
+        return $this->renderResponse ($blockContext->getTemplate(), array(
+                'menu' => $menu->getId(),
+                'block' => $blockContext->getBlock(),
+        ), $response);
     }
 
     /**

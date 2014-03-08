@@ -133,9 +133,13 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
             $blockLoader->addMethodCall('setTemplate', array('CmfBlockBundle:Block:block_simple_createphp.html.twig'));
             $blockLoader = $container->getDefinition('cmf.block.string');
             $blockLoader->addMethodCall('setTemplate', array('CmfBlockBundle:Block:block_string_createphp.html.twig'));
+
         }
 
-        $this->loadMenuBlock($config, $loader, $container);
+        if (isset($bundles['CmfMenuBundle'])) {
+            $loader->load('menu.xml');
+        }
+
     }
 
     public function loadSonataPhpcrAdmin($config, XmlFileLoader $loader, ContainerBuilder $container, $useImagine = false, $prefix = '')
@@ -187,16 +191,6 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         }
     }
 
-    public function loadMenuBlock($config, XmlFileLoader $loader, ContainerBuilder $container)
-    {
-        $bundles = $container->getParameter('kernel.bundles');
-    
-        if (!isset($bundles['CmfMenuBundle'])) {
-            return ;
-        }
-    
-        $loader->load('menu.xml');
-    }
     /**
      * Returns the base path for the XSD files.
      *

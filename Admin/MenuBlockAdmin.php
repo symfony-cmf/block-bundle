@@ -16,8 +16,10 @@ use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
 
+/**
+ * @author Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ */
 class MenuBlockAdmin extends Admin
 {
     /**
@@ -38,9 +40,9 @@ class MenuBlockAdmin extends Admin
     {
         $formMapper
             ->with('form.group_general')
-            ->add('parentDocument', 'doctrine_phpcr_odm_tree', array('menu_node' => $this->getMenuPath(), 'choice_list' => array(), 'select_menu_node' => true))
-            ->add('name', 'text')
-            ->add('menuNode', 'doctrine_phpcr_odm_tree', array('choice_list' => array(), 'required' => true, 'menu_node' => $this->menuPath))
+                ->add('parentDocument', 'doctrine_phpcr_odm_tree', array('menu_node' => $this->getMenuPath(), 'choice_list' => array(), 'select_menu_node' => true))
+                ->add('name', 'text')
+                ->add('menuNode', 'doctrine_phpcr_odm_tree', array('choice_list' => array(), 'required' => true, 'menu_node' => $this->menuPath))
             ->end()
         ;
     }
