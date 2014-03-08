@@ -37,6 +37,11 @@
                 <target>Textblock</target>
             </trans-unit>
 
+            <trans-unit id="dashboard.label_menu_block">
+                <source>dashboard.label_menu_block</source>
+                <target>MenuBlock</target>
+            </trans-unit>
+
             <trans-unit id="breadcrumb.link_slideshow_block_list">
                 <source>breadcrumb.link_slideshow_block_list</source>
                 <target>Slideshow Blöcke</target>
@@ -161,7 +166,27 @@
                 <source>breadcrumb.link_string_block_delete</source>
                 <target>Löschen</target>
             </trans-unit>
+            
+            <trans-unit id="breadcrumb.link_menu_block_list">
+                <source>breadcrumb.link_menu_block_list</source>
+                <target>Menüblöcke</target>
+            </trans-unit>
 
+            <trans-unit id="breadcrumb.link_menu_block_create">
+                <source>breadcrumb.link_menu_block_create</source>
+                <target>Erstellen</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_menu_block_edit">
+                <source>breadcrumb.link_menu_block_edit</source>
+                <target>Bearbeiten</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_menu_block_delete">
+                <source>breadcrumb.link_menu_block_delete</source>
+                <target>Löschen</target>
+            </trans-unit>
+            
             <trans-unit id="breadcrumb.link_imagine_block_list">
                 <source>breadcrumb.link_imagine_block_list</source>
                 <target>Imageblöcke</target>
