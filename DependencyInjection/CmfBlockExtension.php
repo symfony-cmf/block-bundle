@@ -139,7 +139,6 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         if (isset($bundles['CmfMenuBundle'])) {
             $loader->load('menu.xml');
         }
-
     }
 
     public function loadSonataPhpcrAdmin($config, XmlFileLoader $loader, ContainerBuilder $container, $useImagine = false, $prefix = '')

@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
 use Sonata\AdminBundle\Form\FormMapper;
@@ -23,6 +22,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
+ * The menu block service renders the template with the specified menu node.
+ *
  * @author Philipp A. Mohrenweiser <phiamo@googlemail.com>
  */
 class MenuBlockService extends BaseBlockService implements BlockServiceInterface
@@ -59,23 +60,23 @@ class MenuBlockService extends BaseBlockService implements BlockServiceInterface
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        if (!$response) {
-            $response = new Response();
-        }
-
         $block = $blockContext->getBlock();
 
-        // if the reference target menu does not exist, we just skip the rendering
+        // if the referenced target menu does not exist, we just skip the rendering
         if (!$block->getEnabled() || null === $block->getMenuNode()) {
             return $response ? : new Response();
         }
 
-        $menu = $blockContext->getBlock()->getMenuNode();
+        $menuNode = $block->getMenuNode();
 
-        return $this->renderResponse ($blockContext->getTemplate(), array(
-                'menu' => $menu->getId(),
+        return $this->renderResponse(
+            $blockContext->getTemplate(),
+            array(
+                'menu' => $menuNode->getId(),
                 'block' => $blockContext->getBlock(),
-        ), $response);
+            ),
+            $response
+        );
     }
 
     /**

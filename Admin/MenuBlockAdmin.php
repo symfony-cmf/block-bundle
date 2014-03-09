@@ -18,6 +18,9 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
 /**
+ * Sonata admin for the MenuBlock. Allows to select the target menu node from
+ * an odm tree at the menu root.
+ *
  * @author Philipp A. Mohrenweiser <phiamo@googlemail.com>
  */
 class MenuBlockAdmin extends Admin
@@ -53,20 +56,19 @@ class MenuBlockAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->addIdentifier('id', 'text')
             ->add('name',  'doctrine_phpcr_nodename')
         ;
     }
     /**
-     * Path to the menu node in the repository under which documents of this
-     * admin should be created.
+     * PHPCR to the root of all menu nodes for the selection of the target.
      *
      * @var string
      */
     private $menuPath;
 
     /**
-     * Set the menu path in the repository. To be able to create new items,
-     * this path must already exist.
+     * Set the menu root for selection of the target of this block.
      *
      * @param string $menuPath
      */
