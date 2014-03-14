@@ -189,7 +189,7 @@
 
             <trans-unit id="breadcrumb.link_imagine_block_list">
                 <source>breadcrumb.link_imagine_block_list</source>
-                <target>Image blocs</target>
+                <target>Image blocks</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_imagine_block_create">
