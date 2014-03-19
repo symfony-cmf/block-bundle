@@ -69,13 +69,13 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
 
         $cacheElement = $cache->set($keys, 'data');
 
-        $this->assertInstanceOf('Sonata\CacheBundle\Cache\CacheElement', $cacheElement);
+        $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
 
         $this->assertTrue($cache->has(array('id' => 7)));
 
         $cacheElement = $cache->get($keys);
 
-        $this->assertInstanceOf('Sonata\CacheBundle\Cache\CacheElement', $cacheElement);
+        $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
 
         $this->assertEquals('<!--# include virtual="/symfony-cmf/block/cache/ssi/XXXXX/%2Fcms%2Fcontent%2Fhome%2FadditionalInfoBlock?updated_at=as" -->', $cacheElement->getData()->getContent());
     }

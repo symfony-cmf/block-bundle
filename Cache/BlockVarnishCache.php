@@ -16,7 +16,7 @@ use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
 use Sonata\CacheBundle\Adapter\VarnishCache;
-use Sonata\CacheBundle\Cache\CacheElement;
+use Sonata\Cache\CacheElement;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
