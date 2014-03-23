@@ -20,5 +20,13 @@
             <argument>sonata.block.service.empty</argument>
         </service>
 
+        <service id="cmf_block.initializer" class="Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer">
+            <argument>CmfBlockBundle</argument>
+            <argument type="collection">
+                <argument>%cmf_block.persistence.phpcr.block_basepath%</argument>
+            </argument>
+            <tag name="doctrine_phpcr.initializer"/>
+        </service>
+
     </services>
 </container>
