@@ -1,6 +1,9 @@
 Changelog
 =========
 
+* **2014-03-24**: [Dependencies]: Updated to the new SonataBlockBundle that
+  requires the SonataCoreBundle.
+
 * **2014-03-23**: Added a Repository Initializer for the block basepath
 
 1.0.0-RC4
