@@ -72,13 +72,13 @@ class BlockJsCacheTest extends \PHPUnit_Framework_TestCase
 
         $cacheElement = $cache->set($keys, 'data');
 
-        $this->assertInstanceOf('Sonata\CacheBundle\Cache\CacheElement', $cacheElement);
+        $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
 
         $this->assertTrue($cache->has(array('id' => 7)));
 
         $cacheElement = $cache->get($keys);
 
-        $this->assertInstanceOf('Sonata\CacheBundle\Cache\CacheElement', $cacheElement);
+        $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
 
         $expected = <<<EXPECTED
 <div id="block-cms-content-home-additionalInfoBlock" >

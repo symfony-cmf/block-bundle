@@ -15,8 +15,8 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Cache;
 use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
-use Sonata\CacheBundle\Cache\CacheElement;
-use Sonata\CacheBundle\Cache\CacheInterface;
+use Sonata\Cache\CacheElement;
+use Sonata\Cache\CacheAdapterInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
@@ -24,7 +24,7 @@ use Symfony\Component\Routing\RouterInterface;
 /**
  * Cache a block through Javascript code
  */
-class BlockJsCache implements CacheInterface
+class BlockJsCache implements CacheAdapterInterface
 {
     protected $router;
     protected $blockRenderer;
