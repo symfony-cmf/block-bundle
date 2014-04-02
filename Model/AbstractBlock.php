@@ -15,6 +15,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\BlockBundle\Model\BlockInterface;
 
+use Symfony\Cmf\Bundle\CoreBundle\Model\ChildInterface;
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface;
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface;
 
@@ -29,7 +30,8 @@ use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface;
 abstract class AbstractBlock implements
     BlockInterface,
     PublishableInterface,
-    PublishTimePeriodInterface
+    PublishTimePeriodInterface,
+    ChildInterface
 {
     /**
      * @var string
@@ -151,7 +153,7 @@ abstract class AbstractBlock implements
      */
     public function getPosition()
     {
-        $siblings = $this->getParent()->getChildren();
+        $siblings = $this->getParentDocument()->getChildren();
 
         return array_search($siblings->indexOf($this), $siblings->getKeys());
     }
@@ -279,7 +281,7 @@ abstract class AbstractBlock implements
      * Set parent document regardless of type. This can be a ContainerBlock
      * but also any PHPCR-ODM document.
      *
-     * @param object $parent
+     * {@inheritDoc}
      */
     public function setParentDocument($parent)
     {
@@ -289,7 +291,7 @@ abstract class AbstractBlock implements
     /**
      * Get the parent document regardless of its type.
      *
-     * @return object|null $document
+     * {@inheritDoc}
      */
     public function getParentDocument()
     {
