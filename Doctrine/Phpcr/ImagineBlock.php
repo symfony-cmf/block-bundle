@@ -149,6 +149,7 @@ class ImagineBlock extends AbstractBlock implements TranslatableInterface
             // TODO: https://github.com/doctrine/phpcr-odm/pull/262
             $this->image->copyContentFromFile($image);
         } elseif ($image instanceof ImageInterface) {
+            $image->setName('image'); // ensure document has right name
             $this->image = $image;
         } else {
             $this->image = new Image();
