@@ -1,6 +1,9 @@
 Changelog
 =========
 
+1.1.0-RC1
+---------
+
 * **2014-03-24**: Blocks now support the ChildExtension to simplify attaching blocks
   in Sonata Admin. You should now enable the ChildExtension from the CoreBundle.
 
