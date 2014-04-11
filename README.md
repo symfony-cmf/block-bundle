@@ -16,7 +16,7 @@ provides a few commonly used standard blocks, including the ability to edit them
 
 ## Requirements
 
-* Symfony 2.2.x
+* Symfony 2.3+
 * See also the `require` section of [composer.json](composer.json)
 
 
