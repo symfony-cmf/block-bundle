@@ -12,6 +12,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine;
 
+use Sonata\AdminBundle\Datagrid\ListMapper;
 use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock;

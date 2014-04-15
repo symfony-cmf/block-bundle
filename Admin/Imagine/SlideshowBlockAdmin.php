@@ -47,7 +47,8 @@ class SlideshowBlockAdmin extends AbstractBlockAdmin
         parent::configureListFields($listMapper);
         $listMapper
             ->addIdentifier('id', 'text')
-            ->add('title', 'text');
+            ->add('title', 'text')
+        ;
     }
 
     /**
@@ -106,7 +107,7 @@ class SlideshowBlockAdmin extends AbstractBlockAdmin
     /**
      * Generate a most likely unique name
      *
-     * TODO: have blocks use the autoname annotation - https://github.com/symfony-cmf/BlockBundle/issues/149 
+     * TODO: have blocks use the autoname annotation - https://github.com/symfony-cmf/BlockBundle/issues/149
      *
      * @return string
      */
