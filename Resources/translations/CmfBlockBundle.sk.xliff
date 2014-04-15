@@ -207,11 +207,6 @@
                 <target>Názov</target>
             </trans-unit>
 
-            <trans-unit id="list.label_locales">
-                <source>list.label_locales</source>
-                <target>Jazyky</target>
-            </trans-unit>
-
             <trans-unit id="form.group_general">
                 <source>form.group_general</source>
                 <target>Všeobecný</target>
@@ -220,11 +215,6 @@
             <trans-unit id="form.group_metadata">
                 <source>form.group_metadata</source>
                 <target>Metadata</target>
-            </trans-unit>
-
-            <trans-unit id="form.label_locale">
-                <source>form.label_locale</source>
-                <target>Jazyk</target>
             </trans-unit>
 
             <trans-unit id="form.label_parent_document">

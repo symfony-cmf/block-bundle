@@ -106,7 +106,7 @@
                 <source>breadcrumb.link_container_block_delete</source>
                 <target>Supprimer</target>
             </trans-unit>
-            
+
             <trans-unit id="breadcrumb.link_menu_block_list">
                 <source>breadcrumb.link_menu_block_list</source>
                 <target>Blocs menues</target>
@@ -232,11 +232,6 @@
                 <target>Titre</target>
             </trans-unit>
 
-            <trans-unit id="list.label_locales">
-                <source>list.label_locales</source>
-                <target>Langues</target>
-            </trans-unit>
-
             <trans-unit id="form.group_general">
                 <source>form.group_general</source>
                 <target>Général</target>
@@ -245,11 +240,6 @@
             <trans-unit id="form.group_metadata">
                 <source>form.group_metadata</source>
                 <target>Metadata</target>
-            </trans-unit>
-
-            <trans-unit id="form.label_locale">
-                <source>form.label_locale</source>
-                <target>Langue</target>
             </trans-unit>
 
             <trans-unit id="form.label_parent_document">

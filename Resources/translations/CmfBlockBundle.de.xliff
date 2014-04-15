@@ -166,7 +166,7 @@
                 <source>breadcrumb.link_string_block_delete</source>
                 <target>Löschen</target>
             </trans-unit>
-            
+
             <trans-unit id="breadcrumb.link_menu_block_list">
                 <source>breadcrumb.link_menu_block_list</source>
                 <target>Menüblöcke</target>
@@ -186,7 +186,7 @@
                 <source>breadcrumb.link_menu_block_delete</source>
                 <target>Löschen</target>
             </trans-unit>
-            
+
             <trans-unit id="breadcrumb.link_imagine_block_list">
                 <source>breadcrumb.link_imagine_block_list</source>
                 <target>Imageblöcke</target>
@@ -232,11 +232,6 @@
                 <target>Titel</target>
             </trans-unit>
 
-            <trans-unit id="list.label_locales">
-                <source>list.label_locales</source>
-                <target>Sprache</target>
-            </trans-unit>
-
             <trans-unit id="form.group_general">
                 <source>form.group_general</source>
                 <target>Allgemein</target>
@@ -245,11 +240,6 @@
             <trans-unit id="form.group_metadata">
                 <source>form.group_metadata</source>
                 <target>Metadata</target>
-            </trans-unit>
-
-            <trans-unit id="form.label_locale">
-                <source>form.label_locale</source>
-                <target>Sprache</target>
             </trans-unit>
 
             <trans-unit id="form.label_parent_document">
