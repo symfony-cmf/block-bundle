@@ -48,10 +48,10 @@
 
         <service id="cmf.block.action" class="%cmf_block.service.action.class%">
             <tag name="sonata.block" />
-            <tag name="cmf_request_aware" />
             <argument>cmf.block.action</argument>
             <argument type="service" id="templating" />
             <argument type="service" id="fragment.handler" />
+            <call method="setRequest"><argument type="service" id="request" on-invalid="null" strict="false"/></call>
         </service>
 
         <service id="cmf.block.slideshow" class="%cmf_block.service.slideshow.class%">
