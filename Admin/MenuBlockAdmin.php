@@ -12,7 +12,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
 
-use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
+use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -23,7 +23,7 @@ use Sonata\AdminBundle\Form\FormMapper;
  *
  * @author Philipp A. Mohrenweiser <phiamo@googlemail.com>
  */
-class MenuBlockAdmin extends Admin
+class MenuBlockAdmin extends AbstractBlockAdmin
 {
     /**
      * {@inheritdoc}
@@ -56,7 +56,6 @@ class MenuBlockAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->addIdentifier('id', 'text')
             ->add('name',  'doctrine_phpcr_nodename')
         ;
     }
