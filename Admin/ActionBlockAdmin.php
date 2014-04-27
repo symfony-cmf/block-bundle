@@ -9,13 +9,11 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
 
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
 
 /**
  * @author Lukas Kahwe Smith <smith@pooteeweet.org>

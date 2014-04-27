@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle;
 
 use Doctrine\Bundle\PHPCRBundle\DependencyInjection\Compiler\DoctrinePhpcrMappingsPass;

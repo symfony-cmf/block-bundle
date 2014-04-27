@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Model;
 
 use Eko\FeedBundle\Item\Reader\ItemInterface;

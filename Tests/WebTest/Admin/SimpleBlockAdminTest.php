@@ -9,10 +9,7 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\WebTest\Admin;
-
-use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
 
 /**
  * @author David Buchmann <david@liip.ch>

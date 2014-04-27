@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Cache;
 
 use Sonata\BlockBundle\Block\BlockContextManagerInterface;
@@ -164,7 +163,7 @@ CONTENT
     <script type="text/javascript">
         /*<![CDATA[*/
 
-            (function() {
+            (function () {
                 var b = document.createElement('script');
                 b.type = 'text/javascript';
                 b.async = true;

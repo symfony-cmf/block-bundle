@@ -9,10 +9,8 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
 
-use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -52,4 +50,3 @@ class StringBlockAdmin extends AbstractBlockAdmin
         $datagridMapper->add('name',  'doctrine_phpcr_nodename');
     }
 }
-

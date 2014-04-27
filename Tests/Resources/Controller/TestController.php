@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,7 +21,8 @@ use Symfony\Component\HttpFoundation\Response;
 class TestController extends Controller
 {
     /**
-     * @param  Request $request
+     * @param Request $request
+     *
      * @return Response
      */
     public function indexAction(Request $request)
@@ -34,6 +34,7 @@ class TestController extends Controller
      * Generic way to render blocks
      *
      * @param  $id
+     *
      * @return Response
      */
     protected function renderBlock($id)
@@ -44,7 +45,8 @@ class TestController extends Controller
     }
 
     /**
-     * @param  Request $request
+     * @param Request $request
+     *
      * @return Response
      */
     public function renderSimpleBlockAction(Request $request)
@@ -53,7 +55,8 @@ class TestController extends Controller
     }
 
     /**
-     * @param  Request $request
+     * @param Request $request
+     *
      * @return Response
      */
     public function renderActionBlockAction(Request $request)
@@ -62,7 +65,8 @@ class TestController extends Controller
     }
 
     /**
-     * @param  Request $request
+     * @param Request $request
+     *
      * @return Response
      */
     public function renderContainerBlockAction(Request $request)
@@ -71,7 +75,8 @@ class TestController extends Controller
     }
 
     /**
-     * @param  Request $request
+     * @param Request $request
+     *
      * @return Response
      */
     public function renderReferenceBlockAction(Request $request)
@@ -80,7 +85,8 @@ class TestController extends Controller
     }
 
     /**
-     * @param  Request $request
+     * @param Request $request
+     *
      * @return Response
      */
     public function renderStringBlockAction(Request $request)
@@ -89,9 +95,11 @@ class TestController extends Controller
     }
 
     /**
-     * Dummy action called by action blocks
+     * Dummy action called by action blocks.
      *
      * @param Request $request
+     *
+     * @return Response
      */
     public function dummyAction(Request $request)
     {

@@ -9,14 +9,13 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Log\LoggerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
@@ -65,7 +64,6 @@ class PhpcrBlockLoader implements BlockLoaderInterface
      */
     private $publishWorkflowPermission = PublishWorkflowChecker::VIEW_ATTRIBUTE;
 
-
     /**
      * @var string service id of the empty block service
      */
@@ -73,10 +71,12 @@ class PhpcrBlockLoader implements BlockLoaderInterface
 
     /**
      * @param ManagerRegistry          $managerRegistry
-     * @param SecurityContextInterface $securityContext the publish workflow
-     *      checker to check if menu items are published.
+     * @param SecurityContextInterface $securityContext The publish workflow checker to determine
+     *                                                  whether the menu item is published.
      * @param LoggerInterface          $logger
-     * @param null                     $emptyBlockType  set this to a block type name if you want empty blocks returned when no block is found
+     * @param null                     $emptyBlockType  Set this to a block type name if you want
+     *                                                  the loader to return empty blocks when no
+     *                                                  block is found.
      */
     public function __construct(
         ManagerRegistry $managerRegistry,
@@ -157,11 +157,12 @@ class PhpcrBlockLoader implements BlockLoaderInterface
     }
 
     /**
-     * Finds one block by the given name (PHPCR path)
+     * Finds one block by the given name (PHPCR path).
      *
-     * @param string $name a relative or absolute PHPCR path
+     * @param string $name A relative or absolute PHPCR path.
      *
-     * @return BlockInterface|null the block at that location or null if no document or not a BlockInterface at that location
+     * @return BlockInterface|null The block at that location or null if no document or not a
+     *                             BlockInterface at that location, or the block is not published.
      */
     protected function findByName($name)
     {
@@ -193,7 +194,7 @@ class PhpcrBlockLoader implements BlockLoaderInterface
     }
 
     /**
-     * Check if $path is absolute or not
+     * Check whether $path is absolute or not.
      *
      * @param string $path
      *
