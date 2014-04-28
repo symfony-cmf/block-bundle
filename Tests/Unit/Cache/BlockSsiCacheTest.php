@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Cache;
 
 use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockSsiCache;

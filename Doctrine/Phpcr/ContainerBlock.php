@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -17,7 +16,7 @@ use Doctrine\ODM\PHPCR\ChildrenCollection;
 use Sonata\BlockBundle\Model\BlockInterface;
 
 /**
- * Block that contains other blocks
+ * Block that contains other blocks.
  */
 class ContainerBlock extends AbstractBlock
 {
@@ -67,8 +66,8 @@ class ContainerBlock extends AbstractBlock
      *
      * @param BlockInterface $child
      * @param string         $key   the collection index name to use in the
-     *      child collection. if not set, the child will simply be appended at
-     *      the end
+     *                              child collection. if not set, the child
+     *                              will simply be appended at the end.
      *
      * @return boolean
      */
@@ -85,7 +84,7 @@ class ContainerBlock extends AbstractBlock
     }
 
     /**
-     * Alias to addChild to make the form layer happy
+     * Alias to addChild to make the form layer happy.
      *
      * @param BlockInterface $children
      *
@@ -97,7 +96,7 @@ class ContainerBlock extends AbstractBlock
     }
 
     /**
-     * Remove a child from this container
+     * Remove a child from this container.
      *
      * @param  BlockInterface $child
      * @return void

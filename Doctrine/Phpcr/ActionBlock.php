@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
@@ -110,8 +109,9 @@ class ActionBlock extends AbstractBlock
      *
      * @param Request               $request      the master request
      * @param BlockContextInterface $blockContext passed in case an extending
-     *      block needs the context to determine values to pass to the
-     *      subrequest.
+     *                                            block needs the context to
+     *                                            determine values to pass to
+     *                                            the subrequest.
      *
      * @return array List of arguments to pass to the subrequest.
      */

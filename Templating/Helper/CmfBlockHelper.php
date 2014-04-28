@@ -9,14 +9,12 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Templating\Helper;
 
 use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\HttpKernel\Log\LoggerInterface;
 
 use Sonata\BlockBundle\Templating\Helper\BlockHelper as SonataBlockHelper;
-use Sonata\BlockBundle\Exception\BlockNotFoundException;
 
 /**
  * Helper functions for blocks.

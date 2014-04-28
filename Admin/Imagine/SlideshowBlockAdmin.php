@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine;
 
 use Sonata\AdminBundle\Form\FormMapper;

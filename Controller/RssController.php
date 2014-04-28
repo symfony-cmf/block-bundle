@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Controller;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
@@ -45,9 +44,9 @@ class RssController extends Controller
      * Get items that the list block template can render,
      * use the settings from the block passed
      *
-     * @param  BlockContextInterface $blockContext
+     * @param BlockContextInterface $blockContext
      *
-     * @return FeedItem[]            feed items that the block template can render
+     * @return FeedItem[] feed items that the block template can render
      */
     protected function getItems(BlockContextInterface $blockContext)
     {

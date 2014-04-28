@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Cache;
 
 use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache;
@@ -85,7 +84,7 @@ class BlockJsCacheTest extends \PHPUnit_Framework_TestCase
     <script type="text/javascript">
         /*<![CDATA[*/
 
-            (function() {
+            (function () {
                 var b = document.createElement('script');
                 b.type = 'text/javascript';
                 b.async = true;

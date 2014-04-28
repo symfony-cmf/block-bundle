@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Twig\Extension;
 
 use Symfony\Cmf\Bundle\BlockBundle\Twig\Extension\CmfBlockExtension;

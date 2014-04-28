@@ -9,33 +9,27 @@
  * file that was distributed with this source code.
  */
 
-
-namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\DataFixtures\PHPCR;
+namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\DataFixtures\Phpcr;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\ODM\PHPCR\Document\Generic;
+use PHPCR\Util\NodeHelper;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
-use Doctrine\ODM\PHPCR\Document\Generic;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\StringBlock;
 
 /**
  * @author David Buchmann <david@liip.ch>
  */
-class LoadBlockData implements FixtureInterface, DependentFixtureInterface
+class LoadBlockData implements FixtureInterface
 {
-    public function getDependencies()
-    {
-        return array(
-            'Symfony\Cmf\Component\Testing\DataFixtures\PHPCR\LoadBaseData',
-        );
-    }
-
     public function load(ObjectManager $manager)
     {
+        NodeHelper::createPath($manager->getPhpcrSession(), '/test');
+
         $root = $manager->find(null, '/test');
         $parent = new Generic;
         $parent->setParent($root);

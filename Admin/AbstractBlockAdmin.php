@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
 
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;

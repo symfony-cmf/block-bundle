@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker;
@@ -241,8 +240,6 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
         ->with(PublishWorkflowChecker::VIEW_ATTRIBUTE, $this->equalTo($altBlock))
         ->will($this->returnValue(true))
     ;
-
-
 
         $registryMock = $this->getMockBuilder('Doctrine\Bundle\PHPCRBundle\ManagerRegistry')
             ->disableOriginalConstructor()

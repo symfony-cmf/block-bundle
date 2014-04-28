@@ -9,13 +9,11 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Sonata\BlockBundle\Block\BlockContext;
 use Symfony\Cmf\Bundle\BlockBundle\Block\MenuBlockService;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MenuBlock;
-use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 use Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\MenuNode;
 
 class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
@@ -60,7 +58,6 @@ class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
         $blockRendererMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockRendererInterface')
             ->disableOriginalConstructor()
             ->getMock();
-
 
         $blockContextManagerMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockContextManagerInterface')
             ->disableOriginalConstructor()
