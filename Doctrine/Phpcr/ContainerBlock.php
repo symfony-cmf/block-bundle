@@ -69,7 +69,7 @@ class ContainerBlock extends AbstractBlock
      *                              child collection. if not set, the child
      *                              will simply be appended at the end.
      *
-     * @return boolean
+     * @return boolean Always true
      */
     public function addChild(BlockInterface $child, $key = null)
     {
@@ -99,11 +99,14 @@ class ContainerBlock extends AbstractBlock
      * Remove a child from this container.
      *
      * @param  BlockInterface $child
-     * @return void
+     *
+     * @return $this
      */
     public function removeChild($child)
     {
         $this->children->removeElement($child);
+
+        return $this;
     }
 
     /**
