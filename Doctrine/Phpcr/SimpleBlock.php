@@ -40,10 +40,14 @@ class SimpleBlock extends AbstractBlock implements TranslatableInterface
      * Set title
      *
      * @param string $title
+     *
+     * @return $this
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
+        return $this;
     }
 
     /**
@@ -60,10 +64,14 @@ class SimpleBlock extends AbstractBlock implements TranslatableInterface
      * Set body
      *
      * @param string $body
+     *
+     * @return $this
      */
     public function setBody($body)
     {
         $this->body = $body;
+
+        return $this;
     }
 
     /**

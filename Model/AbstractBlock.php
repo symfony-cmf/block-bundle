@@ -22,9 +22,9 @@ use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface;
  * Base class for all blocks - connects to Sonata Blocks
  *
  * Parent handling: The BlockInterface defines a parent to link back to
- * a container block if there is one. PHPCR-ODM blocks always have a parent
- * *document*. If the parent document is a BlockInterface, it is considered
- * a parent in the sonata sense as well.
+ * a container block if there is one. getParent may only return BlockInterface
+ * objects, while getParentObject may return any "parent" even if its not
+ * in a block hierarchy.
  */
 abstract class AbstractBlock implements
     BlockInterface,
@@ -106,6 +106,8 @@ abstract class AbstractBlock implements
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
     }
 
     /**
@@ -129,6 +131,8 @@ abstract class AbstractBlock implements
     public function setEnabled($enabled)
     {
         $this->setPublishable($enabled);
+
+        return $this;
     }
 
     /**
@@ -145,6 +149,8 @@ abstract class AbstractBlock implements
     public function setPosition($position)
     {
         // TODO: implement. https://github.com/symfony-cmf/BlockBundle/issues/150
+
+        return $this;
     }
 
     /**
@@ -152,7 +158,7 @@ abstract class AbstractBlock implements
      */
     public function getPosition()
     {
-        $siblings = $this->getParentDocument()->getChildren();
+        $siblings = $this->getParentObject()->getChildren();
 
         return array_search($siblings->indexOf($this), $siblings->getKeys());
     }
@@ -163,6 +169,8 @@ abstract class AbstractBlock implements
     public function setCreatedAt(\DateTime $createdAt = null)
     {
         $this->createdAt = $createdAt;
+
+        return $this;
     }
 
     /**
@@ -179,6 +187,8 @@ abstract class AbstractBlock implements
     public function setUpdatedAt(\DateTime $updatedAt = null)
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 
     /**
@@ -219,6 +229,8 @@ abstract class AbstractBlock implements
     public function setPublishStartDate(\DateTime $publishStartDate = null)
     {
         $this->publishStartDate = $publishStartDate;
+
+        return $this;
     }
 
     /**
@@ -235,6 +247,8 @@ abstract class AbstractBlock implements
     public function setPublishEndDate(\DateTime $publishEndDate = null)
     {
         $this->publishEndDate = $publishEndDate;
+
+        return $this;
     }
 
     /**
@@ -266,6 +280,8 @@ abstract class AbstractBlock implements
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -277,22 +293,24 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * Set parent document regardless of type. This can be a ContainerBlock
-     * but also any PHPCR-ODM document.
+     * Set parent object regardless of its type. This can be a ContainerBlock
+     * but also any other object.
      *
      * {@inheritDoc}
      */
-    public function setParentDocument($parent)
+    public function setParentObject($parent)
     {
         $this->parentDocument = $parent;
+
+        return $this;
     }
 
     /**
-     * Get the parent document regardless of its type.
+     * Get the parent object regardless of its type.
      *
      * {@inheritDoc}
      */
-    public function getParentDocument()
+    public function getParentObject()
     {
         return $this->parentDocument;
     }
@@ -300,22 +318,22 @@ abstract class AbstractBlock implements
     /**
      * {@inheritDoc}
      *
-     * Redirect to setParentDocument
+     * Redirect to setParentObject
      */
     public function setParent(BlockInterface $parent = null)
     {
-        $this->setParentDocument($parent);
+        return $this->setParentObject($parent);
     }
 
     /**
      * {@inheritDoc}
      *
-     * Check if parentDocument is instanceof BlockInterface, otherwise return null
+     * Check if getParentObject is instanceof BlockInterface, otherwise return null
      */
     public function getParent()
     {
-        if ($this->parentDocument instanceof BlockInterface) {
-            return $this->parentDocument;
+        if ($parent = $this->getParentObject() instanceof BlockInterface) {
+            return $parent;
         }
 
         return null;
@@ -326,17 +344,21 @@ abstract class AbstractBlock implements
      */
     public function hasParent()
     {
-        return ($this->parentDocument instanceof BlockInterface);
+        return ($this->getParentObject() instanceof BlockInterface);
     }
 
     /**
      * Set ttl
      *
      * @param integer $ttl
+     *
+     * @return $this
      */
     public function setTtl($ttl)
     {
         $this->ttl = $ttl;
+
+        return $this;
     }
 
     /**
@@ -363,6 +385,8 @@ abstract class AbstractBlock implements
     public function setSettings(array $settings = array())
     {
         $this->settings = $settings;
+
+        return $this;
     }
 
     /**
@@ -379,6 +403,8 @@ abstract class AbstractBlock implements
     public function setSetting($name, $value)
     {
         $this->settings[$name] = $value;
+
+        return $this;
     }
 
     /**
@@ -421,9 +447,15 @@ abstract class AbstractBlock implements
      * TranslatableInterface. This code is just here to make your life easier.
      *
      * @see TranslatableInterface::setLocale()
+     *
+     * @param string $locale
+     *
+     * @return $this
      */
     public function setLocale($locale)
     {
         $this->locale = $locale;
+
+        return $this;
     }
 }

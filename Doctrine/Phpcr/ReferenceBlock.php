@@ -42,7 +42,7 @@ class ReferenceBlock extends AbstractBlock
     /**
      * @param BlockInterface $referencedBlock
      *
-     * @return ReferenceBlock itself
+     * @return $this
      */
     public function setReferencedBlock(BlockInterface $referencedBlock)
     {

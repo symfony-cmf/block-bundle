@@ -58,10 +58,14 @@ class ActionBlock extends AbstractBlock
 
     /**
      * @param string $actionName
+     *
+     * @return $this
      */
     public function setActionName($actionName)
     {
         $this->actionName = $actionName;
+
+        return $this;
     }
 
     /**
@@ -82,10 +86,14 @@ class ActionBlock extends AbstractBlock
      * rendering the action.
      *
      * @param array $params
+     *
+     * @return $this
      */
     public function setRequestParams(array $params)
     {
         $this->requestParams = $params;
+
+        return $this;
     }
 
     /**

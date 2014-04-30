@@ -14,12 +14,41 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 use Symfony\Cmf\Bundle\BlockBundle\Model\AbstractBlock as AbstractBlockModel;
 use Symfony\Component\Validator\ExecutionContext;
 
+/**
+ * Base for the PHPCR-ODM blocks provided by this bundle.
+ *
+ * Parent handling: In addition to the model block, this class follows
+ * the PHPCR-ODM HierarchyInterface and redirects the ParentDocument methods
+ * to the ParentObject methods. It can't implement the interface until the
+ * deprecated getParent and setParent methods have been removed, because of
+ * the conflict with the BlockInterface signature.
+ */
 abstract class AbstractBlock extends AbstractBlockModel
 {
     /**
+     * Alias of setParentObject.
+     *
+     * {@inheritDoc}
+     */
+    public function setParentDocument($parent)
+    {
+        return $this->setParentObject($parent);
+    }
+
+    /**
+     * Alias of getParentObject.
+     *
+     * {@inheritDoc}
+     */
+    public function getParentDocument()
+    {
+        return $this->getParentObject();
+    }
+
+    /**
      * Validate settings
      *
-     * @param \Symfony\Component\Validator\ExecutionContext $context
+     * @param ExecutionContext $context
      */
     public function isSettingsValid(ExecutionContext $context)
     {
