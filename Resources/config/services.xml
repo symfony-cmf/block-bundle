@@ -36,6 +36,7 @@
             <argument>cmf.block.container</argument>
             <argument type="service" id="templating" />
             <argument type="service" id="sonata.block.renderer" />
+            <argument/><!-- for template construct -->
         </service>
 
         <service id="cmf.block.reference" class="%cmf_block.service.reference.class%">
