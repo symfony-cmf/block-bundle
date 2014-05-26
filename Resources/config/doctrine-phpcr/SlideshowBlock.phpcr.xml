@@ -13,7 +13,7 @@
 
         <locale name="locale"/>
 
-        <field name="title" type="string" translated="true"/>
+        <field name="title" type="string" translated="true" nullable="true"/>
 
     </document>
 
