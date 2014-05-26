@@ -58,7 +58,7 @@ class SlideshowBlockAdmin extends AbstractBlockAdmin
         parent::configureFormFields($formMapper);
         $formMapper
             ->with('form.group_general')
-                ->add('title', 'text')
+                ->add('title', 'text', array('required' => false))
             ->with('Items')
                 ->add('children', 'sonata_type_collection',
                     array(),
