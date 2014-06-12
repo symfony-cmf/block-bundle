@@ -37,11 +37,10 @@
         "eko/feedbundle": "When using the RssBlock"
     },
     "autoload":{
-        "psr-0":{
-            "Symfony\\Cmf\\Bundle\\BlockBundle": ""
+        "psr-4":{
+            "Symfony\\Cmf\\Bundle\\BlockBundle\\": ""
         }
     },
-    "target-dir": "Symfony/Cmf/Bundle/BlockBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.2-dev"
