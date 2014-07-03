@@ -332,7 +332,7 @@ abstract class AbstractBlock implements
      */
     public function getParent()
     {
-        if ($parent = $this->getParentObject() instanceof BlockInterface) {
+        if (($parent = $this->getParentObject()) instanceof BlockInterface) {
             return $parent;
         }
 
