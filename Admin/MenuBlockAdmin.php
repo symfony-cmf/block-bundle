@@ -41,9 +41,9 @@ class MenuBlockAdmin extends AbstractBlockAdmin
     {
         $formMapper
             ->with('form.group_general')
-                ->add('parentDocument', 'doctrine_phpcr_odm_tree', array('menu_node' => $this->getMenuPath(), 'choice_list' => array(), 'select_menu_node' => true))
+                ->add('parentDocument', 'doctrine_phpcr_odm_tree', array('root_node' => $this->getRootPath(), 'choice_list' => array(), 'select_root_node' => true))
                 ->add('name', 'text')
-                ->add('menuNode', 'doctrine_phpcr_odm_tree', array('choice_list' => array(), 'required' => true, 'menu_node' => $this->menuPath))
+                ->add('menuNode', 'doctrine_phpcr_odm_tree', array('choice_list' => array(), 'required' => true, 'root_node' => $this->menuPath))
             ->end()
         ;
     }
