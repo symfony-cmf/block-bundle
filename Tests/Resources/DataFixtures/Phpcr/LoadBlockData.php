@@ -116,6 +116,7 @@ class LoadBlockData implements FixtureInterface
         $menuNodeOne->setLabel("menu-node-1");
         $menuNodeOne->setParentDocument($menu);
         $manager->persist($menuNodeOne);
+
         $menuNodeTwo = new MenuNode();
         $menuNodeTwo->setName('menu-node-2');
         $menuNodeTwo->setLabel("menu-node-2");
