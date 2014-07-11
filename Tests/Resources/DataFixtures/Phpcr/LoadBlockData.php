@@ -17,9 +17,12 @@ use Doctrine\ODM\PHPCR\Document\Generic;
 use PHPCR\Util\NodeHelper;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MenuBlock;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\StringBlock;
+use Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\Menu;
+use Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\MenuNode;
 
 /**
  * @author David Buchmann <david@liip.ch>
@@ -96,6 +99,40 @@ class LoadBlockData implements FixtureInterface
         $block->setParentDocument($parent);
         $block->setName('reference-block-2');
         $block->setReferencedBlock($actionBlockTwo);
+        $block->setPublishable(false);
+        $manager->persist($block);
+
+        // Menu Nodes
+        NodeHelper::createPath($manager->getPhpcrSession(), '/test/menus');
+        $menuRoot = $manager->find(null, '/test/menus');
+        $menu = new Menu;
+        $menu->setName('test-menu');
+        $menu->setLabel('Test Menu');
+        $menu->setParentDocument($menuRoot);
+        $manager->persist($menu);
+
+        $menuNodeOne = new MenuNode();
+        $menuNodeOne->setName('menu-node-1');
+        $menuNodeOne->setLabel("menu-node-1");
+        $menuNodeOne->setParentDocument($menu);
+        $manager->persist($menuNodeOne);
+        $menuNodeTwo = new MenuNode();
+        $menuNodeTwo->setName('menu-node-2');
+        $menuNodeTwo->setLabel("menu-node-2");
+        $menuNodeTwo->setParentDocument($menu);
+        $manager->persist($menuNodeTwo);
+
+        //Menu
+        $block = new MenuBlock();
+        $block->setParentDocument($parent);
+        $block->setName('menu-block-1');
+        $block->setMenuNode($menuNodeOne);
+        $manager->persist($block);
+
+        $block = new MenuBlock();
+        $block->setParentDocument($parent);
+        $block->setName('menu-block-2');
+        $block->setMenuNode($menuNodeTwo);
         $block->setPublishable(false);
         $manager->persist($block);
 
