@@ -23,6 +23,11 @@ render_reference_test:
     defaults:
         _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\Controller\TestController::renderReferenceBlockAction
 
+render_menu_test:
+    pattern: /render-menu-test
+    defaults:
+        _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\Controller\TestController::renderMenuBlockAction
+
 render_string_test:
     pattern: /render-string-test
     defaults:
