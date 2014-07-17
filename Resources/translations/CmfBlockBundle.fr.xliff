@@ -252,6 +252,11 @@
                 <target>Bloc référencé</target>
             </trans-unit>
 
+            <trans-unit id="form.label_menu_block">
+                <source>form.label_menu_block</source>
+                <target>Bloc de menu</target>
+            </trans-unit>
+
             <trans-unit id="form.label_action_name">
                 <source>form.label_action_name</source>
                 <target>Nom de l'action</target>
