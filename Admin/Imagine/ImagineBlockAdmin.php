@@ -20,6 +20,19 @@ use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock;
  */
 class ImagineBlockAdmin extends AbstractBlockAdmin
 {
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        parent::configureListFields($listMapper);
+        $listMapper
+            ->addIdentifier('id', 'text')
+            ->add('name', 'text')
+        ;
+    }
+
     /**
      * {@inheritdoc}
      */
