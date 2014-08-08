@@ -75,11 +75,20 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
         if (!$response) {
             $response = new Response();
         }
-
         if ($blockContext->getBlock()->getEnabled()) {
+
+            //dirty hack but not sure where should be responsabe for merging the settings
+            //there will be cases where this hack still allows an unset setting through to the template
+            if($blockContext->getBlock()->getSettings()){
+                $settings=$blockContext->getBlock()->getSettings();
+            }else{
+                $settings=$blockContext->getSettings();
+            }
+            //end dirty hack
+
             return $this->renderResponse($blockContext->getTemplate(), array(
                 'block'       => $blockContext->getBlock(),
-                'settings'    => $blockContext->getSettings(),
+                'settings'    => $settings,
             ), $response);
         }
 
