@@ -77,7 +77,7 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
             $response = new Response();
         }
 
-        $block=$blockContext->getBlock();
+        $block = $blockContext->getBlock();
 
         // merge block settings with default settings
         $settings = $blockContext->getSettings();
