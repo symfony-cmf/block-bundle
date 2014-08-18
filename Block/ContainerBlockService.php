@@ -21,6 +21,7 @@ use Sonata\BlockBundle\Model\BlockInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContainerBlockService extends BaseBlockService implements BlockServiceInterface
 {
@@ -76,10 +77,18 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
             $response = new Response();
         }
 
-        if ($blockContext->getBlock()->getEnabled()) {
-            return $this->renderResponse($blockContext->getTemplate(), array(
-                'block'       => $blockContext->getBlock(),
-                'settings'    => $blockContext->getSettings(),
+        $block = $blockContext->getBlock();
+
+        // merge block settings with default settings
+        $settings = $blockContext->getSettings();
+        $resolver = new OptionsResolver();
+        $resolver->setDefaults($settings);
+        $settings = $resolver->resolve($block->getSettings());
+
+        if ($block->getEnabled()) {
+            return $this->renderResponse($settings['template'], array(
+                'block'       => $block,
+                'settings'    => $settings,
             ), $response);
         }
 
