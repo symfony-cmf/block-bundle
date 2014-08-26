@@ -22,11 +22,6 @@
                 <target>Referenzblock</target>
             </trans-unit>
 
-            <trans-unit id="dashboard.label_menu_block">
-                <source>dashboard.label_menu_block</source>
-                <target>Menublock</target>
-            </trans-unit>
-
             <trans-unit id="dashboard.label_action_block">
                 <source>dashboard.label_action_block</source>
                 <target>Aktionsblock</target>
