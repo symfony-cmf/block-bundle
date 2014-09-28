@@ -1,0 +1,322 @@
+<?xml version="1.0"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="dashboard.cmf">
+                <source>dashboard.cmf</source>
+                <target>Symfony CMF</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_simple_block">
+                <source>dashboard.label_simple_block</source>
+                <target>Bloque Simple</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_container_block">
+                <source>dashboard.label_container_block</source>
+                <target>Contenedor de Bloques</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_reference_block">
+                <source>dashboard.label_reference_block</source>
+                <target>Referencia de Bloque</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_action_block">
+                <source>dashboard.label_action_block</source>
+                <target>Bloque Acción</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_slideshow_block">
+                <source>dashboard.label_slideshow_block</source>
+                <target>Bloque de Slideshow</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_imagine_block">
+                <source>dashboard.label_imagine_block</source>
+                <target>Bloque Imágen</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_string_block">
+                <source>dashboard.label_string_block</source>
+                <target>Bloque Texto</target>
+            </trans-unit>
+
+            <trans-unit id="dashboard.label_menu_block">
+                <source>dashboard.label_menu_block</source>
+                <target>Bloque de Menú</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_slideshow_block_list">
+                <source>breadcrumb.link_slideshow_block_list</source>
+                <target>Bloques de Slideshow</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_slideshow_block_create">
+                <source>breadcrumb.link_slideshow_block_create</source>
+                <target>Crear</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_slideshow_block_edit">
+                <source>breadcrumb.link_slideshow_block_edit</source>
+                <target>Editar</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_slideshow_block_delete">
+                <source>breadcrumb.link_slideshow_block_delete</source>
+                <target>Eliminar</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_simple_block_list">
+                <source>breadcrumb.link_simple_block_list</source>
+                <target>Bloques Simple</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_simple_block_create">
+                <source>breadcrumb.link_simple_block_create</source>
+                <target>Crear</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_simple_block_edit">
+                <source>breadcrumb.link_simple_block_edit</source>
+                <target>Editar</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_simple_block_delete">
+                <source>breadcrumb.link_simple_block_delete</source>
+                <target>Eliminar</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_container_block_list">
+                <source>breadcrumb.link_container_block_list</source>
+                <target>Bloques Contenedor</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_container_block_create">
+                <source>breadcrumb.link_container_block_create</source>
+                <target>Crear</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_container_block_edit">
+                <source>breadcrumb.link_container_block_edit</source>
+                <target>Editar</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_container_block_delete">
+                <source>breadcrumb.link_container_block_delete</source>
+                <target>Eliminar</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_reference_block_list">
+                <source>breadcrumb.link_reference_block_list</source>
+                <target>Bloques Referencia</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_reference_block_create">
+                <source>breadcrumb.link_reference_block_create</source>
+                <target>Crear</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_reference_block_edit">
+                <source>breadcrumb.link_reference_block_edit</source>
+                <target>Editar</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_reference_block_delete">
+                <source>breadcrumb.link_reference_block_delete</source>
+                <target>Eliminar</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_action_block_list">
+                <source>breadcrumb.link_action_block_list</source>
+                <target>Bloques Acción</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_action_block_create">
+                <source>breadcrumb.link_action_block_create</source>
+                <target>Crear</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_action_block_edit">
+                <source>breadcrumb.link_action_block_edit</source>
+                <target>Editar</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_action_block_delete">
+                <source>breadcrumb.link_action_block_delete</source>
+                <target>Eliminar</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_string_block_list">
+                <source>breadcrumb.link_string_block_list</source>
+                <target>Bloques Texto</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_string_block_create">
+                <source>breadcrumb.link_string_block_create</source>
+                <target>Crear</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_string_block_edit">
+                <source>breadcrumb.link_string_block_edit</source>
+                <target>Editar</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_string_block_delete">
+                <source>breadcrumb.link_string_block_delete</source>
+                <target>Eliminar</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_menu_block_list">
+                <source>breadcrumb.link_menu_block_list</source>
+                <target>Bloques Menú</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_menu_block_create">
+                <source>breadcrumb.link_menu_block_create</source>
+                <target>Crear</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_menu_block_edit">
+                <source>breadcrumb.link_menu_block_edit</source>
+                <target>Editar</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_menu_block_delete">
+                <source>breadcrumb.link_menu_block_delete</source>
+                <target>Eliminar</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_imagine_block_list">
+                <source>breadcrumb.link_imagine_block_list</source>
+                <target>Bloques Imágen</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_imagine_block_create">
+                <source>breadcrumb.link_imagine_block_create</source>
+                <target>Crear</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_imagineblock_edit">
+                <source>breadcrumb.link_imagine_block_edit</source>
+                <target>Editar</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_imagine_block_delete">
+                <source>breadcrumb.link_imagine_block_delete</source>
+                <target>Eliminar</target>
+            </trans-unit>
+
+            <trans-unit id="filter.label_title">
+                <source>filter.label_title</source>
+                <target>Título</target>
+            </trans-unit>
+
+            <trans-unit id="filter.label_name">
+                <source>filter.label_name</source>
+                <target>Nombre</target>
+            </trans-unit>
+
+            <trans-unit id="list.label_id">
+                <source>list.label_id</source>
+                <target>Id</target>
+            </trans-unit>
+
+            <trans-unit id="list.label_name">
+                <source>list.label_name</source>
+                <target>Nombre</target>
+            </trans-unit>
+
+            <trans-unit id="list.label_title">
+                <source>list.label_title</source>
+                <target>Título</target>
+            </trans-unit>
+
+            <trans-unit id="form.group_general">
+                <source>form.group_general</source>
+                <target>General</target>
+            </trans-unit>
+
+            <trans-unit id="form.group_metadata">
+                <source>form.group_metadata</source>
+                <target>Metadata</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_parent_document">
+                <source>form.label_parent_document</source>
+                <target>Padre</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_name">
+                <source>form.label_name</source>
+                <target>Nombre</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_title">
+                <source>form.label_title</source>
+                <target>Título</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_content">
+                <source>form.label_body</source>
+                <target>Contenido</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_referenced_block">
+                <source>form.label_referenced_block</source>
+                <target>Bloque referenciado</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_action_name">
+                <source>form.label_action_name</source>
+                <target>Nombre de la acción</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_children">
+                <source>form.label_children</source>
+                <target>Elementos</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_label">
+                <source>form.label_label</source>
+                <target>Etiqueta</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_position">
+                <source>form.label_position</source>
+                <target>Posición</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_link_url">
+                <source>form.label_link_url</source>
+                <target>Enlace URL</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_filter">
+                <source>form.label_filter</source>
+                <target>Filtro Imagine</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_image">
+                <source>form.label_image</source>
+                <target>Imágen</target>
+            </trans-unit>
+
+            <trans-unit id="form.group_base">
+                <source>form.group_base</source>
+                <target>Avanzado</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_enabled">
+                <source>form.label_enabled</source>
+                <target>Activado</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_ttl">
+                <source>form.label_ttl</source>
+                <target>Cache-TTL</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
