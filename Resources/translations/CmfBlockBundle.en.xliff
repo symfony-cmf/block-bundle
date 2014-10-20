@@ -267,6 +267,11 @@
                 <target>Referenced block</target>
             </trans-unit>
 
+            <trans-unit id="form.label_menu_block">
+                <source>form.label_menu_block</source>
+                <target>Menu block</target>
+            </trans-unit>
+
             <trans-unit id="form.label_action_name">
                 <source>form.label_action_name</source>
                 <target>Action name</target>
