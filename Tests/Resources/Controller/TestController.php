@@ -89,6 +89,15 @@ class TestController extends Controller
      *
      * @return Response
      */
+    public function renderMenuBlockAction(Request $request)
+    {
+        return $this->renderBlock('menu-block-1');
+    }
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function renderStringBlockAction(Request $request)
     {
         return $this->renderBlock('string-block-1');
