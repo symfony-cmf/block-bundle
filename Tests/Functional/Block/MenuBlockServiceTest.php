@@ -66,4 +66,16 @@ class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
         $menuBlockService = new MenuBlockService('test-service', $templatingMock, $blockRendererMock, $blockContextManagerMock);
         $menuBlockService->execute($menuBlockContext);
     }
+
+    public function testSetMenuNode()
+    {
+        $menuBlock = new MenuBlock();
+        $this->assertAttributeEmpty('menuNode', $menuBlock);
+
+        $menuBlock->setMenuNode($this->getMock('Knp\Menu\NodeInterface'));
+        $this->assertAttributeInstanceOf('Knp\Menu\NodeInterface', 'menuNode', $menuBlock);
+
+        $menuBlock->setMenuNode(null);
+        $this->assertAttributeSame(null, 'menuNode', $menuBlock);
+    }
 }

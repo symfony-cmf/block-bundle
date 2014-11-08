@@ -53,9 +53,13 @@ class MenuBlock extends AbstractBlock
      *
      * @return MenuBlock $this
      */
-    public function setMenuNode(NodeInterface $menuNode = null)
+    public function setMenuNode($menuNode = null)
     {
-        $this->menuNode = $menuNode;
+        if ($menuNode instanceof NodeInterface) {
+            $this->menuNode = $menuNode;
+        } else {
+            $this->menuNode = null;
+        }
 
         return $this;
     }
