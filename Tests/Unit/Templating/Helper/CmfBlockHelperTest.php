@@ -51,7 +51,7 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
             ->method('warn')
             ->with($this->matchesRegularExpression('/^Failed to render block "foo" embedded in content: /'));
 
-        $exception = $this->getMock('Sonata\BlockBundle\Exception\BlockNotFoundException');
+        $exception = $this->getMock('Sonata\BlockBundle\Exception\BlockNotFoundException', array('getMessage'));
 
         $this->getSonataBlock()->expects($this->once())
             ->method('render')
