@@ -49,13 +49,17 @@ class MenuBlock extends AbstractBlock
      *
      * Set to null to remove the reference.
      *
-     * @param NodeInterface $menuNode A mapped menu node.
+     * @param NodeInterface|null $menuNode A mapped menu node.
      *
      * @return MenuBlock $this
      */
-    public function setMenuNode(NodeInterface $menuNode = null)
+    public function setMenuNode($menuNode = null)
     {
-        $this->menuNode = $menuNode;
+        if (null === $menuNode || $menuNode instanceof NodeInterface) {
+            $this->menuNode = $menuNode;
+        } else {
+            throw new \InvalidArgumentException('$menuNode must be an instane of NodeInterface');
+        }
 
         return $this;
     }
