@@ -11,11 +11,8 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
-use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Model\BlockInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock;
 use Symfony\Component\HttpFoundation\Request;
@@ -54,22 +51,6 @@ class ActionBlockService extends BaseBlockService
     public function setRequest(Request $request = null)
     {
         $this->request = $request;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function buildEditForm(FormMapper $form, BlockInterface $block)
-    {
-        throw new \RuntimeException('Not used at the moment, editing using a frontend or backend UI could be changed here');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
-    {
-        throw new \RuntimeException('Not used at the moment, validation for editing using a frontend or backend UI could be changed here');
     }
 
     /**
