@@ -81,6 +81,14 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
      */
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
+        $this->configureSettings($resolver);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureSettings(OptionsResolver $resolver)
+    {
         $resolver->setDefaults(array(
             'template'       => $this->template,
             'divisible_by'    => 0,
@@ -88,10 +96,17 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
             'child_class'     => '',
         ));
 
-        $resolver->addAllowedTypes(array(
-            'divisible_by'    => array('integer'),
-            'divisible_class' => array('string'),
-            'child_class'     => array('string'),
-        ));
+        if (method_exists($resolver, 'setDefault')) {
+            // Symfony >2.6
+            $resolver->addAllowedTypes('divisible_by', 'integer');
+            $resolver->addAllowedTypes('divisible_class', 'string');
+            $resolver->addAllowedTypes('child_class', 'string');
+        } else {
+            $resolver->addAllowedTypes(array(
+                'divisible_by'    => array('integer'),
+                'divisible_class' => array('string'),
+                'child_class'     => array('string'),
+            ));
+        }
     }
 }
