@@ -15,6 +15,7 @@ use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class StringBlockService extends BaseBlockService implements BlockServiceInterface
@@ -51,8 +52,16 @@ class StringBlockService extends BaseBlockService implements BlockServiceInterfa
      */
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
+        $this->configureSettings($resolver);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureSettings(OptionsResolver $resolver)
+    {
         $resolver->setDefaults(array(
-            'template' => $this->template
+            'template' => $this->template,
         ));
     }
 

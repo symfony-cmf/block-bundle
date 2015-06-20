@@ -15,6 +15,7 @@ use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
@@ -63,6 +64,11 @@ class MenuBlockService extends BaseBlockService implements BlockServiceInterface
      * {@inheritdoc}
      */
     public function setDefaultSettings(OptionsResolverInterface $resolver)
+    {
+        $this->configureSettings($resolver);
+    }
+
+    public function configureSettings(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'template' => $this->template,
