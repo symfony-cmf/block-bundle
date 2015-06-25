@@ -17,11 +17,6 @@ use Symfony\Bundle\FrameworkBundle\Client;
 
 class PHPCRBlockLoaderTest extends BaseTestCase
 {
-    /**
-     * @var Client
-     */
-    private $client;
-
     public function setUp()
     {
         $this->db('PHPCR')->loadFixtures(array(
