@@ -30,7 +30,8 @@ class CmfBlockExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'cmf_embed_blocks' => new \Twig_Filter_Function(
+            new \Twig_SimpleFilter(
+                'cmf_embed_blocks',
                 array($this->blockHelper, 'embedBlocks'),
                 array('is_safe' => array('html'))
             ),

@@ -15,7 +15,7 @@
         {% endif %}
 
         {% if settings.divisible_by %}
-            {% if loop.index is divisibleby(settings.divisible_by) %}
+            {% if loop.index is divisible by(settings.divisible_by) %}
                 </div>{# end row #}
                 {% if not loop.last %}
                     {# start row #}
