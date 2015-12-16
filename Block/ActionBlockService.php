@@ -69,7 +69,7 @@ class ActionBlockService extends BaseBlockService
         }
 
         if (!$block->getEnabled()) {
-            return new Response;
+            return new Response();
         }
 
         $requestParams = $block->resolveRequestParams($this->request, $blockContext);

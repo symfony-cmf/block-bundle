@@ -35,7 +35,6 @@ class SimpleBlockService extends BaseBlockService implements BlockServiceInterfa
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-
         if (!$response) {
             $response = new Response();
         }
@@ -61,7 +60,7 @@ class SimpleBlockService extends BaseBlockService implements BlockServiceInterfa
     public function configureSettings(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => $this->template
+            'template' => $this->template,
         ));
     }
 

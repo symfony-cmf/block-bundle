@@ -47,9 +47,9 @@ class SimpleBlockAdminTest extends AbstractBlockAdminTestCase
             '/admin/cmf/block/simpleblock/create',
             array(
                 'parentDocument' => '/test/blocks',
-                'name'           => 'foo-test',
-                'title'          => 'Foo Test',
-                'body'           => 'Block body foo bar.',
+                'name' => 'foo-test',
+                'title' => 'Foo Test',
+                'body' => 'Block body foo bar.',
             )
         );
     }

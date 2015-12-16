@@ -47,8 +47,8 @@ class ActionBlockAdminTest extends AbstractBlockAdminTestCase
             '/admin/cmf/block/actionblock/create',
             array(
                 'parentDocument' => '/test/blocks',
-                'name'           => 'foo-test-action',
-                'actionName'     => 'FooTestBunlde:Bar:action',
+                'name' => 'foo-test-action',
+                'actionName' => 'FooTestBunlde:Bar:action',
             )
         );
     }

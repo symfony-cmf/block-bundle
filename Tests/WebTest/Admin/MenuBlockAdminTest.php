@@ -47,7 +47,7 @@ class MenuBlockAdminTest extends AbstractBlockAdminTestCase
             '/admin/cmf/block/menublock/create',
             array(
                 'parentDocument' => '/test/blocks',
-                'name'           => 'foo-test-container'
+                'name' => 'foo-test-container',
             )
         );
     }

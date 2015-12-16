@@ -21,7 +21,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 class CmfBlockExtension extends Extension implements PrependExtensionInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function prepend(ContainerBuilder $container)
     {
@@ -35,12 +35,12 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
                 ),
                 'blocks_by_class' => array(
                     0 => array(
-                        'class'     => "Symfony\\Cmf\\Bundle\\BlockBundle\\Doctrine\\Phpcr\\RssBlock",
-                        'settings'  => array(
-                            'title'     => 'Insert the rss title',
-                            'url'       => false,
-                            'maxItems'  => 10,
-                            'template'  => 'CmfBlockBundle:Block:block_rss.html.twig',
+                        'class' => 'Symfony\\Cmf\\Bundle\\BlockBundle\\Doctrine\\Phpcr\\RssBlock',
+                        'settings' => array(
+                            'title' => 'Insert the rss title',
+                            'url' => false,
+                            'maxItems' => 10,
+                            'template' => 'CmfBlockBundle:Block:block_rss.html.twig',
                             'itemClass' => 'Symfony\\Cmf\\Bundle\\BlockBundle\\Model\\FeedItem',
                         ),
                     ),
@@ -54,8 +54,8 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
     {
         $config = $this->processConfiguration(new Configuration(), $configs);
 
-        $container->setParameter($this->getAlias() . '.twig.cmf_embed_blocks.prefix', $config['twig']['cmf_embed_blocks']['prefix']);
-        $container->setParameter($this->getAlias() . '.twig.cmf_embed_blocks.postfix', $config['twig']['cmf_embed_blocks']['postfix']);
+        $container->setParameter($this->getAlias().'.twig.cmf_embed_blocks.prefix', $config['twig']['cmf_embed_blocks']['prefix']);
+        $container->setParameter($this->getAlias().'.twig.cmf_embed_blocks.postfix', $config['twig']['cmf_embed_blocks']['postfix']);
 
         // detect bundles
         $bundles = $container->getParameter('kernel.bundles');
@@ -84,7 +84,7 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
 
     public function loadPhpcr($config, XmlFileLoader $loader, ContainerBuilder $container, $useImagine)
     {
-        $container->setParameter($this->getAlias() . '.backend_type_phpcr', true);
+        $container->setParameter($this->getAlias().'.backend_type_phpcr', true);
 
         $keys = array(
             'string_document_class' => 'string_document.class',
@@ -110,7 +110,7 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         foreach ($keys as $sourceKey => $targetKey) {
             if (isset($config[$sourceKey])) {
                 $container->setParameter(
-                    $this->getAlias() . '.persistence.phpcr.'. $targetKey,
+                    $this->getAlias().'.persistence.phpcr.'.$targetKey,
                     $config[$sourceKey]
                 );
             }
@@ -132,7 +132,6 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
             $blockLoader->addMethodCall('setTemplate', array('CmfBlockBundle:Block:block_simple_createphp.html.twig'));
             $blockLoader = $container->getDefinition('cmf.block.string');
             $blockLoader->addMethodCall('setTemplate', array('CmfBlockBundle:Block:block_string_createphp.html.twig'));
-
         }
 
         if (isset($bundles['CmfMenuBundle'])) {
@@ -174,7 +173,6 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
                 ->replaceArgument(0, $config['caches']['varnish']['token'])
                 ->replaceArgument(6, $config['caches']['varnish']['servers'])
                 ->replaceArgument(7, 3 === $config['caches']['varnish']['version'] ? 'ban' : 'purge');
-            ;
         } else {
             $container->removeDefinition('cmf.block.cache.varnish');
         }

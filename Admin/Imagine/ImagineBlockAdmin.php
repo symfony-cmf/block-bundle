@@ -21,7 +21,6 @@ use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock;
  */
 class ImagineBlockAdmin extends AbstractBlockAdmin
 {
-
     /**
      * {@inheritdoc}
      */

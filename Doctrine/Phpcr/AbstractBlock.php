@@ -28,7 +28,7 @@ abstract class AbstractBlock extends AbstractBlockModel
     /**
      * Alias of setParentObject.
      *
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setParentDocument($parent)
     {
@@ -38,7 +38,7 @@ abstract class AbstractBlock extends AbstractBlockModel
     /**
      * Alias of getParentObject.
      *
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getParentDocument()
     {
@@ -46,7 +46,7 @@ abstract class AbstractBlock extends AbstractBlockModel
     }
 
     /**
-     * Validate settings
+     * Validate settings.
      *
      * @param ExecutionContext $context
      */

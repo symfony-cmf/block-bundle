@@ -12,7 +12,6 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Cache;
 
 use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockSsiCache;
-
 use Symfony\Component\HttpFoundation\Request;
 
 class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
@@ -62,7 +61,7 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($cache->flushAll());
 
         $keys = array(
-            'block_id'   => '/cms/content/home/additionalInfoBlock',
+            'block_id' => '/cms/content/home/additionalInfoBlock',
             'updated_at' => 'as',
         );
 
@@ -86,8 +85,8 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
     {
         $token = 'My Token';
         $keys = array(
-            'block_id'   => '/cms/content/home/additionalInfoBlock',
-            'updated_at' => 'as'
+            'block_id' => '/cms/content/home/additionalInfoBlock',
+            'updated_at' => 'as',
         );
 
         $router = $this->getMock('Symfony\Component\Routing\RouterInterface');
@@ -112,8 +111,8 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
     {
         $token = 'My Token';
         $keys = array(
-            'block_id'   => '/not/found',
-            'updated_at' => 'as'
+            'block_id' => '/not/found',
+            'updated_at' => 'as',
         );
 
         $router = $this->getMock('Symfony\Component\Routing\RouterInterface');

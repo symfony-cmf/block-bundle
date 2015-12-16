@@ -12,14 +12,13 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Sonata\BlockBundle\Block\BlockContext;
-use Symfony\Component\HttpFoundation\Response,
-    Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService,
-    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock,
-    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 
 class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testExecutionOfDisabledBlock()
     {
         $containerBlock = new ContainerBlock();
@@ -57,7 +56,7 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
         $containerBlock->setEnabled(true);
         $containerBlock->setChildren($childrenCollectionMock);
 
-        $settings = array('divisible_by' => 0,'divisible_class' => '','child_class' => '', 'template' => $template);
+        $settings = array('divisible_by' => 0, 'divisible_class' => '', 'child_class' => '', 'template' => $template);
 
         $blockContext = new BlockContext($containerBlock, $settings);
 
@@ -78,18 +77,18 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
             ->with(
                 $this->equalTo($template),
                 $this->equalTo(array(
-                    'block'     => $containerBlock,
-                    'settings'  => $settings
+                    'block' => $containerBlock,
+                    'settings' => $settings,
                 )),
                 $this->isInstanceOf('Symfony\Component\HttpFoundation\Response')
             )
-            ->will($this->returnValue(new Response($responseContent1 . $responseContent2)))
+            ->will($this->returnValue(new Response($responseContent1.$responseContent2)))
         ;
 
         $containerBlockService = new ContainerBlockService('test-service', $templatingMock, $blockRendererMock);
         $response = $containerBlockService->execute($blockContext);
         $this->assertInstanceof('Symfony\Component\HttpFoundation\Response', $response);
-        $this->assertEquals(($responseContent1 . $responseContent2), $response->getContent());
+        $this->assertEquals(($responseContent1.$responseContent2), $response->getContent());
     }
 
     public function testExecutionOfBlockWithNoChildren()
@@ -104,7 +103,7 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
         $containerBlock->setEnabled(true);
         $containerBlock->setChildren($childrenCollectionMock);
 
-        $settings = array('divisibleBy' => 0,'divisibleClass' => '','childClass' => '', 'template' => $template);
+        $settings = array('divisibleBy' => 0, 'divisibleClass' => '', 'childClass' => '', 'template' => $template);
 
         $blockContext = new BlockContext($containerBlock, $settings);
 
@@ -122,8 +121,8 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
             ->with(
                 $this->equalTo($template),
                 $this->equalTo(array(
-                    'block'     => $containerBlock,
-                    'settings'  => $settings
+                    'block' => $containerBlock,
+                    'settings' => $settings,
                 )),
                 $this->isInstanceOf('Symfony\Component\HttpFoundation\Response')
             )
@@ -135,5 +134,4 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceof('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals('', $response->getContent());
     }
-
 }

@@ -12,12 +12,10 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
-
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker;
 use Symfony\Component\HttpFoundation\Request;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
-
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\BlockBundle\Model\EmptyBlock;
@@ -84,10 +82,10 @@ class PhpcrBlockLoader implements BlockLoaderInterface
         LoggerInterface $logger = null,
         $emptyBlockType = null
     ) {
-        $this->managerRegistry  = $managerRegistry;
-        $this->securityContext  = $securityContext;
-        $this->logger           = $logger;
-        $this->emptyBlockType   = $emptyBlockType;
+        $this->managerRegistry = $managerRegistry;
+        $this->securityContext = $securityContext;
+        $this->logger = $logger;
+        $this->emptyBlockType = $emptyBlockType;
     }
 
     public function setRequest(Request $request = null)
@@ -122,13 +120,13 @@ class PhpcrBlockLoader implements BlockLoaderInterface
      */
     public function load($configuration)
     {
-        if (! $this->support($configuration)) {
+        if (!$this->support($configuration)) {
             // sanity check, the chain loader should already have checked.
             throw new BlockNotFoundException('A block is tried to be loaded with an unsupported configuration');
         }
 
         $block = $this->findByName($configuration['name']);
-        if (! $block instanceof BlockInterface) {
+        if (!$block instanceof BlockInterface) {
             // not found or no valid block
             return $this->getNotFoundBlock($configuration['name'], sprintf(
                 "Document at '%s' is no Sonata\\BlockBundle\\Model\\BlockInterface but %s",
@@ -173,7 +171,7 @@ class PhpcrBlockLoader implements BlockLoaderInterface
                 $this->logger->debug("Block '$name' is not an absolute path and there is no 'contentDocument' in the request attributes");
             }
 
-            return null;
+            return;
         }
 
         $block = $this->getObjectManager()->find(null, $path);
@@ -187,7 +185,7 @@ class PhpcrBlockLoader implements BlockLoaderInterface
                 $this->logger->debug("Block '$name' at path '$path' is not published");
             }
 
-            return null;
+            return;
         }
 
         return $block;
@@ -229,11 +227,11 @@ class PhpcrBlockLoader implements BlockLoaderInterface
 
             return $this->getObjectManager()
                 ->getUnitOfWork()
-                ->getDocumentId($currentPage) . '/' . $name
+                ->getDocumentId($currentPage).'/'.$name
             ;
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -284,7 +282,7 @@ class PhpcrBlockLoader implements BlockLoaderInterface
     }
 
     /**
-     * Get the object manager from the registry, based on the current managerName
+     * Get the object manager from the registry, based on the current managerName.
      *
      * @return \Doctrine\Common\Persistence\ObjectManager
      */

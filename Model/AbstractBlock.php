@@ -13,13 +13,12 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\BlockBundle\Model\BlockInterface;
-
 use Symfony\Cmf\Bundle\CoreBundle\Model\ChildInterface;
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface;
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface;
 
 /**
- * Base class for all blocks - connects to Sonata Blocks
+ * Base class for all blocks - connects to Sonata Blocks.
  *
  * Parent handling: The BlockInterface defines a parent to link back to
  * a container block if there is one. getParent may only return BlockInterface
@@ -68,7 +67,7 @@ abstract class AbstractBlock implements
     protected $updatedAt;
 
     /**
-     * @var boolean whether this content is publishable
+     * @var bool whether this content is publishable
      */
     protected $publishable = true;
 
@@ -84,7 +83,7 @@ abstract class AbstractBlock implements
 
     /**
      * If you want your block model to be translated it has to implement TranslatableInterface
-     * this code is just here to make your life easier
+     * this code is just here to make your life easier.
      *
      * @var string
      */
@@ -101,7 +100,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setId($id)
     {
@@ -111,7 +110,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getId()
     {
@@ -119,14 +118,14 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setType($type)
     {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setEnabled($enabled)
     {
@@ -136,7 +135,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getEnabled()
     {
@@ -144,7 +143,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setPosition($position)
     {
@@ -154,7 +153,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getPosition()
     {
@@ -164,7 +163,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setCreatedAt(\DateTime $createdAt = null)
     {
@@ -174,7 +173,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getCreatedAt()
     {
@@ -182,7 +181,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setUpdatedAt(\DateTime $updatedAt = null)
     {
@@ -192,7 +191,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getUpdatedAt()
     {
@@ -200,7 +199,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setPublishable($publishable)
     {
@@ -208,7 +207,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function isPublishable()
     {
@@ -216,7 +215,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getPublishStartDate()
     {
@@ -224,7 +223,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setPublishStartDate(\DateTime $publishStartDate = null)
     {
@@ -234,7 +233,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getPublishEndDate()
     {
@@ -242,7 +241,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setPublishEndDate(\DateTime $publishEndDate = null)
     {
@@ -252,14 +251,14 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function addChildren(BlockInterface $children)
     {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getChildren()
     {
@@ -267,7 +266,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function hasChildren()
     {
@@ -275,7 +274,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setName($name)
     {
@@ -285,7 +284,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -296,7 +295,7 @@ abstract class AbstractBlock implements
      * Set parent object regardless of its type. This can be a ContainerBlock
      * but also any other object.
      *
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setParentObject($parent)
     {
@@ -308,7 +307,7 @@ abstract class AbstractBlock implements
     /**
      * Get the parent object regardless of its type.
      *
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getParentObject()
     {
@@ -316,7 +315,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * Redirect to setParentObject
      */
@@ -326,7 +325,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * Check if getParentObject is instanceof BlockInterface, otherwise return null
      */
@@ -336,21 +335,21 @@ abstract class AbstractBlock implements
             return $parent;
         }
 
-        return null;
+        return;
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function hasParent()
     {
-        return ($this->getParentObject() instanceof BlockInterface);
+        return $this->getParentObject() instanceof BlockInterface;
     }
 
     /**
-     * Set ttl
+     * Set ttl.
      *
-     * @param integer $ttl
+     * @param int $ttl
      *
      * @return $this
      */
@@ -362,7 +361,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getTtl()
     {
@@ -380,7 +379,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setSettings(array $settings = array())
     {
@@ -390,7 +389,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSettings()
     {
@@ -398,7 +397,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setSetting($name, $value)
     {
@@ -408,7 +407,7 @@ abstract class AbstractBlock implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSetting($name, $default = null)
     {

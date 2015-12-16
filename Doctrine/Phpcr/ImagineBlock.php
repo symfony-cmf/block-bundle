@@ -18,7 +18,7 @@ use Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Block to hold an image
+ * Block to hold an image.
  */
 class ImagineBlock extends AbstractBlock implements TranslatableInterface
 {
@@ -33,7 +33,7 @@ class ImagineBlock extends AbstractBlock implements TranslatableInterface
     protected $label;
 
     /**
-     * Optional link url to use on the image
+     * Optional link url to use on the image.
      *
      * @var string
      */
@@ -58,7 +58,7 @@ class ImagineBlock extends AbstractBlock implements TranslatableInterface
     }
 
     /**
-     * Set label
+     * Set label.
      *
      * @param string $label
      *
@@ -72,7 +72,7 @@ class ImagineBlock extends AbstractBlock implements TranslatableInterface
     }
 
     /**
-     * Get label
+     * Get label.
      *
      * @return string
      */
@@ -82,7 +82,7 @@ class ImagineBlock extends AbstractBlock implements TranslatableInterface
     }
 
     /**
-     * Set link url
+     * Set link url.
      *
      * @param string $url
      *
@@ -96,7 +96,7 @@ class ImagineBlock extends AbstractBlock implements TranslatableInterface
     }
 
     /**
-     * Get link url
+     * Get link url.
      *
      * @return string
      */
@@ -106,7 +106,7 @@ class ImagineBlock extends AbstractBlock implements TranslatableInterface
     }
 
     /**
-     * Sets the Imagine filter which is going to be used
+     * Sets the Imagine filter which is going to be used.
      *
      * @param string $filter
      *
@@ -120,7 +120,7 @@ class ImagineBlock extends AbstractBlock implements TranslatableInterface
     }
 
     /**
-     * Get the Imagine filter
+     * Get the Imagine filter.
      *
      * @return string
      */
@@ -176,7 +176,7 @@ class ImagineBlock extends AbstractBlock implements TranslatableInterface
     }
 
     /**
-     * Get image
+     * Get image.
      *
      * @return Image
      */
@@ -186,7 +186,7 @@ class ImagineBlock extends AbstractBlock implements TranslatableInterface
     }
 
     /**
-     * Get node
+     * Get node.
      *
      * @return NodeInterface
      */

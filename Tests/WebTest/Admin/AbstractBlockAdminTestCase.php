@@ -25,27 +25,27 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
     protected $client;
 
     /**
-     * Admin listing test case
+     * Admin listing test case.
      */
     abstract public function testBlockList();
 
     /**
-     * Admin edition test case
+     * Admin edition test case.
      */
     abstract public function testBlockEdit();
 
     /**
-     * Admin creation test case
+     * Admin creation test case.
      */
     abstract public function testBlockCreate();
 
     /**
-     * Admin deletion test case
+     * Admin deletion test case.
      */
     abstract public function testBlockDelete();
 
     /**
-     * Admin show test case
+     * Admin show test case.
      */
     abstract public function testBlockShow();
 
@@ -61,7 +61,7 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
     }
 
     /**
-     * Make defaults listing assertions
+     * Make defaults listing assertions.
      *
      * @param $url              string the listing url
      * @param $containsElements array  an array of models identifier which should be in the listing
@@ -73,12 +73,12 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
         $this->assertEquals(200, $res->getStatusCode(), $res->getContent());
 
         foreach ($containsElements as $element) {
-            $this->assertCount(1, $crawler->filter('html:contains("' . $element . '")'), $res->getContent());
+            $this->assertCount(1, $crawler->filter('html:contains("'.$element.'")'), $res->getContent());
         }
     }
 
     /**
-     * Make defaults edition assertions
+     * Make defaults edition assertions.
      *
      * @param $url            string the edition url
      * @param $containsValues array  an array of values which should be in the inputs
@@ -90,12 +90,12 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
         $this->assertEquals(200, $res->getStatusCode(), $res->getContent());
 
         foreach ($containsValues as $value) {
-            $this->assertCount(1, $crawler->filter('input[value="' . $value . '"]'), $res->getContent());
+            $this->assertCount(1, $crawler->filter('input[value="'.$value.'"]'), $res->getContent());
         }
     }
 
     /**
-     * Make defaults creation assertions
+     * Make defaults creation assertions.
      *
      * @param $url        string the creation url
      * @param $formValues array  an array of values which should validate the form
@@ -110,10 +110,10 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
         $form = $button->form();
         $node = $form->getFormNode();
         $actionUrl = $node->getAttribute('action');
-        $uniqId = substr(strchr($actionUrl, '='), 1);
+        $uniqId = substr(strstr($actionUrl, '='), 1);
 
         foreach ($formValues as $key => $value) {
-            $form[$uniqId.'[' . $key . ']'] = $value;
+            $form[$uniqId.'['.$key.']'] = $value;
         }
 
         $this->client->submit($form);
@@ -124,7 +124,7 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
     }
 
     /**
-     * Make defaults deletion assertions
+     * Make defaults deletion assertions.
      *
      * @param $url string the deletion url
      */
@@ -145,7 +145,7 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
     }
 
     /**
-     * Make defaults show assertions
+     * Make defaults show assertions.
      *
      * @param $url              string the edition url
      * @param $containsElements array  an array of elements which should be in the show page
@@ -157,7 +157,7 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
         $this->assertEquals(200, $res->getStatusCode(), $res->getContent());
 
         foreach ($containsElements as $element) {
-            $this->assertCount(1, $crawler->filter('html:contains("' . $element . '")'), $res->getContent());
+            $this->assertCount(1, $crawler->filter('html:contains("'.$element.'")'), $res->getContent());
         }
     }
 }

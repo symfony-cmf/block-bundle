@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
- * Cache a block through Javascript code
+ * Cache a block through Javascript code.
  */
 class BlockJsCache implements CacheAdapterInterface
 {
@@ -45,11 +45,11 @@ class BlockJsCache implements CacheAdapterInterface
         BlockContextManagerInterface $blockContextManager,
         $sync = false
     ) {
-        $this->router              = $router;
-        $this->blockRenderer       = $blockRenderer;
-        $this->blockLoader         = $blockLoader;
+        $this->router = $router;
+        $this->blockRenderer = $blockRenderer;
+        $this->blockLoader = $blockLoader;
         $this->blockContextManager = $blockContextManager;
-        $this->sync                = $sync;
+        $this->sync = $sync;
     }
 
     /**
@@ -90,8 +90,6 @@ class BlockJsCache implements CacheAdapterInterface
      * @throws \RuntimeException
      *
      * @param array $keys
-     *
-     * @return void
      */
     private function validateKeys(array $keys)
     {
@@ -153,7 +151,8 @@ CONTENT
     }
 
     /**
-     * @param  array  $keys
+     * @param array $keys
+     *
      * @return string
      */
     protected function getAsync(array $keys)

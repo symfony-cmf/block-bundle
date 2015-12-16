@@ -11,12 +11,9 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
 use Symfony\Component\Templating\EngineInterface;
-
 use Sonata\BlockBundle\Block\BlockContext;
-
 use Symfony\Cmf\Bundle\BlockBundle\Block\ActionBlockService;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock;
 
@@ -59,7 +56,7 @@ class ActionBlockServiceTest extends \PHPUnit_Framework_TestCase
         $actionBlock->setEnabled(true);
         $actionBlock->setActionName('CmfBlockBundle:Test:test');
 
-        $content = "Rendered Action Block.";
+        $content = 'Rendered Action Block.';
 
         $request = $this->getMock('Symfony\Component\HttpFoundation\Request');
 
@@ -76,5 +73,4 @@ class ActionBlockServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals($content, $response->getContent());
     }
-
 }

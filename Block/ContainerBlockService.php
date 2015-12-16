@@ -68,8 +68,8 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
 
         if ($block->getEnabled()) {
             return $this->renderResponse($settings['template'], array(
-                'block'       => $block,
-                'settings'    => $settings,
+                'block' => $block,
+                'settings' => $settings,
             ), $response);
         }
 
@@ -90,10 +90,10 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
     public function configureSettings(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'template'       => $this->template,
-            'divisible_by'    => 0,
+            'template' => $this->template,
+            'divisible_by' => 0,
             'divisible_class' => '',
-            'child_class'     => '',
+            'child_class' => '',
         ));
 
         if (method_exists($resolver, 'setDefault')) {
@@ -103,9 +103,9 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
             $resolver->addAllowedTypes('child_class', 'string');
         } else {
             $resolver->addAllowedTypes(array(
-                'divisible_by'    => array('integer'),
+                'divisible_by' => array('integer'),
                 'divisible_class' => array('string'),
-                'child_class'     => array('string'),
+                'child_class' => array('string'),
             ));
         }
     }

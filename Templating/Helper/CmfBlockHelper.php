@@ -13,7 +13,6 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Templating\Helper;
 
 use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\HttpKernel\Log\LoggerInterface;
-
 use Sonata\BlockBundle\Templating\Helper\BlockHelper as SonataBlockHelper;
 
 /**
@@ -58,7 +57,7 @@ class CmfBlockHelper extends Helper
         // with the default prefix and postfix, this will do %embed-block|block-identifier|end%
         $endDelimiter = preg_quote($this->postfix[0], '#');
 
-        return preg_replace_callback('#' . $this->prefix . '([^' . $endDelimiter .']+)' . $this->postfix . '#', array($this, 'embeddedRender'), $text);
+        return preg_replace_callback('#'.$this->prefix.'([^'.$endDelimiter.']+)'.$this->postfix.'#', array($this, 'embeddedRender'), $text);
     }
 
     /**
@@ -103,7 +102,7 @@ class CmfBlockHelper extends Helper
             return $this->sonataBlock->render(array('name' => trim($block[1])));
         } catch (\Exception $e) {
             if ($this->logger) {
-                $this->logger->warn('Failed to render block "' . $block[1] . '" embedded in content: ' . $e->getTraceAsString());
+                $this->logger->warn('Failed to render block "'.$block[1].'" embedded in content: '.$e->getTraceAsString());
             }
         }
 

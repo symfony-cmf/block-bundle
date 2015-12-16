@@ -13,18 +13,15 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Controller;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Cmf\Bundle\BlockBundle\Model\FeedItem;
-
 use Zend\Feed\Reader\Exception\RuntimeException;
 
 class RssController extends Controller
 {
     /**
-     * Action that is referenced in an ActionBlock
+     * Action that is referenced in an ActionBlock.
      *
      * @param BlockInterface        $block
      * @param BlockContextInterface $blockContext
@@ -34,15 +31,15 @@ class RssController extends Controller
     public function block(BlockInterface $block, BlockContextInterface $blockContext)
     {
         return $this->render($blockContext->getTemplate(), array(
-            'block'    => $block,
-            'items'    => $this->getItems($blockContext),
+            'block' => $block,
+            'items' => $this->getItems($blockContext),
             'settings' => $blockContext->getSettings(),
         ));
     }
 
     /**
      * Get items that the list block template can render,
-     * use the settings from the block passed
+     * use the settings from the block passed.
      *
      * @param BlockContextInterface $blockContext
      *

@@ -40,7 +40,7 @@ class ContainerBlock extends AbstractBlock
     }
 
     /**
-     * Get children
+     * Get children.
      *
      * @return ArrayCollection|ChildrenCollection
      */
@@ -50,7 +50,7 @@ class ContainerBlock extends AbstractBlock
     }
 
     /**
-     * Set children
+     * Set children.
      *
      * @param ChildrenCollection $children
      *
@@ -62,19 +62,18 @@ class ContainerBlock extends AbstractBlock
     }
 
     /**
-     * Add a child to this container
+     * Add a child to this container.
      *
      * @param BlockInterface $child
      * @param string         $key   the collection index name to use in the
      *                              child collection. if not set, the child
      *                              will simply be appended at the end.
      *
-     * @return boolean Always true
+     * @return bool Always true
      */
     public function addChild(BlockInterface $child, $key = null)
     {
         if ($key != null) {
-
             $this->children->set($key, $child);
 
             return true;
@@ -88,7 +87,7 @@ class ContainerBlock extends AbstractBlock
      *
      * @param BlockInterface $children
      *
-     * @return boolean
+     * @return bool
      */
     public function addChildren(BlockInterface $children)
     {
@@ -98,7 +97,7 @@ class ContainerBlock extends AbstractBlock
     /**
      * Remove a child from this container.
      *
-     * @param  BlockInterface $child
+     * @param BlockInterface $child
      *
      * @return $this
      */

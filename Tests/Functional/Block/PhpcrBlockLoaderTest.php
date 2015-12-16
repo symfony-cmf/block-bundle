@@ -12,9 +12,9 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker;
-use Symfony\Component\HttpFoundation\Request,
-    Symfony\Cmf\Bundle\BlockBundle\Block\PhpcrBlockLoader,
-    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Cmf\Bundle\BlockBundle\Block\PhpcrBlockLoader;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
@@ -66,7 +66,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($blockLoader->support('name'));
         $this->assertFalse($blockLoader->support(array()));
         $this->assertTrue($blockLoader->support(array(
-            'name' => 'someName'
+            'name' => 'someName',
         )));
     }
 
@@ -136,7 +136,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->method('find')
             ->with(
                     $this->equalTo(null),
-                    $this->equalTo($contentPath . '/' . $relativeBlockPath)
+                    $this->equalTo($contentPath.'/'.$relativeBlockPath)
             )
             ->will($this->returnValue($block))
         ;
@@ -174,7 +174,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
         ;
 
         $receivedBlock = $blockLoader->load(array(
-            'name' => $absoluteBlockPath
+            'name' => $absoluteBlockPath,
         ));
 
         $this->assertEquals($simpleBlock, $receivedBlock);
@@ -191,7 +191,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test using the block loader with two different document managers
+     * Test using the block loader with two different document managers.
      */
     public function testLoadWithAlternativeDocumentManager()
     {
@@ -273,10 +273,12 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
 class MockContent
 {
     private $path;
+
     public function __construct($path)
     {
         $this->path = $path;
     }
+
     public function getPath()
     {
         return $this->path;

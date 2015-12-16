@@ -12,8 +12,8 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Sonata\BlockBundle\Block\BlockContext;
-use Symfony\Cmf\Bundle\BlockBundle\Block\StringBlockService,
-    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\StringBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Block\StringBlockService;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\StringBlock;
 
 class StringBlockServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -32,7 +32,7 @@ class StringBlockServiceTest extends \PHPUnit_Framework_TestCase
             ->with(
                 $this->equalTo($template),
                 $this->equalTo(array(
-                    'block'=> $stringBlock
+                    'block' => $stringBlock,
                 ))
             );
 
@@ -54,5 +54,4 @@ class StringBlockServiceTest extends \PHPUnit_Framework_TestCase
         $stringBlockService = new StringBlockService('test-service', $templatingMock);
         $stringBlockService->execute(new BlockContext($stringBlock));
     }
-
 }

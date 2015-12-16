@@ -23,7 +23,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
- * Cache block through an ssi statement
+ * Cache block through an ssi statement.
  */
 class BlockSsiCache extends SsiCache
 {
@@ -47,8 +47,8 @@ class BlockSsiCache extends SsiCache
     ) {
         parent::__construct($token, $router, null);
 
-        $this->blockRenderer       = $blockRenderer;
-        $this->blockLoader         = $blockLoader;
+        $this->blockRenderer = $blockRenderer;
+        $this->blockLoader = $blockLoader;
         $this->blockContextManager = $blockContextManager;
     }
 
@@ -56,8 +56,6 @@ class BlockSsiCache extends SsiCache
      * @throws \RuntimeException
      *
      * @param array $keys
-     *
-     * @return void
      */
     private function validateKeys(array $keys)
     {
@@ -101,7 +99,7 @@ class BlockSsiCache extends SsiCache
     {
         // values are casted into string for non numeric id
         return hash('sha256', $this->token.serialize(array(
-            'block_id'   => (string) $keys['block_id'],
+            'block_id' => (string) $keys['block_id'],
             'updated_at' => (string) $keys['updated_at'],
         )));
     }
