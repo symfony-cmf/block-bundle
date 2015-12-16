@@ -12,9 +12,9 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Sonata\BlockBundle\Block\BlockContext;
-use Symfony\Cmf\Bundle\BlockBundle\Block\ReferenceBlockService,
-    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock,
-    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Block\ReferenceBlockService;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 
 class ReferenceBlockServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -76,5 +76,4 @@ class ReferenceBlockServiceTest extends \PHPUnit_Framework_TestCase
         $referenceBlockService = new ReferenceBlockService('test-service', $templatingMock, $blockRendererMock, $blockContextManagerMock);
         $referenceBlockService->execute($referenceBlockContext);
     }
-
 }

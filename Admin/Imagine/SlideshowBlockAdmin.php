@@ -22,14 +22,14 @@ use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock;
 class SlideshowBlockAdmin extends AbstractBlockAdmin
 {
     /**
-     * Service name of the sonata_type_collection service to embed
+     * Service name of the sonata_type_collection service to embed.
      *
      * @var string
      */
     protected $embeddedAdminCode;
 
     /**
-     * Configure the service name (admin_code) of the admin service for the embedded slides
+     * Configure the service name (admin_code) of the admin service for the embedded slides.
      *
      * @param string $adminCode
      */
@@ -67,7 +67,7 @@ class SlideshowBlockAdmin extends AbstractBlockAdmin
                         'edit' => 'inline',
                         'inline' => 'table',
                         'admin_code' => $this->embeddedAdminCode,
-                        'sortable'  => 'position',
+                        'sortable' => 'position',
                     ))
             ->end()
         ;
@@ -98,14 +98,14 @@ class SlideshowBlockAdmin extends AbstractBlockAdmin
     public function preUpdate($slideshow)
     {
         foreach ($slideshow->getChildren() as $child) {
-            if (! $this->modelManager->getNormalizedIdentifier($child)) {
+            if (!$this->modelManager->getNormalizedIdentifier($child)) {
                 $child->setName($this->generateName());
             }
         }
     }
 
     /**
-     * Generate a most likely unique name
+     * Generate a most likely unique name.
      *
      * TODO: have blocks use the autoname annotation - https://github.com/symfony-cmf/BlockBundle/issues/149
      *
@@ -113,7 +113,7 @@ class SlideshowBlockAdmin extends AbstractBlockAdmin
      */
     private function generateName()
     {
-        return 'child_' . time() . '_' . rand();
+        return 'child_'.time().'_'.rand();
     }
 
     public function toString($object)

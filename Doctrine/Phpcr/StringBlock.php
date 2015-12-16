@@ -14,7 +14,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 use Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface;
 
 /**
- * Block that contains only text
+ * Block that contains only text.
  */
 class StringBlock extends AbstractBlock implements TranslatableInterface
 {
@@ -32,7 +32,7 @@ class StringBlock extends AbstractBlock implements TranslatableInterface
     }
 
     /**
-     * Set body
+     * Set body.
      *
      * @param string $body
      *
@@ -46,7 +46,7 @@ class StringBlock extends AbstractBlock implements TranslatableInterface
     }
 
     /**
-     * Get body
+     * Get body.
      *
      * @return string
      */

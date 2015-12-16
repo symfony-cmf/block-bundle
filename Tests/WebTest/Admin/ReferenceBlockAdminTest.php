@@ -47,7 +47,7 @@ class ReferenceBlockAdminTest extends AbstractBlockAdminTestCase
             '/admin/cmf/block/referenceblock/create',
             array(
                 'parentDocument' => '/test/blocks',
-                'name'           => 'foo-test-container'
+                'name' => 'foo-test-container',
             )
         );
     }

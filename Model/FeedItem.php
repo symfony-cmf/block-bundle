@@ -36,10 +36,9 @@ class FeedItem implements ItemInterface
     private $pubDate;
 
     /**
-     * This method sets feed item title
+     * This method sets feed item title.
      *
      * @param string $title
-     *
      */
     public function setFeedItemTitle($title)
     {
@@ -47,10 +46,9 @@ class FeedItem implements ItemInterface
     }
 
     /**
-     * This method sets feed item description (or content)
+     * This method sets feed item description (or content).
      *
      * @param string $description
-     *
      */
     public function setFeedItemDescription($description)
     {
@@ -58,10 +56,9 @@ class FeedItem implements ItemInterface
     }
 
     /**
-     * This method sets feed item URL link
+     * This method sets feed item URL link.
      *
      * @param string $link
-     *
      */
     public function setFeedItemLink($link)
     {
@@ -69,10 +66,9 @@ class FeedItem implements ItemInterface
     }
 
     /**
-     * This method sets item publication date
+     * This method sets item publication date.
      *
      * @param \DateTime $date
-     *
      */
     public function setFeedItemPubDate(\DateTime $date)
     {
@@ -108,6 +104,6 @@ class FeedItem implements ItemInterface
      */
     public function getPubDate()
     {
-       return $this->pubDate;
+        return $this->pubDate;
     }
 }

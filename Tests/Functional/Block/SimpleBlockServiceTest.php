@@ -12,8 +12,8 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Sonata\BlockBundle\Block\BlockContext;
-use Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService,
-    Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 
 class SimpleBlockServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -32,7 +32,7 @@ class SimpleBlockServiceTest extends \PHPUnit_Framework_TestCase
             ->with(
                 $this->equalTo($template),
                 $this->equalTo(array(
-                    'block'=> $simpleBlock
+                    'block' => $simpleBlock,
                 ))
             );
 

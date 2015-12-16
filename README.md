@@ -1,6 +1,7 @@
 # Symfony CMF Block Bundle
 
 [![Build Status](https://secure.travis-ci.org/symfony-cmf/BlockBundle.png?branch=master)](http://travis-ci.org/symfony-cmf/BlockBundle)
+[![StyleCI](https://styleci.io/repos/4123055/shield)](https://styleci.io/repos/4123055)
 [![Latest Stable Version](https://poser.pugx.org/symfony-cmf/block-bundle/version.png)](https://packagist.org/packages/symfony-cmf/block-bundle)
 [![Total Downloads](https://poser.pugx.org/symfony-cmf/block-bundle/d/total.png)](https://packagist.org/packages/symfony-cmf/block-bundle)
 

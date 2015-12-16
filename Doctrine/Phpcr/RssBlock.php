@@ -12,7 +12,7 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
 /**
- * Block to display a list of rss items
+ * Block to display a list of rss items.
  */
 class RssBlock extends ActionBlock
 {
@@ -25,7 +25,7 @@ class RssBlock extends ActionBlock
     }
 
     /**
-     * Returns the default action name
+     * Returns the default action name.
      *
      * @return string
      */

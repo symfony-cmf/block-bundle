@@ -14,7 +14,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 use Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface;
 
 /**
- * Block that contains hypertext and a title
+ * Block that contains hypertext and a title.
  */
 class SimpleBlock extends AbstractBlock implements TranslatableInterface
 {
@@ -37,7 +37,7 @@ class SimpleBlock extends AbstractBlock implements TranslatableInterface
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
      *
@@ -51,7 +51,7 @@ class SimpleBlock extends AbstractBlock implements TranslatableInterface
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -61,7 +61,7 @@ class SimpleBlock extends AbstractBlock implements TranslatableInterface
     }
 
     /**
-     * Set body
+     * Set body.
      *
      * @param string $body
      *
@@ -75,7 +75,7 @@ class SimpleBlock extends AbstractBlock implements TranslatableInterface
     }
 
     /**
-     * Get body
+     * Get body.
      *
      * @return string
      */

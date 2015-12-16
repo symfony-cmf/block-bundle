@@ -14,7 +14,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Twig\Extension;
 use Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\CmfBlockHelper;
 
 /**
- * Utility function for blocks
+ * Utility function for blocks.
  *
  * @author David Buchmann <david@liip.ch>
  */

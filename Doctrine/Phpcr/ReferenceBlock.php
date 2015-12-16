@@ -14,7 +14,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 use Sonata\BlockBundle\Model\BlockInterface;
 
 /**
- * Block that is a reference to another block
+ * Block that is a reference to another block.
  */
 class ReferenceBlock extends AbstractBlock
 {

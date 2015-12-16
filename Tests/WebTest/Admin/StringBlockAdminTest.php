@@ -47,8 +47,8 @@ class StringBlockAdminTest extends AbstractBlockAdminTestCase
             '/admin/cmf/block/stringblock/create',
             array(
                 'parentDocument' => '/test/blocks',
-                'name'           => 'foo-test-container',
-                'body'           => 'string-block-1-body',
+                'name' => 'foo-test-container',
+                'body' => 'string-block-1-body',
             )
         );
     }

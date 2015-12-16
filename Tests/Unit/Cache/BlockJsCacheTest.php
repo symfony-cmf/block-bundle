@@ -12,7 +12,6 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Cache;
 
 use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache;
-
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -65,7 +64,7 @@ class BlockJsCacheTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($cache->flushAll());
 
         $keys = array(
-            'block_id'   => '/cms/content/home/additionalInfoBlock',
+            'block_id' => '/cms/content/home/additionalInfoBlock',
             'updated_at' => 'as',
         );
 

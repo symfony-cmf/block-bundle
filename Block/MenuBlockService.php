@@ -45,7 +45,7 @@ class MenuBlockService extends BaseBlockService implements BlockServiceInterface
 
         // if the referenced target menu does not exist, we just skip the rendering
         if (!$block->getEnabled() || null === $block->getMenuNode()) {
-            return $response ? : new Response();
+            return $response ?: new Response();
         }
 
         $menuNode = $block->getMenuNode();

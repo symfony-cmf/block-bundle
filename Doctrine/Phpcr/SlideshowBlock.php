@@ -34,7 +34,7 @@ class SlideshowBlock extends ContainerBlock implements TranslatableInterface
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -44,7 +44,7 @@ class SlideshowBlock extends ContainerBlock implements TranslatableInterface
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
      *

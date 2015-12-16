@@ -47,7 +47,7 @@ class ContainerBlockAdminTest extends AbstractBlockAdminTestCase
             '/admin/cmf/block/containerblock/create',
             array(
                 'parentDocument' => '/test/blocks',
-                'name'           => 'foo-test-container'
+                'name' => 'foo-test-container',
             )
         );
     }

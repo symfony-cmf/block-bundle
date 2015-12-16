@@ -58,9 +58,10 @@ class MenuBlockAdmin extends AbstractBlockAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name',  'doctrine_phpcr_nodename')
+            ->add('name', 'doctrine_phpcr_nodename')
         ;
     }
+
     /**
      * PHPCR to the root of all menu nodes for the selection of the target.
      *
