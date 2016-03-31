@@ -14,9 +14,6 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Cache;
 use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- *
- */
 class BlockJsCacheTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -78,7 +75,7 @@ class BlockJsCacheTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
 
-        $expected = <<<EXPECTED
+        $expected = <<<'EXPECTED'
 <div id="block-cms-content-home-additionalInfoBlock" >
     <script type="text/javascript">
         /*<![CDATA[*/

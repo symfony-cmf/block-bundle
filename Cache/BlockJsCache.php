@@ -109,7 +109,7 @@ class BlockJsCache implements CacheAdapterInterface
     {
         $dashifiedId = $this->dashify($keys['block_id']);
 
-        return sprintf(<<<CONTENT
+        return sprintf(<<<'CONTENT'
 <div id="block%s" >
     <script type="text/javascript">
         /*<![CDATA[*/
@@ -157,7 +157,7 @@ CONTENT
      */
     protected function getAsync(array $keys)
     {
-        return sprintf(<<<CONTENT
+        return sprintf(<<<'CONTENT'
 <div id="block%s" >
     <script type="text/javascript">
         /*<![CDATA[*/
@@ -219,7 +219,7 @@ CONTENT
             return $response;
         }
 
-        $response->setContent(sprintf(<<<JS
+        $response->setContent(sprintf(<<<'JS'
     (function () {
         var block = document.getElementById('block%s'),
             div = document.createElement("div"),
