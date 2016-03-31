@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.3.0
+-----
+
+* Support Symfony 2.8
+* Support PHP 7
+
+1.2.0
+-----
+
 1.2.0-RC1
 ---------
 
