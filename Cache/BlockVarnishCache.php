@@ -68,7 +68,7 @@ class BlockVarnishCache extends VarnishCache
         BlockLoaderInterface $blockLoader,
         BlockContextManagerInterface $blockContextManager,
         FragmentHandler $fragmentHandler,
-        array $servers = array(),
+        array $servers,
         $purgeInstruction
     ) {
         parent::__construct($token, $servers, $router, $purgeInstruction, null);
