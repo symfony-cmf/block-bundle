@@ -24,7 +24,8 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->fragmentHandler = $this->getMock('Symfony\Component\HttpKernel\Fragment\FragmentHandler');
+        $this->fragmentHandler = $this->getMockBuilder('Symfony\Component\HttpKernel\Fragment\FragmentHandler')
+            ->disableOriginalConstructor()->getMock();
     }
 
     /**

@@ -70,7 +70,7 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
     {
         $crawler = $this->client->request('GET', $url);
         $res = $this->client->getResponse();
-        $this->assertEquals(200, $res->getStatusCode(), $res->getContent());
+        $this->assertResponseSuccess($res);
 
         foreach ($containsElements as $element) {
             $this->assertCount(1, $crawler->filter('html:contains("'.$element.'")'), $res->getContent());
@@ -87,7 +87,7 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
     {
         $crawler = $this->client->request('GET', $url);
         $res = $this->client->getResponse();
-        $this->assertEquals(200, $res->getStatusCode(), $res->getContent());
+        $this->assertResponseSuccess($res);
 
         foreach ($containsValues as $value) {
             $this->assertCount(1, $crawler->filter('input[value="'.$value.'"]'), $res->getContent());
@@ -104,7 +104,7 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
     {
         $crawler = $this->client->request('GET', $url);
         $res = $this->client->getResponse();
-        $this->assertEquals(200, $res->getStatusCode(), $res->getContent());
+        $this->assertResponseSuccess($res);
 
         $button = $crawler->selectButton('Create');
         $form = $button->form();
@@ -132,7 +132,7 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
     {
         $crawler = $this->client->request('GET', $url);
         $res = $this->client->getResponse();
-        $this->assertEquals(200, $res->getStatusCode(), $res->getContent());
+        $this->assertResponseSuccess($res);
 
         $button = $crawler->selectButton('Yes, delete');
         $form = $button->form();
@@ -154,7 +154,7 @@ abstract class AbstractBlockAdminTestCase extends BaseTestCase
     {
         $crawler = $this->client->request('GET', $url);
         $res = $this->client->getResponse();
-        $this->assertEquals(200, $res->getStatusCode(), $res->getContent());
+        $this->assertResponseSuccess($res);
 
         foreach ($containsElements as $element) {
             $this->assertCount(1, $crawler->filter('html:contains("'.$element.'")'), $res->getContent());

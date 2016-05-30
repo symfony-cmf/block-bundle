@@ -29,10 +29,14 @@ class ActionBlockServiceTest extends \PHPUnit_Framework_TestCase
      */
     private $kernel;
 
+    private $requestStack;
+
     public function setUp()
     {
         $this->templating = $this->getMock('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface');
-        $this->kernel = $this->getMock('Symfony\Component\HttpKernel\Fragment\FragmentHandler');
+        $this->kernel = $this->getMockBuilder('Symfony\Component\HttpKernel\Fragment\FragmentHandler')
+            ->disableOriginalConstructor()->getMock();
+        $this->requestStack = $this->getMock('Symfony\Component\HttpFoundation\RequestStack');
     }
 
     public function testExecutionOfDisabledBlock()
@@ -46,7 +50,7 @@ class ActionBlockServiceTest extends \PHPUnit_Framework_TestCase
             ->method('render')
         ;
 
-        $actionBlockService = new ActionBlockService('test-service', $this->templating, $this->kernel);
+        $actionBlockService = new ActionBlockService($this->requestStack, 'test-service', $this->templating, $this->kernel);
         $actionBlockService->execute(new BlockContext($actionBlock));
     }
 
@@ -61,13 +65,18 @@ class ActionBlockServiceTest extends \PHPUnit_Framework_TestCase
         $request = $this->getMock('Symfony\Component\HttpFoundation\Request');
 
         $this->kernel
-            ->expects($this->once())
+            ->expects($this->any())
             ->method('render')
             ->will($this->returnValue($content))
         ;
 
-        $actionBlockService = new ActionBlockService('test-service', $this->templating, $this->kernel);
-        $actionBlockService->setRequest($request);
+        $this->requestStack
+            ->expects($this->any())
+            ->method('getCurrentRequest')
+            ->will($this->returnValue($request))
+        ;
+
+        $actionBlockService = new ActionBlockService($this->requestStack, 'test-service', $this->templating, $this->kernel);
 
         $response = $actionBlockService->execute(new BlockContext($actionBlock));
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);

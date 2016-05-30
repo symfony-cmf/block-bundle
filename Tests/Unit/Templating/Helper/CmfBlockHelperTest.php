@@ -46,9 +46,9 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
 
     public function testLogsIfSonataThrowsException()
     {
-        $logger = $this->getMock('Symfony\Component\HttpKernel\Log\LoggerInterface');
+        $logger = $this->getMock('Psr\Log\LoggerInterface');
         $logger->expects($this->once())
-            ->method('warn')
+            ->method('warning')
             ->with($this->matchesRegularExpression('/^Failed to render block "foo" embedded in content: /'));
 
         $exception = $this->getMock('Sonata\BlockBundle\Exception\BlockNotFoundException', array('getMessage'));

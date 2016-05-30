@@ -27,6 +27,13 @@ class AppKernel extends TestKernel
             new \Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
             new \Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
         ));
+
+        if (class_exists('Symfony\Cmf\Bundle\ResourceRestBundle\CmfResourceRestBundle')) {
+            $this->addBundles(array(
+                new \Symfony\Cmf\Bundle\ResourceBundle\CmfResourceBundle(),
+                new \Symfony\Cmf\Bundle\ResourceRestBundle\CmfResourceRestBundle(),
+            ));
+        }
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

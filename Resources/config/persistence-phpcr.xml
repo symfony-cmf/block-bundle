@@ -15,9 +15,9 @@
             <tag name="sonata.block.loader" />
             <argument type="service" id="doctrine-phpcr" />
             <argument type="service" id="cmf_core.publish_workflow.checker"/>
+            <argument type="service" id="request_stack" />
             <argument type="service" id="logger" on-invalid="ignore" />
             <argument>sonata.block.service.empty</argument>
-            <call method="setRequest"><argument type="service" id="request" on-invalid="null" strict="false"/></call>
         </service>
 
         <service id="cmf_block.initializer" class="Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer">

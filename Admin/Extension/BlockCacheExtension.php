@@ -13,6 +13,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Admin\Extension;
 
 use Sonata\AdminBundle\Admin\AdminExtension;
 use Sonata\AdminBundle\Form\FormMapper;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
  * Provide cache form fields for block models.
@@ -30,7 +31,7 @@ class BlockCacheExtension extends AdminExtension
     {
         $formMapper
             ->with('form.group_metadata', array('translation_domain' => 'CmfBlockBundle'))
-                ->add('ttl', 'text')
+                ->add('ttl', TextType::class)
             ->end()
         ;
     }

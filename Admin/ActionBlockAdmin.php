@@ -14,6 +14,8 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Sonata\DoctrinePHPCRAdminBundle\Form\Type\TreeModelType;
 
 /**
  * @author Lukas Kahwe Smith <smith@pooteeweet.org>
@@ -37,15 +39,11 @@ class ActionBlockAdmin extends AbstractBlockAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $isSf28 = method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix');
-        $doctrineTreeType = $isSf28 ? 'Sonata\DoctrinePHPCRAdminBundle\Form\Type\TreeModelType' : 'doctrine_phpcr_odm_tree';
-        $textType = $isSf28 ? 'Symfony\Component\Form\Extension\Core\Type\TextType' : 'text';
-
         $formMapper
             ->with('form.group_general')
-            ->add('parentDocument', $doctrineTreeType, array('root_node' => $this->getRootPath(), 'choice_list' => array(), 'select_root_node' => true))
-            ->add('name', $textType)
-            ->add('actionName', $textType)
+                ->add('parentDocument', TreeModelType::class, array('root_node' => $this->getRootPath(), 'choice_list' => array(), 'select_root_node' => true))
+                ->add('name', TextType::class)
+                ->add('actionName', TextType::class)
             ->end()
         ;
     }

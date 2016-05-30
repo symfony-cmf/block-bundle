@@ -15,6 +15,10 @@ use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock;
+use Symfony\Cmf\Bundle\MediaBundle\Form\Type\ImageType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Sonata\DoctrinePHPCRAdminBundle\Form\Type\TreeModelType;
 
 /**
  * @author Horner
@@ -47,22 +51,22 @@ class ImagineBlockAdmin extends AbstractBlockAdmin
         if (null === $this->getParentFieldDescription()) {
             $formMapper
                 ->with('form.group_general')
-                ->add(
-                    'parentDocument',
-                    'doctrine_phpcr_odm_tree',
-                    array('root_node' => $this->getRootPath(), 'choice_list' => array(), 'select_root_node' => true)
-                )
-                ->add('name', 'text')
-            ->end();
+                    ->add(
+                        'parentDocument',
+                        TreeModelType::class,
+                        array('root_node' => $this->getRootPath(), 'choice_list' => array(), 'select_root_node' => true)
+                    )
+                    ->add('name', TextType::class)
+                ->end();
         }
 
         $formMapper
             ->with('form.group_general')
-                ->add('label', 'text', array('required' => false))
-                ->add('linkUrl', 'text', array('required' => false))
-                ->add('filter', 'text', array('required' => false))
-                ->add('image', 'cmf_media_image', array('required' => $imageRequired))
-                ->add('position', 'hidden', array('mapped' => false))
+                ->add('label', TextType::class, array('required' => false))
+                ->add('linkUrl', TextType::class, array('required' => false))
+                ->add('filter', TextType::class, array('required' => false))
+                ->add('image', ImageType::class, array('required' => $imageRequired))
+                ->add('position', HiddenType::class, array('mapped' => false))
             ->end();
     }
 

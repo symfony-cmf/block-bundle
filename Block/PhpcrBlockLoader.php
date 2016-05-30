@@ -13,9 +13,9 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\BlockBundle\Model\EmptyBlock;
@@ -31,9 +31,9 @@ use Sonata\BlockBundle\Exception\BlockNotFoundException;
 class PhpcrBlockLoader implements BlockLoaderInterface
 {
     /**
-     * @var Request
+     * @var RequestStack
      */
-    protected $request;
+    protected $requestStack;
 
     /**
      * @var null|LoggerInterface
@@ -51,9 +51,9 @@ class PhpcrBlockLoader implements BlockLoaderInterface
     protected $managerRegistry;
 
     /**
-     * @var SecurityContextInterface
+     * @var AuthorizationCheckerInterface
      */
-    private $securityContext;
+    private $publishWorkflowChecker;
 
     /**
      * The permission to check for when doing the publish workflow check.
@@ -69,28 +69,25 @@ class PhpcrBlockLoader implements BlockLoaderInterface
 
     /**
      * @param ManagerRegistry          $managerRegistry
-     * @param SecurityContextInterface $securityContext The publish workflow checker to determine
-     *                                                  whether the menu item is published.
+     * @param SecurityContextInterface $publishWorkflowChecker The publish workflow checker to determine
+     *                                                         whether the menu item is published.
      * @param LoggerInterface          $logger
-     * @param null                     $emptyBlockType  Set this to a block type name if you want
-     *                                                  the loader to return empty blocks when no
-     *                                                  block is found.
+     * @param null                     $emptyBlockType         Set this to a block type name if you want
+     *                                                         the loader to return empty blocks when no
+     *                                                         block is found.
      */
     public function __construct(
         ManagerRegistry $managerRegistry,
-        SecurityContextInterface $securityContext,
+        AuthorizationCheckerInterface $publishWorkflowChecker,
+        RequestStack $requestStack,
         LoggerInterface $logger = null,
         $emptyBlockType = null
     ) {
         $this->managerRegistry = $managerRegistry;
-        $this->securityContext = $securityContext;
+        $this->publishWorkflowChecker = $publishWorkflowChecker;
+        $this->requestStack = $requestStack;
         $this->logger = $logger;
         $this->emptyBlockType = $emptyBlockType;
-    }
-
-    public function setRequest(Request $request = null)
-    {
-        $this->request = $request;
     }
 
     /**
@@ -180,7 +177,7 @@ class PhpcrBlockLoader implements BlockLoaderInterface
             $this->logger->debug("Block '$name' at path '$path' could not be found.");
         }
 
-        if (!$this->securityContext->isGranted($this->publishWorkflowPermission, $block)) {
+        if (!$this->publishWorkflowChecker->isGranted($this->publishWorkflowPermission, $block)) {
             if ($this->logger) {
                 $this->logger->debug("Block '$name' at path '$path' is not published");
             }
@@ -220,10 +217,8 @@ class PhpcrBlockLoader implements BlockLoaderInterface
             return $name;
         }
 
-        if ($this->request
-            && $this->request->attributes->has('contentDocument')
-        ) {
-            $currentPage = $this->request->attributes->get('contentDocument');
+        if ($this->requestStack->getCurrentRequest()->attributes->has('contentDocument')) {
+            $currentPage = $this->requestStack->getCurrentRequest()->attributes->get('contentDocument');
 
             return $this->getObjectManager()
                 ->getUnitOfWork()
