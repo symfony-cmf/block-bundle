@@ -12,7 +12,7 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Templating\Helper;
 
 use Symfony\Component\Templating\Helper\Helper;
-use Symfony\Component\HttpKernel\Log\LoggerInterface;
+use Psr\Log\LoggerInterface;
 use Sonata\BlockBundle\Templating\Helper\BlockHelper as SonataBlockHelper;
 
 /**
@@ -102,7 +102,7 @@ class CmfBlockHelper extends Helper
             return $this->sonataBlock->render(array('name' => trim($block[1])));
         } catch (\Exception $e) {
             if ($this->logger) {
-                $this->logger->warn('Failed to render block "'.$block[1].'" embedded in content: '.$e->getTraceAsString());
+                $this->logger->warning('Failed to render block "'.$block[1].'" embedded in content: '.$e->getTraceAsString());
             }
         }
 

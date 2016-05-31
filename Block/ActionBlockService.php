@@ -15,7 +15,7 @@ use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
 use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
@@ -23,9 +23,9 @@ use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
 class ActionBlockService extends BaseBlockService
 {
     /**
-     * @var Request
+     * @var RequestStack
      */
-    private $request;
+    private $requestStack;
 
     /**
      * @var FragmentHandler
@@ -37,20 +37,11 @@ class ActionBlockService extends BaseBlockService
      * @param EngineInterface $templating
      * @param FragmentHandler $renderer
      */
-    public function __construct($name, EngineInterface $templating, FragmentHandler $renderer)
+    public function __construct(RequestStack $requestStack, $name, EngineInterface $templating, FragmentHandler $renderer)
     {
         parent::__construct($name, $templating);
         $this->renderer = $renderer;
-    }
-
-    /**
-     * Set the request.
-     *
-     * @param Request $request
-     */
-    public function setRequest(Request $request = null)
-    {
-        $this->request = $request;
+        $this->requestStack = $requestStack;
     }
 
     /**
@@ -72,7 +63,7 @@ class ActionBlockService extends BaseBlockService
             return new Response();
         }
 
-        $requestParams = $block->resolveRequestParams($this->request, $blockContext);
+        $requestParams = $block->resolveRequestParams($this->requestStack->getCurrentRequest(), $blockContext);
 
         return new Response($this->renderer->render(new ControllerReference(
                 $block->getActionName(),

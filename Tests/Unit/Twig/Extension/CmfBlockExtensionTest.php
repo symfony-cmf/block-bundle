@@ -29,14 +29,14 @@ class CmfBlockExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testEmbedFilter($template, $calls = 1)
     {
-        $twig = new \Twig_Environment(new \Twig_Loader_String(), array('debug' => true, 'cache' => false, 'autoescape' => 'html', 'optimizations' => 0));
+        $twig = new \Twig_Environment(new \Twig_Loader_Array(array()), array('debug' => true, 'cache' => false, 'autoescape' => 'html', 'optimizations' => 0));
         $twig->addExtension(new CmfBlockExtension($this->getBlockHelper()));
 
         $this->getBlockHelper()->expects($this->exactly($calls))
             ->method('embedBlocks');
 
         try {
-            $twig->render($template);
+            $twig->createTemplate($template)->render(array());
         } catch (\Twig_Error_Runtime $e) {
             throw $e->getPrevious();
         }

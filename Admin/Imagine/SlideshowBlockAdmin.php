@@ -15,6 +15,9 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Symfony\Cmf\Bundle\BlockBundle\Admin\AbstractBlockAdmin;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Sonata\CoreBundle\Form\Type\CollectionType;
+use Sonata\DoctrinePHPCRAdminBundle\Form\Type\TreeModelType;
 
 /**
  * @author Horner
@@ -56,12 +59,13 @@ class SlideshowBlockAdmin extends AbstractBlockAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         parent::configureFormFields($formMapper);
+
         $formMapper
             ->with('form.group_general')
-                ->add('title', 'text', array('required' => false))
+                ->add('title', TextType::class, array('required' => false))
             ->end()
             ->with('Items')
-                ->add('children', 'sonata_type_collection',
+                ->add('children', CollectionType::class,
                     array(),
                     array(
                         'edit' => 'inline',
@@ -75,8 +79,8 @@ class SlideshowBlockAdmin extends AbstractBlockAdmin
         if (null === $this->getParentFieldDescription()) {
             $formMapper
                 ->with('form.group_general')
-                    ->add('parentDocument', 'doctrine_phpcr_odm_tree', array('root_node' => $this->getRootPath(), 'choice_list' => array(), 'select_root_node' => true))
-                    ->add('name', 'text')
+                    ->add('parentDocument', TreeModelType::class, array('root_node' => $this->getRootPath(), 'choice_list' => array(), 'select_root_node' => true))
+                    ->add('name', TextType::class)
                 ->end()
             ;
         }

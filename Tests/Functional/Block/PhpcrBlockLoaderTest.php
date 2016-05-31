@@ -15,7 +15,7 @@ use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Cmf\Bundle\BlockBundle\Block\PhpcrBlockLoader;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
 {
@@ -29,9 +29,11 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
     private $dmMock;
 
     /**
-     * @var SecurityContextInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var AuthorizationCheckerInterface|\PHPUnit_Framework_MockObject_MockObject
      */
-    private $securityMock;
+    private $pwcMock;
+    private $requestStackMock;
+    private $request;
 
     public function setUp()
     {
@@ -43,17 +45,25 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock()
         ;
-        $this->securityMock = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
+        $this->pwcMock = $this->getMock(AuthorizationCheckerInterface::class);
         $this->registryMock->expects($this->any())
             ->method('getManager')
             ->with($this->equalTo('themanager'))
             ->will($this->returnValue($this->dmMock))
         ;
+
+        $this->request = Request::create('/');
+        $this->requestStackMock = $this->getMock('Symfony\Component\HttpFoundation\RequestStack');
+        $this->requestStackMock
+            ->expects($this->any())
+            ->method('getCurrentRequest')
+            ->will($this->returnValue($this->request))
+        ;
     }
 
     private function getSimpleBlockLoaderInstance()
     {
-        $blockLoader = new PhpcrBlockLoader($this->registryMock, $this->securityMock, null, 'emptyblocktype');
+        $blockLoader = new PhpcrBlockLoader($this->registryMock, $this->pwcMock, $this->requestStackMock, null, 'emptyblocktype');
         $blockLoader->setManagerName('themanager');
 
         return $blockLoader;
@@ -84,7 +94,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
             )
             ->will($this->returnValue($block))
         ;
-        $this->securityMock->expects($this->once())
+        $this->pwcMock->expects($this->once())
             ->method('isGranted')
             ->with(PublishWorkflowChecker::VIEW_ATTRIBUTE, $this->equalTo($block))
             ->will($this->returnValue(true))
@@ -116,8 +126,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(true))
         ;
 
-        $request = new Request();
-        $request->attributes = $parameterBagMock;
+        $this->request->attributes = $parameterBagMock;
 
         $unitOfWorkMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\UnitOfWork')
             ->disableOriginalConstructor()
@@ -140,14 +149,13 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
             )
             ->will($this->returnValue($block))
         ;
-        $this->securityMock->expects($this->once())
+        $this->pwcMock->expects($this->once())
             ->method('isGranted')
             ->with(PublishWorkflowChecker::VIEW_ATTRIBUTE, $this->equalTo($block))
             ->will($this->returnValue(true))
         ;
 
         $blockLoader = $this->getSimpleBlockLoaderInstance();
-        $blockLoader->setRequest($request);
 
         $found = $blockLoader->load(array('name' => $relativeBlockPath));
         $this->assertEquals($block, $found);
@@ -167,7 +175,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
             )
             ->will($this->returnValue($simpleBlock))
         ;
-        $this->securityMock->expects($this->once())
+        $this->pwcMock->expects($this->once())
             ->method('isGranted')
             ->with(PublishWorkflowChecker::VIEW_ATTRIBUTE, $this->equalTo($simpleBlock))
             ->will($this->returnValue(true))
@@ -182,7 +190,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
 
     public function testLoadInvalidBlock()
     {
-        $this->securityMock->expects($this->never())
+        $this->pwcMock->expects($this->never())
             ->method('isGranted')
         ;
 
@@ -230,12 +238,12 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
             )
             ->will($this->returnValue($altBlock))
         ;
-        $this->securityMock->expects($this->at(0))
+        $this->pwcMock->expects($this->at(0))
             ->method('isGranted')
             ->with(PublishWorkflowChecker::VIEW_ATTRIBUTE, $this->equalTo($block))
             ->will($this->returnValue(true))
         ;
-        $this->securityMock->expects($this->at(1))
+        $this->pwcMock->expects($this->at(1))
         ->method('isGranted')
         ->with(PublishWorkflowChecker::VIEW_ATTRIBUTE, $this->equalTo($altBlock))
         ->will($this->returnValue(true))
@@ -256,7 +264,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($altDmMock))
         ;
 
-        $blockLoader = new PhpcrBlockLoader($registryMock, $this->securityMock, null, 'emptyblocktype');
+        $blockLoader = new PhpcrBlockLoader($registryMock, $this->pwcMock, $this->requestStackMock, null, 'emptyblocktype');
 
         $blockLoader->setManagerName('themanager');
         $foundBlock = $blockLoader->load(array('name' => $absoluteBlockPath));

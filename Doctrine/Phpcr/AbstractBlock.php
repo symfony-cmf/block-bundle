@@ -12,7 +12,7 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr;
 
 use Symfony\Cmf\Bundle\BlockBundle\Model\AbstractBlock as AbstractBlockModel;
-use Symfony\Component\Validator\ExecutionContextInterface;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Base for the PHPCR-ODM blocks provided by this bundle.
