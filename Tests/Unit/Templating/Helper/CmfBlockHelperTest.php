@@ -12,6 +12,7 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Templating\Helper;
 
 use Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\CmfBlockHelper;
+use Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\EmbedBlocksParser;
 
 class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
 {
@@ -29,7 +30,8 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
             ->method('render')
             ->with($this->equalTo(array('name' => $blockname)));
 
-        $helper = new CmfBlockHelper($this->getSonataBlock(), '%embed-block:"', '"%');
+        $parser = new EmbedBlocksParser('%embed-block:"', '"%');
+        $helper = new CmfBlockHelper($this->getSonataBlock(), $parser);
 
         $helper->embedBlocks($input);
     }
@@ -57,11 +59,18 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
             ->method('render')
             ->will($this->throwException($exception));
 
-        $helper = new CmfBlockHelper($this->getSonataBlock(), '%embed-block:"', '"%', $logger);
+        $parser = new EmbedBlocksParser('%embed-block:"', '"%');
+        $helper = new CmfBlockHelper($this->getSonataBlock(), $parser, $logger);
         $helper->embedBlocks('%embed-block:"foo"%');
     }
 
-    public function testMultipleEmbedBlocks()
+    /**
+     * @dataProvider blockDelimitersData
+     *
+     * @param $prefix
+     * @param $postfix
+     */
+    public function testMultipleEmbedBlocks($prefix, $postfix)
     {
         $this->getSonataBlock()->expects($this->at(0))
             ->method('render')
@@ -71,8 +80,20 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
             ->method('render')
             ->with($this->equalTo(array('name' => 'cat')));
 
-        $helper = new CmfBlockHelper($this->getSonataBlock(), '%embed-block:"', '"%');
-        $helper->embedBlocks('%embed-block:"foo"% bar %embed-block:"cat"%');
+        $parser = new EmbedBlocksParser($prefix, $postfix);
+        $helper = new CmfBlockHelper($this->getSonataBlock(), $parser);
+        $helper->embedBlocks("{$prefix}foo{$postfix} bar {$prefix}cat{$postfix}");
+    }
+
+    /**
+     * @return array
+     */
+    public function blockDelimitersData()
+    {
+        return [
+            ['%embed-block:"', '"%"'],
+            ['%embed-block|', '|end%'],
+        ];
     }
 
     protected function getSonataBlock()
