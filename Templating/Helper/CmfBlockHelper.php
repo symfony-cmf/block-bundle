@@ -27,37 +27,35 @@ class CmfBlockHelper extends Helper
      */
     private $sonataBlock;
 
-    private $prefix;
-
-    private $postfix;
+    private $parser;
 
     /**
      * @var LoggerInterface
      */
     private $logger;
 
-    public function __construct(SonataBlockHelper $sonataBlock, $prefix, $postfix, LoggerInterface $logger = null)
+    public function __construct(SonataBlockHelper $sonataBlock, EmbedBlocksParser $parser, LoggerInterface $logger = null)
     {
         $this->sonataBlock = $sonataBlock;
-        $this->prefix = preg_quote($prefix, '#');
-        $this->postfix = preg_quote($postfix, '#');
+        $this->parser = $parser;
         $this->logger = $logger;
     }
 
     /**
      * Looks for special markers that identify blocks and replaces
      * them with the result of rendering the specified identifier.
-     *
      * @param string $text
      *
-     * @return mixed
+     * @return string
      */
     public function embedBlocks($text)
     {
-        // with the default prefix and postfix, this will do %embed-block|block-identifier|end%
-        $endDelimiter = preg_quote($this->postfix[0], '#');
-
-        return preg_replace_callback('#'.$this->prefix.'([^'.$endDelimiter.']+)'.$this->postfix.'#', array($this, 'embeddedRender'), $text);
+        return $this->parser->parse(
+            $text,
+            function ($id) {
+                return $this->embeddedRender($id);
+            }
+        );
     }
 
     /**
@@ -92,17 +90,20 @@ class CmfBlockHelper extends Helper
     /**
      * Executes the block as specified in the content.
      *
-     * @param array $block An array including the block name
+     * @param $name
      *
-     * @return string the rendered block
+     * @return null|string|\Symfony\Component\HttpFoundation\Response
      */
-    protected function embeddedRender($block)
+    protected function embeddedRender($name)
     {
+        $name = trim($name);
         try {
-            return $this->sonataBlock->render(array('name' => trim($block[1])));
+            return $this->sonataBlock->render(array('name' => $name));
         } catch (\Exception $e) {
             if ($this->logger) {
-                $this->logger->warning('Failed to render block "'.$block[1].'" embedded in content: '.$e->getTraceAsString());
+                $this->logger->warning(
+                    sprintf('Failed to render block "%s" embedded in content: %s', $name, $e->getTraceAsString())
+                );
             }
         }
 
