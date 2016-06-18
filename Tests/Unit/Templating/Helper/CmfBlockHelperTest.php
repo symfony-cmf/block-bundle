@@ -61,18 +61,140 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
         $helper->embedBlocks('%embed-block:"foo"%');
     }
 
-    public function testMultipleEmbedBlocks()
+    /**
+     * @dataProvider blockDelimitersData
+     *
+     * @param $prefix
+     * @param $postfix
+     */
+    public function testMultipleEmbedBlocks($prefix, $postfix)
     {
-        $this->getSonataBlock()->expects($this->at(0))
+        $this->getSonataBlock()
             ->method('render')
             ->with($this->equalTo(array('name' => 'foo')));
 
-        $this->getSonataBlock()->expects($this->at(1))
+        $this->getSonataBlock()
             ->method('render')
             ->with($this->equalTo(array('name' => 'cat')));
 
-        $helper = new CmfBlockHelper($this->getSonataBlock(), '%embed-block:"', '"%');
+        $helper = new CmfBlockHelper($this->getSonataBlock(), $prefix, $postfix);
         $helper->embedBlocks('%embed-block:"foo"% bar %embed-block:"cat"%');
+    }
+
+    /**
+     * @dataProvider segmentizeProvider
+     *
+     * @param $text
+     * @param $expected
+     */
+    public function testSegmentize($text, $expected)
+    {
+        $helper = new CmfBlockHelper($this->getSonataBlock(), '%embed-block|', '|end%');
+        $actual = $this->callMethod($helper, 'segmentize', array($text));
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * @dataProvider parseProvider
+     *
+     * @param $text
+     * @param $expected
+     */
+    public function testParse($text, $expected)
+    {
+        $helper = $this->getMockBuilder('Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\CmfBlockHelper')
+            ->setConstructorArgs(array($this->getSonataBlock(), '%embed-block|', '|end%'))
+            ->setMethods(array('render'))
+            ->getMock();
+
+        $helper->method('render')
+            ->willReturn('this_is_block_content');
+
+        $actual = $this->callMethod($helper, 'parse', array($text));
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * @return array
+     */
+    public function parseProvider()
+    {
+        return array(
+            array(
+                '%embed-block|/cms/blocks/test|end%',
+                'this_is_block_content',
+            ),
+            array(
+                '<div>%embed-block|/cms/blocks/test|end%<div>%embed-block|/cms/blocks/test|end%</div>',
+                '<div>this_is_block_content<div>this_is_block_content</div>',
+            ),
+            array(
+                '/cms/blocks/test|end%<div>/cms/blocks/test|end%</div>',
+                '/cms/blocks/test|end%<div>/cms/blocks/test|end%</div>',
+            ),
+            array(
+                "%embed-block|/cms/blocks/test\n\n   |end%<div>/cms/blocks/test|end%</div>",
+                'this_is_block_content<div>/cms/blocks/test</div>',
+            ),
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function segmentizeProvider()
+    {
+        return array(
+            array(
+                '%embed-block|/cms/blocks/test|end%',
+                array('', array('/cms/blocks/test')),
+            ),
+            array(
+                '<div>%embed-block|/cms/blocks/test|end%</div>',
+                array('<div>', array('/cms/blocks/test', '</div>')),
+            ),
+            array(
+                '<div>%embed-block|/cms/blocks/test|end%<div>/cms/blocks/test|end%</div>',
+                array('<div>', array('/cms/blocks/test', '<div>/cms/blocks/test', '</div>')),
+            ),
+            array(
+                '/cms/blocks/test|end%<div>/cms/blocks/test|end%</div>',
+                array('/cms/blocks/test|end%<div>/cms/blocks/test|end%</div>'),
+            ),
+            array(
+                "%embed-block|/cms/blocks/test\n\n   |end%<div>/cms/blocks/test|end%</div>",
+                array('', array('/cms/blocks/test', '<div>/cms/blocks/test', '</div>')),
+            ),
+            array(
+                '<div>%embed-block|/cms/blocks/test1|end%</div><div>%embed-block|/cms/blocks/test2|end%</div><div>%embed-block|/cms/blocks/test3|end%</div>',
+                array(
+                    '<div>',
+                    array('/cms/blocks/test1', '</div><div>'),
+                    array('/cms/blocks/test2', '</div><div>'),
+                    array('/cms/blocks/test3', '</div>'),
+                ),
+            ),
+            array(
+                '<div>%embed-block|/cms/blocks/test1|end%</div><div>/cms/blocks/test2|end%</div><div>%embed-block|/cms/blocks/test3|end%</div>',
+                array(
+                    '<div>',
+                    array('/cms/blocks/test1', '</div><div>/cms/blocks/test2', '</div><div>'),
+                    array('/cms/blocks/test3', '</div>'),
+                ),
+            ),
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function blockDelimitersData()
+    {
+        return array(
+            array('%embed-block:"', '"%"'),
+            array('%embed-block|', '|end%'),
+        );
     }
 
     protected function getSonataBlock()
@@ -89,5 +211,20 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
         $this->sonataBlock = $this->getMockBuilder('Sonata\BlockBundle\Templating\Helper\BlockHelper')
             ->disableOriginalConstructor()
             ->getMock();
+    }
+
+    /**
+     * @param $object
+     * @param string $method
+     * @param array  $params
+     *
+     * @return mixed
+     */
+    private function callMethod($object, $method, array $params)
+    {
+        $method = new \ReflectionMethod(get_class($object), $method);
+        $method->setAccessible(true);
+
+        return $method->invokeArgs($object, $params);
     }
 }
