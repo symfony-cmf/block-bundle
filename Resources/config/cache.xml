@@ -29,7 +29,7 @@
             <argument type="service" id="sonata.block.context_manager" />
         </service>
 
-        <service id="cmf.block.cache.js_sync" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache" >
+        <service id="cmf.block.cache.js_sync" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache">
             <tag name="sonata.cache" />
 
             <argument type="service" id="router" />
@@ -39,7 +39,7 @@
             <argument>true</argument>
         </service>
 
-        <service id="cmf.block.cache.js_async" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache" >
+        <service id="cmf.block.cache.js_async" class="Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache">
             <tag name="sonata.cache" />
 
             <argument type="service" id="router" />

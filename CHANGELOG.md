@@ -1,6 +1,8 @@
 Changelog
 =========
 
+* **2016-06-21**: [BC BREAK] Removed all `*.class` parameters.
+
 1.3.0
 -----
 
