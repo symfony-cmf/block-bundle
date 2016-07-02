@@ -15,7 +15,7 @@
         "php": "^5.5.9|^7.0",
         "symfony/framework-bundle": "^2.8|^3.0",
         "doctrine/phpcr-bundle" :"^1.0",
-        "doctrine/phpcr-odm": "^1.0",
+        "doctrine/phpcr-odm": "^1.0|^2.0",
         "sonata-project/block-bundle": "^2.2.12|^3.0",
         "symfony-cmf/core-bundle": "^2.0@dev"
     },
