@@ -27,20 +27,17 @@ class CmfBlockHelper extends Helper
      */
     private $sonataBlock;
 
-    private $prefix;
-
-    private $postfix;
+    private $parser;
 
     /**
      * @var LoggerInterface
      */
     private $logger;
 
-    public function __construct(SonataBlockHelper $sonataBlock, $prefix, $postfix, LoggerInterface $logger = null)
+    public function __construct(SonataBlockHelper $sonataBlock, EmbedBlocksParser $parser, LoggerInterface $logger = null)
     {
         $this->sonataBlock = $sonataBlock;
-        $this->prefix = $prefix;
-        $this->postfix = $postfix;
+        $this->parser = $parser;
         $this->logger = $logger;
     }
 
@@ -54,13 +51,18 @@ class CmfBlockHelper extends Helper
      */
     public function embedBlocks($text)
     {
-        return $this->parse($text);
+        return $this->parser->parse(
+            $text,
+            function ($id) {
+                return $this->embeddedRender($id);
+            }
+        );
     }
 
     /**
      * @see SonataBlockHelper::render
      */
-    public function render($block, array $options = array())
+    public function render($block, array $options = [])
     {
         return $this->sonataBlock->render($block, $options);
     }
@@ -95,56 +97,17 @@ class CmfBlockHelper extends Helper
      */
     protected function embeddedRender($name)
     {
+        $name = trim($name);
         try {
-            return $this->render(array('name' => $name));
+            return $this->sonataBlock->render(['name' => $name]);
         } catch (\Exception $e) {
             if ($this->logger) {
-                $this->logger->warning('Failed to render block "'.$name.'" embedded in content: '.$e->getTraceAsString());
+                $this->logger->warning(
+                    sprintf('Failed to render block "%s" embedded in content: %s', $name, $e->getTraceAsString())
+                );
             }
         }
 
         return '';
-    }
-
-    /**
-     * @param $text
-     *
-     * @return string
-     */
-    protected function parse($text)
-    {
-        $segments = $this->segmentize($text);
-        foreach ($segments as &$segment) {
-            if (!is_array($segment)) {
-                continue;
-            }
-
-            $segment[0] = $this->embeddedRender($segment[0]);
-            $segment = implode('', $segment);
-        }
-
-        return implode('', $segments);
-    }
-
-    /**
-     * @param string $text
-     *
-     * @return array
-     */
-    protected function segmentize($text)
-    {
-        $segments = explode($this->prefix, $text);
-        foreach ($segments as $index => &$segment) {
-            if ($index == 0) {
-                continue;
-            }
-
-            if (strpos($segment, $this->postfix) !== false) {
-                $segment = array_filter(explode($this->postfix, $segment));
-                $segment[0] = trim($segment[0]);
-            }
-        }
-
-        return $segments;
     }
 }
