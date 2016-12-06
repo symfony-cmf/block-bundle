@@ -18,14 +18,14 @@ class AppKernel extends TestKernel
     {
         $this->requireBundleSets(array(
             'default',
-            'phpcr_odm',
-            'sonata_admin_phpcr',
+            'phpcr_odm'
         ));
 
         $this->addBundles(array(
             new \Symfony\Cmf\Bundle\CoreBundle\CmfCoreBundle(),
             new \Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
             new \Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
+            new \Sonata\BlockBundle\SonataBlockBundle(),
         ));
 
         if (class_exists('Symfony\Cmf\Bundle\ResourceRestBundle\CmfResourceRestBundle')) {

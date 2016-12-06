@@ -86,6 +86,20 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
     {
         $container->setParameter($this->getAlias().'.backend_type_phpcr', true);
 
+        $keys = array(
+            'block_basepath' => 'block_basepath',
+            'manager_name' => 'manager_name',
+        );
+
+        foreach ($keys as $sourceKey => $targetKey) {
+            if (isset($config[$sourceKey])) {
+                $container->setParameter(
+                    $this->getAlias().'.persistence.phpcr.'.$targetKey,
+                    $config[$sourceKey]
+                );
+            }
+        }
+
         $loader->load('persistence-phpcr.xml');
 
         $blockLoader = $container->getDefinition('cmf.block.service');
