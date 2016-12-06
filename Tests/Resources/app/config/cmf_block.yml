@@ -3,3 +3,7 @@ cmf_block:
         phpcr:
             enabled: true
             block_basepath: /test
+
+sonata_block:
+    default_contexts:
+        - CMS
