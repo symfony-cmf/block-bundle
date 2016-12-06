@@ -3,7 +3,6 @@ cmf_menu:
     persistence:
         phpcr:
             enabled: true
-            use_sonata_admin: true
             menu_basepath: /test/menus
     voters:
         content_identity:

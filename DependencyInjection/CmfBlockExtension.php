@@ -86,41 +86,7 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
     {
         $container->setParameter($this->getAlias().'.backend_type_phpcr', true);
 
-        $keys = array(
-            'string_document_class' => 'string_document.class',
-            'simple_document_class' => 'simple_document.class',
-            'container_document_class' => 'container_document.class',
-            'reference_document_class' => 'reference_document.class',
-            'menu_document_class' => 'menu_document.class',
-            'action_document_class' => 'action_document.class',
-            'imagine_document_class' => 'imagine_document.class',
-            'slideshow_document_class' => 'slideshow_document.class',
-            'string_admin_class' => 'string_admin.class',
-            'simple_admin_class' => 'simple_admin.class',
-            'container_admin_class' => 'container_admin.class',
-            'reference_admin_class' => 'reference_admin.class',
-            'menu_admin_class' => 'menu_admin.class',
-            'action_admin_class' => 'action_admin.class',
-            'imagine_admin_class' => 'imagine_admin.class',
-            'slideshow_admin_class' => 'slideshow_admin.class',
-            'block_basepath' => 'block_basepath',
-            'manager_name' => 'manager_name',
-        );
-
-        foreach ($keys as $sourceKey => $targetKey) {
-            if (isset($config[$sourceKey])) {
-                $container->setParameter(
-                    $this->getAlias().'.persistence.phpcr.'.$targetKey,
-                    $config[$sourceKey]
-                );
-            }
-        }
-
         $loader->load('persistence-phpcr.xml');
-
-        if ($config['use_sonata_admin']) {
-            $this->loadSonataPhpcrAdmin($config, $loader, $container, $useImagine);
-        }
 
         $blockLoader = $container->getDefinition('cmf.block.service');
         $blockLoader->replaceArgument(0, new Reference('doctrine_phpcr'));
@@ -136,24 +102,6 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
 
         if (isset($bundles['CmfMenuBundle'])) {
             $loader->load('menu.xml');
-        }
-    }
-
-    public function loadSonataPhpcrAdmin($config, XmlFileLoader $loader, ContainerBuilder $container, $useImagine = false, $prefix = '')
-    {
-        $bundles = $container->getParameter('kernel.bundles');
-        if ('auto' === $config['use_sonata_admin'] && !isset($bundles['SonataDoctrinePHPCRAdminBundle'])) {
-            return;
-        }
-
-        $loader->load('admin.xml');
-
-        if ($useImagine) {
-            $loader->load('admin-imagine.xml');
-        }
-
-        if (isset($bundles['CmfMenuBundle'])) {
-            $loader->load('admin-menu.xml');
         }
     }
 

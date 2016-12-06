@@ -2,26 +2,7 @@
     use-imagine="auto"
 >
     <persistence>
-        <phpcr block-basepath="/cms/block"
-               manager-name="default"
-               string-document-class="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\StringBlock"
-               simple-document-class="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock"
-               container-document-class="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock"
-               reference-document-class="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock"
-               menu-document-class="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MenuBlock"
-               action-document-class="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock"
-               slideshow-document-class="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock"
-               imagine-document-class="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock"
-               use-sonata-admin="auto"
-               string-admin-class="Symfony\Cmf\Bundle\BlockBundle\Admin\StringBlockAdmin"
-               simple-admin-class="Symfony\Cmf\Bundle\BlockBundle\Admin\SimpleBlockAdmin"
-               container-admin-class="Symfony\Cmf\Bundle\BlockBundle\Admin\ContainerBlockAdmin"
-               reference-admin-class="Symfony\Cmf\Bundle\BlockBundle\Admin\ReferenceBlockAdmin"
-               menu-admin-class="Symfony\Cmf\Bundle\BlockBundle\Admin\MenuBlockAdmin"
-               action-admin-class="Symfony\Cmf\Bundle\BlockBundle\Admin\ActionBlockAdmin"
-               slideshow-admin-class="Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine\SlideshowBlockAdmin"
-               imagine-admin-class="Symfony\Cmf\Bundle\BlockBundle\Admin\Imagine\ImagineBlockAdmin"
-        />
+        <phpcr block-basepath="/cms/block" manager-name="default" />
     </persistence>
 
     <twig>
