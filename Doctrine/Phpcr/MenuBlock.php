@@ -49,7 +49,7 @@ class MenuBlock extends AbstractBlock
      *
      * Set to null to remove the reference.
      *
-     * @param NodeInterface|null $menuNode A mapped menu node.
+     * @param NodeInterface|null $menuNode a mapped menu node
      *
      * @return MenuBlock $this
      */

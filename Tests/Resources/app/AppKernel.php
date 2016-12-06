@@ -18,7 +18,7 @@ class AppKernel extends TestKernel
     {
         $this->requireBundleSets(array(
             'default',
-            'phpcr_odm'
+            'phpcr_odm',
         ));
 
         $this->addBundles(array(

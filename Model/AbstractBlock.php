@@ -25,11 +25,7 @@ use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface;
  * objects, while getParentObject may return any "parent" even if its not
  * in a block hierarchy.
  */
-abstract class AbstractBlock implements
-    BlockInterface,
-    PublishableInterface,
-    PublishTimePeriodInterface,
-    ChildInterface
+abstract class AbstractBlock implements BlockInterface, PublishableInterface, PublishTimePeriodInterface, ChildInterface
 {
     /**
      * @var string
