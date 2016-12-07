@@ -19,21 +19,15 @@ class AppKernel extends TestKernel
         $this->requireBundleSets(array(
             'default',
             'phpcr_odm',
-            'sonata_admin_phpcr',
         ));
 
         $this->addBundles(array(
             new \Symfony\Cmf\Bundle\CoreBundle\CmfCoreBundle(),
             new \Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
             new \Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
+            new \Sonata\BlockBundle\SonataBlockBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
         ));
-
-        if (class_exists('Symfony\Cmf\Bundle\ResourceRestBundle\CmfResourceRestBundle')) {
-            $this->addBundles(array(
-                new \Symfony\Cmf\Bundle\ResourceBundle\CmfResourceBundle(),
-                new \Symfony\Cmf\Bundle\ResourceRestBundle\CmfResourceRestBundle(),
-            ));
-        }
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

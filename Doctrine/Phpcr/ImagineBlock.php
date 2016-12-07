@@ -143,7 +143,7 @@ class ImagineBlock extends AbstractBlock implements TranslatableInterface
      *
      * @return $this
      *
-     * @throws \InvalidArgumentException If the $image parameter can not be handled.
+     * @throws \InvalidArgumentException if the $image parameter can not be handled
      */
     public function setImage($image = null)
     {

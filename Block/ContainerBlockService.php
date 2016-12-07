@@ -36,7 +36,7 @@ class ContainerBlockService extends BaseBlockService implements BlockServiceInte
      * @param string                 $name
      * @param EngineInterface        $templating
      * @param BlockRendererInterface $blockRenderer
-     * @param string|null            $template      To overwrite the default template.
+     * @param string|null            $template      to overwrite the default template
      */
     public function __construct($name, EngineInterface $templating, BlockRendererInterface $blockRenderer, $template = null)
     {

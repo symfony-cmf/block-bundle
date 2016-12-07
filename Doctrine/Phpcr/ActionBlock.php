@@ -119,9 +119,9 @@ class ActionBlock extends AbstractBlock
      * @param BlockContextInterface $blockContext passed in case an extending
      *                                            block needs the context to
      *                                            determine values to pass to
-     *                                            the subrequest.
+     *                                            the subrequest
      *
-     * @return array List of arguments to pass to the subrequest.
+     * @return array list of arguments to pass to the subrequest
      */
     public function resolveRequestParams(Request $request, BlockContextInterface $blockContext)
     {

@@ -69,12 +69,12 @@ class PhpcrBlockLoader implements BlockLoaderInterface
 
     /**
      * @param ManagerRegistry          $managerRegistry
-     * @param SecurityContextInterface $publishWorkflowChecker The publish workflow checker to determine
-     *                                                         whether the menu item is published.
+     * @param SecurityContextInterface $publishWorkflowChecker the publish workflow checker to determine
+     *                                                         whether the menu item is published
      * @param LoggerInterface          $logger
-     * @param null                     $emptyBlockType         Set this to a block type name if you want
+     * @param null                     $emptyBlockType         set this to a block type name if you want
      *                                                         the loader to return empty blocks when no
-     *                                                         block is found.
+     *                                                         block is found
      */
     public function __construct(
         ManagerRegistry $managerRegistry,
@@ -154,10 +154,10 @@ class PhpcrBlockLoader implements BlockLoaderInterface
     /**
      * Finds one block by the given name (PHPCR path).
      *
-     * @param string $name A relative or absolute PHPCR path.
+     * @param string $name a relative or absolute PHPCR path
      *
-     * @return BlockInterface|null The block at that location or null if no document or not a
-     *                             BlockInterface at that location, or the block is not published.
+     * @return BlockInterface|null the block at that location or null if no document or not a
+     *                             BlockInterface at that location, or the block is not published
      */
     protected function findByName($name)
     {
@@ -240,7 +240,7 @@ class PhpcrBlockLoader implements BlockLoaderInterface
      *
      * @return EmptyBlock
      *
-     * @throws BlockNotFoundException if there is no type defined for the empty block.
+     * @throws BlockNotFoundException if there is no type defined for the empty block
      */
     private function getNotFoundBlock($name, $message = null)
     {
