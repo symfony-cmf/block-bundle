@@ -28,17 +28,11 @@ class AppKernel extends TestKernel
             new \Sonata\BlockBundle\SonataBlockBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
         ));
-
-        if (class_exists('Symfony\Cmf\Bundle\ResourceRestBundle\CmfResourceRestBundle')) {
-            $this->addBundles(array(
-                new \Symfony\Cmf\Bundle\ResourceBundle\CmfResourceBundle(),
-                new \Symfony\Cmf\Bundle\ResourceRestBundle\CmfResourceRestBundle(),
-            ));
-        }
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(__DIR__.'/config/config.php');
+        $loader->load(__DIR__.'/config/admin-test.xml');
     }
 }
