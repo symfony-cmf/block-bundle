@@ -4,6 +4,8 @@ Changelog
 2.0 (unreleased)
 --------------------
 
+* **2016-07-12**: [BC BREAK] Moved all Sonata related classes into sonata-admin-integration-bundle
+
 * **2016-07-10**: [BC BREAK] `prefix` and `postfix` are not longer injected into CmfBlockHelper. EmbedBlocksParser is injected instead
 
 * **2016-06-21**: [BC BREAK] Removed all `*.class` parameters.
