@@ -37,7 +37,12 @@
     },
     "autoload":{
         "psr-4":{
-            "Symfony\\Cmf\\Bundle\\BlockBundle\\": ""
+            "Symfony\\Cmf\\Bundle\\BlockBundle\\": "src/"
+        }
+    },
+    "autoload-dev":{
+        "psr-4":{
+            "Symfony\\Cmf\\Bundle\\BlockBundle\\Tests\\": "tests/"
         }
     },
     "extra": {
