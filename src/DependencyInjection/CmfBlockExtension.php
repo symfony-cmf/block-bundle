@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-class CmfBlockExtension extends Extension implements PrependExtensionInterface
+final class CmfBlockExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * {@inheritdoc}
@@ -59,45 +59,35 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
 
         // detect bundles
         $bundles = $container->getParameter('kernel.bundles');
-        if (true === $config['use_imagine'] ||
-            ('auto' === $config['use_imagine'] && isset($bundles['LiipImagineBundle']))
-        ) {
-            $useImagine = true;
-        } else {
-            $useImagine = false;
-        }
 
         // load config
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
         if ($config['persistence']['phpcr']['enabled']) {
-            $this->loadPhpcr($config['persistence']['phpcr'], $loader, $container, $useImagine);
+            $this->loadPhpcr($config['persistence']['phpcr'], $loader, $container);
         }
 
-        if ($useImagine) {
+        if (true === $config['use_imagine'] ||
+            ('auto' === $config['use_imagine'] && isset($bundles['LiipImagineBundle']))
+        ) {
             $loader->load('imagine.xml');
         }
 
         $this->loadSonataCache($config, $loader, $container);
     }
 
-    public function loadPhpcr($config, XmlFileLoader $loader, ContainerBuilder $container, $useImagine)
+    private function loadPhpcr(array $config, XmlFileLoader $loader, ContainerBuilder $container)
     {
         $container->setParameter($this->getAlias().'.backend_type_phpcr', true);
 
         $keys = array(
-            'block_basepath' => 'block_basepath',
-            'manager_name' => 'manager_name',
+            'block_basepath',
+            'manager_name',
         );
 
-        foreach ($keys as $sourceKey => $targetKey) {
-            if (isset($config[$sourceKey])) {
-                $container->setParameter(
-                    $this->getAlias().'.persistence.phpcr.'.$targetKey,
-                    $config[$sourceKey]
-                );
-            }
+        foreach ($keys as $key) {
+            $container->setParameter($this->getAlias().'.persistence.phpcr.'.$key, $config[$key]);
         }
 
         $loader->load('persistence-phpcr.xml');
@@ -119,7 +109,7 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         }
     }
 
-    public function loadSonataCache($config, XmlFileLoader $loader, ContainerBuilder $container)
+    private function loadSonataCache(array $config, XmlFileLoader $loader, ContainerBuilder $container)
     {
         $bundles = $container->getParameter('kernel.bundles');
 
