@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-class CmfBlockExtension extends Extension implements PrependExtensionInterface
+final class CmfBlockExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * {@inheritdoc}
@@ -77,7 +77,7 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         $this->loadSonataCache($config, $loader, $container);
     }
 
-    public function loadPhpcr($config, XmlFileLoader $loader, ContainerBuilder $container)
+    private function loadPhpcr(array $config, XmlFileLoader $loader, ContainerBuilder $container)
     {
         $container->setParameter($this->getAlias().'.backend_type_phpcr', true);
 
@@ -109,7 +109,7 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
         }
     }
 
-    public function loadSonataCache($config, XmlFileLoader $loader, ContainerBuilder $container)
+    private function loadSonataCache(array $config, XmlFileLoader $loader, ContainerBuilder $container)
     {
         $bundles = $container->getParameter('kernel.bundles');
 
