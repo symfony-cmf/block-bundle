@@ -59,30 +59,25 @@ class CmfBlockExtension extends Extension implements PrependExtensionInterface
 
         // detect bundles
         $bundles = $container->getParameter('kernel.bundles');
-        if (true === $config['use_imagine'] ||
-            ('auto' === $config['use_imagine'] && isset($bundles['LiipImagineBundle']))
-        ) {
-            $useImagine = true;
-        } else {
-            $useImagine = false;
-        }
 
         // load config
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
         if ($config['persistence']['phpcr']['enabled']) {
-            $this->loadPhpcr($config['persistence']['phpcr'], $loader, $container, $useImagine);
+            $this->loadPhpcr($config['persistence']['phpcr'], $loader, $container);
         }
 
-        if ($useImagine) {
+        if (true === $config['use_imagine'] ||
+            ('auto' === $config['use_imagine'] && isset($bundles['LiipImagineBundle']))
+        ) {
             $loader->load('imagine.xml');
         }
 
         $this->loadSonataCache($config, $loader, $container);
     }
 
-    public function loadPhpcr($config, XmlFileLoader $loader, ContainerBuilder $container, $useImagine)
+    public function loadPhpcr($config, XmlFileLoader $loader, ContainerBuilder $container)
     {
         $container->setParameter($this->getAlias().'.backend_type_phpcr', true);
 
