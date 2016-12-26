@@ -25,10 +25,10 @@
                # ...
    ```
 
- Admin service names also changed. If you are using the admin,
- you need to adjust your configuration, i.e. in the sonata dashboard:
+   Admin service names also changed. If you are using the admin,
+   you need to adjust your configuration, i.e. in the sonata dashboard:
    
-   Before:
+   **Before**:
    
    ```yaml
         # app/config/config.yml
@@ -45,7 +45,7 @@
                            - cmf_block.action_admin
    ```
 
-    After:
+   **After**:
        
    ```yaml
         # app/config/config.yml
