@@ -11,16 +11,16 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
-use Sonata\BlockBundle\Block\BlockServiceInterface;
+use Sonata\BlockBundle\Block\Service\AbstractBlockService;
+use Sonata\BlockBundle\Block\Service\BlockServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContainerBlockService extends BaseBlockService implements BlockServiceInterface
+class ContainerBlockService extends AbstractBlockService implements BlockServiceInterface
 {
     /**
      * @var BlockRendererInterface
