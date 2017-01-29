@@ -11,14 +11,14 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Block\BlockServiceInterface;
+use Sonata\BlockBundle\Block\Service\BlockServiceInterface;
+use Sonata\BlockBundle\Block\Service\AbstractBlockService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class StringBlockService extends BaseBlockService implements BlockServiceInterface
+class StringBlockService extends AbstractBlockService implements BlockServiceInterface
 {
     protected $template = 'CmfBlockBundle:Block:block_string.html.twig';
 

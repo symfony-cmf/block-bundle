@@ -11,8 +11,8 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
+use Sonata\BlockBundle\Block\Service\AbstractBlockService;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
 use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
 
-class ActionBlockService extends BaseBlockService
+class ActionBlockService extends AbstractBlockService
 {
     /**
      * @var RequestStack

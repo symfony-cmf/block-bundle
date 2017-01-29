@@ -48,13 +48,13 @@ abstract class AbstractBlock extends AbstractBlockModel
     /**
      * Validate settings.
      *
-     * @param ExecutionContext $context
+     * @param ExecutionContextInterface $context
      */
     public function isSettingsValid(ExecutionContextInterface $context)
     {
         foreach ($this->getSettings() as $value) {
             if (is_array($value)) {
-                $context->addViolationAt('settings', 'A multidimensional array is not allowed, only use key-value pairs.');
+                $context->addViolation('settings', 'A multidimensional array is not allowed, only use key-value pairs.');
             }
         }
     }

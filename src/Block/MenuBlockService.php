@@ -11,9 +11,9 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Block\BlockServiceInterface;
+use Sonata\BlockBundle\Block\Service\BlockServiceInterface;
+use Sonata\BlockBundle\Block\Service\AbstractBlockService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -23,7 +23,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  *
  * @author Philipp A. Mohrenweiser <phiamo@googlemail.com>
  */
-class MenuBlockService extends BaseBlockService implements BlockServiceInterface
+class MenuBlockService extends AbstractBlockService implements BlockServiceInterface
 {
     protected $template = 'CmfBlockBundle:Block:block_menu.html.twig';
 

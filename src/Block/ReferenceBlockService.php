@@ -11,15 +11,15 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
-use Sonata\BlockBundle\Block\BlockServiceInterface;
+use Sonata\BlockBundle\Block\Service\BlockServiceInterface;
+use Sonata\BlockBundle\Block\Service\AbstractBlockService;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-class ReferenceBlockService extends BaseBlockService implements BlockServiceInterface
+class ReferenceBlockService extends AbstractBlockService implements BlockServiceInterface
 {
     protected $blockRenderer;
     protected $blockContextManager;
