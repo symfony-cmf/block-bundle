@@ -27,7 +27,7 @@
         "sonata-project/core-bundle": "^3.0",
         "twig/twig": "^1.14.2|^2.0"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "RC",
     "prefer-stable": true,
     "suggest": {
         "sonata-project/cache-bundle": "To add caching support for block loading",
