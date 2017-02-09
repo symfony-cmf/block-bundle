@@ -1,6 +1,6 @@
 # Upgrade from 1.x to 2.0
 
-## Sonata Admin
+### Sonata Admin
 
  * The SonataAdminBundle integration has been moved to
    `symfony-cmf/sonata-admin-integration-bundle`. This includes the classes in
@@ -66,3 +66,14 @@
 
  * The `ImagineBlock` was removed from this bundle as the CmfMediaBundle is
    abandoned. Implement the block in your own application if you were using it.
+
+### Doctrine PHPCR ODM
+
+ * It is no longer possible to add a child to the `ActionBlock`,
+   `ImagineBlock`, `MenuBlock`, `ReferenceBlock`, `RssBlock`, `SimpleBlock` and
+   `StringBlock` documents. This behaviour can be changed by overriding the
+   `child-class` setting of the PHPCR ODM mapping.
+
+ * Only instances of sonata's `BlockInterface` are allowed as children of the
+   `ContainerBlock` and `SlideshowBlock` documents. This behaviour can be changed
+   by overriding the `child-class` setting of the PHPCR ODM mapping.

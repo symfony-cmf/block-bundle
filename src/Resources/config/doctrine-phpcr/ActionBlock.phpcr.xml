@@ -8,6 +8,7 @@
     <document
         name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock"
         referenceable="true"
+        is-leaf="true"
         >
 
         <lifecycle-callbacks>

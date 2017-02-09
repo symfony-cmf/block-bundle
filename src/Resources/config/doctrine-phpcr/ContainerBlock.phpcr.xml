@@ -16,6 +16,8 @@
             </cascade>
         </children>
 
+        <child-class name="Sonata\BlockBundle\Model\BlockInterface"/>
+
     </document>
 
 </doctrine-mapping>

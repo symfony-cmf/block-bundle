@@ -9,6 +9,7 @@
         name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MenuBlock"
         referenceable="true"
         property="blockMenu"
+        is-leaf="true"
         >
 
         <reference-one name="menuNode"/>

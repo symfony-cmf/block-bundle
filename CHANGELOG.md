@@ -3,6 +3,8 @@ Changelog
 
  * **2017-02-10**: [BC BREAK] Removed the `ImagineBlock` as the CmfMediaBundle
    is abandoned.
+ * **2017-02-09**: [BC BREAK] Added child restrictions to the block documents.
+   See the UPGRADE guide for detailed information.
 
 2.0.0-RC1
 ---------
