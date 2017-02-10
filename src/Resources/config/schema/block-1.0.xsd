@@ -13,7 +13,6 @@
             <xsd:element name="twig" type="twig" minOccurs="0" />
             <xsd:element name="caches" type="caches" minOccurs="0" />
         </xsd:sequence>
-        <xsd:attribute name="use-imagine" type="enable_auto" />
     </xsd:complexType>
 
     <xsd:complexType name="persistence">

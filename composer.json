@@ -31,8 +31,6 @@
     "prefer-stable": true,
     "suggest": {
         "sonata-project/cache-bundle": "To add caching support for block loading",
-        "liip/imagine-bundle": "When using the ImagineBlock",
-        "symfony-cmf/media-bundle": "When using the ImagineBlock",
         "eko/feedbundle": "When using the RssBlock"
     },
     "autoload":{

@@ -1,6 +1,4 @@
-<config xmlns="http://cmf.symfony.com/schema/dic/block"
-    use-imagine="auto"
->
+<config xmlns="http://cmf.symfony.com/schema/dic/block">
     <persistence>
         <phpcr block-basepath="/cms/block" manager-name="default" />
     </persistence>

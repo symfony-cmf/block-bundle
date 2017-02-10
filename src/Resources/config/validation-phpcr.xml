@@ -41,12 +41,6 @@
         </property>
     </class>
 
-    <class name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock">
-        <property name="locale">
-            <constraint name="Locale"/>
-        </property>
-    </class>
-
     <class name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock">
         <property name="locale">
             <constraint name="Locale"/>
