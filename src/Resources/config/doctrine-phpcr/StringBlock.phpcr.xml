@@ -9,6 +9,7 @@
         name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\StringBlock"
         referenceable="true"
         translator="attribute"
+        is-leaf="true"
         >
 
         <locale name="locale"/>

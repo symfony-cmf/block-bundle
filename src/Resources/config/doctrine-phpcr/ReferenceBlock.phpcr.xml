@@ -8,6 +8,7 @@
     <document
         name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock"
         referenceable="true"
+        is-leaf="true"
         >
 
         <reference-one name="referencedBlock"/>

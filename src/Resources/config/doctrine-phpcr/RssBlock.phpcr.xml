@@ -8,6 +8,7 @@
     <document
         name="Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\RssBlock"
         referenceable="true"
+        is-leaf="true"
         >
     </document>
 
