@@ -61,10 +61,6 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-                ->enumNode('use_imagine')
-                    ->values(array(true, false, 'auto'))
-                    ->defaultValue('auto')
-                ->end()
 
                 ->arrayNode('caches')
                     ->children()

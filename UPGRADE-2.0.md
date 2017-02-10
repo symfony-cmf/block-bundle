@@ -61,3 +61,8 @@
                            - cmf_sonata_admin_integration.block.reference_admin
                            - cmf_sonata_admin_integration.block.action_admin
    ```
+
+### Blocks
+
+ * The `ImagineBlock` was removed from this bundle as the CmfMediaBundle is
+   abandoned. Implement the block in your own application if you were using it.

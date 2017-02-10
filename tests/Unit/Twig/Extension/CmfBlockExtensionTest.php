@@ -11,6 +11,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Twig\Extension;
 
+use Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\CmfBlockHelper;
 use Symfony\Cmf\Bundle\BlockBundle\Twig\Extension\CmfBlockExtension;
 
 class CmfBlockExtensionTest extends \PHPUnit_Framework_TestCase
@@ -53,16 +54,9 @@ class CmfBlockExtensionTest extends \PHPUnit_Framework_TestCase
     protected function getBlockHelper()
     {
         if (null === $this->blockHelper) {
-            $this->setBlockHelper();
+            $this->blockHelper = $this->createMock(CmfBlockHelper::class);
         }
 
         return $this->blockHelper;
-    }
-
-    private function setBlockHelper()
-    {
-        $this->blockHelper = $this->getMockBuilder('Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\CmfBlockHelper')
-            ->disableOriginalConstructor()
-            ->getMock();
     }
 }

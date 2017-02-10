@@ -68,12 +68,6 @@ final class CmfBlockExtension extends Extension implements PrependExtensionInter
             $this->loadPhpcr($config['persistence']['phpcr'], $loader, $container);
         }
 
-        if (true === $config['use_imagine'] ||
-            ('auto' === $config['use_imagine'] && isset($bundles['LiipImagineBundle']))
-        ) {
-            $loader->load('imagine.xml');
-        }
-
         $this->loadSonataCache($config, $loader, $container);
     }
 
