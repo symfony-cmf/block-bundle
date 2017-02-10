@@ -11,9 +11,13 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Cache;
 
+use Sonata\BlockBundle\Block\BlockContextManagerInterface;
+use Sonata\BlockBundle\Block\BlockLoaderInterface;
+use Sonata\BlockBundle\Block\BlockRendererInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockVarnishCache;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
+use Symfony\Component\Routing\RouterInterface;
 
 class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 {
@@ -24,8 +28,7 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->fragmentHandler = $this->getMockBuilder('Symfony\Component\HttpKernel\Fragment\FragmentHandler')
-            ->disableOriginalConstructor()->getMock();
+        $this->fragmentHandler = $this->createMock(FragmentHandler::class);
     }
 
     /**
@@ -34,13 +37,13 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
      */
     public function testExceptions($keys)
     {
-        $router = $this->getMock('Symfony\Component\Routing\RouterInterface');
+        $router = $this->createMock(RouterInterface::class);
 
-        $blockRenderer = $this->getMock('Sonata\BlockBundle\Block\BlockRendererInterface');
+        $blockRenderer = $this->createMock(BlockRendererInterface::class);
 
-        $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
+        $blockLoader = $this->createMock(BlockLoaderInterface::class);
 
-        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+        $blockContextManager = $this->createMock(BlockContextManagerInterface::class);
 
         $cache = new BlockVarnishCache('My Token', $router, $blockRenderer, $blockLoader, $blockContextManager, $this->fragmentHandler, array(), 'ban');
 
@@ -58,14 +61,14 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 
     public function testInitCache()
     {
-        $router = $this->getMock('Symfony\Component\Routing\RouterInterface');
+        $router = $this->createMock(RouterInterface::class);
         $router->expects($this->any())->method('generate')->will($this->returnValue('http://cmf.symfony.com/symfony-cmf/block/cache/varnish/XXX/%2Fcms%2Fcontent%2Fhome%2FadditionalInfoBlock?updated_at=as'));
 
-        $blockRenderer = $this->getMock('Sonata\BlockBundle\Block\BlockRendererInterface');
+        $blockRenderer = $this->createMock(BlockRendererInterface::class);
 
-        $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
+        $blockLoader = $this->createMock(BlockLoaderInterface::class);
 
-        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+        $blockContextManager = $this->createMock(BlockContextManagerInterface::class);
 
         $content = '<esi:include src="http://cmf.symfony.com/symfony-cmf/block/cache/varnish/XXX/%2Fcms%2Fcontent%2Fhome%2FadditionalInfoBlock?updated_at=as';
 
@@ -109,13 +112,13 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
             'updated_at' => 'as',
         );
 
-        $router = $this->getMock('Symfony\Component\Routing\RouterInterface');
+        $router = $this->createMock(RouterInterface::class);
 
-        $blockRenderer = $this->getMock('Sonata\BlockBundle\Block\BlockRendererInterface');
+        $blockRenderer = $this->createMock(BlockRendererInterface::class);
 
-        $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
+        $blockLoader = $this->createMock(BlockLoaderInterface::class);
 
-        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+        $blockContextManager = $this->createMock(BlockContextManagerInterface::class);
 
         $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager, $this->fragmentHandler, array(), 'ban');
 
@@ -135,13 +138,13 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
             'updated_at' => 'as',
         );
 
-        $router = $this->getMock('Symfony\Component\Routing\RouterInterface');
+        $router = $this->createMock(RouterInterface::class);
 
-        $blockRenderer = $this->getMock('Sonata\BlockBundle\Block\BlockRendererInterface');
+        $blockRenderer = $this->createMock(BlockRendererInterface::class);
 
-        $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
+        $blockLoader = $this->createMock(BlockLoaderInterface::class);
 
-        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+        $blockContextManager = $this->createMock(BlockContextManagerInterface::class);
 
         $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager, $this->fragmentHandler, array(), 'ban');
 

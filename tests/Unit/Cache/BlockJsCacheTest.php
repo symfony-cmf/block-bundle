@@ -11,8 +11,14 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Cache;
 
+use Sonata\BlockBundle\Block\BlockContextManagerInterface;
+use Sonata\BlockBundle\Block\BlockLoaderInterface;
+use Sonata\BlockBundle\Block\BlockRendererInterface;
+use Sonata\Cache\CacheElement;
 use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\RouterInterface;
 
 class BlockJsCacheTest extends \PHPUnit_Framework_TestCase
 {
@@ -22,13 +28,13 @@ class BlockJsCacheTest extends \PHPUnit_Framework_TestCase
      */
     public function testExceptions($keys)
     {
-        $router = $this->getMock('Symfony\Component\Routing\RouterInterface');
+        $router = $this->createMock(RouterInterface::class);
 
-        $blockRenderer = $this->getMock('Sonata\BlockBundle\Block\BlockRendererInterface');
+        $blockRenderer = $this->createMock(BlockRendererInterface::class);
 
-        $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
+        $blockLoader = $this->createMock(BlockLoaderInterface::class);
 
-        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+        $blockContextManager = $this->createMock(BlockContextManagerInterface::class);
 
         $cache = new BlockJsCache($router, $blockRenderer, $blockLoader, $blockContextManager, false);
 
@@ -46,14 +52,14 @@ class BlockJsCacheTest extends \PHPUnit_Framework_TestCase
 
     public function testInitCache()
     {
-        $router = $this->getMock('Symfony\Component\Routing\RouterInterface');
+        $router = $this->createMock(RouterInterface::class);
         $router->expects($this->once())->method('generate')->will($this->returnValue('http://cmf.symfony.com/symfony-cmf/block/cache/js-async.js'));
 
-        $blockRenderer = $this->getMock('Sonata\BlockBundle\Block\BlockRendererInterface');
+        $blockRenderer = $this->createMock(BlockRendererInterface::class);
 
-        $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
+        $blockLoader = $this->createMock(BlockLoaderInterface::class);
 
-        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+        $blockContextManager = $this->createMock(BlockContextManagerInterface::class);
 
         $cache = new BlockJsCache($router, $blockRenderer, $blockLoader, $blockContextManager, false);
 
@@ -67,13 +73,13 @@ class BlockJsCacheTest extends \PHPUnit_Framework_TestCase
 
         $cacheElement = $cache->set($keys, 'data');
 
-        $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
+        $this->assertInstanceOf(CacheElement::class, $cacheElement);
 
         $this->assertTrue($cache->has(array('id' => 7)));
 
         $cacheElement = $cache->get($keys);
 
-        $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
+        $this->assertInstanceOf(CacheElement::class, $cacheElement);
 
         $expected = <<<'EXPECTED'
 <div id="block-cms-content-home-additionalInfoBlock" >
@@ -99,17 +105,17 @@ EXPECTED;
 
     public function testCacheAction()
     {
-        $router = $this->getMock('Symfony\Component\Routing\RouterInterface');
+        $router = $this->createMock(RouterInterface::class);
 
-        $blockRenderer = $this->getMock('Sonata\BlockBundle\Block\BlockRendererInterface');
+        $blockRenderer = $this->createMock(BlockRendererInterface::class);
 
-        $blockLoader = $this->getMock('Sonata\BlockBundle\Block\BlockLoaderInterface');
+        $blockLoader = $this->createMock(BlockLoaderInterface::class);
 
-        $blockContextManager = $this->getMock('Sonata\BlockBundle\Block\BlockContextManagerInterface');
+        $blockContextManager = $this->createMock(BlockContextManagerInterface::class);
 
         $cache = new BlockJsCache($router, $blockRenderer, $blockLoader, $blockContextManager, false);
 
-        $request = $this->getMock('Symfony\Component\HttpFoundation\Request');
+        $request = $this->createMock(Request::class);
 
         // block not found
         $this->assertEquals(new Response('', 404), $cache->cacheAction($request));

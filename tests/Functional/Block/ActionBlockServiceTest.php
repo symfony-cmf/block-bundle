@@ -11,11 +11,13 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
-use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
-use Symfony\Component\Templating\EngineInterface;
 use Sonata\BlockBundle\Block\BlockContext;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Block\ActionBlockService;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
 
 class ActionBlockServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,12 +33,11 @@ class ActionBlockServiceTest extends \PHPUnit_Framework_TestCase
 
     private $requestStack;
 
-    public function setUp()
+    protected function setUp()
     {
-        $this->templating = $this->getMock('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface');
-        $this->kernel = $this->getMockBuilder('Symfony\Component\HttpKernel\Fragment\FragmentHandler')
-            ->disableOriginalConstructor()->getMock();
-        $this->requestStack = $this->getMock('Symfony\Component\HttpFoundation\RequestStack');
+        $this->templating = $this->createMock(EngineInterface::class);
+        $this->kernel = $this->createMock(FragmentHandler::class);
+        $this->requestStack = $this->createMock(RequestStack::class);
     }
 
     public function testExecutionOfDisabledBlock()
@@ -62,7 +63,7 @@ class ActionBlockServiceTest extends \PHPUnit_Framework_TestCase
 
         $content = 'Rendered Action Block.';
 
-        $request = $this->getMock('Symfony\Component\HttpFoundation\Request');
+        $request = $this->createMock(Request::class);
 
         $this->kernel
             ->expects($this->any())

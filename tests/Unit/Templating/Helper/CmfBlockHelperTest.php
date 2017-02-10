@@ -11,6 +11,9 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Templating\Helper;
 
+use Psr\Log\LoggerInterface;
+use Sonata\BlockBundle\Exception\BlockNotFoundException;
+use Sonata\BlockBundle\Templating\Helper\BlockHelper;
 use Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\CmfBlockHelper;
 use Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\EmbedBlocksParser;
 
@@ -48,12 +51,12 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
 
     public function testLogsIfSonataThrowsException()
     {
-        $logger = $this->getMock('Psr\Log\LoggerInterface');
+        $logger = $this->createMock(LoggerInterface::class);
         $logger->expects($this->once())
             ->method('warning')
             ->with($this->matchesRegularExpression('/^Failed to render block "foo" embedded in content: /'));
 
-        $exception = $this->getMock('Sonata\BlockBundle\Exception\BlockNotFoundException', array('getMessage'));
+        $exception = $this->createMock(BlockNotFoundException::class, array('getMessage'));
 
         $this->getSonataBlock()->expects($this->once())
             ->method('render')
@@ -99,16 +102,9 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
     protected function getSonataBlock()
     {
         if (null === $this->sonataBlock) {
-            $this->setSonataBlock();
+            $this->sonataBlock = $this->createMock(BlockHelper::class);
         }
 
         return $this->sonataBlock;
-    }
-
-    private function setSonataBlock()
-    {
-        $this->sonataBlock = $this->getMockBuilder('Sonata\BlockBundle\Templating\Helper\BlockHelper')
-            ->disableOriginalConstructor()
-            ->getMock();
     }
 }

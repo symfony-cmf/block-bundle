@@ -11,11 +11,14 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
+use Doctrine\ODM\PHPCR\ChildrenCollection;
 use Sonata\BlockBundle\Block\BlockContext;
-use Symfony\Component\HttpFoundation\Response;
+use Sonata\BlockBundle\Block\BlockRendererInterface;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
+use Symfony\Component\HttpFoundation\Response;
 
 class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -24,15 +27,11 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
         $containerBlock = new ContainerBlock();
         $containerBlock->setEnabled(false);
 
-        $blockRendererMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockRendererInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $blockRendererMock = $this->createMock(BlockRendererInterface::class);
         $blockRendererMock->expects($this->never())
             ->method('render');
 
-        $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $templatingMock = $this->createMock(EngineInterface::class);
 
         $containerBlockService = new ContainerBlockService('test-service', $templatingMock, $blockRendererMock);
         $containerBlockService->execute(new BlockContext($containerBlock));
@@ -48,9 +47,7 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
         $simpleBlock2 = new SimpleBlock();
         $simpleBlock2->setId(2);
 
-        $childrenCollectionMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\ChildrenCollection')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $childrenCollectionMock = $this->createMock(ChildrenCollection::class);
 
         $containerBlock = new ContainerBlock('foo');
         $containerBlock->setEnabled(true);
@@ -63,13 +60,9 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
         $responseContent1 = 'Rendered Simple Block 1.';
         $responseContent2 = 'Rendered Simple Block 2.';
 
-        $blockRendererMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockRendererInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $blockRendererMock = $this->createMock(BlockRendererInterface::class);
 
-        $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $templatingMock = $this->createMock(EngineInterface::class);
 
         $templatingMock
             ->expects($this->once())
@@ -95,9 +88,7 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
     {
         $template = 'CmfBlockBundle:Block:block_container.html.twig';
 
-        $childrenCollectionMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\ChildrenCollection')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $childrenCollectionMock = $this->createMock(ChildrenCollection::class);
 
         $containerBlock = new ContainerBlock('foo');
         $containerBlock->setEnabled(true);
@@ -107,13 +98,9 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
 
         $blockContext = new BlockContext($containerBlock, $settings);
 
-        $blockRendererMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockRendererInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $blockRendererMock = $this->createMock(BlockRendererInterface::class);
 
-        $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $templatingMock = $this->createMock(EngineInterface::class);
 
         $templatingMock
             ->expects($this->once())

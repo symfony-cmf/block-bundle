@@ -11,7 +11,11 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
+use Knp\Menu\NodeInterface;
 use Sonata\BlockBundle\Block\BlockContext;
+use Sonata\BlockBundle\Block\BlockContextManagerInterface;
+use Sonata\BlockBundle\Block\BlockRendererInterface;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Block\MenuBlockService;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MenuBlock;
 use Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\MenuNode;
@@ -23,18 +27,12 @@ class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
         $menuBlock = new MenuBlock();
         $menuBlock->setEnabled(false);
 
-        $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $templatingMock = $this->createMock(EngineInterface::class);
 
-        $blockRendererMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockRendererInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $blockRendererMock->expects($this->never())
-             ->method('render');
-        $blockContextManagerMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockContextManagerInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $blockRendererMock = $this->createMock(BlockRendererInterface::class);
+        $blockRendererMock->expects($this->never())->method('render');
+
+        $blockContextManagerMock = $this->createMock(BlockContextManagerInterface::class);
 
         $menuBlockService = new MenuBlockService('test-service', $templatingMock, $blockRendererMock, $blockContextManagerMock);
         $menuBlockService->execute(new BlockContext($menuBlock));
@@ -51,17 +49,11 @@ class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
 
         $menuBlockContext = new BlockContext($menuBlock, array('template' => $template));
 
-        $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $templatingMock = $this->createMock(EngineInterface::class);
 
-        $blockRendererMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockRendererInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $blockRendererMock = $this->createMock(BlockRendererInterface::class);
 
-        $blockContextManagerMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockContextManagerInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $blockContextManagerMock = $this->createMock(BlockContextManagerInterface::class);
 
         $menuBlockService = new MenuBlockService('test-service', $templatingMock, $blockRendererMock, $blockContextManagerMock);
         $menuBlockService->execute($menuBlockContext);
@@ -72,8 +64,8 @@ class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
         $menuBlock = new MenuBlock();
         $this->assertAttributeEmpty('menuNode', $menuBlock);
 
-        $menuBlock->setMenuNode($this->getMock('Knp\Menu\NodeInterface'));
-        $this->assertAttributeInstanceOf('Knp\Menu\NodeInterface', 'menuNode', $menuBlock);
+        $menuBlock->setMenuNode($this->createMock(NodeInterface::class));
+        $this->assertAttributeInstanceOf(NodeInterface::class, 'menuNode', $menuBlock);
 
         $menuBlock->setMenuNode(null);
         $this->assertAttributeSame(null, 'menuNode', $menuBlock);

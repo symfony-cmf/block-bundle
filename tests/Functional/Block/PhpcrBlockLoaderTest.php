@@ -11,10 +11,16 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
+use Doctrine\Bundle\PHPCRBundle\ManagerRegistry;
+use Doctrine\ODM\PHPCR\DocumentManager;
+use Doctrine\ODM\PHPCR\UnitOfWork;
+use Sonata\BlockBundle\Model\BlockInterface;
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Cmf\Bundle\BlockBundle\Block\PhpcrBlockLoader;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
+use Symfony\Component\HttpFoundation\ParameterBag;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
@@ -37,15 +43,9 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->registryMock = $this->getMockBuilder('Doctrine\Bundle\PHPCRBundle\ManagerRegistry')
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
-        $this->dmMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\DocumentManager')
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
-        $this->pwcMock = $this->getMock(AuthorizationCheckerInterface::class);
+        $this->registryMock = $this->createMock(ManagerRegistry::class);
+        $this->dmMock = $this->createMock(DocumentManager::class);
+        $this->pwcMock = $this->createMock(AuthorizationCheckerInterface::class);
         $this->registryMock->expects($this->any())
             ->method('getManager')
             ->with($this->equalTo('themanager'))
@@ -53,7 +53,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->request = Request::create('/');
-        $this->requestStackMock = $this->getMock('Symfony\Component\HttpFoundation\RequestStack');
+        $this->requestStackMock = $this->createMock(RequestStack::class);
         $this->requestStackMock
             ->expects($this->any())
             ->method('getCurrentRequest')
@@ -83,7 +83,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
     public function testLoadWithAbsolutePath()
     {
         $absoluteBlockPath = '/some/absolute/path';
-        $block = $this->getMock('Sonata\BlockBundle\Model\BlockInterface');
+        $block = $this->createMock(BlockInterface::class);
 
         $blockLoader = $this->getSimpleBlockLoaderInstance();
         $this->dmMock->expects($this->once())
@@ -108,13 +108,11 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
     {
         $contentPath = '/absolute/content';
         $relativeBlockPath = 'some/relative/path';
-        $block = $this->getMock('Sonata\BlockBundle\Model\BlockInterface');
+        $block = $this->createMock(BlockInterface::class);
 
         $content = new MockContent($contentPath);
 
-        $parameterBagMock = $this->getMockBuilder('Symfony\Component\HttpFoundation\ParameterBag')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $parameterBagMock = $this->createMock(ParameterBag::class);
         $parameterBagMock->expects($this->once())
             ->method('get')
             ->with($this->equalTo('contentDocument'))
@@ -128,9 +126,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
 
         $this->request->attributes = $parameterBagMock;
 
-        $unitOfWorkMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\UnitOfWork')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $unitOfWorkMock = $this->createMock(UnitOfWork::class);
         $unitOfWorkMock->expects($this->any())
             ->method('getDocumentId')
             ->with($this->equalTo($content))
@@ -205,13 +201,13 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
     {
         $absoluteBlockPath = '/some/absolute/path';
 
-        $block = $this->getMock('Sonata\BlockBundle\Model\BlockInterface');
+        $block = $this->createMock(BlockInterface::class);
         $block->expects($this->any())
             ->method('getName')
             ->will($this->returnValue('the-block'))
         ;
 
-        $altBlock = $this->getMock('Sonata\BlockBundle\Model\BlockInterface');
+        $altBlock = $this->createMock(BlockInterface::class);
         $altBlock->expects($this->any())
             ->method('getName')
             ->will($this->returnValue('alt-block'))
@@ -226,10 +222,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($block))
         ;
 
-        $altDmMock = $this->getMockBuilder('Doctrine\ODM\PHPCR\DocumentManager')
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
+        $altDmMock = $this->createMock(DocumentManager::class);
         $altDmMock->expects($this->once())
             ->method('find')
             ->with(
@@ -244,15 +237,12 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(true))
         ;
         $this->pwcMock->expects($this->at(1))
-        ->method('isGranted')
-        ->with(PublishWorkflowChecker::VIEW_ATTRIBUTE, $this->equalTo($altBlock))
-        ->will($this->returnValue(true))
-    ;
-
-        $registryMock = $this->getMockBuilder('Doctrine\Bundle\PHPCRBundle\ManagerRegistry')
-            ->disableOriginalConstructor()
-            ->getMock()
+            ->method('isGranted')
+            ->with(PublishWorkflowChecker::VIEW_ATTRIBUTE, $this->equalTo($altBlock))
+            ->will($this->returnValue(true))
         ;
+
+        $registryMock = $this->createMock(ManagerRegistry::class);
         $registryMock->expects($this->at(0))
             ->method('getManager')
             ->with($this->equalTo('themanager'))

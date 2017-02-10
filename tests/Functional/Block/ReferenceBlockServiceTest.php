@@ -12,6 +12,9 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Sonata\BlockBundle\Block\BlockContext;
+use Sonata\BlockBundle\Block\BlockRendererInterface;
+use Sonata\BlockBundle\Block\BlockContextManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Block\ReferenceBlockService;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
@@ -23,18 +26,12 @@ class ReferenceBlockServiceTest extends \PHPUnit_Framework_TestCase
         $referenceBlock = new ReferenceBlock();
         $referenceBlock->setEnabled(false);
 
-        $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $templatingMock = $this->createMock(EngineInterface::class);
 
-        $blockRendererMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockRendererInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $blockRendererMock = $this->createMock(BlockRendererInterface::class);
         $blockRendererMock->expects($this->never())
              ->method('render');
-        $blockContextManagerMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockContextManagerInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $blockContextManagerMock = $this->createMock(BlockContextManagerInterface::class);
 
         $referenceBlockService = new ReferenceBlockService('test-service', $templatingMock, $blockRendererMock, $blockContextManagerMock);
         $referenceBlockService->execute(new BlockContext($referenceBlock));
@@ -52,21 +49,15 @@ class ReferenceBlockServiceTest extends \PHPUnit_Framework_TestCase
 
         $referenceBlockContext = new BlockContext($referenceBlock);
 
-        $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $templatingMock = $this->createMock(EngineInterface::class);
 
-        $blockRendererMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockRendererInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $blockRendererMock = $this->createMock(BlockRendererInterface::class);
         $blockRendererMock->expects($this->once())
             ->method('render')
             ->with(
                 $this->equalTo($simpleBlockContext)
             );
-        $blockContextManagerMock = $this->getMockBuilder('Sonata\BlockBundle\Block\BlockContextManagerInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $blockContextManagerMock = $this->createMock(BlockContextManagerInterface::class);
         $blockContextManagerMock->expects($this->once())
             ->method('get')
             ->will(

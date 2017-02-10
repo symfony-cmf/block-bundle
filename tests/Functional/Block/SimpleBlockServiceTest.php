@@ -12,6 +12,7 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Sonata\BlockBundle\Block\BlockContext;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 
@@ -24,9 +25,7 @@ class SimpleBlockServiceTest extends \PHPUnit_Framework_TestCase
         $simpleBlock->setEnabled(true);
         $blockContext = new BlockContext($simpleBlock, array('template' => $template));
 
-        $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $templatingMock = $this->createMock(EngineInterface::class);
         $templatingMock->expects($this->once())
             ->method('renderResponse')
             ->with(
@@ -45,9 +44,7 @@ class SimpleBlockServiceTest extends \PHPUnit_Framework_TestCase
         $simpleBlock = new SimpleBlock();
         $simpleBlock->setEnabled(false);
 
-        $templatingMock = $this->getMockBuilder('Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $templatingMock = $this->createMock(EngineInterface::class);
         $templatingMock->expects($this->never())
              ->method('renderResponse');
 
