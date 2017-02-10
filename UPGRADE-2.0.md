@@ -69,10 +69,10 @@
 
 ### Doctrine PHPCR ODM
 
- * It is no longer possible to add a child to the `ActionBlock`,
-   `ImagineBlock`, `MenuBlock`, `ReferenceBlock`, `RssBlock`, `SimpleBlock` and
-   `StringBlock` documents. This behaviour can be changed by overriding the
-   `child-class` setting of the PHPCR ODM mapping.
+ * It is no longer possible to add a child to the `ActionBlock`, `MenuBlock`,
+   `ReferenceBlock`, `RssBlock`, `SimpleBlock` and `StringBlock` documents.
+   This behaviour can be changed by overriding the `child-class` setting of the
+   PHPCR ODM mapping.
 
  * Only instances of sonata's `BlockInterface` are allowed as children of the
    `ContainerBlock` and `SlideshowBlock` documents. This behaviour can be changed
