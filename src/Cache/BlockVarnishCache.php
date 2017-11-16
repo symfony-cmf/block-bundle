@@ -14,8 +14,8 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Cache;
 use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
-use Sonata\CacheBundle\Adapter\VarnishCache;
 use Sonata\Cache\CacheElement;
+use Sonata\CacheBundle\Adapter\VarnishCache;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
@@ -86,7 +86,7 @@ class BlockVarnishCache extends VarnishCache
      */
     private function validateKeys(array $keys)
     {
-        foreach (array('block_id', 'updated_at') as $key) {
+        foreach (['block_id', 'updated_at'] as $key) {
             if (!isset($keys[$key])) {
                 throw new \RuntimeException(sprintf('Please define a `%s` key', $key));
             }
@@ -112,7 +112,7 @@ class BlockVarnishCache extends VarnishCache
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, $ttl = 84600, array $contextualKeys = array())
+    public function set(array $keys, $data, $ttl = 84600, array $contextualKeys = [])
     {
         $this->validateKeys($keys);
 
@@ -127,10 +127,10 @@ class BlockVarnishCache extends VarnishCache
     protected function computeHash(array $keys)
     {
         // values are casted into string for non numeric id
-        return hash('sha256', $this->token.serialize(array(
+        return hash('sha256', $this->token.serialize([
             'block_id' => (string) $keys['block_id'],
             'updated_at' => (string) $keys['updated_at'],
-        )));
+        ]));
     }
 
     /**
@@ -145,17 +145,17 @@ class BlockVarnishCache extends VarnishCache
     {
         $parameters = array_merge($request->query->all(), $request->attributes->all());
 
-        if ($request->get('_token') != $this->computeHash($parameters)) {
+        if ($request->get('_token') !== $this->computeHash($parameters)) {
             throw new AccessDeniedHttpException('Invalid token');
         }
 
-        $block = $this->blockLoader->load(array('name' => $request->get('block_id')));
+        $block = $this->blockLoader->load(['name' => $request->get('block_id')]);
 
         if (!$block) {
             throw new NotFoundHttpException(sprintf('Block not found : %s', $request->get('block_id')));
         }
 
-        $settings = $request->get(BlockContextManagerInterface::CACHE_KEY, array());
+        $settings = $request->get(BlockContextManagerInterface::CACHE_KEY, []);
 
         if (!is_array($settings)) {
             throw new \RuntimeException(sprintf(

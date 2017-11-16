@@ -30,14 +30,14 @@ class CmfBlockExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testEmbedFilter($template, $calls = 1)
     {
-        $twig = new \Twig_Environment(new \Twig_Loader_Array(array()), array('debug' => true, 'cache' => false, 'autoescape' => 'html', 'optimizations' => 0));
+        $twig = new \Twig_Environment(new \Twig_Loader_Array([]), ['debug' => true, 'cache' => false, 'autoescape' => 'html', 'optimizations' => 0]);
         $twig->addExtension(new CmfBlockExtension($this->getBlockHelper()));
 
         $this->getBlockHelper()->expects($this->exactly($calls))
             ->method('embedBlocks');
 
         try {
-            $twig->createTemplate($template)->render(array());
+            $twig->createTemplate($template)->render([]);
         } catch (\Twig_Error_Runtime $e) {
             throw $e->getPrevious();
         }
@@ -45,10 +45,10 @@ class CmfBlockExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function getEmbedFilterData()
     {
-        return array(
-            array('{{ "bar"|cmf_embed_blocks }}'),
-            array('{{ "bar"|cmf_embed_blocks }} lorem ipsum {{ "foo"|cmf_embed_blocks }}', 2),
-        );
+        return [
+            ['{{ "bar"|cmf_embed_blocks }}'],
+            ['{{ "bar"|cmf_embed_blocks }} lorem ipsum {{ "foo"|cmf_embed_blocks }}', 2],
+        ];
     }
 
     protected function getBlockHelper()

@@ -14,8 +14,8 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Controller;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Cmf\Bundle\BlockBundle\Model\FeedItem;
+use Symfony\Component\HttpFoundation\Response;
 use Zend\Feed\Reader\Exception\RuntimeException;
 
 class RssController extends Controller
@@ -30,11 +30,11 @@ class RssController extends Controller
      */
     public function block(BlockInterface $block, BlockContextInterface $blockContext)
     {
-        return $this->render($blockContext->getTemplate(), array(
+        return $this->render($blockContext->getTemplate(), [
             'block' => $block,
             'items' => $this->getItems($blockContext),
             'settings' => $blockContext->getSettings(),
-        ));
+        ]);
     }
 
     /**
@@ -54,7 +54,7 @@ class RssController extends Controller
                     $blockContext->getBlock()->getId()
                 ));
 
-            return array();
+            return [];
         }
 
         if (!$this->has('eko_feed.feed.reader')) {
@@ -72,7 +72,7 @@ class RssController extends Controller
                     $settings['url'],
                 $e->getMessage()
             ));
-            $items = array();
+            $items = [];
         }
 
         return array_slice($items, 0, $settings['maxItems']);

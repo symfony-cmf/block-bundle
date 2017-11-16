@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\Controller;
+namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Fixtures\App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,7 +41,7 @@ class TestController extends Controller
     {
         $block = $this->get('doctrine_phpcr')->getManager()->find(null, '/test/blocks/'.$id);
 
-        return $this->render('::tests/render.html.twig', array('block' => $block));
+        return $this->render('::tests/render.html.twig', ['block' => $block]);
     }
 
     /**

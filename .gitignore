@@ -1,4 +1,4 @@
 vendor/
 composer.lock
-tests/Resources/app/cache
-tests/Resources/app/logs
+tests/Fixtures/App/var
+!tests/Fixtures/App/var/.gitempty

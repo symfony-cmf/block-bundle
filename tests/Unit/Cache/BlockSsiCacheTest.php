@@ -41,11 +41,11 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
 
     public static function getExceptionCacheKeys()
     {
-        return array(
-            array(array()),
-            array(array('block_id' => '/cms/content/home/additionalInfoBlock')),
-            array(array('updated_at' => 'foo')),
-        );
+        return [
+            [[]],
+            [['block_id' => '/cms/content/home/additionalInfoBlock']],
+            [['updated_at' => 'foo']],
+        ];
     }
 
     public function testInitCache()
@@ -61,19 +61,19 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
 
         $cache = new BlockSsiCache('My Token', $router, $blockRenderer, $blockLoader, $blockContextManager);
 
-        $this->assertTrue($cache->flush(array()));
+        $this->assertTrue($cache->flush([]));
         $this->assertTrue($cache->flushAll());
 
-        $keys = array(
+        $keys = [
             'block_id' => '/cms/content/home/additionalInfoBlock',
             'updated_at' => 'as',
-        );
+        ];
 
         $cacheElement = $cache->set($keys, 'data');
 
         $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
 
-        $this->assertTrue($cache->has(array('id' => 7)));
+        $this->assertTrue($cache->has(['id' => 7]));
 
         $cacheElement = $cache->get($keys);
 
@@ -88,10 +88,10 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
     public function testAccessDenied()
     {
         $token = 'My Token';
-        $keys = array(
+        $keys = [
             'block_id' => '/cms/content/home/additionalInfoBlock',
             'updated_at' => 'as',
-        );
+        ];
 
         $router = $this->createMock(RouterInterface::class);
 
@@ -103,7 +103,7 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
 
         $cache = new BlockSsiCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager);
 
-        $request = new Request($keys, array(), array('_token' => 'XXXXX'));
+        $request = new Request($keys, [], ['_token' => 'XXXXX']);
 
         $cache->cacheAction($request);
     }
@@ -114,10 +114,10 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
     public function testBlockNotFound()
     {
         $token = 'My Token';
-        $keys = array(
+        $keys = [
             'block_id' => '/not/found',
             'updated_at' => 'as',
-        );
+        ];
 
         $router = $this->createMock(RouterInterface::class);
 
@@ -132,9 +132,9 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
         $refCache = new \ReflectionClass($cache);
         $refComputeHash = $refCache->getMethod('computeHash');
         $refComputeHash->setAccessible(true);
-        $computedToken = $refComputeHash->invokeArgs($cache, array($keys));
+        $computedToken = $refComputeHash->invokeArgs($cache, [$keys]);
 
-        $request = new Request($keys, array(), array('_token' => $computedToken));
+        $request = new Request($keys, [], ['_token' => $computedToken]);
 
         $cache->cacheAction($request);
     }

@@ -14,8 +14,8 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Cache;
 use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
-use Sonata\Cache\CacheElement;
 use Sonata\Cache\CacheAdapterInterface;
+use Sonata\Cache\CacheElement;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
@@ -63,7 +63,7 @@ class BlockJsCache implements CacheAdapterInterface
     /**
      * {@inheritdoc}
      */
-    public function flush(array $keys = array())
+    public function flush(array $keys = [])
     {
         return true;
     }
@@ -93,7 +93,7 @@ class BlockJsCache implements CacheAdapterInterface
      */
     private function validateKeys(array $keys)
     {
-        foreach (array('block_id', 'updated_at') as $key) {
+        foreach (['block_id', 'updated_at'] as $key) {
             if (!isset($keys[$key])) {
                 throw new \RuntimeException(sprintf('Please define a `%s` key', $key));
             }
@@ -181,7 +181,7 @@ CONTENT
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, $ttl = 84600, array $contextualKeys = array())
+    public function set(array $keys, $data, $ttl = 84600, array $contextualKeys = [])
     {
         $this->validateKeys($keys);
 
@@ -195,13 +195,13 @@ CONTENT
      */
     public function cacheAction(Request $request)
     {
-        $block = $this->blockLoader->load(array('name' => $request->get('block_id')));
+        $block = $this->blockLoader->load(['name' => $request->get('block_id')]);
 
         if (!$block) {
             return new Response('', 404);
         }
 
-        $settings = $request->get(BlockContextManagerInterface::CACHE_KEY, array());
+        $settings = $request->get(BlockContextManagerInterface::CACHE_KEY, []);
 
         if (!is_array($settings)) {
             throw new \RuntimeException(sprintf(

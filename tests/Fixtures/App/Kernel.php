@@ -9,25 +9,27 @@
  * file that was distributed with this source code.
  */
 
+namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Fixtures\App;
+
 use Symfony\Cmf\Component\Testing\HttpKernel\TestKernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-class AppKernel extends TestKernel
+class Kernel extends TestKernel
 {
     public function configure()
     {
-        $this->requireBundleSets(array(
+        $this->requireBundleSets([
             'default',
             'phpcr_odm',
-        ));
+        ]);
 
-        $this->addBundles(array(
+        $this->addBundles([
             new \Symfony\Cmf\Bundle\CoreBundle\CmfCoreBundle(),
             new \Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
             new \Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
             new \Sonata\BlockBundle\SonataBlockBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-        ));
+            new \Knp\Bundle\MenuBundle\KnpMenuBundle(),
+        ]);
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

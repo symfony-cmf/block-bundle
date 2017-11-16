@@ -50,7 +50,7 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
     /**
      * @var array
      */
-    protected $settings = array();
+    protected $settings = [];
 
     /**
      * @var \DateTime
@@ -377,7 +377,7 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
     /**
      * {@inheritdoc}
      */
-    public function setSettings(array $settings = array())
+    public function setSettings(array $settings = [])
     {
         $this->settings = $settings;
 

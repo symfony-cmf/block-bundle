@@ -47,7 +47,7 @@ class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
         $menuBlock->setEnabled(true);
         $menuBlock->setMenuNode($menuNode);
 
-        $menuBlockContext = new BlockContext($menuBlock, array('template' => $template));
+        $menuBlockContext = new BlockContext($menuBlock, ['template' => $template]);
 
         $templatingMock = $this->createMock(EngineInterface::class);
 

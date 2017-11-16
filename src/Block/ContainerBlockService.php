@@ -17,8 +17,8 @@ use Sonata\BlockBundle\Block\Service\AbstractBlockService;
 use Sonata\BlockBundle\Block\Service\BlockServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ContainerBlockService extends AbstractBlockService implements BlockServiceInterface
 {
@@ -67,10 +67,10 @@ class ContainerBlockService extends AbstractBlockService implements BlockService
         $settings = $resolver->resolve($block->getSettings());
 
         if ($block->getEnabled()) {
-            return $this->renderResponse($settings['template'], array(
+            return $this->renderResponse($settings['template'], [
                 'block' => $block,
                 'settings' => $settings,
-            ), $response);
+            ], $response);
         }
 
         return $response;
@@ -89,12 +89,12 @@ class ContainerBlockService extends AbstractBlockService implements BlockService
      */
     public function configureSettings(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'template' => $this->template,
             'divisible_by' => 0,
             'divisible_class' => '',
             'child_class' => '',
-        ));
+        ]);
 
         if (method_exists($resolver, 'setDefault')) {
             // Symfony >2.6
@@ -102,11 +102,11 @@ class ContainerBlockService extends AbstractBlockService implements BlockService
             $resolver->addAllowedTypes('divisible_class', 'string');
             $resolver->addAllowedTypes('child_class', 'string');
         } else {
-            $resolver->addAllowedTypes(array(
-                'divisible_by' => array('integer'),
-                'divisible_class' => array('string'),
-                'child_class' => array('string'),
-            ));
+            $resolver->addAllowedTypes([
+                'divisible_by' => ['integer'],
+                'divisible_class' => ['string'],
+                'child_class' => ['string'],
+            ]);
         }
     }
 }

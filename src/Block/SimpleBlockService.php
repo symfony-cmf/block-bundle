@@ -40,7 +40,7 @@ class SimpleBlockService extends AbstractBlockService implements BlockServiceInt
         }
 
         if ($blockContext->getBlock()->getEnabled()) {
-            $response = $this->renderResponse($blockContext->getTemplate(), array('block' => $blockContext->getBlock()), $response);
+            $response = $this->renderResponse($blockContext->getTemplate(), ['block' => $blockContext->getBlock()], $response);
         }
 
         return $response;
@@ -59,9 +59,9 @@ class SimpleBlockService extends AbstractBlockService implements BlockServiceInt
      */
     public function configureSettings(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'template' => $this->template,
-        ));
+        ]);
     }
 
     /**

@@ -45,18 +45,18 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockContextManager = $this->createMock(BlockContextManagerInterface::class);
 
-        $cache = new BlockVarnishCache('My Token', $router, $blockRenderer, $blockLoader, $blockContextManager, $this->fragmentHandler, array(), 'ban');
+        $cache = new BlockVarnishCache('My Token', $router, $blockRenderer, $blockLoader, $blockContextManager, $this->fragmentHandler, [], 'ban');
 
         $cache->get($keys, 'data');
     }
 
     public static function getExceptionCacheKeys()
     {
-        return array(
-            array(array()),
-            array(array('block_id' => '/cms/content/home/additionalInfoBlock')),
-            array(array('updated_at' => 'foo')),
-        );
+        return [
+            [[]],
+            [['block_id' => '/cms/content/home/additionalInfoBlock']],
+            [['updated_at' => 'foo']],
+        ];
     }
 
     public function testInitCache()
@@ -78,21 +78,21 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($content))
         ;
 
-        $cache = new BlockVarnishCache('My Token', $router, $blockRenderer, $blockLoader, $blockContextManager, $this->fragmentHandler, array(), 'ban');
+        $cache = new BlockVarnishCache('My Token', $router, $blockRenderer, $blockLoader, $blockContextManager, $this->fragmentHandler, [], 'ban');
 
-        $this->assertTrue($cache->flush(array()));
+        $this->assertTrue($cache->flush([]));
         $this->assertTrue($cache->flushAll());
 
-        $keys = array(
+        $keys = [
             'block_id' => '/cms/content/home/additionalInfoBlock',
             'updated_at' => 'as',
-        );
+        ];
 
         $cacheElement = $cache->set($keys, 'data');
 
         $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
 
-        $this->assertTrue($cache->has(array('id' => 7)));
+        $this->assertTrue($cache->has(['id' => 7]));
 
         $cacheElement = $cache->get($keys);
 
@@ -107,10 +107,10 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
     public function testAccessDenied()
     {
         $token = 'My Token';
-        $keys = array(
+        $keys = [
             'block_id' => '/cms/content/home/additionalInfoBlock',
             'updated_at' => 'as',
-        );
+        ];
 
         $router = $this->createMock(RouterInterface::class);
 
@@ -120,9 +120,9 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockContextManager = $this->createMock(BlockContextManagerInterface::class);
 
-        $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager, $this->fragmentHandler, array(), 'ban');
+        $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager, $this->fragmentHandler, [], 'ban');
 
-        $request = new Request($keys, array(), array('_token' => 'XXX'));
+        $request = new Request($keys, [], ['_token' => 'XXX']);
 
         $cache->cacheAction($request);
     }
@@ -133,10 +133,10 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
     public function testBlockNotFound()
     {
         $token = 'My Token';
-        $keys = array(
+        $keys = [
             'block_id' => '/not/found',
             'updated_at' => 'as',
-        );
+        ];
 
         $router = $this->createMock(RouterInterface::class);
 
@@ -146,14 +146,14 @@ class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
 
         $blockContextManager = $this->createMock(BlockContextManagerInterface::class);
 
-        $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager, $this->fragmentHandler, array(), 'ban');
+        $cache = new BlockVarnishCache($token, $router, $blockRenderer, $blockLoader, $blockContextManager, $this->fragmentHandler, [], 'ban');
 
         $refCache = new \ReflectionClass($cache);
         $refComputeHash = $refCache->getMethod('computeHash');
         $refComputeHash->setAccessible(true);
-        $computedToken = $refComputeHash->invokeArgs($cache, array($keys));
+        $computedToken = $refComputeHash->invokeArgs($cache, [$keys]);
 
-        $request = new Request($keys, array(), array('_token' => $computedToken));
+        $request = new Request($keys, [], ['_token' => $computedToken]);
 
         $cache->cacheAction($request);
     }

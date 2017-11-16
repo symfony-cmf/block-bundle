@@ -63,11 +63,11 @@ class EmbedBlocksParser
     {
         $segments = explode($this->prefix, $text);
         foreach ($segments as $index => &$segment) {
-            if ($index == 0) {
+            if (0 === $index) {
                 continue;
             }
 
-            if (strpos($segment, $this->postfix) !== false) {
+            if (false !== strpos($segment, $this->postfix)) {
                 $segment = array_filter(explode($this->postfix, $segment));
                 $segment[0] = trim($segment[0]);
             }

@@ -53,7 +53,7 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
         $containerBlock->setEnabled(true);
         $containerBlock->setChildren($childrenCollectionMock);
 
-        $settings = array('divisible_by' => 0, 'divisible_class' => '', 'child_class' => '', 'template' => $template);
+        $settings = ['divisible_by' => 0, 'divisible_class' => '', 'child_class' => '', 'template' => $template];
 
         $blockContext = new BlockContext($containerBlock, $settings);
 
@@ -69,10 +69,10 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
             ->method('renderResponse')
             ->with(
                 $this->equalTo($template),
-                $this->equalTo(array(
+                $this->equalTo([
                     'block' => $containerBlock,
                     'settings' => $settings,
-                )),
+                ]),
                 $this->isInstanceOf('Symfony\Component\HttpFoundation\Response')
             )
             ->will($this->returnValue(new Response($responseContent1.$responseContent2)))
@@ -94,7 +94,7 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
         $containerBlock->setEnabled(true);
         $containerBlock->setChildren($childrenCollectionMock);
 
-        $settings = array('divisibleBy' => 0, 'divisibleClass' => '', 'childClass' => '', 'template' => $template);
+        $settings = ['divisibleBy' => 0, 'divisibleClass' => '', 'childClass' => '', 'template' => $template];
 
         $blockContext = new BlockContext($containerBlock, $settings);
 
@@ -107,10 +107,10 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
             ->method('renderResponse')
             ->with(
                 $this->equalTo($template),
-                $this->equalTo(array(
+                $this->equalTo([
                     'block' => $containerBlock,
                     'settings' => $settings,
-                )),
+                ]),
                 $this->isInstanceOf('Symfony\Component\HttpFoundation\Response')
             )
             ->will($this->returnValue(new Response('')))

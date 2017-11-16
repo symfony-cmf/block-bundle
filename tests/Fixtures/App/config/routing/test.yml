@@ -1,0 +1,34 @@
+test_index:
+    path: /
+    defaults:
+        _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Fixtures\App\Controller\TestController::indexAction
+
+render_simple_test:
+    path: /render-simple-test
+    defaults:
+        _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Fixtures\App\Controller\TestController::renderSimpleBlockAction
+
+render_action_test:
+    path: /render-action-test
+    defaults:
+        _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Fixtures\App\Controller\TestController::renderActionBlockAction
+
+render_container_test:
+    path: /render-container-test
+    defaults:
+        _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Fixtures\App\Controller\TestController::renderContainerBlockAction
+
+render_reference_test:
+    path: /render-reference-test
+    defaults:
+        _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Fixtures\App\Controller\TestController::renderReferenceBlockAction
+
+render_menu_test:
+    path: /render-menu-test
+    defaults:
+        _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Fixtures\App\Controller\TestController::renderMenuBlockAction
+
+render_string_test:
+    path: /render-string-test
+    defaults:
+        _controller: Symfony\Cmf\Bundle\BlockBundle\Tests\Fixtures\App\Controller\TestController::renderStringBlockAction

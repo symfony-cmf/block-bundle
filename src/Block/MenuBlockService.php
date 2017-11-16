@@ -12,8 +12,8 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Block\Service\BlockServiceInterface;
 use Sonata\BlockBundle\Block\Service\AbstractBlockService;
+use Sonata\BlockBundle\Block\Service\BlockServiceInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -52,10 +52,10 @@ class MenuBlockService extends AbstractBlockService implements BlockServiceInter
 
         return $this->renderResponse(
             $blockContext->getTemplate(),
-            array(
+            [
                 'menu' => $menuNode->getId(),
                 'block' => $blockContext->getBlock(),
-            ),
+            ],
             $response
         );
     }
@@ -70,9 +70,9 @@ class MenuBlockService extends AbstractBlockService implements BlockServiceInter
 
     public function configureSettings(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'template' => $this->template,
-        ));
+        ]);
     }
 
     /**

@@ -15,9 +15,9 @@ use Doctrine\Bundle\PHPCRBundle\ManagerRegistry;
 use Doctrine\ODM\PHPCR\DocumentManager;
 use Doctrine\ODM\PHPCR\UnitOfWork;
 use Sonata\BlockBundle\Model\BlockInterface;
-use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker;
 use Symfony\Cmf\Bundle\BlockBundle\Block\PhpcrBlockLoader;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
+use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -74,10 +74,10 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
         $blockLoader = $this->getSimpleBlockLoaderInstance();
 
         $this->assertFalse($blockLoader->support('name'));
-        $this->assertFalse($blockLoader->support(array()));
-        $this->assertTrue($blockLoader->support(array(
+        $this->assertFalse($blockLoader->support([]));
+        $this->assertTrue($blockLoader->support([
             'name' => 'someName',
-        )));
+        ]));
     }
 
     public function testLoadWithAbsolutePath()
@@ -100,7 +100,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(true))
         ;
 
-        $found = $blockLoader->load(array('name' => $absoluteBlockPath));
+        $found = $blockLoader->load(['name' => $absoluteBlockPath]);
         $this->assertEquals($block, $found);
     }
 
@@ -153,7 +153,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
 
         $blockLoader = $this->getSimpleBlockLoaderInstance();
 
-        $found = $blockLoader->load(array('name' => $relativeBlockPath));
+        $found = $blockLoader->load(['name' => $relativeBlockPath]);
         $this->assertEquals($block, $found);
     }
 
@@ -177,9 +177,9 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(true))
         ;
 
-        $receivedBlock = $blockLoader->load(array(
+        $receivedBlock = $blockLoader->load([
             'name' => $absoluteBlockPath,
-        ));
+        ]);
 
         $this->assertEquals($simpleBlock, $receivedBlock);
     }
@@ -191,7 +191,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
         ;
 
         $blockLoader = $this->getSimpleBlockLoaderInstance();
-        $this->assertInstanceOf('Sonata\BlockBundle\Model\EmptyBlock', $blockLoader->load(array('name' => 'invalid/block')));
+        $this->assertInstanceOf('Sonata\BlockBundle\Model\EmptyBlock', $blockLoader->load(['name' => 'invalid/block']));
     }
 
     /**
@@ -257,12 +257,12 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
         $blockLoader = new PhpcrBlockLoader($registryMock, $this->pwcMock, $this->requestStackMock, null, 'emptyblocktype');
 
         $blockLoader->setManagerName('themanager');
-        $foundBlock = $blockLoader->load(array('name' => $absoluteBlockPath));
+        $foundBlock = $blockLoader->load(['name' => $absoluteBlockPath]);
         $this->assertInstanceOf('Sonata\BlockBundle\Model\BlockInterface', $foundBlock);
         $this->assertEquals('the-block', $foundBlock->getName());
 
         $blockLoader->setManagerName('altmanager');
-        $foundBlock = $blockLoader->load(array('name' => $absoluteBlockPath));
+        $foundBlock = $blockLoader->load(['name' => $absoluteBlockPath]);
         $this->assertInstanceOf('Sonata\BlockBundle\Model\BlockInterface', $foundBlock);
         $this->assertEquals('alt-block', $foundBlock->getName());
     }
