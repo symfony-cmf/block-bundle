@@ -20,7 +20,7 @@ ifdef BRANCH
 	VERSION=dev-${BRANCH}
 endif
 PACKAGE=symfony-cmf/block-bundle
-export KERNEL_CLASS=Symfony\Cmf\Bundle\BllockBundle\Tests\Fixtures\App\Kernel
+export KERNEL_CLASS=Symfony\Cmf\Bundle\BlockBundle\Tests\Fixtures\App\Kernel
 list:
 	@echo 'test:                    will run all tests'
 	@echo 'unit_tests:               will run unit tests only'
