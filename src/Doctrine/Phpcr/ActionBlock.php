@@ -38,7 +38,7 @@ class ActionBlock extends AbstractBlock
      *
      * @var string[]
      */
-    protected $requestParams = array('_locale');
+    protected $requestParams = ['_locale'];
 
     /**
      * {@inheritdoc}
@@ -125,7 +125,7 @@ class ActionBlock extends AbstractBlock
      */
     public function resolveRequestParams(Request $request, BlockContextInterface $blockContext)
     {
-        $params = array();
+        $params = [];
         foreach ($this->getRequestParams() as $param) {
             $params[$param] = $request->get($param);
         }

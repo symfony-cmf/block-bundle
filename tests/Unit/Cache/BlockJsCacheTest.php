@@ -16,8 +16,8 @@ use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
 use Sonata\Cache\CacheElement;
 use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockJsCache;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 
 class BlockJsCacheTest extends \PHPUnit_Framework_TestCase
@@ -43,11 +43,11 @@ class BlockJsCacheTest extends \PHPUnit_Framework_TestCase
 
     public static function getExceptionCacheKeys()
     {
-        return array(
-            array(array()),
-            array(array('block_id' => '/cms/content/home/additionalInfoBlock')),
-            array(array('updated_at' => 'foo')),
-        );
+        return [
+            [[]],
+            [['block_id' => '/cms/content/home/additionalInfoBlock']],
+            [['updated_at' => 'foo']],
+        ];
     }
 
     public function testInitCache()
@@ -63,19 +63,19 @@ class BlockJsCacheTest extends \PHPUnit_Framework_TestCase
 
         $cache = new BlockJsCache($router, $blockRenderer, $blockLoader, $blockContextManager, false);
 
-        $this->assertTrue($cache->flush(array()));
+        $this->assertTrue($cache->flush([]));
         $this->assertTrue($cache->flushAll());
 
-        $keys = array(
+        $keys = [
             'block_id' => '/cms/content/home/additionalInfoBlock',
             'updated_at' => 'as',
-        );
+        ];
 
         $cacheElement = $cache->set($keys, 'data');
 
         $this->assertInstanceOf(CacheElement::class, $cacheElement);
 
-        $this->assertTrue($cache->has(array('id' => 7)));
+        $this->assertTrue($cache->has(['id' => 7]));
 
         $cacheElement = $cache->get($keys);
 

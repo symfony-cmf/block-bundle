@@ -23,9 +23,9 @@ class SimpleBlockRenderTest extends BaseTestCase
      */
     public function setUp()
     {
-        $this->db('PHPCR')->loadFixtures(array(
+        $this->db('PHPCR')->loadFixtures([
             'Symfony\Cmf\Bundle\BlockBundle\Tests\Fixtures\App\DataFixtures\Phpcr\LoadBlockData',
-        ));
+        ]);
         $this->client = $this->createClient();
     }
 

@@ -23,16 +23,16 @@ class SimpleBlockServiceTest extends \PHPUnit_Framework_TestCase
         $template = 'CmfBlockBundle:Block:block_simple.html.twig';
         $simpleBlock = new SimpleBlock();
         $simpleBlock->setEnabled(true);
-        $blockContext = new BlockContext($simpleBlock, array('template' => $template));
+        $blockContext = new BlockContext($simpleBlock, ['template' => $template]);
 
         $templatingMock = $this->createMock(EngineInterface::class);
         $templatingMock->expects($this->once())
             ->method('renderResponse')
             ->with(
                 $this->equalTo($template),
-                $this->equalTo(array(
+                $this->equalTo([
                     'block' => $simpleBlock,
-                ))
+                ])
             );
 
         $simpleBlockService = new SimpleBlockService('test-service', $templatingMock, $template);

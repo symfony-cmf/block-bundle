@@ -41,7 +41,7 @@ class TestController extends Controller
     {
         $block = $this->get('doctrine_phpcr')->getManager()->find(null, '/test/blocks/'.$id);
 
-        return $this->render('::tests/render.html.twig', array('block' => $block));
+        return $this->render('::tests/render.html.twig', ['block' => $block]);
     }
 
     /**

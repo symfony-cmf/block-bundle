@@ -23,16 +23,16 @@ class StringBlockServiceTest extends \PHPUnit_Framework_TestCase
         $template = 'CmfBlockBundle:Block:block_string.html.twig';
         $stringBlock = new StringBlock();
         $stringBlock->setEnabled(true);
-        $blockContext = new BlockContext($stringBlock, array('template' => $template));
+        $blockContext = new BlockContext($stringBlock, ['template' => $template]);
 
         $templatingMock = $this->createMock(EngineInterface::class);
         $templatingMock->expects($this->once())
             ->method('renderResponse')
             ->with(
                 $this->equalTo($template),
-                $this->equalTo(array(
+                $this->equalTo([
                     'block' => $stringBlock,
-                ))
+                ])
             );
 
         $stringBlockService = new StringBlockService('test-service', $templatingMock, $template);

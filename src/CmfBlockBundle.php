@@ -28,13 +28,13 @@ class CmfBlockBundle extends Bundle
         if (class_exists('Doctrine\Bundle\PHPCRBundle\DependencyInjection\Compiler\DoctrinePhpcrMappingsPass')) {
             $container->addCompilerPass(
                 DoctrinePhpcrMappingsPass::createXmlMappingDriver(
-                    array(
+                    [
                         realpath(__DIR__.'/Resources/config/doctrine-model') => 'Symfony\Cmf\Bundle\BlockBundle\Model',
                         realpath(__DIR__.'/Resources/config/doctrine-phpcr') => 'Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr',
-                    ),
-                    array('cmf_block.persistence.phpcr.manager_name'),
+                    ],
+                    ['cmf_block.persistence.phpcr.manager_name'],
                     'cmf_block.backend_type_phpcr',
-                    array('CmfBlockBundle' => 'Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr')
+                    ['CmfBlockBundle' => 'Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr']
                 )
             );
         }

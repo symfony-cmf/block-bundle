@@ -12,8 +12,8 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Block\Service\BlockServiceInterface;
 use Sonata\BlockBundle\Block\Service\AbstractBlockService;
+use Sonata\BlockBundle\Block\Service\BlockServiceInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -41,7 +41,7 @@ class StringBlockService extends AbstractBlockService implements BlockServiceInt
         }
 
         if ($blockContext->getBlock()->getEnabled()) {
-            $response = $this->renderResponse($blockContext->getTemplate(), array('block' => $blockContext->getBlock()), $response);
+            $response = $this->renderResponse($blockContext->getTemplate(), ['block' => $blockContext->getBlock()], $response);
         }
 
         return $response;
@@ -60,9 +60,9 @@ class StringBlockService extends AbstractBlockService implements BlockServiceInt
      */
     public function configureSettings(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'template' => $this->template,
-        ));
+        ]);
     }
 
     /**

@@ -11,9 +11,9 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Templating\Helper;
 
-use Symfony\Component\Templating\Helper\Helper;
 use Psr\Log\LoggerInterface;
 use Sonata\BlockBundle\Templating\Helper\BlockHelper as SonataBlockHelper;
+use Symfony\Component\Templating\Helper\Helper;
 
 /**
  * Helper functions for blocks.
@@ -98,6 +98,7 @@ class CmfBlockHelper extends Helper
     protected function embeddedRender($name)
     {
         $name = trim($name);
+
         try {
             return $this->sonataBlock->render(['name' => $name]);
         } catch (\Exception $e) {

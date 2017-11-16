@@ -31,7 +31,7 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
     {
         $this->getSonataBlock()->expects($this->once())
             ->method('render')
-            ->with($this->equalTo(array('name' => $blockname)));
+            ->with($this->equalTo(['name' => $blockname]));
 
         $parser = new EmbedBlocksParser('%embed-block:"', '"%');
         $helper = new CmfBlockHelper($this->getSonataBlock(), $parser);
@@ -41,12 +41,12 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
 
     public function getEmbedBlockData()
     {
-        return array(
-            array('<span>%embed-block:"/absolute/path/to/block"%</span>', '/absolute/path/to/block'),
-            array('%embed-block:"local-block"%', 'local-block'),
-            array('Lorem ipsum dolor mir %embed-block:"foo"% sublim da kalir.', 'foo'),
-            array('%embed-block:foo% bar %embed-block:"cat"%', 'cat'),
-        );
+        return [
+            ['<span>%embed-block:"/absolute/path/to/block"%</span>', '/absolute/path/to/block'],
+            ['%embed-block:"local-block"%', 'local-block'],
+            ['Lorem ipsum dolor mir %embed-block:"foo"% sublim da kalir.', 'foo'],
+            ['%embed-block:foo% bar %embed-block:"cat"%', 'cat'],
+        ];
     }
 
     public function testLogsIfSonataThrowsException()
@@ -56,7 +56,7 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
             ->method('warning')
             ->with($this->matchesRegularExpression('/^Failed to render block "foo" embedded in content: /'));
 
-        $exception = $this->createMock(BlockNotFoundException::class, array('getMessage'));
+        $exception = $this->createMock(BlockNotFoundException::class, ['getMessage']);
 
         $this->getSonataBlock()->expects($this->once())
             ->method('render')
@@ -77,11 +77,11 @@ class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
     {
         $this->getSonataBlock()->expects($this->at(0))
             ->method('render')
-            ->with($this->equalTo(array('name' => 'foo')));
+            ->with($this->equalTo(['name' => 'foo']));
 
         $this->getSonataBlock()->expects($this->at(1))
             ->method('render')
-            ->with($this->equalTo(array('name' => 'cat')));
+            ->with($this->equalTo(['name' => 'cat']));
 
         $parser = new EmbedBlocksParser($prefix, $postfix);
         $helper = new CmfBlockHelper($this->getSonataBlock(), $parser);

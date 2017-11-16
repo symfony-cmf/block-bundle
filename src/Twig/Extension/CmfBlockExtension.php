@@ -29,13 +29,13 @@ class CmfBlockExtension extends \Twig_Extension
 
     public function getFilters()
     {
-        return array(
+        return [
             new \Twig_SimpleFilter(
                 'cmf_embed_blocks',
-                array($this->blockHelper, 'embedBlocks'),
-                array('is_safe' => array('html'))
+                [$this->blockHelper, 'embedBlocks'],
+                ['is_safe' => ['html']]
             ),
-        );
+        ];
     }
 
     public function getName()

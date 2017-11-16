@@ -12,14 +12,14 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
+use Sonata\BlockBundle\Exception\BlockNotFoundException;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\BlockBundle\Model\EmptyBlock;
-use Sonata\BlockBundle\Exception\BlockNotFoundException;
+use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishWorkflowChecker;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * The PHPCR block loader loads from phpcr-odm, both by absolute path and
@@ -163,7 +163,7 @@ class PhpcrBlockLoader implements BlockLoaderInterface
     {
         $path = $this->determineAbsolutePath($name);
 
-        if (null == $path) {
+        if (null === $path) {
             if ($this->logger) {
                 $this->logger->debug("Block '$name' is not an absolute path and there is no 'contentDocument' in the request attributes");
             }
@@ -199,7 +199,7 @@ class PhpcrBlockLoader implements BlockLoaderInterface
     {
         return is_string($path)
             && strlen($path) > 0
-            && $path[0] == '/'
+            && '/' === $path[0]
         ;
     }
 
