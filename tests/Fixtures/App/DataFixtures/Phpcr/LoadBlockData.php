@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Resources\DataFixtures\Phpcr;
+namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Fixtures\App\DataFixtures\Phpcr;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
