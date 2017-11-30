@@ -35,8 +35,6 @@
         "symfony/asset": "^2.8 || ^3.3 || ^4.0",
         "symfony/templating": "^2.8 || ^3.3 || ^4.0"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "suggest": {
         "sonata-project/cache-bundle": "To add caching support for block loading",
         "eko/feedbundle": "When using the RssBlock"
