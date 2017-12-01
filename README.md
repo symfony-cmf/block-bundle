@@ -60,16 +60,16 @@ Thanks to
 
 This package is available under the [MIT license](src/Resources/meta/LICENSE).
 
-[travis_legacy_badge]: https://travis-ci.org/block-bundle.svg?branch=master
+[travis_legacy_badge]: https://travis-ci.org/symfony-cmf/block-bundle.svg?branch=master
 [travis_legacy_link]: https://travis-ci.org/symfony-cmf/block-bundle
-[travis_stable_badge]: https://travis-ci.org/block-bundle.svg?branch=master
+[travis_stable_badge]: https://travis-ci.org/symfony-cmf/block-bundle.svg?branch=master
 [travis_stable_link]: https://travis-ci.org/symfony-cmf/block-bundle
-[travis_unstable_badge]: https://travis-ci.org/block-bundle.svg?branch=master
+[travis_unstable_badge]: https://travis-ci.org/symfony-cmf/block-bundle.svg?branch=master
 [travis_unstable_link]: https://travis-ci.org/symfony-cmf/block-bundle
 
-[coveralls_legacy_badge]: https://coveralls.io/repos/github/block-bundle/badge.svg?branch=master
-[coveralls_legacy_link]: https://coveralls.io/github/block-bundle?branch=master
-[coveralls_stable_badge]: https://coveralls.io/repos/github/block-bundle/badge.svg?branch=master
-[coveralls_stable_link]: https://coveralls.io/github/block-bundle?branch=master
-[coveralls_unstable_badge]: https://coveralls.io/repos/github/block-bundle/badge.svg?branch=master
-[coveralls_unstable_link]: https://coveralls.io/github/block-bundle?branch=master
+[coveralls_legacy_badge]: https://coveralls.io/repos/github/symfony-cmf/block-bundle/badge.svg?branch=master
+[coveralls_legacy_link]: https://coveralls.io/github/symfony-cmf/block-bundle?branch=master
+[coveralls_stable_badge]: https://coveralls.io/repos/github/symfony-cmf/block-bundle/badge.svg?branch=master
+[coveralls_stable_link]: https://coveralls.io/github/symfony-cmf/block-bundle?branch=master
+[coveralls_unstable_badge]: https://coveralls.io/repos/github/symfony-cmf/block-bundle/badge.svg?branch=master
+[coveralls_unstable_link]: https://coveralls.io/github/symfony-cmf/block-bundle?branch=master
