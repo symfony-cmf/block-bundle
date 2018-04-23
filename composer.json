@@ -20,7 +20,7 @@
         "symfony/framework-bundle": "^2.8 || ^3.3 || ^4.0",
         "doctrine/phpcr-bundle": "^1.4|^2.0",
         "doctrine/phpcr-odm": "^1.4.2|^2.0",
-        "sonata-project/block-bundle": "^3.3",
+        "sonata-project/block-bundle": "^3.11",
         "symfony-cmf/core-bundle": "^2.0"
     },
     "require-dev": {
