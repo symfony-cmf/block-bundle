@@ -9,7 +9,7 @@
         <service id="cmf.block.menu" class="Symfony\Cmf\Bundle\BlockBundle\Block\MenuBlockService">
             <tag name="sonata.block" />
             <argument>cmf.block.reference</argument>
-            <argument type="service" id="templating" />
+            <argument type="service" id="sonata.templating" />
         </service>
 
     </services>

@@ -9,19 +9,19 @@
         <service id="cmf.block.simple" class="Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService">
             <tag name="sonata.block" />
             <argument>cmf.block.simple</argument>
-            <argument type="service" id="templating" />
+            <argument type="service" id="sonata.templating" />
         </service>
 
         <service id="cmf.block.string" class="Symfony\Cmf\Bundle\BlockBundle\Block\StringBlockService">
             <tag name="sonata.block" />
             <argument>cmf.block.string</argument>
-            <argument type="service" id="templating" />
+            <argument type="service" id="sonata.templating" />
         </service>
 
         <service id="cmf.block.container" class="Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService">
             <tag name="sonata.block" />
             <argument>cmf.block.container</argument>
-            <argument type="service" id="templating" />
+            <argument type="service" id="sonata.templating" />
             <argument type="service" id="sonata.block.renderer" />
             <argument/><!-- for template construct -->
         </service>
@@ -29,7 +29,7 @@
         <service id="cmf.block.reference" class="Symfony\Cmf\Bundle\BlockBundle\Block\ReferenceBlockService">
             <tag name="sonata.block" />
             <argument>cmf.block.reference</argument>
-            <argument type="service" id="templating" />
+            <argument type="service" id="sonata.templating" />
             <argument type="service" id="sonata.block.renderer" />
             <argument type="service" id="sonata.block.context_manager" />
         </service>
@@ -38,14 +38,14 @@
             <tag name="sonata.block" />
             <argument type="service" id="request_stack" />
             <argument>cmf.block.action</argument>
-            <argument type="service" id="templating" />
+            <argument type="service" id="sonata.templating" />
             <argument type="service" id="fragment.handler" />
         </service>
 
         <service id="cmf.block.slideshow" class="Symfony\Cmf\Bundle\BlockBundle\Block\ContainerBlockService">
             <tag name="sonata.block" />
             <argument>cmf.block.slideshow</argument>
-            <argument type="service" id="templating" />
+            <argument type="service" id="sonata.templating" />
             <argument type="service" id="sonata.block.renderer" />
             <argument>CmfBlockBundle:Block:block_slideshow.html.twig</argument>
         </service>
