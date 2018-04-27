@@ -25,7 +25,7 @@ class CmfBlockBundle extends Bundle
     {
         $container->addCompilerPass(new ValidationPass());
 
-        if (class_exists(DoctrinePhpcrMappingsPass::class) && $container->hasParameter('cmf_block.persistence.phpcr.manager_name')) {
+        if (class_exists(DoctrinePhpcrMappingsPass::class)) {
             $container->addCompilerPass(
                 DoctrinePhpcrMappingsPass::createXmlMappingDriver(
                     [
