@@ -19,6 +19,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Templating\Helper;
 class EmbedBlocksParser
 {
     private $prefix;
+
     private $postfix;
 
     /**

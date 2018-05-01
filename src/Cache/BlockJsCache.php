@@ -26,9 +26,13 @@ use Symfony\Component\Routing\RouterInterface;
 class BlockJsCache implements CacheAdapterInterface
 {
     protected $router;
+
     protected $blockRenderer;
+
     protected $blockLoader;
+
     protected $blockContextManager;
+
     protected $sync;
 
     /**
