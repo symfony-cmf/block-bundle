@@ -22,6 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ReferenceBlockService extends AbstractBlockService implements BlockServiceInterface
 {
     protected $blockRenderer;
+
     protected $blockContextManager;
 
     /**
