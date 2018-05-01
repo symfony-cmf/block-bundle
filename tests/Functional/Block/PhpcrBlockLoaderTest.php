@@ -29,6 +29,7 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
     private $registryMock;
+
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
@@ -38,7 +39,9 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
      * @var AuthorizationCheckerInterface|\PHPUnit_Framework_MockObject_MockObject
      */
     private $pwcMock;
+
     private $requestStackMock;
+
     private $request;
 
     public function setUp()

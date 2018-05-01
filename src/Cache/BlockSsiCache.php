@@ -28,7 +28,9 @@ use Symfony\Component\Routing\RouterInterface;
 class BlockSsiCache extends SsiCache
 {
     protected $blockRenderer;
+
     protected $blockLoader;
+
     protected $blockContextManager;
 
     /**
