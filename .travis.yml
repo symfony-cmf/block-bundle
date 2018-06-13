@@ -60,7 +60,6 @@ before_install:
 install:
   - phpenv config-add travis.php.ini
   - php -ini | grep memory_limit
-
   - travis_wait composer update --prefer-dist $COMPOSER_FLAGS
 script:
   - if [ "${TEST_INSTALLATION}" == true ]; then make test_installation; else make test; fi
