@@ -27,7 +27,7 @@
         "symfony-cmf/testing": "^2.1.8",
         "symfony-cmf/menu-bundle": "^2.1",
         "symfony/phpunit-bridge": "^3.3 || ^4.0",
-        "sonata-project/cache-bundle": "^3.0",
+        "sonata-project/cache-bundle": "^2.4",
         "sonata-project/core-bundle": "^3.0",
         "twig/twig": "^1.14.2|^2.0",
         "symfony/security-bundle": "^2.8 || ^3.3 || ^4.0",
@@ -53,5 +53,8 @@
         "branch-alias": {
             "dev-master": "2.1-dev"
         }
+    },
+    "conflict": {
+        "sonata/cache": "<1.1.1"
     }
 }
