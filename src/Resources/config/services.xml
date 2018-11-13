@@ -47,7 +47,7 @@
             <argument>cmf.block.slideshow</argument>
             <argument type="service" id="sonata.templating" />
             <argument type="service" id="sonata.block.renderer" />
-            <argument>CmfBlockBundle:Block:block_slideshow.html.twig</argument>
+            <argument>@CmfBlock/Block/block_slideshow.html.twig</argument>
         </service>
 
         <service id="cmf.block.rss_controller" class="Symfony\Cmf\Bundle\BlockBundle\Controller\RssController" >

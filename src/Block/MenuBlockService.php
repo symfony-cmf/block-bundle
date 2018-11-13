@@ -25,7 +25,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class MenuBlockService extends AbstractBlockService implements BlockServiceInterface
 {
-    protected $template = 'CmfBlockBundle:Block:block_menu.html.twig';
+    protected $template = '@CmfBlock/Block/block_menu.html.twig';
 
     public function __construct($name, $templating, $template = null)
     {

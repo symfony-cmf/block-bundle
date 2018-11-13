@@ -18,7 +18,7 @@ class XmlSchemaTest extends XmlSchemaTestCase
     public function testSchema()
     {
         $xmlFiles = array_map(function ($file) {
-            return __DIR__.'/../..//Fixtures/App/config/'.$file;
+            return __DIR__.'/../..//Fixtures/fixtures/config/'.$file;
         }, [
             'config1.xml',
             'config2.xml',

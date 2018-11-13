@@ -30,7 +30,7 @@ class ContainerBlockService extends AbstractBlockService implements BlockService
     /**
      * @var string
      */
-    protected $template = 'CmfBlockBundle:Block:block_container.html.twig';
+    protected $template = '@CmfBlock/Block/block_container.html.twig';
 
     /**
      * @param string                 $name

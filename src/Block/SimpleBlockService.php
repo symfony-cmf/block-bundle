@@ -20,7 +20,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class SimpleBlockService extends AbstractBlockService implements BlockServiceInterface
 {
-    protected $template = 'CmfBlockBundle:Block:block_simple.html.twig';
+    protected $template = '@CmfBlock/Block/block_simple.html.twig';
 
     public function __construct($name, $templating, $template = null)
     {

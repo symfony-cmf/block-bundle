@@ -31,7 +31,7 @@ final class CmfBlockExtension extends Extension implements PrependExtensionInter
         if (isset($bundles['SonataBlockBundle'])) {
             $config = [
                 'templates' => [
-                    'block_base' => 'CmfBlockBundle:Block:block_base.html.twig',
+                    'block_base' => '@CmfBlock/Block/block_base.html.twig',
                 ],
                 'blocks_by_class' => [
                     0 => [
@@ -40,7 +40,7 @@ final class CmfBlockExtension extends Extension implements PrependExtensionInter
                             'title' => 'Insert the rss title',
                             'url' => false,
                             'maxItems' => 10,
-                            'template' => 'CmfBlockBundle:Block:block_rss.html.twig',
+                            'template' => '@CmfBlock/Block/block_rss.html.twig',
                             'itemClass' => 'Symfony\\Cmf\\Bundle\\BlockBundle\\Model\\FeedItem',
                         ],
                     ],
@@ -93,9 +93,9 @@ final class CmfBlockExtension extends Extension implements PrependExtensionInter
         $bundles = $container->getParameter('kernel.bundles');
         if (isset($bundles['CmfCreateBundle'])) {
             $blockLoader = $container->getDefinition('cmf.block.simple');
-            $blockLoader->addMethodCall('setTemplate', ['CmfBlockBundle:Block:block_simple_createphp.html.twig']);
+            $blockLoader->addMethodCall('setTemplate', ['@CmfBlock/Block/block_simple_createphp.html.twig']);
             $blockLoader = $container->getDefinition('cmf.block.string');
-            $blockLoader->addMethodCall('setTemplate', ['CmfBlockBundle:Block:block_string_createphp.html.twig']);
+            $blockLoader->addMethodCall('setTemplate', ['@CmfBlock/Block/block_string_createphp.html.twig']);
         }
 
         if (isset($bundles['CmfMenuBundle'])) {

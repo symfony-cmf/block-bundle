@@ -40,7 +40,7 @@ class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testExecutionOfEnabledBlock()
     {
-        $template = 'CmfBlockBundle:Block:block_menu.html.twig';
+        $template = '@CmfBlock/Block/block_menu.html.twig';
         $menuNode = new MenuNode();
 
         $menuBlock = new MenuBlock();

@@ -1,6 +1,14 @@
 Changelog
 =========
 
+2.1.1
+-----
+
+* **2018-11-13**: [BUGFIX] Older template path `CmfBlockBundl:Block:some-template.html.twig` is replaced to `@CmfBlock/Block/some-template.html.twig` to be recognized by newer Symfony versions
+
+2.1.0
+-----
+
 * **2017-11-16**: Removed php 5.6 and 7.0 support, removed Symfony 3.0.* and 3.1.* support
 
 2.0.0
