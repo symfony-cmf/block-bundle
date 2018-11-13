@@ -5,8 +5,13 @@
     bootstrap="vendor/symfony-cmf/testing/bootstrap/bootstrap.php"
 >
     <testsuites>
-        <testsuite name="Symfony CmfBlockBundle Test Suite">
-            <directory>./tests/</directory>
+        <testsuite name="unit tests">
+            <directory>./tests/Unit</directory>
+        </testsuite>
+
+        <testsuite name="functional tests with phpcr">
+            <directory>./tests/WebTest</directory>
+            <directory>./tests/Functional</directory>
         </testsuite>
     </testsuites>
 
