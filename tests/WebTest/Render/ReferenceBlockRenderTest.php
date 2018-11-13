@@ -34,7 +34,7 @@ class ReferenceBlockRenderTest extends BaseTestCase
         $crawler = $this->client->request('GET', '/render-reference-test');
 
         $res = $this->client->getResponse();
-        echo $res->getContent();
+
         $this->assertEquals(200, $res->getStatusCode());
 
         $this->assertCount(1, $crawler->filter('html:contains("Dummy action")'));
