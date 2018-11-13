@@ -39,7 +39,7 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testExecutionOfEnabledBlock()
     {
-        $template = 'CmfBlockBundle:Block:block_container.html.twig';
+        $template = '@CmfBlock/Block/block_container.html.twig';
 
         $simpleBlock1 = new SimpleBlock();
         $simpleBlock1->setId(1);
@@ -86,7 +86,7 @@ class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testExecutionOfBlockWithNoChildren()
     {
-        $template = 'CmfBlockBundle:Block:block_container.html.twig';
+        $template = '@CmfBlock/Block/block_container.html.twig';
 
         $childrenCollectionMock = $this->createMock(ChildrenCollection::class);
 

@@ -20,7 +20,7 @@ class StringBlockServiceTest extends \PHPUnit_Framework_TestCase
 {
     public function testExecutionOfEnabledBlock()
     {
-        $template = 'CmfBlockBundle:Block:block_string.html.twig';
+        $template = '@CmfBlock/Block/block_string.html.twig';
         $stringBlock = new StringBlock();
         $stringBlock->setEnabled(true);
         $blockContext = new BlockContext($stringBlock, ['template' => $template]);
