@@ -13,12 +13,12 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Controller;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Cmf\Bundle\BlockBundle\Model\FeedItem;
 use Symfony\Component\HttpFoundation\Response;
 use Zend\Feed\Reader\Exception\RuntimeException;
 
-class RssController extends Controller
+class RssController extends AbstractController
 {
     /**
      * Action that is referenced in an ActionBlock.
