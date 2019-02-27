@@ -11,6 +11,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Cache;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
@@ -18,7 +19,7 @@ use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockSsiCache;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 
-class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
+class BlockSsiCacheTest extends TestCase
 {
     /**
      * @expectedException \RuntimeException

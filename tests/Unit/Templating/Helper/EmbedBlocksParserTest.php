@@ -11,9 +11,10 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Templating\Helper;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\EmbedBlocksParser;
 
-class EmbedBlocksParserTest extends \PHPUnit_Framework_TestCase
+class EmbedBlocksParserTest extends TestCase
 {
     /** @var EmbedBlocksParser */
     protected $parser;

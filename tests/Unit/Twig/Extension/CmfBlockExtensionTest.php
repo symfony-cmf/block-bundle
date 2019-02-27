@@ -11,10 +11,11 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Twig\Extension;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\CmfBlockHelper;
 use Symfony\Cmf\Bundle\BlockBundle\Twig\Extension\CmfBlockExtension;
 
-class CmfBlockExtensionTest extends \PHPUnit_Framework_TestCase
+class CmfBlockExtensionTest extends TestCase
 {
     private $blockHelper;
 

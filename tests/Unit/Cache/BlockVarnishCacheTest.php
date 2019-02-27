@@ -11,6 +11,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Cache;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
@@ -19,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
 use Symfony\Component\Routing\RouterInterface;
 
-class BlockVarnishCacheTest extends \PHPUnit_Framework_TestCase
+class BlockVarnishCacheTest extends TestCase
 {
     /**
      * @var FragmentHandler|\PHPUnit_Framework_MockObject_MockObject
