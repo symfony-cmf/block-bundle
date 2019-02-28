@@ -12,6 +12,7 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Doctrine\ODM\PHPCR\ChildrenCollection;
+use PHPUnit\Framework\TestCase;
 use Sonata\BlockBundle\Block\BlockContext;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -20,7 +21,7 @@ use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 use Symfony\Component\HttpFoundation\Response;
 
-class ContainerBlockServiceTest extends \PHPUnit_Framework_TestCase
+class ContainerBlockServiceTest extends TestCase
 {
     public function testExecutionOfDisabledBlock()
     {

@@ -11,12 +11,13 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\BlockBundle\Block\BlockContext;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 
-class SimpleBlockServiceTest extends \PHPUnit_Framework_TestCase
+class SimpleBlockServiceTest extends TestCase
 {
     public function testExecutionOfEnabledBlock()
     {

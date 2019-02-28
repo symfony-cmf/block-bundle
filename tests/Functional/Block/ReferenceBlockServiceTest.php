@@ -11,6 +11,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\BlockBundle\Block\BlockContext;
 use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
@@ -19,7 +20,7 @@ use Symfony\Cmf\Bundle\BlockBundle\Block\ReferenceBlockService;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
 
-class ReferenceBlockServiceTest extends \PHPUnit_Framework_TestCase
+class ReferenceBlockServiceTest extends TestCase
 {
     public function testExecutionOfDisabledBlock()
     {

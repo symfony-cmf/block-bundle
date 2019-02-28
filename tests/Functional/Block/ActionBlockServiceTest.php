@@ -11,6 +11,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\BlockBundle\Block\BlockContext;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Block\ActionBlockService;
@@ -19,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
 
-class ActionBlockServiceTest extends \PHPUnit_Framework_TestCase
+class ActionBlockServiceTest extends TestCase
 {
     /**
      * @var EngineInterface|\PHPUnit_Framework_MockObject_MockObject

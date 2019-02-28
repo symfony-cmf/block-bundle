@@ -14,6 +14,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 use Doctrine\Bundle\PHPCRBundle\ManagerRegistry;
 use Doctrine\ODM\PHPCR\DocumentManager;
 use Doctrine\ODM\PHPCR\UnitOfWork;
+use PHPUnit\Framework\TestCase;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Block\PhpcrBlockLoader;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
@@ -23,7 +24,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
-class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
+class PhpcrBlockLoaderTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject

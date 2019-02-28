@@ -12,6 +12,7 @@
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 
 use Knp\Menu\NodeInterface;
+use PHPUnit\Framework\TestCase;
 use Sonata\BlockBundle\Block\BlockContext;
 use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
@@ -20,7 +21,7 @@ use Symfony\Cmf\Bundle\BlockBundle\Block\MenuBlockService;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MenuBlock;
 use Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\MenuNode;
 
-class MenuBlockServiceTest extends \PHPUnit_Framework_TestCase
+class MenuBlockServiceTest extends TestCase
 {
     public function testExecutionOfDisabledBlock()
     {
