@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -74,6 +76,6 @@ class RssController extends AbstractController
             $items = [];
         }
 
-        return array_slice($items, 0, $settings['maxItems']);
+        return \array_slice($items, 0, $settings['maxItems']);
     }
 }

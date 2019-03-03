@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -91,17 +93,81 @@ class BlockJsCache implements CacheAdapterInterface
     }
 
     /**
-     * @throws \RuntimeException
-     *
-     * @param array $keys
+     * {@inheritdoc}
      */
-    private function validateKeys(array $keys)
+    public function set(array $keys, $data, $ttl = 84600, array $contextualKeys = [])
     {
-        foreach (['block_id', 'updated_at'] as $key) {
-            if (!isset($keys[$key])) {
-                throw new \RuntimeException(sprintf('Please define a `%s` key', $key));
+        $this->validateKeys($keys);
+
+        return new CacheElement($keys, $data, $ttl, $contextualKeys);
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function cacheAction(Request $request)
+    {
+        $block = $this->blockLoader->load(['name' => $request->get('block_id')]);
+
+        if (!$block) {
+            return new Response('', 404);
+        }
+
+        $settings = $request->get(BlockContextManagerInterface::CACHE_KEY, []);
+
+        if (!\is_array($settings)) {
+            throw new \RuntimeException(sprintf(
+                'Query string parameter `%s` is not an array',
+                BlockContextManagerInterface::CACHE_KEY
+            ));
+        }
+
+        $response = $this->blockRenderer->render(
+            $this->blockContextManager->get($block, $settings)
+        );
+        $response->setPrivate(); //  always set to private
+
+        if ($this->sync) {
+            return $response;
+        }
+
+        $response->setContent(sprintf(<<<'JS'
+    (function () {
+        var block = document.getElementById('block%s'),
+            div = document.createElement("div"),
+            parentNode = block.parentNode,
+            node,
+            replace = true;
+
+        div.innerHTML = %s;
+
+        for (var node in div.childNodes) {
+            if (div.childNodes[node] && div.childNodes[node].nodeType == 1) {
+                if (replace) {
+                    parentNode.replaceChild(div.childNodes[node], block);
+                    replace = false;
+                } else {
+                    parentNode.appendChild(div.childNodes[node]);
+                }
             }
         }
+    })();
+JS
+, $this->dashify($block->getId()), json_encode($response->getContent())));
+
+        $response->headers->set('Content-Type', 'application/javascript');
+
+        return $response;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isContextual()
+    {
+        return false;
     }
 
     /**
@@ -183,84 +249,6 @@ CONTENT
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function set(array $keys, $data, $ttl = 84600, array $contextualKeys = [])
-    {
-        $this->validateKeys($keys);
-
-        return new CacheElement($keys, $data, $ttl, $contextualKeys);
-    }
-
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function cacheAction(Request $request)
-    {
-        $block = $this->blockLoader->load(['name' => $request->get('block_id')]);
-
-        if (!$block) {
-            return new Response('', 404);
-        }
-
-        $settings = $request->get(BlockContextManagerInterface::CACHE_KEY, []);
-
-        if (!is_array($settings)) {
-            throw new \RuntimeException(sprintf(
-                'Query string parameter `%s` is not an array',
-                BlockContextManagerInterface::CACHE_KEY
-            ));
-        }
-
-        $response = $this->blockRenderer->render(
-            $this->blockContextManager->get($block, $settings)
-        );
-        $response->setPrivate(); //  always set to private
-
-        if ($this->sync) {
-            return $response;
-        }
-
-        $response->setContent(sprintf(<<<'JS'
-    (function () {
-        var block = document.getElementById('block%s'),
-            div = document.createElement("div"),
-            parentNode = block.parentNode,
-            node,
-            replace = true;
-
-        div.innerHTML = %s;
-
-        for (var node in div.childNodes) {
-            if (div.childNodes[node] && div.childNodes[node].nodeType == 1) {
-                if (replace) {
-                    parentNode.replaceChild(div.childNodes[node], block);
-                    replace = false;
-                } else {
-                    parentNode.appendChild(div.childNodes[node]);
-                }
-            }
-        }
-    })();
-JS
-, $this->dashify($block->getId()), json_encode($response->getContent())));
-
-        $response->headers->set('Content-Type', 'application/javascript');
-
-        return $response;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isContextual()
-    {
-        return false;
-    }
-
-    /**
      * @param string $src
      *
      * @return mixed
@@ -268,5 +256,19 @@ JS
     protected function dashify($src)
     {
         return preg_replace('/[\/\.]/', '-', $src);
+    }
+
+    /**
+     * @param array $keys
+     *
+     * @throws \RuntimeException
+     */
+    private function validateKeys(array $keys)
+    {
+        foreach (['block_id', 'updated_at'] as $key) {
+            if (!isset($keys[$key])) {
+                throw new \RuntimeException(sprintf('Please define a `%s` key', $key));
+            }
+        }
     }
 }

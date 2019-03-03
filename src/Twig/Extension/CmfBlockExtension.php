@@ -65,7 +65,7 @@ class CmfBlockExtension extends \Twig_Extension
      *
      * @deprecated since 1.23 (to be removed in 2.0), implement Twig_Extension_GlobalsInterface instead
      */
-    public function getGlobals(): []
+    public function getGlobals(): array
     {
         return [];
     }

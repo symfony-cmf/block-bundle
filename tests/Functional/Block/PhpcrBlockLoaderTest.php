@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -63,14 +65,6 @@ class PhpcrBlockLoaderTest extends TestCase
             ->method('getCurrentRequest')
             ->will($this->returnValue($this->request))
         ;
-    }
-
-    private function getSimpleBlockLoaderInstance()
-    {
-        $blockLoader = new PhpcrBlockLoader($this->registryMock, $this->pwcMock, $this->requestStackMock, null, 'emptyblocktype');
-        $blockLoader->setManagerName('themanager');
-
-        return $blockLoader;
     }
 
     public function testSupport()
@@ -269,6 +263,14 @@ class PhpcrBlockLoaderTest extends TestCase
         $foundBlock = $blockLoader->load(['name' => $absoluteBlockPath]);
         $this->assertInstanceOf('Sonata\BlockBundle\Model\BlockInterface', $foundBlock);
         $this->assertEquals('alt-block', $foundBlock->getName());
+    }
+
+    private function getSimpleBlockLoaderInstance()
+    {
+        $blockLoader = new PhpcrBlockLoader($this->registryMock, $this->pwcMock, $this->requestStackMock, null, 'emptyblocktype');
+        $blockLoader->setManagerName('themanager');
+
+        return $blockLoader;
     }
 }
 
