@@ -21,7 +21,7 @@ Changelog
 
 Release 2.0.0
 
-2.0.0-RC2
+2.0.0-RC2Mo
 ---------
 
  * **2017-02-10**: [BC BREAK] Removed the `ImagineBlock` as the CmfMediaBundle
