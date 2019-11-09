@@ -16,6 +16,7 @@ use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
 use Sonata\Cache\CacheAdapterInterface;
 use Sonata\Cache\CacheElement;
+use Sonata\Cache\CacheElementInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
@@ -59,7 +60,7 @@ class BlockJsCache implements CacheAdapterInterface
     /**
      * {@inheritdoc}
      */
-    public function flushAll()
+    public function flushAll(): bool
     {
         return true;
     }
@@ -67,7 +68,7 @@ class BlockJsCache implements CacheAdapterInterface
     /**
      * {@inheritdoc}
      */
-    public function flush(array $keys = [])
+    public function flush(array $keys = []): bool
     {
         return true;
     }
@@ -75,7 +76,7 @@ class BlockJsCache implements CacheAdapterInterface
     /**
      * {@inheritdoc}
      */
-    public function has(array $keys)
+    public function has(array $keys): bool
     {
         return true;
     }
@@ -83,7 +84,7 @@ class BlockJsCache implements CacheAdapterInterface
     /**
      * {@inheritdoc}
      */
-    public function get(array $keys)
+    public function get(array $keys): CacheElementInterface
     {
         $this->validateKeys($keys);
 
@@ -151,7 +152,7 @@ class BlockJsCache implements CacheAdapterInterface
     </script>
 </div>
 CONTENT
-, $dashifiedId, $dashifiedId, $this->router->generate('cmf_block_js_sync_cache', $keys, true));
+            , $dashifiedId, $dashifiedId, $this->router->generate('cmf_block_js_sync_cache', $keys, true));
     }
 
     /**
@@ -179,13 +180,13 @@ CONTENT
     </script>
 </div>
 CONTENT
-, $this->dashify($keys['block_id']), $this->router->generate('cmf_block_js_async_cache', $keys, true));
+            , $this->dashify($keys['block_id']), $this->router->generate('cmf_block_js_async_cache', $keys, true));
     }
 
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, $ttl = 84600, array $contextualKeys = [])
+    public function set(array $keys, $data, $ttl = 84600, array $contextualKeys = []): CacheElementInterface
     {
         $this->validateKeys($keys);
 
@@ -209,9 +210,9 @@ CONTENT
 
         if (!is_array($settings)) {
             throw new \RuntimeException(sprintf(
-                'Query string parameter `%s` is not an array',
-                BlockContextManagerInterface::CACHE_KEY
-            ));
+                                            'Query string parameter `%s` is not an array',
+                                            BlockContextManagerInterface::CACHE_KEY
+                                        ));
         }
 
         $response = $this->blockRenderer->render(
@@ -245,7 +246,7 @@ CONTENT
         }
     })();
 JS
-, $this->dashify($block->getId()), json_encode($response->getContent())));
+            , $this->dashify($block->getId()), json_encode($response->getContent())));
 
         $response->headers->set('Content-Type', 'application/javascript');
 
@@ -255,7 +256,7 @@ JS
     /**
      * {@inheritdoc}
      */
-    public function isContextual()
+    public function isContextual(): bool
     {
         return false;
     }
