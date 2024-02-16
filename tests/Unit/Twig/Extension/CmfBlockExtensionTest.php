@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,10 +13,11 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Twig\Extension;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\CmfBlockHelper;
 use Symfony\Cmf\Bundle\BlockBundle\Twig\Extension\CmfBlockExtension;
 
-class CmfBlockExtensionTest extends \PHPUnit_Framework_TestCase
+class CmfBlockExtensionTest extends TestCase
 {
     private $blockHelper;
 

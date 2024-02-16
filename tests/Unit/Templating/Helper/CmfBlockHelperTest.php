@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,13 +13,14 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Templating\Helper;
 
+use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Sonata\BlockBundle\Exception\BlockNotFoundException;
 use Sonata\BlockBundle\Templating\Helper\BlockHelper;
 use Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\CmfBlockHelper;
 use Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\EmbedBlocksParser;
 
-class CmfBlockHelperTest extends \PHPUnit_Framework_TestCase
+class CmfBlockHelperTest extends TestCase
 {
     private $sonataBlock;
 

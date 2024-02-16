@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,12 +15,11 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Controller;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Cmf\Bundle\BlockBundle\Model\FeedItem;
 use Symfony\Component\HttpFoundation\Response;
-use Zend\Feed\Reader\Exception\RuntimeException;
 
-class RssController extends Controller
+class RssController extends AbstractController
 {
     /**
      * Action that is referenced in an ActionBlock.
@@ -64,7 +65,7 @@ class RssController extends Controller
         try {
             $reader = $this->get('eko_feed.feed.reader');
             $items = $reader->load($settings['url'])->populate($settings['itemClass']);
-        } catch (RuntimeException $e) {
+        } catch (\RuntimeException $e) {
             // feed import failed
             $this->get('logger')->debug(sprintf(
                 'RssBlock with id "%s" could not import feed from "%s", error: %s',
@@ -75,6 +76,6 @@ class RssController extends Controller
             $items = [];
         }
 
-        return array_slice($items, 0, $settings['maxItems']);
+        return \array_slice($items, 0, $settings['maxItems']);
     }
 }

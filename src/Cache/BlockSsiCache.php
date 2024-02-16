@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -55,20 +57,6 @@ class BlockSsiCache extends SsiCache
     }
 
     /**
-     * @throws \RuntimeException
-     *
-     * @param array $keys
-     */
-    private function validateKeys(array $keys)
-    {
-        foreach (['block_id', 'updated_at'] as $key) {
-            if (!isset($keys[$key])) {
-                throw new \RuntimeException(sprintf('Please define a `%s` key', $key));
-            }
-        }
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function get(array $keys)
@@ -90,20 +78,6 @@ class BlockSsiCache extends SsiCache
         $this->validateKeys($keys);
 
         return new CacheElement($keys, $data, $ttl, $contextualKeys);
-    }
-
-    /**
-     * @param array $keys
-     *
-     * @return string
-     */
-    protected function computeHash(array $keys)
-    {
-        // values are casted into string for non numeric id
-        return hash('sha256', $this->token.serialize([
-            'block_id' => (string) $keys['block_id'],
-            'updated_at' => (string) $keys['updated_at'],
-        ]));
     }
 
     /**
@@ -130,7 +104,7 @@ class BlockSsiCache extends SsiCache
 
         $settings = $request->get(BlockContextManagerInterface::CACHE_KEY, []);
 
-        if (!is_array($settings)) {
+        if (!\is_array($settings)) {
             throw new \RuntimeException(sprintf(
                 'Query string parameter `%s` is not an array',
                 BlockContextManagerInterface::CACHE_KEY
@@ -140,5 +114,33 @@ class BlockSsiCache extends SsiCache
         return $this->blockRenderer->render(
             $this->blockContextManager->get($block, $settings)
         );
+    }
+
+    /**
+     * @param array $keys
+     *
+     * @return string
+     */
+    protected function computeHash(array $keys)
+    {
+        // values are casted into string for non numeric id
+        return hash('sha256', $this->token.serialize([
+            'block_id' => (string) $keys['block_id'],
+            'updated_at' => (string) $keys['updated_at'],
+        ]));
+    }
+
+    /**
+     * @param array $keys
+     *
+     * @throws \RuntimeException
+     */
+    private function validateKeys(array $keys)
+    {
+        foreach (['block_id', 'updated_at'] as $key) {
+            if (!isset($keys[$key])) {
+                throw new \RuntimeException(sprintf('Please define a `%s` key', $key));
+            }
+        }
     }
 }

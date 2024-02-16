@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -14,6 +16,7 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Functional\Block;
 use Doctrine\Bundle\PHPCRBundle\ManagerRegistry;
 use Doctrine\ODM\PHPCR\DocumentManager;
 use Doctrine\ODM\PHPCR\UnitOfWork;
+use PHPUnit\Framework\TestCase;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Block\PhpcrBlockLoader;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
@@ -23,7 +26,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
-class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
+class PhpcrBlockLoaderTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
@@ -62,14 +65,6 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
             ->method('getCurrentRequest')
             ->will($this->returnValue($this->request))
         ;
-    }
-
-    private function getSimpleBlockLoaderInstance()
-    {
-        $blockLoader = new PhpcrBlockLoader($this->registryMock, $this->pwcMock, $this->requestStackMock, null, 'emptyblocktype');
-        $blockLoader->setManagerName('themanager');
-
-        return $blockLoader;
     }
 
     public function testSupport()
@@ -268,6 +263,14 @@ class PhpcrBlockLoaderTest extends \PHPUnit_Framework_TestCase
         $foundBlock = $blockLoader->load(['name' => $absoluteBlockPath]);
         $this->assertInstanceOf('Sonata\BlockBundle\Model\BlockInterface', $foundBlock);
         $this->assertEquals('alt-block', $foundBlock->getName());
+    }
+
+    private function getSimpleBlockLoaderInstance()
+    {
+        $blockLoader = new PhpcrBlockLoader($this->registryMock, $this->pwcMock, $this->requestStackMock, null, 'emptyblocktype');
+        $blockLoader->setManagerName('themanager');
+
+        return $blockLoader;
     }
 }
 

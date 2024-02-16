@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -71,6 +73,21 @@ final class CmfBlockExtension extends Extension implements PrependExtensionInter
         $this->loadSonataCache($config, $loader, $container);
     }
 
+    /**
+     * Returns the base path for the XSD files.
+     *
+     * @return string The XSD base path
+     */
+    public function getXsdValidationBasePath()
+    {
+        return __DIR__.'/../Resources/config/schema';
+    }
+
+    public function getNamespace()
+    {
+        return 'http://cmf.symfony.com/schema/dic/block';
+    }
+
     private function loadPhpcr(array $config, XmlFileLoader $loader, ContainerBuilder $container)
     {
         $container->setParameter($this->getAlias().'.backend_type_phpcr', true);
@@ -131,20 +148,5 @@ final class CmfBlockExtension extends Extension implements PrependExtensionInter
         } else {
             $container->removeDefinition('cmf.block.cache.ssi');
         }
-    }
-
-    /**
-     * Returns the base path for the XSD files.
-     *
-     * @return string The XSD base path
-     */
-    public function getXsdValidationBasePath()
-    {
-        return __DIR__.'/../Resources/config/schema';
-    }
-
-    public function getNamespace()
-    {
-        return 'http://cmf.symfony.com/schema/dic/block';
     }
 }

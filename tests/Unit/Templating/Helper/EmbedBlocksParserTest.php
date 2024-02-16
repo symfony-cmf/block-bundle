@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,9 +13,10 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Templating\Helper;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Cmf\Bundle\BlockBundle\Templating\Helper\EmbedBlocksParser;
 
-class EmbedBlocksParserTest extends \PHPUnit_Framework_TestCase
+class EmbedBlocksParserTest extends TestCase
 {
     /** @var EmbedBlocksParser */
     protected $parser;
@@ -135,12 +138,12 @@ class EmbedBlocksParserTest extends \PHPUnit_Framework_TestCase
     {
         $methodCall = \Closure::bind(
             function () use ($method) {
-                return call_user_func_array([$this, $method], func_get_args());
+                return \call_user_func_array([$this, $method], \func_get_args());
             },
             $object,
             $object
         );
 
-        return call_user_func_array($methodCall, $params);
+        return \call_user_func_array($methodCall, $params);
     }
 }

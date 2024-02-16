@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,6 +13,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Cache;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
@@ -20,14 +23,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 
-class BlockJsCacheTest extends \PHPUnit_Framework_TestCase
+class BlockJsCacheTest extends TestCase
 {
     /**
-     * @expectedException \RuntimeException
      * @dataProvider getExceptionCacheKeys
      */
     public function testExceptions($keys)
     {
+        $this->expectException(\RuntimeException::class);
+
         $router = $this->createMock(RouterInterface::class);
 
         $blockRenderer = $this->createMock(BlockRendererInterface::class);

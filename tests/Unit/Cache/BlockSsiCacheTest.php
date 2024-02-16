@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,6 +13,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Tests\Unit\Cache;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
@@ -18,14 +21,15 @@ use Symfony\Cmf\Bundle\BlockBundle\Cache\BlockSsiCache;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 
-class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
+class BlockSsiCacheTest extends TestCase
 {
     /**
-     * @expectedException \RuntimeException
      * @dataProvider      getExceptionCacheKeys
      */
     public function testExceptions($keys)
     {
+        $this->expectException(\RuntimeException::class);
+
         $router = $this->createMock(RouterInterface::class);
 
         $blockRenderer = $this->createMock(BlockRendererInterface::class);
@@ -82,11 +86,10 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('<!--# include virtual="/symfony-cmf/block/cache/ssi/XXXXX/%2Fcms%2Fcontent%2Fhome%2FadditionalInfoBlock?updated_at=as" -->', $cacheElement->getData()->getContent());
     }
 
-    /**
-     * @expectedException \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
-     */
     public function testAccessDenied()
     {
+        $this->expectException(\Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException::class);
+
         $token = 'My Token';
         $keys = [
             'block_id' => '/cms/content/home/additionalInfoBlock',
@@ -108,11 +111,10 @@ class BlockSsiCacheTest extends \PHPUnit_Framework_TestCase
         $cache->cacheAction($request);
     }
 
-    /**
-     * @expectedException \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     */
     public function testBlockNotFound()
     {
+        $this->expectException(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class);
+
         $token = 'My Token';
         $keys = [
             'block_id' => '/not/found',

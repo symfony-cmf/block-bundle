@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -36,7 +38,7 @@ class PhpcrBlockLoader implements BlockLoaderInterface
     protected $requestStack;
 
     /**
-     * @var null|LoggerInterface
+     * @var LoggerInterface|null
      */
     protected $logger;
 
@@ -51,6 +53,11 @@ class PhpcrBlockLoader implements BlockLoaderInterface
     protected $managerRegistry;
 
     /**
+     * @var string service id of the empty block service
+     */
+    protected $emptyBlockType;
+
+    /**
      * @var AuthorizationCheckerInterface
      */
     private $publishWorkflowChecker;
@@ -61,11 +68,6 @@ class PhpcrBlockLoader implements BlockLoaderInterface
      * @var string
      */
     private $publishWorkflowPermission = PublishWorkflowChecker::VIEW_ATTRIBUTE;
-
-    /**
-     * @var string service id of the empty block service
-     */
-    protected $emptyBlockType;
 
     /**
      * @param ManagerRegistry          $managerRegistry
@@ -128,7 +130,7 @@ class PhpcrBlockLoader implements BlockLoaderInterface
             return $this->getNotFoundBlock($configuration['name'], sprintf(
                 "Document at '%s' is no Sonata\\BlockBundle\\Model\\BlockInterface but %s",
                 $configuration['name'],
-                null === $block ? 'not existing' : get_class($block)
+                null === $block ? 'not existing' : \get_class($block)
             ));
         }
 
@@ -140,7 +142,7 @@ class PhpcrBlockLoader implements BlockLoaderInterface
      */
     public function support($configuration)
     {
-        if (!is_array($configuration)) {
+        if (!\is_array($configuration)) {
             return false;
         }
 
@@ -149,6 +151,22 @@ class PhpcrBlockLoader implements BlockLoaderInterface
         }
 
         return true;
+    }
+
+    /**
+     * @return string|null service id of the empty block service, null if not set
+     */
+    public function getEmptyBlockType()
+    {
+        return $this->emptyBlockType;
+    }
+
+    /**
+     * @param string $type service id of the empty block service
+     */
+    public function setEmptyBlockType($type = null)
+    {
+        $this->emptyBlockType = $type;
     }
 
     /**
@@ -197,8 +215,8 @@ class PhpcrBlockLoader implements BlockLoaderInterface
      */
     protected function isAbsolutePath($path)
     {
-        return is_string($path)
-            && strlen($path) > 0
+        return \is_string($path)
+            && \strlen($path) > 0
             && '/' === $path[0]
         ;
     }
@@ -225,8 +243,16 @@ class PhpcrBlockLoader implements BlockLoaderInterface
                 ->getDocumentId($currentPage).'/'.$name
             ;
         }
+    }
 
-        return;
+    /**
+     * Get the object manager from the registry, based on the current managerName.
+     *
+     * @return \Doctrine\Common\Persistence\ObjectManager
+     */
+    protected function getObjectManager()
+    {
+        return $this->managerRegistry->getManager($this->managerName);
     }
 
     /**
@@ -238,9 +264,9 @@ class PhpcrBlockLoader implements BlockLoaderInterface
      * @param string $name    The block name that was not found or invalid
      * @param string $message The exception message if an exception should be raised
      *
-     * @return EmptyBlock
-     *
      * @throws BlockNotFoundException if there is no type defined for the empty block
+     *
+     * @return EmptyBlock
      */
     private function getNotFoundBlock($name, $message = null)
     {
@@ -258,31 +284,5 @@ class PhpcrBlockLoader implements BlockLoaderInterface
         }
 
         return $block;
-    }
-
-    /**
-     * @return string|null service id of the empty block service, null if not set
-     */
-    public function getEmptyBlockType()
-    {
-        return $this->emptyBlockType;
-    }
-
-    /**
-     * @param string $type service id of the empty block service
-     */
-    public function setEmptyBlockType($type = null)
-    {
-        $this->emptyBlockType = $type;
-    }
-
-    /**
-     * Get the object manager from the registry, based on the current managerName.
-     *
-     * @return \Doctrine\Common\Persistence\ObjectManager
-     */
-    protected function getObjectManager()
-    {
-        return $this->managerRegistry->getManager($this->managerName);
     }
 }

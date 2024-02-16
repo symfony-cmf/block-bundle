@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -31,8 +33,13 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('cmf_block');
+        $treeBuilder = new TreeBuilder('cmf_block');
+        // Keep compatibility with symfony/config < 4.2
+        if (!method_exists($treeBuilder, 'getRootNode')) {
+            $rootNode = $treeBuilder->root('cmf_block');
+        } else {
+            $rootNode = $treeBuilder->getRootNode();
+        }
 
         $rootNode
             ->children()
@@ -67,7 +74,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('varnish')
                             ->fixXmlConfig('server')
                             ->children()
-                                ->scalarNode('token')->defaultValue(hash('sha256', uniqid(mt_rand(), true)))->end()
+                                ->scalarNode('token')->defaultValue(hash('sha256', uniqid((string) mt_rand(), true)))->end()
                                 ->scalarNode('version')->defaultValue(2)->end()
                                 ->arrayNode('servers')
                                     ->prototype('scalar')->end()
@@ -76,7 +83,7 @@ class Configuration implements ConfigurationInterface
                         ->end()
                         ->arrayNode('ssi')
                             ->children()
-                                ->scalarNode('token')->defaultValue(hash('sha256', uniqid(mt_rand(), true)))->end()
+                                ->scalarNode('token')->defaultValue(hash('sha256', uniqid((string) mt_rand(), true)))->end()
                             ->end()
                         ->end()
                     ->end()

@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -86,13 +88,13 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
     protected $locale;
 
     /**
-     * @param string $src
+     * toString ...
      *
      * @return string
      */
-    protected function dashify($src)
+    public function __toString()
     {
-        return preg_replace('/[\/\.]/', '-', $src);
+        return (string) $this->name;
     }
 
     /**
@@ -155,7 +157,7 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
     {
         $siblings = $this->getParentObject()->getChildren();
 
-        return array_search($siblings->indexOf($this), $siblings->getKeys());
+        return array_search($siblings->indexOf($this), $siblings->getKeys(), true);
     }
 
     /**
@@ -330,8 +332,6 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
         if (($parent = $this->getParentObject()) instanceof BlockInterface) {
             return $parent;
         }
-
-        return;
     }
 
     /**
@@ -362,16 +362,6 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
     public function getTtl()
     {
         return $this->ttl;
-    }
-
-    /**
-     * toString ...
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return (string) $this->name;
     }
 
     /**
@@ -452,5 +442,15 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
         $this->locale = $locale;
 
         return $this;
+    }
+
+    /**
+     * @param string $src
+     *
+     * @return string
+     */
+    protected function dashify($src)
+    {
+        return preg_replace('/[\/\.]/', '-', $src);
     }
 }

@@ -1,9 +1,10 @@
 Changelog
 =========
-3.0.0 (unreleased)
+
+2.2.0 (unreleased)
 ------------------
 
-
+* **2019-02-28**: Symfony 4.2 support without warnings
 
 2.1.1
 -----
@@ -20,7 +21,7 @@ Changelog
 
 Release 2.0.0
 
-2.0.0-RC2
+2.0.0-RC2Mo
 ---------
 
  * **2017-02-10**: [BC BREAK] Removed the `ImagineBlock` as the CmfMediaBundle
